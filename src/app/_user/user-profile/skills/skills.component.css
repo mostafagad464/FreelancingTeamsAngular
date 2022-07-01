@@ -1,0 +1,33 @@
+* {box-sizing: border-box}
+
+.container {
+  width:  300px;
+  background-color:  #ddd;
+ 
+}
+
+.skills {
+  text-align: right;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  color: white;
+ 
+}
+.green {
+    background-color: #04AA6D;
+
+}
+.blue {
+    background-color: #2196F3;
+
+}
+.yellow {
+    background-color: darkorange;
+
+}
+.red{
+    background-color: #f44336;
+
+}
+
+

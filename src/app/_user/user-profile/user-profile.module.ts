@@ -12,6 +12,10 @@ import { EditeducationalInfoComponent } from './editeducational-info/editeducati
 import { EditpersonalInfoComponent } from './editpersonal-info/editpersonal-info.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { EditexperienceComponent } from './editexperience/editexperience.component';
+import { SkillsAndCertificateComponent } from './skills-and-certificate/skills-and-certificate.component';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -28,12 +32,20 @@ import { EditexperienceComponent } from './editexperience/editexperience.compone
     EditeducationalInfoComponent,
     EditpersonalInfoComponent,
     ExperienceComponent,
-    EditexperienceComponent
+    EditexperienceComponent,
+    SkillsAndCertificateComponent,
+    CertificatesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,RouterModule,FormsModule
   ],
-  exports: [ExperienceComponent
+  exports: [
+    ExperienceComponent,
+    SkillsComponent,
+    CertificatesComponent, 
+    SkillsAndCertificateComponent,
+    EditskillsComponent
+   
 
   ]
 })

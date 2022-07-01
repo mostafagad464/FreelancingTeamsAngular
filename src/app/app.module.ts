@@ -1,10 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
+import {RatingModule} from 'primeng/rating';
+
 
 @NgModule({
   declarations: [AppComponent
@@ -14,7 +17,12 @@ import { UserProfileModule } from './_user/user-profile/user-profile.module';
     BrowserModule,
     AppRoutingModule,
     UserProfileModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserModule,
+    RatingModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
