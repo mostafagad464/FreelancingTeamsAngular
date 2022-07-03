@@ -12,27 +12,28 @@ export class AccountService {
 
   constructor(public http: HttpClient) { }
 
-  getAllAccounts() {
-    return this.http.get<any>(this.baseurl);
-  }
-  getAccount(id: Number) {
-    return this.http.get<any>(this.baseurl + id);
-  }
+  // getAllAccounts() {
+  //   return this.http.get<any>(this.baseurl);
+  // }
+  
+  // getAccount(id: Number) {
+  //   return this.http.get<any>(this.baseurl + id);
+  // }
 
   getUserName(fName: string, lName: string){
-    this.querystring = "First_Name="+fName+"&Last_Name="+lName
-    return this.http.get<string>(this.baseurl+"UserName?"+this.querystring)
+    this.querystring = "First_Name="+fName+"&Last_Name="+lName;
+    return this.http.get<any>(this.baseurl+"UserName?"+this.querystring);
   }
 
-  addAccount(st: Account) {
-    return this.http.post(this.baseurl, st);
+  addAccount(account: Account) {
+    return this.http.post<Account>(this.baseurl, account);
   }
 
-  EditAccount(st: any) {
-    return this.http.put(this.baseurl, st);
-  }
+  // EditAccount(st: any) {
+  //   return this.http.put(this.baseurl, st);
+  // }
 
-  DeleteAccount(id: Number) {
-    return this.http.delete(this.baseurl);
-  }
+  // DeleteAccount(id: Number) {
+  //   return this.http.delete(this.baseurl);
+  // }
 }
