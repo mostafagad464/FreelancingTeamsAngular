@@ -1,21 +1,25 @@
+import { Freelancer } from "./freelancer";
+
 export class User {
     constructor(
-        public Id: number,
-        public BirthDate:Date,
-        public ReplySpeed : number,
-        public Phone :number,
-        public RegisterDate : Date,
-        public Country : string,
-        public State : string,
-        public Image : File,
-        public Rate : number,
-        public ActiveStatus : boolean,
-        public Bio : string,
-        public Client : boolean,
-        public Freelancer : boolean,
-        public AdminValidated : number,
-        public WalletId : number,
-        public Validated : boolean
+        public id: number,
+        public birthDate:Date,
+        public replySpeed : number,
+        public phone :number,
+        public registerDate : Date,
+        public country : string,
+        public state : string,
+        public image : string,
+        public rate : number,
+        public activeStatus : boolean,
+        public bio : string,
+        public client : boolean,
+        public freelancer : boolean,
+        public adminValidated : number,
+        public walletId : number,
+        public validated : boolean,
+        public  freelancerNavigation:Freelancer
+        
 
     ){}
 }

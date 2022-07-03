@@ -12,6 +12,15 @@ import { EditeducationalInfoComponent } from './editeducational-info/editeducati
 import { EditpersonalInfoComponent } from './editpersonal-info/editpersonal-info.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { EditexperienceComponent } from './editexperience/editexperience.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
+
 
 
 
@@ -31,9 +40,9 @@ import { EditexperienceComponent } from './editexperience/editexperience.compone
     EditexperienceComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,RouterModule,FormsModule,NgbModalModule
   ],
-  exports: [ExperienceComponent
+  exports: [ExperienceComponent,PersonalInfoComponent,HeaderComponent,ProjectsComponent
 
   ]
 })

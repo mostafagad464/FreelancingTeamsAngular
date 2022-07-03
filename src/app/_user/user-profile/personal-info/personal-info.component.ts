@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
+import { Account } from 'src/app/_models/Account';
+import { Freelancer } from 'src/app/_models/freelancer';
+import { User } from 'src/app/_models/user';
+import { UserProfileService } from 'src/app/_services/user-profile.service';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditpersonalInfoComponent } from '../editpersonal-info/editpersonal-info.component';
+
 
 @Component({
   selector: 'app-personal-info',
@@ -6,10 +17,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  openModal() {
+    const modalRef = this.modalService.open(EditpersonalInfoComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+      });
+    modalRef.result.then((result:any) => {
+      console.log(result);
+    }, (reason:any) => {
+    });
   }
 
+  // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
+  //userInfo={} as User;
+  accountInfo:Account=new Account(0,0,"","","","","","",new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0)))
+  // accountInfo={} as Account
+  sub1:Subscription|null=null
+  sub2:Subscription|null=null
+
+  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public modalService: NgbModal) { }
+  open()
+  {
+
+  }
+  ngOnInit(): void {
+    this.sub1=this.ar.params.subscribe(a=>{
+      console.log(a['id']);
+
+    this.sub2=this.userserv.getAccountInfoByid(a['id']).subscribe(b=>{
+      if(b.type=="User")
+      {
+
+        this.accountInfo=b;
+        // console.log(this.accountInfo)
+        if(b.user.freelancer==true)
+        {
+          // console.log(b.user.freelancerNavigation)
+        }
+        
+
+      }
+      }
+    )
+
+  })
+  }
 }
