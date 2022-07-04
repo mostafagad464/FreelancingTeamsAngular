@@ -42,7 +42,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,RouterModule,FormsModule,NgbModalModule
   ],
-  exports: [ExperienceComponent,PersonalInfoComponent,HeaderComponent,ProjectsComponent
+  exports: [ExperienceComponent,PersonalInfoComponent,HeaderComponent,ProjectsComponent,SidebarComponent
 
   ]
 })

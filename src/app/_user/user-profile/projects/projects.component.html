@@ -1,1 +1,16 @@
-<p>projects works!</p>
+<div class="row" *ngFor="let item of portfolioArray">
+    <div class="card col-lg-4" style="width: 18rem; display: inline-block;">
+        <a href={{item.link}}>
+            <img  alt="Qries" src="https://cdn.pixabay.com/photo/2016/03/29/08/48/project-1287781_960_720.jpg"
+            width="300" height="200">
+         </a>
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.description}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      
+
+</div>
