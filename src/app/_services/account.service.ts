@@ -16,9 +16,9 @@ export class AccountService {
   //   return this.http.get<any>(this.baseurl);
   // }
   
-  // getAccount(id: Number) {
-  //   return this.http.get<any>(this.baseurl + id);
-  // }
+  getAccount(id: Number) {
+    return this.http.get<Account>(this.baseurl + id);
+  }
 
   getUserName(fName: string, lName: string){
     this.querystring = "First_Name="+fName+"&Last_Name="+lName;
@@ -29,9 +29,9 @@ export class AccountService {
     return this.http.post<Account>(this.baseurl, account);
   }
 
-  // EditAccount(st: any) {
-  //   return this.http.put(this.baseurl, st);
-  // }
+  EditAccount(account: Account) {
+    return this.http.put<Account>(this.baseurl, account);
+  }
 
   // DeleteAccount(id: Number) {
   //   return this.http.delete(this.baseurl);

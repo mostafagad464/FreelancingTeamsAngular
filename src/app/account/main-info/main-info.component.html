@@ -1,0 +1,65 @@
+<div class="card-body p-5">
+    <h2 class="text-uppercase text-center mb-3">Complete your information</h2>
+
+    <form>
+        <ng-template [ngIf]="!bio_Pic">
+
+            <div class="form-outline mb-3">
+                <label>Identity Id</label>
+                <input type="text" class="form-control form-control-lg" [(ngModel)]="account.identityId"
+                    [ngModelOptions]="{standalone: true}" />
+            </div>
+
+            <div class="form-outline mb-3">
+                <label>Birth Date</label>
+                <input type="date" class="form-control form-control-lg" [(ngModel)]="user.birthDate" [ngModelOptions]="{standalone: true}"/>
+            </div>
+
+            <div class="form-outline mb-3 row">
+                <div class="col-6">
+                    <label>Country</label>
+                    <input type="text" class="form-control form-control-lg" [(ngModel)]="user.country" [ngModelOptions]="{standalone: true}"/>
+                </div>
+                <div class="col-6">
+                    <label>State</label>
+                    <input type="text" class="form-control form-control-lg" [(ngModel)]="user.state" [ngModelOptions]="{standalone: true}"/>
+                </div>
+            </div>
+
+            <div class="form-outline mb-4 row">
+                <div class="col-3">
+                    <label>Code</label>
+                    <input type="text" class="form-control form-control-lg" />
+                </div>
+                <div class="col-9">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control form-control-lg" [(ngModel)]="user.phone"[ngModelOptions]="{standalone: true}" />
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="bio_Pic">
+            <div class="profile-img">
+                <img src="{{imageurl}}" class="avatar img-circle img-thumbnail" alt="avatar"/>
+                <label for="inputTag" class="btn btn-primary addimage">
+                    Add Photo
+                    <input id="inputTag" type="file" (input)="AddImg($event)"/>
+                  </label>
+            </div>
+
+            <div class="form-outline mb-3">
+                <label>Add Bio</label>
+                <textarea type="text" class="form-control form-control-lg" [(ngModel)]="user.bio" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+
+        </ng-template>
+
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary text-body" (click)="UpdateInfo()">Save</button>
+            <button type="button" class="btn btn-light text-body" (click)="GoToProfile()">Later</button>
+        </div>
+
+    </form>
+
+</div>

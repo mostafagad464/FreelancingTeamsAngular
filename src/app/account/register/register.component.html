@@ -31,10 +31,9 @@
                                     </div>
 
                                     <div class="form-outline mb-2 ">
-                                        <input type="text" id="form3Example2cg" name="firstName"
-                                            class="form-control form-control-lg" placeholder="Your First Name"
-                                            [(ngModel)]="account.firstName" required minlength="3" #firstName="ngModel"
-                                            [ngModelOptions]="{standalone: true}" />
+                                        <input type="text" name="firstName" class="form-control form-control-lg"
+                                            placeholder="Your First Name" [(ngModel)]="account.firstName" required
+                                            minlength="3" #firstName="ngModel" [ngModelOptions]="{standalone: true}" />
                                     </div>
 
                                     <ng-template [ngIf]="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -47,10 +46,9 @@
                                     </ng-template>
 
                                     <div class="form-outline mb-2">
-                                        <input type="text" id="form3Example2cg" name="lastName"
-                                            class="form-control form-control-lg" placeholder="Your Last Name"
-                                            [(ngModel)]="account.lastName" required minlength="3" #lastName="ngModel"
-                                            [ngModelOptions]="{standalone: true}" />
+                                        <input type="text" name="lastName" class="form-control form-control-lg"
+                                            placeholder="Your Last Name" [(ngModel)]="account.lastName" required
+                                            minlength="3" #lastName="ngModel" [ngModelOptions]="{standalone: true}" />
                                     </div>
                                     <ng-template [ngIf]="lastName.invalid && (lastName.dirty || lastName.touched)">
                                         <div *ngIf="lastName.errors?.['required']" class="text-danger mb-1 small">
@@ -62,10 +60,9 @@
                                     </ng-template>
 
                                     <div class="form-outline mb-2">
-                                        <input type="email" id="form3Example3cg" name="email"
-                                            class="form-control form-control-lg" placeholder="Your Email"
-                                            [(ngModel)]="account.email" required email #email="ngModel"
-                                            [ngModelOptions]="{standalone: true}" />
+                                        <input type="email" name="email" class="form-control form-control-lg"
+                                            placeholder="Your Email" [(ngModel)]="account.email" required email
+                                            #email="ngModel" [ngModelOptions]="{standalone: true}" />
                                     </div>
                                     <ng-template [ngIf]="email.invalid && (email.dirty || email.touched)">
                                         <div *ngIf="email.errors?.['required']" class="text-danger mb-1 small">
@@ -79,10 +76,9 @@
 
 
                                     <div class="form-outline mb-2">
-                                        <input type="password" id="form3Example4cg" name="password"
-                                            class="form-control form-control-lg" placeholder="Password"
-                                            [(ngModel)]="account.password" required minlength="8" #password="ngModel"
-                                            [ngModelOptions]="{standalone: true}" />
+                                        <input type="password" name="password" class="form-control form-control-lg"
+                                            placeholder="Password" [(ngModel)]="account.password" required minlength="8"
+                                            #password="ngModel" [ngModelOptions]="{standalone: true}" />
                                     </div>
                                     <ng-template [ngIf]="password.invalid && (password.dirty || password.touched)">
                                         <div *ngIf="password.errors?.['required']" class="text-danger mb-1 small">
@@ -94,9 +90,8 @@
                                     </ng-template>
 
                                     <div class="form-outline mb-3">
-                                        <input type="password" id="form3Example4cdg"
-                                            class="form-control form-control-lg" placeholder="Repeat your password"
-                                            [(ngModel)]="confirmPassword" required
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="Repeat your password" [(ngModel)]="confirmPassword" required
                                             [ngModelOptions]="{standalone: true}" />
                                     </div>
                                 </ng-template>

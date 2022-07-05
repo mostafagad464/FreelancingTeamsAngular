@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Account } from 'src/app/_models/account';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
+import { MainInfoComponent } from '../main-info/main-info.component';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+const helper = new JwtHelperService();
 
 @Component({
   selector: 'app-register',
@@ -21,7 +26,7 @@ export class RegisterComponent implements OnInit {
   isChecked = false;
   type = "";
 
-  constructor(public AccountService: AccountService, public UserService: UserService/*, public modalService: NgbModal*/) { }
+  constructor(public AccountService: AccountService, public UserService: UserService, public modalService: NgbModal,public AuthService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -82,6 +87,8 @@ export class RegisterComponent implements OnInit {
             console.log(this.user);
             this.UserService.addUser(this.user).subscribe(u=>{
               console.log(u);
+              this.login(this.account.username, this.account.password);
+              this.openModal();
             })
           })
         }
@@ -91,16 +98,32 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // openModal() {
-  //   const modalRef = this.modalService.open(EditpersonalInfoComponent,
-  //     {
-  //       scrollable: true,
-  //       windowClass: 'myCustomModalClass',
-  //     });
-  //   modalRef.result.then((result:any) => {
-  //     console.log(result);
-  //   }, (reason:any) => {
-  //   });
-  // }
+  login(userName: string, pass: string){
+    this.AuthService.login(userName,pass).subscribe(s=>{
+      sessionStorage.setItem("access_token",s.token);
+      const decodedToken = helper.decodeToken(s.token);
+      const expirationDate = helper.getTokenExpirationDate(s.token);
+      const isExpired = helper.isTokenExpired(s.token);
+      console.log(s)
+      console.log(decodedToken)
+      console.log(expirationDate)
+      console.log(isExpired)
+    },
+    error=> {
+      console.log(error.error)}
+      );
+  }
+
+  openModal() {
+    const modalRef = this.modalService.open(MainInfoComponent,
+      {
+        scrollable: false,
+        windowClass: 'myCustomModalClass',
+      });
+    modalRef.result.then((result:any) => {
+      console.log(result);
+    }, (reason:any) => {
+    });
+  }
 
 }

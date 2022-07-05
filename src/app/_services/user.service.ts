@@ -8,25 +8,30 @@ import { User } from '../_models/user';
 export class UserService {
 
   baseurl = "https://localhost:7152/api/Users/";
-  querystring =";"
+  imageurl = "https://localhost:7152/api/Image/";
+  querystring = ";"
 
   constructor(public http: HttpClient) { }
 
   // getAllUsers() {
   //   return this.http.get<any>(this.baseurl);
   // }
-  
-  // getUser(id: Number) {
-  //   return this.http.get<any>(this.baseurl + id);
-  // }
 
-  addUser(user: User) {
-    return this.http.post(this.baseurl, user);
+  getUser(id: Number) {
+    return this.http.get<User>(this.baseurl + id);
   }
 
-  // EditUser(st: any) {
-  //   return this.http.put(this.baseurl, st);
-  // }
+  addUser(user: User) {
+    return this.http.post<User>(this.baseurl, user);
+  }
+
+  addImage(UserId: number, img: FormData) {
+    return this.http.post<any>(this.imageurl + UserId, img);
+  }
+
+  EditUser(user: User) {
+    return this.http.put<User>(this.baseurl, user);
+  }
 
   // DeleteUser(id: Number) {
   //   return this.http.delete(this.baseurl);
