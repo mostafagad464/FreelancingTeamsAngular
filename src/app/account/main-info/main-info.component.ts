@@ -4,6 +4,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
+import { CountriesService } from 'src/app/_services/countries.service';
 
 const helper = new JwtHelperService();
 
@@ -18,21 +19,43 @@ export class MainInfoComponent implements OnInit {
   user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, null);
   bio_Pic = false;
   Image: File | null = null;
-  imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+  imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
+  countries: string[] = [];
+  states: string[] = [];
+  code: string = "";
 
-  constructor(public AccountService: AccountService, public UserService: UserService) { }
+
+  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService) { }
 
   ngOnInit(): void {
-    sessionStorage.getItem("access_token");
     let id = helper.decodeToken(sessionStorage.getItem("access_token")?.toString()).Id;
     console.log(id);
     this.AccountService.getAccount(id).subscribe(a => {
       this.account = a;
-    },err=>console.log(err));
+    }, err => console.log(err));
     this.UserService.getUser(parseInt(id)).subscribe(u => {
       this.user = u;
-      this.user.birthDate = this.user.birthDate?.split('T')[0]?this.user.birthDate?.split('T')[0]:null;
-    },error=>console.log(error));
+      this.user.birthDate = this.user.birthDate?.split('T')[0] ? this.user.birthDate?.split('T')[0] : null;
+      if(this.user.country!=null){
+        this.CountriesService.getCountryDialCode(this.user.country).subscribe(d=>{
+          this.code = d.data.dial_code;
+        }, err => console.log(err))
+      }
+    }, error => console.log(error));
+    this.CountriesService.getAllCountries().subscribe(c => {
+      for (const country of c) {
+        this.countries.push(country.name);
+      }
+    }, err => console.log(err));
+  }
+
+  LoadStates(E: any) {
+    this.CountriesService.getCountryCities(E.target.value).subscribe(c => {
+      this.states = c.data;
+    }, err => console.log(err));
+    this.CountriesService.getCountryDialCode(E.target.value).subscribe(d=>{
+      this.code = d.data.dial_code;
+    }, err => console.log(err))
   }
 
   AddImg(I: any) {
@@ -40,13 +63,10 @@ export class MainInfoComponent implements OnInit {
       this.Image = <File>I.target.files[0];
 
       const reader = new FileReader();
-      reader.readAsDataURL(this.Image); 
-      reader.onload = (_event) => { 
-          this.imageurl = reader.result?.toString()?reader.result.toString():this.imageurl; 
+      reader.readAsDataURL(this.Image);
+      reader.onload = (_event) => {
+        this.imageurl = reader.result?.toString() ? reader.result.toString() : this.imageurl;
       }
-
-
-
     }
   }
 
@@ -69,18 +89,17 @@ export class MainInfoComponent implements OnInit {
         if (this.Image) {
           fd.append("files", this.Image, this.Image.name);
           console.log(this.Image.name);
-        
-        this.UserService.addImage(this.user.id, fd).subscribe(u => {
-          this.user.image = u.image;
-          // this.Router.navigate(['']);
-        })
-      }
 
+          this.UserService.addImage(this.user.id, fd).subscribe(u => {
+            this.user.image = u.image;
+            // this.Router.navigate(['']);
+          })
+        }
       })
     }
   }
 
-  GoToProfile(){
+  GoToProfile() {
     // this.Router.navigate(['']);
   }
 }
