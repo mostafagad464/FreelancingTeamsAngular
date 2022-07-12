@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FreelancerCertificates } from 'src/app/_models/freelancer-certificates';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddCertificateComponent } from '../add-certificate/add-certificate.component';
 import { EditCertificatesComponent } from '../edit-certificates/edit-certificates.component';

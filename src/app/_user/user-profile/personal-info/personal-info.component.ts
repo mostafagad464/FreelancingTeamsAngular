@@ -2,13 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { Account } from 'src/app/_models/Account';
 import { Freelancer } from 'src/app/_models/freelancer';
 import { User } from 'src/app/_models/user';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditpersonalInfoComponent } from '../editpersonal-info/editpersonal-info.component';
+import { Account } from 'src/app/_models/account';
 
 
 @Component({
@@ -28,7 +26,7 @@ export class PersonalInfoComponent implements OnInit {
 
   // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
   //userInfo={} as User;
-  accountInfo:Account=new Account(0,0,"","","","","","",new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0)))
+  accountInfo:Account=new Account(0,0,"","","","","","",new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[])));
   // accountInfo={} as Account
   sub1:Subscription|null=null
   sub2:Subscription|null=null
@@ -49,7 +47,7 @@ export class PersonalInfoComponent implements OnInit {
 
         this.accountInfo=b;
         // console.log(this.accountInfo)
-        if(b.user.freelancer==true)
+        if(b.user?.freelancer==true)
         {
           // console.log(b.user.freelancerNavigation)
         }

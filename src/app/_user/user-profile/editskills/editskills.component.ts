@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FreelancerHasSkill } from 'src/app/_models/freelancer-has-skill';
-import { Skill } from 'src/app/_models/skill';
 
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 

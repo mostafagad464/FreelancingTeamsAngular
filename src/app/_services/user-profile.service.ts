@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../_models/user';
-import { Account } from '../_models/Account';
 import { Portoflio } from '../_models/portoflio';
-import { identifierName } from '@angular/compiler';
 import { FreelancerHasSkill } from '../_models/freelancer-has-skill';
 import { Skill } from '../_models/skill';
 import { FreelancerCertificates } from '../_models/freelancer-certificates';
 import { FreelancerExperience } from '../_models/freelancer-experience';
+import { Account } from '../_models/account';
 
 
 @Injectable({

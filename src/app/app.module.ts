@@ -11,7 +11,6 @@ import { CommonModule } from "@angular/common";
 import { MessagesModule } from "./messages/messages.module";
 import { JwtInterceptor } from "./_helpers/jwt.interceptor";
 import { TeamProfileModule } from './team-profile/team-profile.module';
-import { TeamProfileComponent } from './team-profile/team-profile/team-profile.component';
 import { RatingModule } from 'primeng/rating';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';

@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {Team } from '../_models/team'
-import { TeamMember } from '../_models/team-member';
-import { UserAccount } from '../_models/user-account';
-import { Project } from '../_models/project';
-import { Review } from '../_models/review';
-import { Client } from '../_models/client';
+import { HttpClient } from '@angular/common/http';
+import {Team } from '../_models/team';
 
 @Injectable({
   providedIn: 'root'

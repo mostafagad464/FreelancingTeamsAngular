@@ -1,9 +1,7 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes } from '@angular/router';
-import { TeamProfileComponent } from './team-profile/team-profile.component';
-import { FormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { ShowMembersComponent } from './show-members/show-members.component';
@@ -11,8 +9,8 @@ import { RemoveTeamMemberComponent } from './remove-team-member/remove-team-memb
 import { EditTeamInfoComponent } from './edit-team-info/edit-team-info.component';
 import { ShowProjectsComponent } from './show-projects/show-projects.component';
 import { ReviewsComponent } from './reviews/reviews.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ShowReviewComponent } from './show-review/show-review.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 

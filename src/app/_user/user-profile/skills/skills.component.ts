@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FreelancerHasSkill } from 'src/app/_models/freelancer-has-skill';
-import { User } from 'src/app/_models/user';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 
 @Component({

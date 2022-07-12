@@ -13,9 +13,7 @@ import { EditpersonalInfoComponent } from './editpersonal-info/editpersonal-info
 import { ExperienceComponent } from './experience/experience.component';
 import { EditexperienceComponent } from './editexperience/editexperience.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillsAndCertificateComponent } from './skills-and-certificate/skills-and-certificate.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { RatingModule } from 'primeng/rating';
@@ -23,6 +21,7 @@ import { EditCertificatesComponent } from './edit-certificates/edit-certificates
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AddCertificateComponent } from './add-certificate/add-certificate.component';
 import { AddExperienceComponent } from './add-experience/add-experience.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -49,8 +48,8 @@ import { AddExperienceComponent } from './add-experience/add-experience.componen
   imports: [
     CommonModule, 
     RouterModule, 
-    FormsModule, 
-    NgbModalModule
+    NgbModalModule,
+    FormsModule
   ],
   exports: [
     ExperienceComponent, 

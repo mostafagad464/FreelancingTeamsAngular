@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
-import { User } from 'src/app/_models/user';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddExperienceComponent } from '../add-experience/add-experience.component';
 import { EditexperienceComponent } from '../editexperience/editexperience.component';

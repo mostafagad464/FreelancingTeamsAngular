@@ -1,4 +1,3 @@
-import { sanitizeIdentifier } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/_models/account';
@@ -10,10 +9,8 @@ import { ProjectReviewClient } from 'src/app/_models/project-review-client';
 import { Review } from 'src/app/_models/review';
 import { Team } from 'src/app/_models/team';
 import { TeamMember } from 'src/app/_models/team-member';
-import { UserAccount } from 'src/app/_models/user-account';
 import { AccountService } from 'src/app/_services/account.service';
 import { ClientsService } from 'src/app/_services/clients.service';
-import { ProjectService } from 'src/app/_services/project.service';
 import { ProjectsService } from 'src/app/_services/projects.service';
 import { ReviewsService } from 'src/app/_services/reviews.service';
 import { TeamProfileService } from '../team-profile.service';
@@ -140,9 +137,7 @@ export class ShowProjectsComponent implements OnInit {
 
   ]
 
-  accounts:Account[]=[
-
-  ]
+  accounts:Account[]=[]
 
   cCFName='';
   cCLName='';

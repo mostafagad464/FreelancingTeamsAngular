@@ -17,7 +17,7 @@
                             <label>ID</label>
                         </div>
                         <div class="col-md-6">
-                            <p>{{accountInfo.user.id}}</p>
+                            <p>{{accountInfo.user?.id}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                             <label>Phone</label>
                         </div>
                         <div class="col-md-6">
-                            <p>{{accountInfo.user.phone}}</p>
+                            <p>{{accountInfo.user?.phone}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +49,7 @@
                             <label>BirthDate</label>
                         </div>
                         <div class="col-md-6">
-                            <p>{{accountInfo.user.birthDate|date}}</p>
+                            <p>{{accountInfo.user?.birthDate|date}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +57,7 @@
                             <label>Country</label>
                         </div>
                         <div class="col-md-6">
-                            <p>{{accountInfo.user.country}}</p>
+                            <p>{{accountInfo.user?.country}}</p>
                         </div>
                     </div>
                         <div class="row">
@@ -65,7 +65,7 @@
                                 <label>State</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{accountInfo.user.state}}</p>
+                                <p>{{accountInfo.user?.state}}</p>
                             </div>
                         </div>
 

@@ -7,7 +7,7 @@ export class Freelancer {
         public numberOfClients:number,
         public phone : number,
         public aVGHourlyRate :number,
-        public image : File,
+        public image : File |null,
         public birthday: Date,
         public availableMoney : number,
         public totalMoney : number,
