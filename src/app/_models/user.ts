@@ -31,6 +31,5 @@ export class User {
         // public userCredits: [],
         // public userLanguages: [],
         // public userSocials: []
-
     ){}
 }

@@ -1,8 +1,8 @@
+
 import { JwtModule } from "@auth0/angular-jwt";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountModule } from "./account/account.module";
@@ -14,9 +14,11 @@ export function tokenGetter() {
   return sessionStorage.getItem("access_token");
 }
 
+import { UserProfileModule } from './_user/user-profile/user-profile.module';
+
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent
+
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,9 @@ export function tokenGetter() {
       useClass: JwtInterceptor,
       multi: true
     }
+    AppRoutingModule,
+    UserProfileModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
