@@ -1,12 +1,10 @@
-<div class="container">
+<div class="container" style="margin-top: 3%;">
 <form >
     <label for="browser">Add new skill</label>
   
     <input list="browsers"  name="browser" id="browser"  [(ngModel)]="freelancerNewSkill.SkillId" >
     <datalist id="browsers">
-        
         <option *ngFor="let item of skills[1]" value={{item.id}}>{{item.name}}</option>
-        
    
     </datalist>
     <button class="btn btn-success margin-left" (click)="Add()">Add</button>
@@ -28,21 +26,17 @@
               
                 <td>{{item.skill.name}}</td>
                 <td>
-                 <!-- <p-rating [(ngModel)]="item.efficiancyRate"></p-rating>  -->
-                 {{item.efficiancyRate}}
-
-                    
+                  <p-rating [(ngModel)]="item.efficiancyRate"></p-rating>   
                 </td>
                 <td>
-                
-                    <!-- <button class="btn btn-info margin-left" (click)="Edit(item._id)">Edit</button> -->
-                    <button class="btn btn-danger margin-left" (click)="Delete(item.freelancerId, item.skillId)">Delete</button>
+                    <button  class="btn btn-danger margin-left" (click)="Delete(item.freelancerId, item.skillId)">Delete</button>
                     
                 </td>
             </tr>
            
         </tbody>
-</table>
+</table>        
+ <button class="btn btn-success margin-left" (click)="Edit()">Save</button>  
 </div>
 
 

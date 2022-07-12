@@ -5,15 +5,21 @@
 
 </head>
 <body>
+
+<div>
   <tr *ngFor="let item of freelancerSkills[1]">
     <p>{{item.skill.name}}</p>
     <div class="container">
       <div [ngClass]="{'green':item.efficiancyRate >=90 ,'blue':item.efficiancyRate < 90 && item.efficiancyRate >=60 , 
         'yellow':item.efficiancyRate <60 && item.efficiancyRate >= 40, 'red':item.efficiancyRate <30}" 
            class="skills" [style.width.%]="item.efficiancyRate" >{{item.efficiancyRate}}%</div>
+      
     </div>
+  </div>
 
-    <!-- <button routerLink="edit/skill"> -->
+  <br>
+
+    <button [routerLink]="['/skills/edit/:id']" class="btn btn-secondary margin-left" >Edit</button>  
 
 
 </body>

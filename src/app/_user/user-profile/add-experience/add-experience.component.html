@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Experience</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Job Title</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.JobTitle" [ngModelOptions]="{standalone: true}">
+          </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">Start Date</label>
+        <input type="date" class="form-control" id="recipient-name " [(ngModel)]="freelancerExperience.StartDate" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">End Date</label>
+          <input type="date" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.EndDate" [ngModelOptions]="{standalone: true}">
+        </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label" >Company Name</label>
+        <input  type="text" class="form-control" id="recipient-name"  [(ngModel)]="freelancerExperience.CompanyName" [ngModelOptions]="{standalone: true}">
+      </div>
+    
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Currently Working</label>
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.CurrentlyWorking" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Job Kind</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.JobKind" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Summary</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.Summary" [ngModelOptions]="{standalone: true}">
+          </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Add()">Save</button>
+    <!-- <button type="button" class="btn btn-secondary" (Click)="close()">Close</button>    -->
+  </div>

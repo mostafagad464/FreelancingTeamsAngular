@@ -16,6 +16,12 @@ import { SkillsAndCertificateComponent } from './skills-and-certificate/skills-a
 import { CertificatesComponent } from './certificates/certificates.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
+import { EditCertificatesComponent } from './edit-certificates/edit-certificates.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+import { AddExperienceComponent } from './add-experience/add-experience.component';
 
 
 
@@ -34,17 +40,23 @@ import { FormsModule } from '@angular/forms';
     ExperienceComponent,
     EditexperienceComponent,
     SkillsAndCertificateComponent,
-    CertificatesComponent
+    CertificatesComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent
   ],
   imports: [
-    CommonModule,RouterModule,FormsModule
+    CommonModule,RouterModule,FormsModule,RatingModule,AppRoutingModule,NgbModalModule
   ],
   exports: [
     ExperienceComponent,
     SkillsComponent,
     CertificatesComponent, 
     SkillsAndCertificateComponent,
-    EditskillsComponent
+    EditskillsComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent
    
 
   ]

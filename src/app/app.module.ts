@@ -20,7 +20,8 @@ import {RatingModule} from 'primeng/rating';
     HttpClientModule,
     FormsModule,
     BrowserModule,
-    RatingModule
+    RatingModule,
+    AppRoutingModule
 
 
   ],

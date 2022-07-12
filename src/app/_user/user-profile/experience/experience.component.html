@@ -1,2 +1,23 @@
-<p>experience works!</p>
-<h1>ahhhhhh</h1>
+
+
+<div style="margin-top: 3%;" class="container">
+    <tr *ngFor="let item of freelancerExperiences[1]"> 
+        <div  class="card" style="width: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">{{item.jobTitle}}</h5> 
+                <h6 class="card-subtitle mb-2 text-muted">From: {{item.startDate}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">To: {{item.endDate}}</h6>
+                <p class="card-text">Company: {{item.companyName}}</p>
+                <p class="card-text">Job Kind: {{item.jobKind}}</p>
+                <p class="card-text">{{item.summary}}</p>
+                <p class="card-text">Currently Working: {{item.currentlyWorking}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editExperience',item.freelancerId,item.startDate] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+                <button  type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.startDate)" >Delete</button>
+              </div>
+        </div>
+        <br>
+     </tr>
+     <button class="btn btn-lg btn-secondary" [routerLink]="[{ outlets: { modal: ['addExperience'] } }]" (click)="openModalAdd()">Add Experience</button>
+    </div>
