@@ -1,0 +1,137 @@
+<section class="vh-100 bg-image"
+    style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card  mt-4" style="border-radius: 15px;">
+                        <div class="card-body px-5 pt-5">
+                            <form>
+
+                                <ng-template [ngIf]="!showUN">
+                                    <div class="row mb-2">
+                                        <div class="col-6 text-center">
+                                            <img src="./../../../assets/images/client.png" width="100" height="100">
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <img src="./../../../assets/images/freelancer.png" width="110" height="100">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2 ">
+                                        <div class="col-6 px-5">
+                                            <input class="m-1" type="radio" id="client" [(ngModel)]="type" name="type"
+                                                value="c">
+                                            <label for="client"> Client</label>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <input class="m-1" type="radio" id="freelancer" [(ngModel)]="type"
+                                                name="type" value="f">
+                                            <label for="freelancer"> Freelancer</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-2 ">
+                                        <input type="text" name="firstName" class="form-control form-control-lg"
+                                            placeholder="Your First Name" [(ngModel)]="account.firstName" required
+                                            minlength="3" #firstName="ngModel" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+
+                                    <ng-template [ngIf]="firstName.invalid && (firstName.dirty || firstName.touched)">
+                                        <div *ngIf="firstName.errors?.['required']" class="text-danger mb-1 small">
+                                            First Name is required.
+                                        </div>
+                                        <div *ngIf="firstName.errors?.['minlength']" class="text-danger mb-1 small">
+                                            First Name must be at least 3 characters long.
+                                        </div>
+                                    </ng-template>
+
+                                    <div class="form-outline mb-2">
+                                        <input type="text" name="lastName" class="form-control form-control-lg"
+                                            placeholder="Your Last Name" [(ngModel)]="account.lastName" required
+                                            minlength="3" #lastName="ngModel" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                    <ng-template [ngIf]="lastName.invalid && (lastName.dirty || lastName.touched)">
+                                        <div *ngIf="lastName.errors?.['required']" class="text-danger mb-1 small">
+                                            Last Name is required.
+                                        </div>
+                                        <div *ngIf="lastName.errors?.['minlength']" class="text-danger mb-1 small">
+                                            Last Name must be at least 3 characters long.
+                                        </div>
+                                    </ng-template>
+
+                                    <div class="form-outline mb-2">
+                                        <input type="email" name="email" class="form-control form-control-lg"
+                                            placeholder="Your Email" [(ngModel)]="account.email" required email
+                                            #email="ngModel" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                    <ng-template [ngIf]="email.invalid && (email.dirty || email.touched)">
+                                        <div *ngIf="email.errors?.['required']" class="text-danger mb-1 small">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="email.errors?.['email']" class="text-danger mb-1 small">
+                                            Email not valid.
+                                        </div>
+                                    </ng-template>
+
+
+
+                                    <div class="form-outline mb-2">
+                                        <input type="password" name="password" class="form-control form-control-lg"
+                                            placeholder="Password" [(ngModel)]="account.password" required minlength="8"
+                                            #password="ngModel" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                    <ng-template [ngIf]="password.invalid && (password.dirty || password.touched)">
+                                        <div *ngIf="password.errors?.['required']" class="text-danger mb-1 small">
+                                            Password is required.
+                                        </div>
+                                        <div *ngIf="password.errors?.['minlength']" class="text-danger mb-1 small">
+                                            Password must be at least 8 characters long.
+                                        </div>
+                                    </ng-template>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="Repeat your password" [(ngModel)]="confirmPassword" required
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </ng-template>
+
+                                <ng-template [ngIf]="showUN">
+                                    <h3>Check you User Name :</h3>
+                                    <div class="form-outline mb-2">
+                                        <input type="text" class="form-control form-control-lg" required
+                                            (input)="CheckUserName()" [(ngModel)]="account.username"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </ng-template>
+
+                                <ng-template [ngIf]="message != ''"><span class="text-danger">{{message}}</span>
+                                </ng-template>
+
+                                <div *ngIf="showUN" class="form-check d-flex justify-content-center my-4">
+                                    <input class="form-check-input me-2" type="checkbox" [(ngModel)]="isChecked"
+                                        [ngModelOptions]="{standalone: true}" />
+                                    <label class="form-check-label">
+                                        I agree all statements in <a href="#!" class="text-body"><u>Terms of
+                                                service</u></a>
+                                    </label>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        (click)="Continue()">{{ButtonText}}</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-3 mb-0">Have already an account? <a
+                                        [routerLink]="'/'" class="fw-bold text-body"><u>Login here</u></a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
