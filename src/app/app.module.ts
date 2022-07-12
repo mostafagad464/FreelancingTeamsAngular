@@ -17,12 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReviewsModule } from './reviews/reviews.module';
+import { RouterModule } from "@angular/router";
+import { UserProfileModule } from './_user/user-profile/user-profile.module';
+
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
 }
-
-import { UserProfileModule } from './_user/user-profile/user-profile.module';
-
 
 
 @NgModule({
@@ -41,8 +41,19 @@ import { UserProfileModule } from './_user/user-profile/user-profile.module';
         disallowedRoutes: [],
       },
     }),
+    UserProfileModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TeamProfileModule,
+    RatingModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReviewsModule,
+    BrowserModule,
     AccountModule,
-    MessagesModule
+    MessagesModule,
+    RouterModule
   ],
   providers: [
     {
@@ -50,20 +61,9 @@ import { UserProfileModule } from './_user/user-profile/user-profile.module';
       useClass: JwtInterceptor,
       multi: true
     }
-    AppRoutingModule,
-    UserProfileModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TeamProfileModule,
-    HttpClientModule,
-    RatingModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    ReviewsModule
+
   ],
   bootstrap: [AppComponent]
-});
+})
 
 export class AppModule { }
