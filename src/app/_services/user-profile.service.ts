@@ -17,8 +17,8 @@ export class UserProfileService {
   getUserInfoByid(id:number){
     return this.http.get<User>(this.baseUrl+"users/"+id);
   }
-  updateUser(user:User,id:number){
-    return this.http.put<User>(this.baseUrl+"users/"+id,user);
+  updateUser(user:User){
+    return this.http.put<User>(this.baseUrl+"users/",user);
 
   }
   getAccountInfoByid(id:number){
@@ -30,6 +30,10 @@ export class UserProfileService {
   getFreelancerPortfolio(id:number)
   {
     return this.http.get<Portoflio[]>(this.baseUrl+"Portoflio/"+id);
+  }
+  deletePortoflio(id:number)
+  {
+    return this.http.delete(this.baseUrl+"Portoflio/"+id)
   }
 
   constructor(public http : HttpClient) { }

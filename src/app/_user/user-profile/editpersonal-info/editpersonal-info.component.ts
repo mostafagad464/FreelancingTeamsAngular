@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { Account } from 'src/app/_models/Account';
 import { Freelancer } from 'src/app/_models/freelancer';
 import { User } from 'src/app/_models/user';
@@ -13,40 +13,36 @@ import { UserProfileService } from 'src/app/_services/user-profile.service';
   styleUrls: ['./editpersonal-info.component.css']
 })
 export class EditpersonalInfoComponent implements OnInit {
+  // @Input() public accountInfo:any; 
   accountInfo:Account=new Account(0,0,"","","","","","",new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0)))
   sub1:Subscription|null=null
   sub2:Subscription|null=null
   sub3:Subscription|null=null
+  sub4:Subscription|null=null
   
+  save(){
+    forkJoin([this.userserv.updateAccount(this.accountInfo),
+      this.userserv.updateUser(this.accountInfo.user)]).subscribe(a=>console.log(a));
+      this.close();
+  // this.sub3=this.userserv.updateAccount(this.accountInfo).subscribe(a=>console.log(a));
+  // this.sub4=this.userserv.updateUser(this.accountInfo.user).subscribe(u=>console.log(u))
+  
+  // 
+
+  // console.log(this.accountInfo);
+  // console.log("saved")
+  }
   close(){
     this.activeModal.close();
-  }
-  save(){
-    this.sub3=this.userserv.updateAccount(this.accountInfo).subscribe(a=>console.log(a))
+    console.log("closed")
   }
 
-  constructor(public activeModal: NgbActiveModal,public userserv:UserProfileService,public ar:ActivatedRoute) { }
+  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public activeModal:NgbActiveModal) { }
 
   ngOnInit(): void {
     
     this.sub1=this.ar.params.subscribe(a=>{
-      console.log(a['id']);
-
-    this.sub2=this.userserv.getAccountInfoByid(1).subscribe(b=>{
-      if(b.type=="User")
-      {
-
-        this.accountInfo=b;
-        console.log(this.accountInfo)
-        if(b.user.freelancer==true)
-        {
-          // console.log(b.user.freelancerNavigation)
-        }
-        
-
-      }
-      }
-    )
+      console.log(a)
 
   })
     

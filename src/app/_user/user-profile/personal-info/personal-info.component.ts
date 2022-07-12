@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/_models/Account';
@@ -18,15 +18,12 @@ import { EditpersonalInfoComponent } from '../editpersonal-info/editpersonal-inf
 })
 export class PersonalInfoComponent implements OnInit {
   openModal() {
-    const modalRef = this.modalService.open(EditpersonalInfoComponent,
-      {
-        scrollable: true,
-        windowClass: 'myCustomModalClass',
-      });
-    modalRef.result.then((result:any) => {
-      console.log(result);
-    }, (reason:any) => {
-    });
+    const modalRef = this.modalService.open(EditpersonalInfoComponent);
+    modalRef.componentInstance.accountInfo=this.accountInfo;
+    // modalRef.result.then((result:any) => {
+    //   console.log("this is result"+result);
+    // }, (reason:any) => {
+    // });
   }
 
   // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
@@ -36,12 +33,13 @@ export class PersonalInfoComponent implements OnInit {
   sub1:Subscription|null=null
   sub2:Subscription|null=null
 
-  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public modalService: NgbModal) { }
+  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public modalService: NgbModal,public router:Router) { }
   open()
   {
 
   }
   ngOnInit(): void {
+    this.router.navigate([{ outlets: { modal: 'route' }}])
     this.sub1=this.ar.params.subscribe(a=>{
       console.log(a['id']);
 

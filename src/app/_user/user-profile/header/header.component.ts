@@ -23,10 +23,13 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(public userserv:UserProfileService,public ar:ActivatedRoute) {
-    this.sub2=this.userserv.getAccountInfoByid(1).subscribe(a=>
-      {this.accountInfo=a
-      console.log(this.accountInfo.user.rate)
-      })
+    this.sub1=this.ar.params.subscribe(x=>{
+      this.sub2=this.userserv.getAccountInfoByid(x['id']).subscribe(a=>
+        {this.accountInfo=a
+        console.log(this.accountInfo.user.rate)
+        })
+    })
+
    }
 
   ngOnInit(): void {

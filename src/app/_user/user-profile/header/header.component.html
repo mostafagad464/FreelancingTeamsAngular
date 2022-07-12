@@ -52,7 +52,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <!-- Profile -->
         <div class="w3-card w3-round w3-white">
           <div class="w3-container">
-           <h4 class="w3-center">{{accountInfo.firstName+accountInfo.lastName}}</h4>
+           <h4 class="w3-center">{{accountInfo.firstName+" "+accountInfo.lastName}}</h4>
            <p class="w3-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWvGx7X1FmR3p8WXVpNfkcoRZMohpNQmfYiA&usqp=CAU" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
            <hr>
            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
@@ -146,7 +146,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 <div class="col-md-6">
                     <div class="profile-head">
                                 <h5>
-                                    {{accountInfo.firstName+accountInfo.lastName}}
+                                    {{accountInfo.firstName+" "+accountInfo.lastName}}
                                 </h5>
                                 <h6>
                                     Web Developer and Designer
@@ -154,10 +154,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                 <p class="proile-rating">RANKINGS : <span>{{accountInfo.user.rate}}</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="personal-info" data-toggle="tab" routerLink="/personalInfo/1" role="tab" aria-controls="personalInfo" aria-selected="true">Personal Info</a>
+                                <a class="nav-link active" id="personal-info" data-toggle="tab" routerLink="personalInfo/2" role="tab" aria-controls="personalInfo" aria-selected="true">Personal Info</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="Portfolio-tab" data-toggle="tab" href="#profile" role="tab" routerLink="/portfolio/1" aria-controls="Portfolio" aria-selected="false">Portfolio</a>
+                                <a class="nav-link" id="Portfolio-tab" data-toggle="tab" href="#profile" role="tab" routerLink="portfolio/2" aria-controls="Portfolio" aria-selected="false">Portfolio</a>
                             </li>
                         </ul>
                     </div>
@@ -168,6 +168,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         </div>
         <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
             <router-outlet></router-outlet>
+            
+            
           </div>
 
 
