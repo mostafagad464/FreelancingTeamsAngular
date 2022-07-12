@@ -36,4 +36,9 @@ export class UserService {
   // DeleteUser(id: Number) {
   //   return this.http.delete(this.baseurl);
   // }
+
+  getAllFreelancers() {
+    return this.http.get<User[]>(this.baseurl + "Freelancers");
+  }
+
 }

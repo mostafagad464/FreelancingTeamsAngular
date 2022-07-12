@@ -2,7 +2,6 @@ import { Freelancer } from "./freelancer";
 import { Account } from "./account";
 import { Admin } from "./admin";
 import { Client } from "./client";
-import { Freelancer } from "./freelancer";
 import { Wallet } from "./wallet";
 
 export class User {
@@ -27,10 +26,11 @@ export class User {
         public idNavigation: Account | null,
         public wallet: Wallet | null,
         public clientNavigation: Client | null,
-        public freelancerNavigation: Freelancer | null
+        public freelancerNavigation: Freelancer | null,
         // public complains: [],
         // public userCredits: [],
         // public userLanguages: [],
         // public userSocials: []
     ){}
+
 }

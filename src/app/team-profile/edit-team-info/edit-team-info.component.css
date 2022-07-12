@@ -1,0 +1,20 @@
+.center{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#btn{
+    position:fixed;
+    left: 50%;
+    top: 110%;
+    transform: translate(-50%);
+    width: 10rem;
+}
+#btn1{
+    position:fixed;
+    left: 50%;
+    top: 145%;
+    transform: translate(-50%);
+    width: 15rem;
+}

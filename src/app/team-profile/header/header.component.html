@@ -1,0 +1,96 @@
+<div class="body-gardient padding">
+<div class="body-gardient">
+<nav class="navbar navbar-expand-lg element-gradient navS">
+    <div class="container mx-3" >
+        <a href="#" class="navbar-brand text">FreelancingTeams</a>      
+        <button
+             class="navbar-toggler" 
+             type="button" 
+             data-bs-toggle="collapse" 
+             data-bs-target="#navmenu"
+             aria-controls="navmenu"
+             aria-expanded="false"
+             aria-label="Toggle navigation"
+             >
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#Profile" class="nav-link text">My profile</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text" [routerLink]="['/removeMember',team.id]">Remove freelancer</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text" [routerLink]="['/addMember',team.id]">Add freelancer</a>
+                </li>
+            </ul>
+            <form class="d-flex mx-5" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="button" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav><br><br>
+<div class="light-grad">
+<section class="text-light text-center text-sm-start" style="height: 10rem; justify-content: left;">
+    <div class="container mx-3" style="text-align:left; text-align: left; margin-top: 0px;">
+        <div class="d-sm-flex" style=" padding-left: 1rem;">
+            <img src="{{img}}" alt="" class="img-fluid w-1 p-3 px-3" style="border-radius:50% ; width:110px; height:110px;">
+            <div style="padding-left:0.01rem; padding-top: 2.5rem;">
+                <h3 class="text-dark mx-3" style="font-family:Georgia, 'Times New Roman', Times, serif ;">{{team.name}}</h3>
+            </div>
+        </div>
+    </div>
+</section>
+</div><br><br>
+<section>
+    <div style="margin-left: 11px;">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-5 light-grad">
+                <div class="bg-transparent !important; mx-4" style="margin-top: 50px; text-align: center; margin-left: 10px;">
+                    <h5 class="card-title brown-text">Creation date</h5>
+                    <p class="card-text brown-sm-text" style="font-size:0.9rem; font-weight:lighter;font-family: Georgia, 'Times New Roman', Times, serif;">{{team.creationDate | date:'fullDate'}}</p>
+                    <h5 class="card-title brown-text">Description</h5>
+                    <p class="card-text brown-sm-text" style="font-size:0.9rem ;font-family: Georgia, 'Times New Roman', Times, serif;">{{team.description}}</p>
+                    <h5 class="card-title brown-text">Website</h5>
+                    <p><a href="#" class="card-link brown-sm-text" style="font-size:0.9rem ;font-family: Georgia, 'Times New Roman', Times, serif;">{{team.webSite}}</a></p>
+                    <h5 class="card-title brown-text">Rate</h5>
+                    <p-rating  [(ngModel)]="team.rate" ngDefaultControl [cancel]="false" [readonly]="true"></p-rating><br>
+                    <a class="nav-link btn btn-lg button" style="font-family:Georgia, 'Times New Roman', Times, serif ; " [routerLink]="['/editInfo',team.id]">Edit team info</a>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-5 col-sm-5 mx-auto">
+                <div style="padding-top: 3rem;">
+                 <a class="nav-link btn btn-lg button brown-text" style="font-family:Georgia, 'Times New Roman', Times, serif ;  border-radius: 1.1rem;" [routerLink]="['showMember',team.id]">Check your team members</a><br>                   
+                 <router-outlet></router-outlet><br><br>
+                </div>
+                 <a class="nav-link btn btn-lg button brown-text" style="font-family:Georgia, 'Times New Roman', Times, serif ; border-radius: 1.1rem;" [routerLink]="['/showProjects',team.id]">Check your team projects' list</a><br><br>
+                 <div class="card" >
+                    <h5 class="card-header">Make an announcement</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Write announcement"> 
+                        </div>
+                        <br>
+                      <a href="#" class="btn btn-dark">Announce</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

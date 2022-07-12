@@ -8,24 +8,28 @@ import { ProjectsComponent } from './_user/user-profile/projects/projects.compon
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { TeamProfileComponent } from './team-profile/team-profile/team-profile.component';
 
 const routes: Routes = [
+  {
+    path: "profile/:id", component: HeaderComponent, children: [
+      { path: "portfolio/:id", component: ProjectsComponent },
+      {
+        path: "personalInfo/:id", component: PersonalInfoComponent, children: [
+          {
+            path: "editpersonalInfo/:id", component: EditpersonalInfoComponent
+          },
+        ]
+      }
 
- 
-  
-  {path:"profile/:id",component:HeaderComponent,children:[
-    {path:"portfolio/:id",component:ProjectsComponent},
-    {path:"personalInfo/:id",component:PersonalInfoComponent,children:[
-      {path:"editpersonalInfo/:id",component:EditpersonalInfoComponent
-    }, 
-    
-    ]},
-
-  ]},
-  {path:"login", component:LoginComponent},
+    ]
+  },
+  { path: "login", component: LoginComponent },
   { path: "", redirectTo: "login", pathMatch: "full" },
-  {path:"register", component:RegisterComponent}
-  ]
+  { path: "register", component: RegisterComponent }
+]
+
+
 
 
 @NgModule({

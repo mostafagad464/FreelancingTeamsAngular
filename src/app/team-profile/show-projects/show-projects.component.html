@@ -1,0 +1,57 @@
+<div class="padding">
+<div class="bg-light" style="height: 100rem;">
+<nav class="navbar navbar-expand-lg element-gradient navS">
+    <div class="container mx-3">
+        <a href="#" class="navbar-brand light-md-text">FreelancingTeams</a>      
+        <button
+             class="navbar-toggler" 
+             type="button" 
+             data-bs-toggle="collapse" 
+             data-bs-target="#navmenu"
+             >
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#Profile" class="nav-link light-sm-text">My profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-sm-text" [routerLink]="['/teamProfile',team.id]">Back to your team</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-8 col-sm-3">
+        <a class="nav-link btn btn-lg button-lg light-text" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 4rem;" >Completed projects</a>                     
+        <div *ngFor="let item of projectsReviewsClients" style="display: inline-block; margin: 2rem; margin-top: 5rem;">
+                <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title lg-font list-group-item list-group-item-action list-group-item-dark">Project</h5>
+                <h5 class="card-title sm-font">{{item.project}}</h5>
+                <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Client</p>
+                <p class="card-text sm-font">{{item.client}}</p>
+                <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Rate</p>
+                <p-rating  [(ngModel)]="item.rate" ngDefaultControl [cancel]="false" [readonly]="true"></p-rating><br>
+                <a href="#" class="btn btn-lg button">Check project</a>
+            </div>
+        </div><br>
+        <a href="#" class="btn btn-lg button" >Check project's review</a>
+        </div>
+<div class="col-lg-8 col-md-8 col-sm-3 center align-self-center">
+    <a class="nav-link btn btn-lg button-lg light-text" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 4rem;" >Recent project</a>                     
+    <div *ngFor="let item of projectsClients" style="display: inline-block; margin: 2rem; margin-top: 5rem;">
+        <div class="card" style="width: 18rem;">
+       <img class="card-img-top" src="..." alt="Card image cap">
+       <div class="card-body">
+         <h5 class="card-title lg-font list-group-item list-group-item-action list-group-item-dark">Project</h5>
+         <h5 class="card-title sm-font">{{item.project}}</h5>
+         <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Client</p>
+         <p class="card-text sm-font">{{item.client}}</p>
+       </div>
+     </div>
+   </div>

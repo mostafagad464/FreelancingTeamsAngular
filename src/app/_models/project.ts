@@ -1,15 +1,17 @@
+import { Review } from "./review";
+
 export class Project {
     constructor(
-        public Id: number,
-        public PostingDate:Date,
-        public Title : string,
-        public State : number,
-        public AVGBid: number,
-        public Description : string,
-        public Duration : string,
-        public BudgetForm: number,
-        public BudgetTo : number,
-        public TeamId : number
-
+        public id: number,
+        public postingDate:Date,
+        public title : string,
+        public state : number,
+        public aVGBid: number,
+        public description : string,
+        public duration : string,
+        public budgetForm: number,
+        public budgetTo : number,
+        public teamId : number,
+        public reviews:Review
     ){}
 }

@@ -1,0 +1,39 @@
+<div class="padding">
+<nav class="navbar navbar-expand-lg element-gradient navS">
+    <div class="container mx-3">
+        <a href="#" class="navbar-brand light-md-text">FreelancingTeams</a>
+        
+        <button
+             class="navbar-toggler" 
+             type="button" 
+             data-bs-toggle="collapse" 
+             data-bs-target="#navmenu"
+             >
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav"> <!-- ms-auto-->
+                <li class="nav-item">
+                    <a href="#Home" class="nav-link light-sm-text">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link light-sm-text" [routerLink]="['/teamProfile',member.teamId]">Back to your team</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="center">
+    <h4 style="font-family:Georgia, 'Times New Roman', Times, serif ; font-weight:bold;">Remove a freelancer from your team!</h4>
+    <div class="form-group">
+    <label for="exampleInputUsername1">Freelancer's name</label><br>
+    <input list="freelancersNames" class="form-control form-control-lg" [(ngModel)]="nameToRemove">
+    <datalist id="freelancersNames">
+      <option *ngFor="let y of freelancersNames" value="{{y}}">{{y}}</option>
+    </datalist>
+      <div>
+          <button type="submit" class="btn btn-lg button-lg" id="btn" (click)="Remove()">Remove</button>
+      </div>
+</div>
+</div>

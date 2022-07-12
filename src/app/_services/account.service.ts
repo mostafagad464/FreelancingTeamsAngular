@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Account } from '../_models/account';
+import { UserAccount } from '../_models/user-account';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class AccountService {
     return this.http.get<Account>(this.baseurl + id);
   }
 
+  getAccounts(){
+    return this.http.get<Account[]>(this.baseurl);
+  }
+
   getUserName(fName: string, lName: string){
     this.querystring = "First_Name="+fName+"&Last_Name="+lName;
     return this.http.get<any>(this.baseurl+"UserName?"+this.querystring);
@@ -36,4 +41,9 @@ export class AccountService {
   // DeleteAccount(id: Number) {
   //   return this.http.delete(this.baseurl);
   // }
+
+
+
+
+
 }

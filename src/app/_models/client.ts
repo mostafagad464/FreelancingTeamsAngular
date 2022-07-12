@@ -1,17 +1,17 @@
 export class Client {
     constructor(
-        public Id: number,
-        public Rate: number,
-        public Image: File,  ///////////////
-        public ReplySpeed: number,
-        public Phone: number,
-        public Birthday: Date,
-        public Bio : string,
-        public ActiveStatus :boolean, ////////////
-        public UserId: number,
-        public WalletId: number,
-        public AdminId: number,
-        public IdentityVerfication :number
+        public id: number,
+        public rate: number,
+        public image: File,  ///////////////
+        public replySpeed: number,
+        public phone: number,
+        public birthday: Date,
+        public bio : string,
+        public activeStatus :boolean, ////////////
+        public userId: number,
+        public walletId: number,
+        public adminId: number,
+        public identityVerfication :number
 
 
 
