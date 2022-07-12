@@ -1,1 +1,119 @@
-<p>editexperience works!</p>
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Experience</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Job Title</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperiences[1].jobTitle" [ngModelOptions]="{standalone: true}">
+          </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">Start Date</label>
+        <input type="text" class="form-control" id="recipient-name " [(ngModel)]="freelancerExperiences[1].startDate" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">End Date</label>
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperiences[1].endDate" [ngModelOptions]="{standalone: true}">
+        </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label" >Company Name</label>
+        <input  type="text" class="form-control" id="recipient-name"  [(ngModel)]="freelancerExperiences[1].companyName" [ngModelOptions]="{standalone: true}">
+      </div>
+    
+        <div class="mb-3">
+          <label for="recipient-name" class="col-form-label">Currently Working</label>
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperiences[1].currentlyWorking" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Job Kind</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperiences[1].jobKind" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Summary</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperiences[1].summary" [ngModelOptions]="{standalone: true}">
+          </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Edit()">Save</button>
+    <!-- <button type="button" class="btn btn-primary" (Click)="Add()">Close</button>  -->
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <div style="margin-top: 3%;" class="container">
+        <tr *ngFor="let item of freelancerExperiences[1]">
+            <div class="card" style="width: 600px;">
+                <div class="card-body">
+                  
+                    <label>Job Title</label><br>
+                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="item.jobTitle"> <br>
+                    <label>Company Name</label><br>
+                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="item.companyName "> <br>
+                    <label>Currently Working</label><br>
+                    <input class="card-text" [(ngModel)]="item.currentlyWorking"> <br><br>
+                    <label>Job Kind</label><br>
+                    <input type="text" class="card-link" [(ngModel)]="item.jobKind">
+                    <label>Summary</label>
+                    <input type="text" class="card-link" [(ngModel)]="item.summary">
+
+                    <a href="#" (click)="Delete(item.freelancerId,item.startDate)" class="card-link">Delete</a>
+
+                </div>
+            </div>
+            <br>
+        </tr>
+    </div>
+    <button  class="btn btn-success " style="margin-right: 10px;" (click)="Edit()">Save</button>
+    
+    <button class="btn btn-primary" (click)="addExtra=true">Add</button> 
+
+    <div style="margin-top: 3%;" class="container" *ngIf="addExtra">
+      
+        <div class="card" style="width: 600px;">
+            <div class="card-body">
+
+                <label>Job Title</label><br>
+                <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerExperience.JobTitle"> <br>
+                <label>Company Name</label><br>
+                <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerExperience.CompanyName"> <br>
+                <label>Start Date</label><br>
+                <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerExperience.StartDate" > <br>
+                <label>End Date</label><br>
+                <input class="card-text" [(ngModel)]="freelancerExperience.EndDate" > <br><br>
+                <label>Job Kind</label><br>
+                <input type="text" class="card-link" [(ngModel)]="freelancerExperience.JobKind" >
+                <label>Currently Workinh</label>
+                <input type="text" class="card-link" [(ngModel)]="freelancerExperience.CurrentlyWorking">
+                <label>Summary</label>
+                <input type="text" class="card-link" [(ngModel)]="freelancerExperience.Summary">
+
+                <button  class="btn btn-success " style="margin-left: 10px;" (click)="Add()">Save</button>
+
+            </div>
+        </div>
+        <br>
+  
+
+  </div>
+   -->

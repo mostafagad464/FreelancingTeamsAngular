@@ -16,11 +16,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
-
-
-
-
+import { SkillsAndCertificateComponent } from './skills-and-certificate/skills-and-certificate.component';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { RatingModule } from 'primeng/rating';
+import { EditCertificatesComponent } from './edit-certificates/edit-certificates.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+import { AddExperienceComponent } from './add-experience/add-experience.component';
 
 
 
@@ -37,13 +39,38 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     EditeducationalInfoComponent,
     EditpersonalInfoComponent,
     ExperienceComponent,
-    EditexperienceComponent
+    EditexperienceComponent,
+    SkillsAndCertificateComponent,
+    CertificatesComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent
   ],
   imports: [
-    CommonModule,RouterModule,FormsModule,NgbModalModule
+    CommonModule, 
+    RouterModule, 
+    FormsModule, 
+    NgbModalModule
   ],
-  exports: [ExperienceComponent,PersonalInfoComponent,HeaderComponent,ProjectsComponent,SidebarComponent
-
+  exports: [
+    ExperienceComponent, 
+    PersonalInfoComponent, 
+    HeaderComponent, 
+    ProjectsComponent, 
+    SidebarComponent,
+    CommonModule, 
+    RouterModule, 
+    FormsModule, 
+    RatingModule, 
+    AppRoutingModule, 
+    NgbModalModule,
+    SkillsComponent,
+    CertificatesComponent,
+    SkillsAndCertificateComponent,
+    EditskillsComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent
   ]
 })
 export class UserProfileModule { }
