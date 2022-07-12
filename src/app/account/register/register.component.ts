@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
             this.UserService.addUser(this.user).subscribe(u=>{
               console.log(u);
               this.login(this.account.username, this.account.password);
-              this.openModal();
+              
             })
           })
         }
@@ -108,6 +108,7 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
+      this.openModal();
     },
     error=> {
       console.log(error.error)}

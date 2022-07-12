@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <li *ngFor="let acc of Accounts" class="clearfix" (click)="ViewChat(acc.account.id)">
+                            <img src="https://localhost:7152/api/Image?UserId={{acc.account.id}}" alt="avatar" onerror="this.src='assets/images/NoImage.png'">
+                            <div class="about">
+                                <div class="name">{{acc.account.firstName}} {{acc.account.lastName}}</div>
+                                <ng-template [ngIf]="acc.noOfMess != 0">
+                                    <div class="status"><small>You have {{acc.noOfMess}} unread messagess</small></div>
+                                </ng-template>
+                                <!-- <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div> -->
+                                <!-- <div class="status"> <i class="fa fa-circle online"></i> online </div> -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://localhost:7152/api/Image?UserId={{account.id}}" onerror="this.src='assets/images/NoImage.png'"
+                                        alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">{{account.firstName}} {{account.lastName}}</h6>
+                                    <!-- <small>Last seen: 2 hours ago</small> -->
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-6 hidden-sm text-end text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i
+                                        class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i
+                                        class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i
+                                        class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i
+                                        class="fa fa-question"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+                            <li *ngFor="let message of AccountChat" class="clearfix">
+                                <ng-template [ngIf]="message.senderId == UserId">
+                                    <div class="message-data text-end text-right">
+                                        <small class="message-data-time">{{message.date | date:'medium'}}</small>
+                                        <img src="https://localhost:7152/api/Image?UserId={{UserId}}" alt="avatar" onerror="this.src='assets/images/NoImage.png'">
+                                    </div>
+                                    <div class="message other-message float-right"> {{message.message}} </div>
+                                </ng-template>
+                                <ng-template [ngIf]="message.recieverId == UserId">
+                                    <div class="message-data">
+                                        <small class="message-data-time">{{message.date | date:'medium'}}</small>
+                                    </div>
+                                    <div class="message my-message">{{message.message}}</div>
+                                </ng-template>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0" >
+                            <div class="input-group-prepend p-0 m-0" (click)="SengMessage()">
+                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            </div>
+                            <input type="text" class="form-control" (keyup.enter)="SengMessage()" placeholder="Enter text here..." [(ngModel)]="accountmessage.message" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

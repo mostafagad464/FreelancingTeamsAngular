@@ -1,3 +1,4 @@
+@import "./../../../..//node_modules/mdbootstrap/css/mdb.css";
 .gradient-custom-3 {
     /* fallback for old browsers */
     background: #84fab0;

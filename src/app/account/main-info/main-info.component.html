@@ -32,7 +32,8 @@
                     <input type="text" list="states" class="form-control form-control-lg" [(ngModel)]="user.state"
                         [ngModelOptions]="{standalone: true}" />
                     <datalist id="states">
-                        <option *ngFor="let s of states" value="{{s}}">{{s}}</option>
+                        <option *ngFor="let s of states" value="{{s}}">
+                            {{s}}</option>
                     </datalist>
                 </div>
 
