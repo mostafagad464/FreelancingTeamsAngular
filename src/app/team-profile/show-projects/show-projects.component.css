@@ -65,6 +65,11 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.2rem;
 }
+.brown-text{
+    color: #0F0900;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.8rem;
+}
 .button{
     color: #0F0900;
     background-image: linear-gradient(to right, #D6AA94, #EAD0C2);

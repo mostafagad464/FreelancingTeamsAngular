@@ -19,13 +19,30 @@ import { SearchPipe } from '../_pipes/search.pipe';
 import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
-
+import { AnnounceComponent } from './announce/announce.component';
 
 const routes: Routes = [
-  // {path:'teamProfile',
-  //  component:HeaderComponent
-  // },
+  {
+    path: 'teamProfile/:id',
+    component: HeaderComponent,
+    children: [
+      {
+        path: 'showMember/:id',
+        component: ShowMembersComponent,
+      },
+      {
+        path: 'showProjects/:id',
+        component: ShowProjectsComponent,
+      },
+      {
+        path: 'announce/:id',
+        component: AnnounceComponent,
+      },
+
+    ]
+  },
+
+
   {
     path: 'teamProfile/:id',
     component: HeaderComponent,
@@ -36,6 +53,7 @@ const routes: Routes = [
         // outlet: 'showMember'
       },
     ]
+
   },
   {
     path: 'addMember/:id',
@@ -64,15 +82,15 @@ const routes: Routes = [
   },
   {
     path: 'createteam',
-    component:CreateTeamComponent
+    component: CreateTeamComponent
   },
   {
     path: 'jointeam',
-    component:CreateTeamComponent
+    component: CreateTeamComponent
   },
   {
     path: 'showteams',
-    component:ShowTeamsComponent
+    component: ShowTeamsComponent
   },
 
 ]
@@ -88,10 +106,13 @@ const routes: Routes = [
     ShowProjectsComponent,
     ReviewsComponent,
     ShowReviewComponent,
+    ShowMembersComponent,
+    AnnounceComponent,
     CreateTeamComponent,
     JoinTeamComponent,
-    ShowTeamsComponent, 
+    ShowTeamsComponent,
     SearchInTeamsPipe
+
   ],
   imports: [
     CommonModule,
@@ -99,6 +120,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RatingModule,
+
     SharedModule
     // MatInputModule,
     // MatAutocompleteModule

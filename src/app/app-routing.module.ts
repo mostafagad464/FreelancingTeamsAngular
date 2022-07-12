@@ -16,8 +16,8 @@ import { ExperienceComponent } from './_user/user-profile/experience/experience.
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
 
-
 const routes: Routes = [
+ {path:"projects",loadChildren:()=>import('./project/project.module').then(m=>m.ProjectModule)},
   {
     path: "profile/:id", component: HeaderComponent, children: [
       {
