@@ -1,3 +1,4 @@
+import { Freelancer } from "./freelancer";
 import { Account } from "./account";
 import { Admin } from "./admin";
 import { Client } from "./client";
