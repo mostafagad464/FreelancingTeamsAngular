@@ -1,8 +1,11 @@
 export class Review {
     constructor(
-        public Id: number,
-        public Rate:number,
-        public Description : string
-
+        public clientId: number,
+        public teamId:number,
+        public projectId:number,
+        public rate:number,
+        public content:string,
+        public date:Date,
+        public fromClient:string
     ){}
 }
