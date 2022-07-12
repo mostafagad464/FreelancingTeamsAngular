@@ -11,6 +11,7 @@ import { RatingModule } from 'primeng/rating';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     RatingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ReviewsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

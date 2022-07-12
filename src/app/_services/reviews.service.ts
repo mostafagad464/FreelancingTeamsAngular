@@ -7,13 +7,17 @@ import { Review } from '../_models/review';
 })
 export class ReviewsService {
 
-baseUrl3='https://localhost:7152/api/Reviews';
+baseUrl='https://localhost:7152/api/Reviews';
 
 
   constructor(public http:HttpClient) { }
 
   getReviews(){
-    return this.http.get<Review[]>(this.baseUrl3)
+    return this.http.get<Review[]>(this.baseUrl);
+  }
+
+  postReview(rev:Review){
+    return this.http.post<Review>(this.baseUrl,rev);
   }
   
 }
