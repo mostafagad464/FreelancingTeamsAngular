@@ -7,7 +7,7 @@ export class Team {
         public id: number,
         public logo:string | null,
         public webSite : string,
-        public isVerified : boolean,
+        public isVerfied : boolean,
         public creationDate: Date,
         public description : string,
         public rate : number ,

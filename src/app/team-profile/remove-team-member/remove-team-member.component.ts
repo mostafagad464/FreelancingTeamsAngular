@@ -34,7 +34,7 @@ export class RemoveTeamMemberComponent implements OnInit {
     id: 0,
     logo: '',
     webSite: '',
-    isVerified: false,
+    isVerfied: false,
     creationDate: new Date(1/1/2030),
     description: '',
     rate: 0,

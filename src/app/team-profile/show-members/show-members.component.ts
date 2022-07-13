@@ -16,53 +16,18 @@ import { TeamProfileService } from '../team-profile.service';
 })
 export class ShowMembersComponent implements OnInit {
 
-  constructor(public freelancerServ:FreelancersService, 
-              public ac:ActivatedRoute, 
-              public teamServ:TeamProfileService,
-              public accountServ:AccountService) { }
- 
-  accounts:Account[]=[
-    
-  ]
+  members: number[] = [];
+  member: TeamMember = new TeamMember(0, 0, false);
+  memberFreelancerId = '';
+  memberAccessAllowed = '';
+  names: string[] = [];
+  teamId = 0;
+  freelancerId = 0;
 
-  freelancers:Freelancer[]=[
-
-  ]
-
-  teams:Team[]=[
-
-  ]
-
-  freelancersIds=new Array (this.freelancers.length);
-
-  teamMembers:TeamMember[]=[
-    
-  ]
-
-  members:number[]=[
-
-  ]
-
-  teamsIds:number[]=[
-
-  ]
-
-  member:TeamMember=new TeamMember(0,0,false);
-
-  memberFreelancerId='';
-  memberAccessAllowed='';
-
-  names:string[]=[
-
-  ]
-
-  nam='';
-  nam1='';
-  mergedName='';
-
-  teamId=0;
-
-  freelancerId=0
+  constructor(public freelancerServ: FreelancersService,
+    public ac: ActivatedRoute,
+    public teamServ: TeamProfileService,
+    public accountServ: AccountService) { }
 
 
   ngOnDestroy(): void {
@@ -71,26 +36,25 @@ export class ShowMembersComponent implements OnInit {
   }
 
 
-  sub:Subscription|null=null;
-  sub1:Subscription|null=null;
+  sub: Subscription | null = null;
+  sub1: Subscription | null = null;
 
 
-  Remove(){
+  Remove() {
     console.log(this.teamId)
-    this.sub=this.ac.params.subscribe(a=>{
-      this.member.freelancerId=parseInt(this.memberFreelancerId);
+    this.sub = this.ac.params.subscribe(a => {
+      this.member.freelancerId = parseInt(this.memberFreelancerId);
 
-      if(this.memberAccessAllowed == 'false'){
-        this.member.accessAllowed=false;
+      if (this.memberAccessAllowed == 'false') {
+        this.member.accessAllowed = false;
       }
-      else{
-        this.member.accessAllowed=true;
+      else {
+        this.member.accessAllowed = true;
       }
-
       console.log(this.member.freelancerId);
       console.log(this.memberFreelancerId);
       console.log(this.member);
-      this.sub1=this.freelancerServ.removeTeamMember(this.teamId,this.freelancerId).subscribe(a=>{
+      this.sub1 = this.freelancerServ.removeTeamMember(this.teamId, this.freelancerId).subscribe(a => {
         alert('freelancer removed successfully!');
         console.log(this.member);
       })
@@ -101,41 +65,20 @@ export class ShowMembersComponent implements OnInit {
 
     console.log("show");
 
-    this.ac.params.subscribe(a=>{
-      console.log("id:"+a['id']);
-      this.teamId=(a['id']);
-    })
+    this.ac.params.subscribe(a => {
+      console.log("id:" + a['id']);
+      this.teamId = (a['id']);
+    });
 
-    this.freelancerServ.getTeamMembers(this.teamId).subscribe(a=>{
-      this.freelancers=a;
-      this.teamMembers=a;
-      this.members=a;
-      console.log("teamMembers: "+this.members);
-    
-
-    for(var i = 0 ; i < this.freelancers.length;i++){}
-
-      console.log(this.freelancers);
-    })
-
-    this.accountServ.getAccounts().subscribe(a=>{
-      this.accounts=a;
-      console.log(this.accounts);
-      for(var i=0;i<this.members.length;i++){
-        for(var y=0;y<this.accounts.length;y++){
-          console.log("+++"+this.members[i]+", "+this.accounts[y].id)
-          if(this.members[i]==this.accounts[y].id){
-            console.log("equal");
-            this.nam=this.accounts[y].firstName;
-            this.nam1=this.accounts[y].lastName;
-            this.mergedName=this.nam+" "+this.nam1;
-            this.names.push(this.mergedName);
-          }
-        }
+    this.freelancerServ.getTeamMembers(this.teamId).subscribe(a => {
+      this.members = a;
+      console.log("teamMembers: " + this.members);
+      for (let member of this.members) {
+        this.accountServ.getAccount(member).subscribe(a => {
+          this.names.push(a.firstName + " " + a.lastName);
+          console.log(this.names);
+        });
       }
-      console.log(this.names);
-    })
-
-    
-  } 
+    });
+  }
 }
