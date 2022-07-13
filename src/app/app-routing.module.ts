@@ -14,12 +14,34 @@ import { EditexperienceComponent } from './_user/user-profile/editexperience/edi
 import { EditskillsComponent } from './_user/user-profile/editskills/editskills.component';
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
+import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
 
 
 const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children: [
-      { path: "portfolio/:id", component: ProjectsComponent },
+      { path: "portfolio/:id", component: ProjectsComponent,children:[
+        {path:"addPortofolio",component:AddPortfolioComponent}
+      ] },
+      {
+        path: "experiences/:id", component: ExperienceComponent,
+        children:
+          [
+            {
+              path: "editExperience/:id/:startDate",
+              component: EditexperienceComponent,
+              outlet: 'modal'
+            },
+   
+            {
+              path: "addExperience",
+              component: AddExperienceComponent,
+              outlet: 'modal'
+            }
+   
+          ]
+   
+      },
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
           {
@@ -27,14 +49,9 @@ const routes: Routes = [
           },
         ]
       }
-    ]
-  },
-  { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "register", component: RegisterComponent },
-  { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent },
-  { path: "certificates/:id", component: CertificatesComponent,
+      ,
+  {
+    path: "certificates/:id", component: CertificatesComponent,
     children:
       [
         {
@@ -42,32 +59,21 @@ const routes: Routes = [
           component: EditCertificatesComponent,
           outlet: 'modal'
         },
-
         {
           path: "addCertificate",
           component: AddCertificateComponent,
           outlet: 'modal'
         }
       ]
-  },
-  { path: "experiences/:id", component: ExperienceComponent,
-    children:
-      [
-        {
-          path: "editExperience/:id/:startDate",
-          component: EditexperienceComponent,
-          outlet: 'modal'
-        },
-
-        {
-          path: "addExperience",
-          component: AddExperienceComponent,
-          outlet: 'modal'
-        }
-
-      ]
-
   }
+    ]
+  },
+  { path: "login", component: LoginComponent },
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "register", component: RegisterComponent },
+  { path: "skills/:id", component: SkillsComponent },
+  { path: "skills/edit/:id", component: EditskillsComponent }
+ 
 ]
 
 @NgModule({
