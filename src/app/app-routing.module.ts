@@ -34,8 +34,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
-  {
-    path: "certificates/:id", component: CertificatesComponent,
+  { path: "certificates/:id", component: CertificatesComponent,
     children:
       [
         {
@@ -51,8 +50,7 @@ const routes: Routes = [
         }
       ]
   },
-  {
-    path: "experiences/:id", component: ExperienceComponent,
+  { path: "experiences/:id", component: ExperienceComponent,
     children:
       [
         {

@@ -16,7 +16,7 @@ export class FreelancersService {
   }
 
   getTeamMembers(id:number){
-    return this.http.get<any>(this.baseUrl+"/"+id);
+    return this.http.get<number[]>(this.baseUrl+"/"+id);
   }
 
   removeTeamMember(id:number, fId:number){
