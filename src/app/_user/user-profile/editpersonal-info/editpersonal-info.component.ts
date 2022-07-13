@@ -27,7 +27,7 @@ export class EditpersonalInfoComponent implements OnInit {
   save(){
     
     forkJoin([this.userserv.updateAccount(this.accountInfo),
-      this.userserv.updateUser(this.accountInfo.user)]).subscribe(a=>console.log(a));
+      this.userserv.updateUser(this.accountInfo.user!)]).subscribe(a=>console.log(a));
       this.close();
       // this.router.navigateByUrl("profile/"+this.userId+"/personalinfo/"+this.userId)
   // this.sub3=this.userserv.updateAccount(this.accountInfo).subscribe(a=>console.log(a));

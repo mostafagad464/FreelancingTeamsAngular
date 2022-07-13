@@ -1,4 +1,4 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditpersonalInfoComponent } from './_user/user-profile/editpersonal-info/editpersonal-info.component';
 import { HeaderComponent } from './_user/user-profile/header/header.component';
@@ -20,9 +20,11 @@ import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-po
 const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children: [
-      { path: "portfolio/:id", component: ProjectsComponent,children:[
-        {path:"addPortofolio",component:AddPortfolioComponent}
-      ] },
+      {
+        path: "portfolio/:id", component: ProjectsComponent, children: [
+          { path: "addPortofolio", component: AddPortfolioComponent }
+        ]
+      },
       {
         path: "experiences/:id", component: ExperienceComponent,
         children:
@@ -32,15 +34,15 @@ const routes: Routes = [
               component: EditexperienceComponent,
               outlet: 'modal'
             },
-   
+
             {
               path: "addExperience",
               component: AddExperienceComponent,
               outlet: 'modal'
             }
-   
+
           ]
-   
+
       },
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
@@ -75,14 +77,12 @@ const routes: Routes = [
           outlet: 'modal'
         }
       ]
-  }
-    ]
   },
-  { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "register", component: RegisterComponent },
-  { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent }
+{ path: "login", component: LoginComponent },
+{ path: "", redirectTo: "login", pathMatch: "full" },
+{ path: "register", component: RegisterComponent },
+{ path: "skills/:id", component: SkillsComponent },
+{ path: "skills/edit/:id", component: EditskillsComponent }
  
 ]
 
