@@ -18,7 +18,7 @@ export class AddTeamMemberComponent implements OnInit {
 
   constructor(public ac:ActivatedRoute, public TeamService:TeamService, public UserService: UserService, public AccountService:AccountService) { }
 
-  team:Team=new Team(0,null,"",false,new Date(),"",0,0,0,"",[],[],[]);
+  team:Team=new Team(0,null,"",false,new Date(),"",0,0,0,"","",[],[],[]);
   allFreelancers:User[] = [];
   OtherFreelancerAccounts:Account[]=[];
   newTeamMember:TeamMember = new TeamMember(0,0,false);

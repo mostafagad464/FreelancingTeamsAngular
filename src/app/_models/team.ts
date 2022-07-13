@@ -7,16 +7,18 @@ export class Team {
         public id: number,
         public logo:string | null,
         public webSite : string,
-        public isVerified : boolean,
+        public isVerfied : boolean,
         public creationDate: Date,
         public description : string,
         public rate : number ,
         public leaderId: number,
         public walletId: number,
         public name:string,
+        public specialization:string="",
         public deals:Deal[],
         public reviews:Review[],
         public teamMembers: TeamMember[]
+        
 
     ){}
 }

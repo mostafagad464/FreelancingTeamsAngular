@@ -17,13 +17,14 @@ export class EditTeamInfoComponent implements OnInit {
     id: 0,
     logo: '',
     webSite: '',
-    isVerified: false,
+    isVerfied: false,
     creationDate: new Date(1/1/2030),
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
@@ -33,13 +34,14 @@ export class EditTeamInfoComponent implements OnInit {
     id: 0,
     logo: '',
     webSite: '',
-    isVerified: false,
+    isVerfied: false,
     creationDate: new Date(1/1/2030),
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
@@ -78,8 +80,8 @@ export class EditTeamInfoComponent implements OnInit {
     if(this.UpdatedTeam.deals==null){
       this.UpdatedTeam.deals=this.team.deals
     }
-    if(this.UpdatedTeam.isVerified==null){
-      this.UpdatedTeam.isVerified=this.team.isVerified
+    if(this.UpdatedTeam.isVerfied==null){
+      this.UpdatedTeam.isVerfied=this.team.isVerfied
     }
     // console.log("updatedTeam: "+this.UpdatedTeam.name);
     
@@ -97,7 +99,7 @@ export class EditTeamInfoComponent implements OnInit {
         this.team=a;
         this.team.id=(a['id']);
         this.UpdatedTeam.id=(a['id']);
-        this.UpdatedTeam.isVerified=this.team.isVerified;
+        this.UpdatedTeam.isVerfied=this.team.isVerfied;
         this.UpdatedTeam.creationDate=this.team.creationDate;
         this.UpdatedTeam.rate=this.team.rate;
         this.UpdatedTeam.walletId=this.team.walletId;

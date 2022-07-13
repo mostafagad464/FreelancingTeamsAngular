@@ -37,19 +37,20 @@ export class HeaderComponent implements OnInit {
     id: 0,
     logo: '',
     webSite: '',
-    isVerified: false,
+    isVerfied: false,
     creationDate: new Date(1/1/2030),
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
   }
 
-  img="../../../assets/Images/1.png";
+  img="../../../assets/images/1.png";
 
   desc=this.team.description;
   rate=1;
