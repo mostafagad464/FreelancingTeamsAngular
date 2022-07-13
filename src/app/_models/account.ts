@@ -10,6 +10,6 @@ export class Account {
         public firstName:string,
         public lastName:string,
         public type:string,
-        public user:User |null
+        public user:User
     ){}
 }
