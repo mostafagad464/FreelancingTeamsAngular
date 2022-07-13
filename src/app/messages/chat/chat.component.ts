@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/_models/account';
 import { AccountMessage } from 'src/app/_models/account-message';
+import { Freelancer } from 'src/app/_models/freelancer';
 import { TeamFreelancerMessage } from 'src/app/_models/team-freelancer-message';
+import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ChatService } from 'src/app/_services/chat.service';
@@ -19,7 +21,8 @@ export class ChatComponent implements OnInit {
   // Accounts: Account[] = [];
   Accounts:{ noOfMess: number; account: Account }[] =[];
   AccountChat: AccountMessage[] = [];
-  account: Account = new Account(0,null,"","","","","","",null); // Account I am opening his chat
+  account: Account = new Account(0,null,"","","","","","",
+  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""))); // Account I am opening his chat
   accountmessage:AccountMessage=new AccountMessage(0,0,0,"","",false,false,null,null);
 
   constructor(public ChatService: ChatService, public AuthService: AuthService, public AccountService: AccountService) { }
