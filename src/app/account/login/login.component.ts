@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
   pass = "password";
   fa = "fa-eye";
 
-  constructor(public AuthService: AuthService,public router:Router) { }
+  constructor(public AuthService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -29,10 +28,9 @@ export class LoginComponent implements OnInit {
       const expirationDate = helper.getTokenExpirationDate(s.token);
       const isExpired = helper.isTokenExpired(s.token);
       console.log(s)
-      console.log(decodedToken.Id)
+      console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
-      this.router.navigateByUrl("profile/"+decodedToken.Id)
     },
     error=> {
       this.message = "Username and password incorrect";

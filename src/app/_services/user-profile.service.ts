@@ -40,10 +40,6 @@ export class UserProfileService {
   {
     return this.http.delete(this.baseUrl+"Portoflio/"+id)
   }
-  addPortoflio(portfolio:Portoflio)
-  {
-    return this.http.post<Portoflio>(this.baseUrl+"Portoflio/",portfolio)
-  }
     getUserSkillsById(id:number)
   {
     return this.http.get<FreelancerHasSkill>(this.baseUrl+"FreelancerSkills/GetFreelancerSkills/"+id);
