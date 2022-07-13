@@ -9,6 +9,7 @@ import { TeamMember } from '../_models/team-member';
 export class TeamService {
 
   baseUrl = 'https://localhost:7152/api/Teams/';
+  imageurl = "https://localhost:7152/api/Image/Team/";
 
   constructor(public http: HttpClient) { }
 
@@ -26,6 +27,10 @@ export class TeamService {
 
   EditTeam(team: Team) {
     return this.http.put(this.baseUrl + team.id, team);
+  }
+
+  addImage(TeamId: number, img: FormData) {
+    return this.http.post<any>(this.imageurl + TeamId, img);
   }
 
 

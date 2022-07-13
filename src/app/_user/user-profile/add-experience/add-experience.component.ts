@@ -13,6 +13,7 @@ export class AddExperienceComponent implements OnInit {
 
   freelancerIdArray:string[]=[];
   freelancerId:number=0;
+  currentlyworking : Number=0;
 
   freelancerExperience: FreelancerExperience = new FreelancerExperience(0, "", "", "", "", "", "","");
 
@@ -29,32 +30,24 @@ export class AddExperienceComponent implements OnInit {
      })
   }
   close(){
-    // this.ac.params.subscribe(a => {
 
-    //   this.freelancerExperience.FreelancerId = a['id'];
-    //   console.log(  this.freelancerExperience.FreelancerId )
-     
-    // })
-    // console.log( this.freelancerExperience)
-    // this.freelancerExperience.FreelancerId = this.freelancerId; 
-    // this.UserSer.AddFreelancerExperience( this.freelancerExperience).subscribe(a => {
-
-    //   console.log( this.freelancerExperience)
-   
-  
-    // })
     this.activeModal.close();
   }
   Add() {
 
     this.ac.params.subscribe(a => {
 
-      this.freelancerExperience.FreelancerId = a['id'];
-      console.log(  this.freelancerExperience.FreelancerId )
+      this.freelancerExperience.freelancerId = a['id'];
+   
      
     })
-    console.log( this.freelancerExperience)
-    this.freelancerExperience.FreelancerId = this.freelancerId; 
+    this.freelancerExperience.freelancerId = this.freelancerId; 
+    if(this.currentlyworking==1){
+      this.freelancerExperience.curentllyWorking=true;
+
+    }else{
+      this.freelancerExperience.curentllyWorking=false;
+    }
     this.UserSer.AddFreelancerExperience( this.freelancerExperience).subscribe(a => {
 
       console.log( this.freelancerExperience)

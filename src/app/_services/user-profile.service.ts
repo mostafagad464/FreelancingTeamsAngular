@@ -61,11 +61,6 @@ export class UserProfileService {
     return this.http.put<FreelancerHasSkill>(this.baseUrl+"FreelancerSkills/"+freelancerId+"?skillId="+skillId,updatedSkill)
   }
 
-
-
-
-
-  
   //certificates
   GetCertificateById(freelancerId:string,title:string){
     return this.http.get<FreelancerCertificates>(this.baseUrl+"FreelancerCertificates/"+freelancerId+"?title="+title)
@@ -83,13 +78,9 @@ export class UserProfileService {
     console.log("updated")
      return this.http.put<FreelancerCertificates>(this.baseUrl+"FreelancerCertificates/"+freelancerId,updatedCertificate)
   }
-
-
-
-
   //experiences
   GetExperienceById(freelancerId:string | number,startDate:string | Date){
-    return this.http.get<FreelancerCertificates>(this.baseUrl+"FreelancerExperiences/"+freelancerId+"?startDate="+startDate)
+    return this.http.get<FreelancerExperience>(this.baseUrl+"FreelancerExperiences/"+freelancerId+"?startDate="+startDate)
   }
   GetAllFreelancerExperiences(freelancerId:number){
     return this.http.get<FreelancerExperience>(this.baseUrl+"FreelancerExperiences/GetFreelancerExperiences/"+freelancerId)
@@ -101,7 +92,7 @@ export class UserProfileService {
     return this.http.post<FreelancerExperience>(this.baseUrl+"FreelancerExperiences",newExperience)
   }
   UpdateFreelancerExperiences(freelancerId:number,startDate:Date | string,updatedExperience:FreelancerExperience){
-     return this.http.put<FreelancerExperience>(this.baseUrl+"FreelancerExperiences/"+freelancerId+"startDate="+startDate,updatedExperience)
+     return this.http.put<FreelancerExperience>(this.baseUrl+"FreelancerExperiences/"+freelancerId+"?startDate="+startDate,updatedExperience)
   }
 
 }
