@@ -21,30 +21,29 @@ export class AddCertificateComponent implements OnInit {
   ngOnInit(): void {
 
     this.ac.params.subscribe(a => {
-      console.log(this.ac.snapshot);
-      console.log(this.router.routerState.snapshot.url);
+   
       this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
-      console.log(this.freelancerId)
-  
-      console.log(this.freelancerIdArray[2]);
+
       this.freelancerId=Number(this.freelancerIdArray[2]) ;
-      console.log(this.freelancerId);
-      // console.log(this.freelancerId[5].split(')'));
-      // this.title=this.freelancerId[5].split(')');
-      // console.log(this.title[0]);
-     
+  
+  
      })
 
   }
   close(){
+   
+    this.activeModal.close();
+  }
+  Add() {
+
     this.ac.params.subscribe(a => {
 
-      this.freelancerCertificate.FreelancerId = a['id'];
-      console.log( this.freelancerCertificate.FreelancerId )
+      this.freelancerCertificate.freelancerId = a['id'];
+      console.log( this.freelancerCertificate.freelancerId )
      
     })
     console.log(this.freelancerCertificate)
-    this.freelancerCertificate.FreelancerId = this.freelancerId; 
+    this.freelancerCertificate.freelancerId = 1; 
     this.UserSer.AddFreelancerCertificate(this.freelancerCertificate).subscribe(a => {
 
       console.log(this.freelancerCertificate)
@@ -52,23 +51,6 @@ export class AddCertificateComponent implements OnInit {
   
     })
     this.activeModal.close();
-  }
-  Add() {
-
-    this.ac.params.subscribe(a => {
-
-      this.freelancerCertificate.FreelancerId = a['id'];
-      console.log( this.freelancerCertificate.FreelancerId )
-     
-    })
-    console.log(this.freelancerCertificate)
-    this.freelancerCertificate.FreelancerId = 1; 
-    this.UserSer.AddFreelancerCertificate(this.freelancerCertificate).subscribe(a => {
-
-      console.log(this.freelancerCertificate)
-   
-  
-    })
  
 
   }

@@ -14,6 +14,7 @@ export class EditCertificatesComponent implements OnInit {
   freelancerId:string[]=[];
   title:string[]=[];
   string:string="";
+  date : string[] =[];
 
   freelancerCertificate: FreelancerCertificates = new FreelancerCertificates(0, "", "", "", "", "", "");
 
@@ -22,68 +23,37 @@ export class EditCertificatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.ac.params.subscribe(a => {
-      console.log(this.ac.snapshot);
-      console.log(this.router.routerState.snapshot.url);
       this.freelancerId=this.router.routerState.snapshot.url.split("/")
-      console.log(this.freelancerId[4]);
-      
-      console.log(this.freelancerId[5].split(')'));
+  
       this.title=this.freelancerId[5].split(')');
-      console.log(this.title[0]);
-      
       this.UserSer.GetCertificateById(this.freelancerId[4],this.title[0]).subscribe(a => {
-        // this.freelancerCertificate=a
-        // console.log(this.freelancerCertificate.FreelancerId)
-        this.freelancerCertificates[1] = a;
+     
+      this.freelancerCertificate = a;
+     
+    
+        this.date=this.freelancerCertificate.date.split("T")
+       
         
-        
-        console.log(this.freelancerCertificates[1].freelancerId)
+        this.freelancerCertificate.date=this.date[0];
+     
 
       })
      })
   
   }
   close(){
-    // console.log("there")
-    // console.log(this.freelancerCertificates[1].freelancerId)
-    // this.UserSer.UpdateFreelancerCertificates(this.freelancerCertificates[1].freelancerId
-    //   , this.freelancerCertificates[1]).subscribe(a => {
-    //     console.log(a)
-
-    //   })
+   
    this.activeModal.close();
   }
-  // Delete(freelancerId: number, title: string) {
-  //   this.UserSer.DeleteFreelancerCertificate(freelancerId, title).subscribe(a => {
-  //     this.ngOnInit()
-  //   })
 
 
-
-  // }
-  // Add() {
-
-  //   this.ac.params.subscribe(a => {
-
-  //     this.freelancerCertificate.FreelancerId = a['id'];
-  //   })
-
-  //   this.UserSer.AddFreelancerCertificate(this.freelancerCertificate).subscribe(a => {
-
-  //     console.log(this.freelancerCertificate)
-  //     this.addExtra = false;
-  //     this.ngOnInit()
-  //   })
-
-  // }
 
   edit() {
   
-      console.log("there")
-    console.log(this.freelancerCertificates[1].freelancerId)
-    this.UserSer.UpdateFreelancerCertificates(this.freelancerCertificates[1].freelancerId
-      , this.freelancerCertificates[1]).subscribe(a => {
-        console.log(a)
+ 
+    this.UserSer.UpdateFreelancerCertificates(this.freelancerCertificate.freelancerId
+      , this.freelancerCertificate).subscribe(a => {
+   
 
       })
 

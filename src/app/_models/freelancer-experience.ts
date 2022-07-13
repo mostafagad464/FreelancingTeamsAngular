@@ -1,13 +1,15 @@
 export class FreelancerExperience {
         constructor(
-            public FreelancerId: number,
-            public JobTitle: string,
-            public CompanyName:string,
-            public StartDate: Date | string,
-            public EndDate : Date | string,
-            public CurrentlyWorking : boolean | string,
-            public JobKind: string,
-            public Summary : string
+            public freelancerId: number,
+            public jobTitle: string,
+            public companyName:string,
+            public startDate: string,
+            public endDate : string,
+            public curentllyWorking:  boolean | string,
+            public jobKind: string,
+            public summary : string
+
+            
     
         ){}   
 }

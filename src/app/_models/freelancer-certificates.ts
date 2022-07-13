@@ -1,13 +1,13 @@
 export class FreelancerCertificates {
 
     constructor(
-        public FreelancerId: number,
-        public Title: string,
-        public Link:string,
-        public Organization: string,
-        public Date : Date | string,
-        public Description :string,
-        public Specialization: string
+        public freelancerId: number,
+        public title: string,
+        public link:string,
+        public organization: string,
+        public date : string ,
+        public description :string,
+        public specialization: string
 
     ){}
 }
