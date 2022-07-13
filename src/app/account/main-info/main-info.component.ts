@@ -5,6 +5,7 @@ import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
 import { CountriesService } from 'src/app/_services/countries.service';
+import { Freelancer } from 'src/app/_models/freelancer';
 
 const helper = new JwtHelperService();
 
@@ -15,8 +16,9 @@ const helper = new JwtHelperService();
 })
 export class MainInfoComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "", null);
-  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, null);
+  account: Account = new Account(0, null, "", "", "", "", "", "",
+  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""));
   bio_Pic = false;
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
