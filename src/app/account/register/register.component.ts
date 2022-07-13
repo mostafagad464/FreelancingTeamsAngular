@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import { MainInfoComponent } from '../main-info/main-info.component';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Freelancer } from 'src/app/_models/freelancer';
 
 const helper = new JwtHelperService();
 
@@ -18,9 +17,8 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "User",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","","",0,false,"",false,false,null,null,false,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""))
+  account: Account = new Account(0, null, "", "", "", "", "", "User", null);
+  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","","",0,false,"",false,false,null,null,false,null,null,null,null,null)
   confirmPassword = "";
   message = "";
   showUN = false;   //Show User Name

@@ -11,7 +11,13 @@ export class Account {
         public firstName:string,
         public lastName:string,
         public type:string,
-        public user:User
-//test
+        public user:User | null
+        
+        
+        
+        
+        
+
+
     ){}
 }
