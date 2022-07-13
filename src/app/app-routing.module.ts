@@ -1,4 +1,4 @@
-import {  NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditpersonalInfoComponent } from './_user/user-profile/editpersonal-info/editpersonal-info.component';
 import { HeaderComponent } from './_user/user-profile/header/header.component';
@@ -14,6 +14,7 @@ import { EditexperienceComponent } from './_user/user-profile/editexperience/edi
 import { EditskillsComponent } from './_user/user-profile/editskills/editskills.component';
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
+import { ChatComponent } from './messages/chat/chat.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
-  { path: "certificates/:id", component: CertificatesComponent,
+  { path:"chat", component: ChatComponent},
+  {
+    path: "certificates/:id", component: CertificatesComponent,
     children:
       [
         {
@@ -42,7 +45,6 @@ const routes: Routes = [
           component: EditCertificatesComponent,
           outlet: 'modal'
         },
-
         {
           path: "addCertificate",
           component: AddCertificateComponent,
@@ -50,7 +52,8 @@ const routes: Routes = [
         }
       ]
   },
-  { path: "experiences/:id", component: ExperienceComponent,
+  {
+    path: "experiences/:id", component: ExperienceComponent,
     children:
       [
         {

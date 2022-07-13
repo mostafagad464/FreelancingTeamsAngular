@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/_models/project';
-import { TeamMember } from 'src/app/_models/team-member';
 import { Team } from '../../_models/team'
 import { FreelancersService } from '../freelancers.service';
 import { TeamProfileService } from '../team-profile.service';
