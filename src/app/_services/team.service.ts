@@ -8,8 +8,11 @@ import { TeamMember } from '../_models/team-member';
 })
 export class TeamService {
 
+
   private baseUrl = 'https://localhost:7152/api/Teams/';
 
+  imageurl = "https://localhost:7152/api/Image/Team/";
+  
   constructor(private http: HttpClient) { }
 
   getTeam(id: number) {
@@ -28,10 +31,16 @@ export class TeamService {
     return this.http.put(this.baseUrl + team.id, team);
   }
 
+
   createTeam(team:Team)
   {
     return this.http.post<Team>(this.baseUrl, team);
   }
-  
+
+  addImage(TeamId: number, img: FormData) {
+    return this.http.post<any>(this.imageurl + TeamId, img);
+  }
+
+
 
 }

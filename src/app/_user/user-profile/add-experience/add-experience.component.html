@@ -6,37 +6,49 @@
     <form>
         <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Job Title</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.JobTitle" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.jobTitle" [ngModelOptions]="{standalone: true}">
           </div>
       <div class="mb-3">
         <label for="recipient-name" class="col-form-label">Start Date</label>
-        <input type="date" class="form-control" id="recipient-name " [(ngModel)]="freelancerExperience.StartDate" [ngModelOptions]="{standalone: true}">
+        <input type="date" class="form-control" id="recipient-name " [(ngModel)]="freelancerExperience.startDate" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="mb-3">
           <label for="recipient-name" class="col-form-label">End Date</label>
-          <input type="date" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.EndDate" [ngModelOptions]="{standalone: true}">
+          <input type="date" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.endDate" [ngModelOptions]="{standalone: true}">
         </div>
       <div class="mb-3">
         <label for="recipient-name" class="col-form-label" >Company Name</label>
-        <input  type="text" class="form-control" id="recipient-name"  [(ngModel)]="freelancerExperience.CompanyName" [ngModelOptions]="{standalone: true}">
+        <input  type="text" class="form-control" id="recipient-name"  [(ngModel)]="freelancerExperience.companyName" [ngModelOptions]="{standalone: true}">
       </div>
     
         <div class="mb-3">
-          <label for="recipient-name" class="col-form-label">Currently Working</label>
-          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.CurrentlyWorking" [ngModelOptions]="{standalone: true}">
+          <label for="recipient-name" class="col-form-label" >Currently Working</label>
+          <div class="radio">  
+            <label>  
+                <input type="radio" name="radio" value="yes" (click)="currentlyworking=1" >  
+               Yes
+           </label>  
+         </div>  
+         <div class="radio">  
+          <label>  
+             <input type="radio" name="radio" value="no" (click)="currentlyworking=0" >  
+                 No
+           </label>  
+         </div>  
+          <!-- <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.curentllyWorking" [ngModelOptions]="{standalone: true}"> -->
         </div>
         <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Job Kind</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.JobKind" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.jobKind" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Summary</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.Summary" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerExperience.summary" [ngModelOptions]="{standalone: true}">
           </div>
 
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Add()">Save</button>
-    <!-- <button type="button" class="btn btn-secondary" (Click)="close()">Close</button>    -->
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
   </div>

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Freelancer } from 'src/app/_models/freelancer';
 import { Project } from 'src/app/_models/project';
 import { TeamMember } from 'src/app/_models/team-member';
 import { Team } from '../../_models/team'
 import { FreelancersService } from '../freelancers.service';
 import { TeamProfileService } from '../team-profile.service';
+import { ReviewsService } from './../../_services/reviews.service'
 
 @Component({
   selector: 'app-header',
@@ -14,35 +14,38 @@ import { TeamProfileService } from '../team-profile.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public ac:ActivatedRoute,public teamServ:TeamProfileService, public freelancerServ:FreelancersService) { }
+  noOfCpltdProj: number = 0;
+  noOfRv: number = 0
+  teamMembers: number[] = [];
 
-  
-  
-  
-  checkP=""; //Your team's projects
+  constructor(public ac: ActivatedRoute, public teamServ: TeamProfileService, public freelancerServ: FreelancersService, public ReviewsService: ReviewsService) { }
 
-  projects:Project[]=[
+  checkP = ""; //Your team's projects
+
+  projects: Project[] = [
 
   ]
 
-  projectsNames:string[]=[
-    
+  projectsNames: string[] = [
+
   ]
 
-  check(){
-    this.checkP="Your team's projects";
+  check() {
+    this.checkP = "Your team's projects";
   }
-  
-  team:Team={
+
+  team: Team = {
     id: 0,
     logo: '',
     webSite: '',
     isVerfied: false,
     creationDate: new Date(1/1/2030),
+
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
+
     name:'',
     specialization:'',
     deals:[],
@@ -52,43 +55,43 @@ export class HeaderComponent implements OnInit {
 
   img="../../../assets/images/1.png";
 
-  desc=this.team.description;
-  rate=1;
-  Search(){
-    
+  desc = this.team.description;
+  rate = 1;
+  Search() {
+
   }
 
-  Check(){
-    this.title="Freelancers in your team";
-    this.freelancerServ.getTeamMembers(this.teamId).subscribe(a=>{
-      this.freelancers=a;
-      this.teamMembers=a;})
+  Check() {
+    this.title = "Freelancers in your team";
+    this.freelancerServ.getTeamMembers(this.team.id).subscribe(a => {
+      this.teamMembers = a;
+    })
   }
 
-  teamMembers:TeamMember[]=[
-    
-  ]
-  
-  freelancers:Freelancer[]=[
 
-  ]
 
-  teamId=0;
+  // teamId=0;
 
-  title='';
-  
+  title = '';
+
   ngOnInit(): void {
-    this.ac.params.subscribe(a=>{
-      this.teamServ.getTeamById(a['id']).subscribe(a=>{
-      this.team=a;
-      this.teamId=(a['id']);
-      console.log(this.team);
-      console.log(this.team.creationDate)
-      console.log(this.team.name); 
+    this.ac.params.subscribe(a => {
+      this.teamServ.getTeamById(a['id']).subscribe(a => {
+        this.team = a;
+        // this.teamId=(a['id']);
+        console.log(this.team);
+        console.log(this.team.creationDate)
+        console.log(this.team.name);
+        this.Check();
+        this.noOfCpltdProj = this.team.deals.filter(a => a.done == true).length;
+        this.getReviews();
+      })
     })
-    })
-    
-    
+  }
+  getReviews() {
+    this.ReviewsService.getReviews().subscribe(r => {
+      this.noOfRv = r.filter(a => a.rate > 4 && a.teamId == this.team.id).length;
+    });
   }
 
 }

@@ -10,87 +10,30 @@
       </div> -->
       <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Specialization</label>
-          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificates[1].specialization" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificate.specialization" [ngModelOptions]="{standalone: true}">
         </div>
       <div class="mb-3">
         <label for="recipient-name" class="col-form-label" >Date</label>
-        <input  type="text" class="form-control" id="recipient-name"  [(ngModel)]="freelancerCertificates[1].date" [ngModelOptions]="{standalone: true}">
+        <input  type="date" class="form-control" id="recipient-name"  [(ngModel)]="freelancerCertificate.date" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Description</label>
-          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificates[1].description" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificate.description" [ngModelOptions]="{standalone: true}">
         </div>
             <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Organization</label>
-            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificates[1].organization" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificate.organization" [ngModelOptions]="{standalone: true}">
           </div>
         <div class="mb-3">
           <label for="recipient-name" class="col-form-label">Link</label>
-          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificates[1].link" [ngModelOptions]="{standalone: true}">
+          <input type="text" class="form-control" id="recipient-name" [(ngModel)]="freelancerCertificate.link" [ngModelOptions]="{standalone: true}">
         </div>
     
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="edit()">Save</button>
-    <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (Click)="edit()">Save</button> -->
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
   </div>
 
 
-
-
-<!-- <div class="container">
-    <div style="margin-top: 3%;" class="container">
-        <tr *ngFor="let item of freelancerCertificates[1]">
-            <div class="card" style="width: 600px;">
-                <div class="card-body">
-                  
-                    <label>Specialization</label><br>
-                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="item.specialization"> <br>
-                    <label>Date</label><br>
-                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="item.date "> <br>
-                    <label>Description</label><br>
-                    <input class="card-text" [(ngModel)]="item.description"> <br><br>
-                    <label>Link</label><br>
-                    <input type="text" class="card-link" [(ngModel)]="item.link">
-                    <label>Organization</label>
-                    <input type="text" class="card-link" [(ngModel)]="item.organization">
-
-                    <a href="#" (click)="Delete(item.freelancerId,item.title)" class="card-link">Delete</a>
-
-                </div>
-            </div>
-            <br>
-        </tr>
-    </div>
-    <button  class="btn btn-success " style="margin-right: 10px;" (click)="Edit()">Save</button> -->
-    
-    <!-- <button class="btn btn-primary" (click)="addExtra=true">Add</button>
-    <div style="margin-top: 3%;" class="container" *ngIf="addExtra">
-      
-            <div class="card" style="width: 600px;">
-                <div class="card-body">
-
-                    <label>Title</label><br>
-                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerCertificate.Title"> <br>
-                    <label>Specialization</label><br>
-                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerCertificate.Specialization"> <br>
-                    <label>Date</label><br>
-                    <input type="text" class="card-subtitle mb-2 " [(ngModel)]="freelancerCertificate.Date" > <br>
-                    <label>Description</label><br>
-                    <input class="card-text" [(ngModel)]="freelancerCertificate.Description" > <br><br>
-                    <label>Link</label><br>
-                    <input type="text" class="card-link" [(ngModel)]="freelancerCertificate.Link" >
-                    <label>Organization</label>
-                    <input type="text" class="card-link" [(ngModel)]="freelancerCertificate.Organization">
-
-                    <button  class="btn btn-success " style="margin-left: 10px;" (click)="Add()">Save</button>
-
-                </div>
-            </div>
-            <br>
-      
-
-      </div>
-      
-      -->
