@@ -25,6 +25,11 @@ export class TeamProfileService {
     return this.http.put<Team>(this.baseUrl+id,team);
   }
 
+  createTeam(team:Team)
+  {
+    return this.http.post<Team>(this.baseUrl, team);
+  }
+
 }
 
 

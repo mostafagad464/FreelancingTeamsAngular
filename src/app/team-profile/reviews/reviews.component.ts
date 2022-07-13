@@ -31,6 +31,8 @@ export class ReviewsComponent implements OnInit {
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
+
     deals:[],
     reviews:[],
     teamMembers:[]

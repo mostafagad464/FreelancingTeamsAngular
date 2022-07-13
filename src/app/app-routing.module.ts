@@ -49,7 +49,17 @@ const routes: Routes = [
           },
         ]
       }
-      ,
+
+    ]
+  },
+
+  { path: "login", component: LoginComponent },
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "register", component: RegisterComponent },
+  { path: "skills/:id", component: SkillsComponent },
+  { path: "skills/edit/:id", component: EditskillsComponent },
+
+
   {
     path: "certificates/:id", component: CertificatesComponent,
     children:
