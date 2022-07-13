@@ -12,6 +12,6 @@ export class Account {
         public lastName:string,
         public type:string,
         public user:User
-
+//test
     ){}
 }
