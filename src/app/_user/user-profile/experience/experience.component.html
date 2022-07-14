@@ -2,15 +2,20 @@
 
 <div style="margin-top: 3%;" class="container">
     <tr *ngFor="let item of freelancerExperiences[1]"> 
-        <div  class="card" style="width: 500px;">
+        <div  class="card" style="width: 700px;">
             <div class="card-body">
-                <h5 class="card-title">{{item.jobTitle}}</h5> 
-                <h6 class="card-subtitle mb-2 text-muted">From: {{item.startDate}}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">To: {{item.endDate}}</h6>
-                <p class="card-text">Company: {{item.companyName}}</p>
-                <p class="card-text">Job Kind: {{item.jobKind}}</p>
-                <p class="card-text">{{item.summary}}</p>
-                <p class="card-text">Currently Working: {{item.currentlyWorking}}</p>
+                <h2 class="card-title">{{item.jobTitle}}</h2> 
+                <h3 class="card-subtitle mb-2 text-muted">From: {{item.startDate | date :"mediumDate"}}</h3>
+                <h3 class="card-subtitle mb-2 text-muted">To: {{item.endDate | date :"mediumDate"}}</h3>
+                <h3 class="card-text">Company: {{item.companyName}}</h3>
+                <h3 class="card-text">Job Kind: {{item.jobKind}}</h3>
+                <p class="card-text">Summary: {{item.summary}}</p>
+                <div *ngIf="item.curentllyWorking == true">
+                <h3 class="card-text" >Currently Working: YES</h3>
+                </div>
+                <div *ngIf="item.curentllyWorking == false">
+                    <h3 class="card-text" >Currently Working: NO</h3>
+               </div>
             </div>
             <div class="modal-footer">
                 <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editExperience',item.freelancerId,item.startDate] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
@@ -19,5 +24,7 @@
         </div>
         <br>
      </tr>
-     <button class="btn btn-lg btn-secondary" [routerLink]="[{ outlets: { modal: ['addExperience'] } }]" (click)="openModalAdd()">Add Experience</button>
+     <button class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addExperience'] } }]" (click)="openModalAdd()">Add Experience</button> 
     </div>
+    <br>
+<br>

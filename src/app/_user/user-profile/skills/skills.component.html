@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
 
 <div>
   <tr *ngFor="let item of freelancerSkills[1]">
@@ -19,8 +12,16 @@
 
   <br>
 
-    <button [routerLink]="['/skills/edit/:id']" class="btn btn-secondary margin-left" >Edit</button>  
+  <div class="modal-footer">
+    <button style="margin-right: 5px;" [routerLink]="[{ outlets: { modal: ['editSkills',freelancerIdRouting] } }]" (click)="openModalEdit()" class="btn btn-success " >Edit</button>  
+    <button [routerLink]="[{ outlets: { modal: ['addSkill',freelancerIdRouting] } }]" (click)="openModalAdd()" class="btn btn-primary " >Add</button>
+    </div>
+    <!-- <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: 
+      
+      ['editExperience',item.freelancerId,item.startDate] } }]" (click)="openModalEdit()"  
+      style="margin-left: 10px;" >Edit</button>
+
+                <button  type="button" class="btn btn-danger"  
+                 (click)="Delete(item.freelancerId,item.startDate)" >Delete</button> -->
 
 
-</body>
-</html>

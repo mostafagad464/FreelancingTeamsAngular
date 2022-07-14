@@ -47,13 +47,7 @@ export class CertificatesComponent implements OnInit {
         scrollable: true,
         windowClass: 'myCustomModalClass',
       });
-    //   this.router.navigate([{ outlets: { modal: 'route' }}])
-    //   let data = {
-    //     prop1: 'Some Data',
-    //     prop2: 'From Parent Component',
-    //     prop3: 'This Can be anything'
-    //   }
-    // modalRef.componentInstance.fromParent = data;
+
     modalRef.result.then((result:any) => {
       console.log(result);
     }, (reason:any) => {

@@ -151,7 +151,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 
                 </div>
                 <!-- <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>  -->
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="profile-head">
                                 <!-- <h5>
                                     {{accountInfo.firstName+" "+accountInfo.lastName}}
@@ -159,7 +159,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                 <!-- <h6>
                                     Web Developer and Designer
                                 </h6> -->
-                                <p class="proile-rating">RANKINGS : <span>{{accountInfo.user.rate}}</span></p>
+                                <h2 class="proile-rating">RANKINGS : <p-rating value="#{ratingView.rating3}" [readonly]="true" [(ngModel)]="accountInfo.user.rate" ></p-rating></h2>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="personal-info" data-toggle="tab" routerLink="" (click)="personalInfo()" role="tab" aria-controls="personalInfo" aria-selected="true">Personal Info</a>
@@ -173,6 +173,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                           <li class="nav-item">
                             <a class="nav-link" id="Certificates-tab" data-toggle="tab"  role="tab" routerLink="" (click)="Certificates()" aria-controls="Certificates" aria-selected="false">Certificates</a>
                         </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="Education-tab" data-toggle="tab"  role="tab" routerLink="" (click)="Educations()" aria-controls="Educations" aria-selected="false">Educational Info</a>
+                      </li>
                         
                         </ul>
                     </div>

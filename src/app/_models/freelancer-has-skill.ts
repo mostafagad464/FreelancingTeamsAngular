@@ -1,8 +1,8 @@
 export class FreelancerHasSkill {
     constructor(
-        public FreelancerId: number,
-        public SkillId:number,
-        public EfficiencyRate : number
+        public freelancerId: Number,
+        public skillId:Number,
+        public efficiancyRate : Number
 
     ){}
 }

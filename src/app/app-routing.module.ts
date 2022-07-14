@@ -15,14 +15,51 @@ import { EditskillsComponent } from './_user/user-profile/editskills/editskills.
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
+import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
+import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
+import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
+import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
 
 
 const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children: [
-      { path: "portfolio/:id", component: ProjectsComponent,children:[
+      {
+        path: "editSkills/:id",
+        component: EditskillsComponent,
+        outlet: 'modal'
+      },
+      {
+        path: "addSkill/:id",
+        component: AddSkillComponent,
+        outlet: 'modal'
+      },
+
+      { path: "educations/:id", component: EducationalInfoComponent,
+      children:
+      [
+        {
+          path: "editEducation/:id/:gradYear",
+          component: EditeducationalInfoComponent,
+          outlet: 'modal'
+        },
+
+        {
+          path: "addEducation",
+          component: AddEducationComponent,
+          outlet: 'modal'
+        }
+
+      ]
+    },
+
+  
+      { path: "portfolio/:id", component: ProjectsComponent,
+      children:
+      [
         {path:"addPortofolio",component:AddPortfolioComponent}
-      ] },
+      ] 
+    },
       {
         path: "experiences/:id", component: ExperienceComponent,
         children:
@@ -42,6 +79,7 @@ const routes: Routes = [
           ]
    
       },
+     
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
           {
@@ -71,8 +109,18 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "register", component: RegisterComponent },
-  { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent }
+  { path: "skills/:id", component: SkillsComponent,
+  //  children:
+  //  [
+  //   {
+  //     path: "editSkills/:id",
+  //     component: EditskillsComponent,
+  //     outlet: 'modal'
+  //   },
+
+  //  ]
+ },
+  // { path: "editSkills/:id", component: EditskillsComponent }
  
 ]
 

@@ -29,13 +29,17 @@ export class EditexperienceComponent implements OnInit {
     this.ac.params.subscribe(a => {
      
       this.freelancerId=this.router.routerState.snapshot.url.split("/")
+    
+     
    
-      this.Date=this.freelancerId[5].split(')');
+      this.Date=this.freelancerId[7].split("T")
+    
 
-      this.UserSer.GetExperienceById(this.freelancerId[4],this.Date[0]).subscribe(a => {
+      this.UserSer.GetExperienceById(this.freelancerId[2],this.Date[0]).subscribe(a => {
        console.log("obj",a)
        this.freelancerExperience= a;
        this.startdate=this.freelancerExperience.startDate.split("T");
+     
        this.enddate=this.freelancerExperience.endDate.split("T");
        this.freelancerExperience.startDate=this.startdate[0];
        this.freelancerExperience.endDate=this.enddate[0]

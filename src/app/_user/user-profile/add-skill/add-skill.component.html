@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Skill</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+  </div>
+
+<div class="modal-body">
+<form >
+    <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">Add New Skill</label>
+    
+
+   <input list="browsers"  name="browser" id="browser"   [(ngModel)]="skillName" [ngModelOptions]="{standalone: true}" >
+    <datalist  id="browsers">
+           <option  *ngFor="let item of skills[1]" value ="{{item.name}}" >{{item.name}}</option>
+   
+    </datalist>  
+
+      </div>
+
+    <p-rating  [(ngModel)]="freelancerNewSkill.efficiancyRate" [ngModelOptions]="{standalone: true}"></p-rating>
+
+  </form>
+</div> 
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Add()">Save</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+  </div>

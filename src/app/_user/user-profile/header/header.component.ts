@@ -31,6 +31,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl("profile/"+this.userId+"/certificates/"+this.userId)
 
   }
+  Educations()
+  {
+    this.router.navigateByUrl("profile/"+this.userId+"/educations/"+this.userId)
+
+
+  }
   sub1:Subscription|null=null;
   sub2:Subscription|null=null;
   userId:any;
