@@ -5,7 +5,10 @@ import { Account } from 'src/app/_models/account';
 import { Freelancer } from 'src/app/_models/freelancer';
 import { Team } from 'src/app/_models/team';
 import { TeamMember } from 'src/app/_models/team-member';
+import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { TeamMembersService } from '../team-members.service';
+import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { FreelancersService } from '../freelancers.service';
 import { TeamProfileService } from '../team-profile.service';
 
@@ -16,18 +19,61 @@ import { TeamProfileService } from '../team-profile.service';
 })
 export class ShowMembersComponent implements OnInit {
 
+  image="https://bootdey.com/img/Content/avatar/avatar7.png";
   members: number[] = [];
   member: TeamMember = new TeamMember(0, 0, false);
+  user:User =
+  {
+    id: 0,
+    birthDate: "",
+    replySpeed:	0,
+    phone: 0,
+    registerDate: "",
+    country: "",
+    state: "",
+    image: "",
+    rate: 0,
+    activeStatus: false,
+    bio: "",
+    client: false,
+    freelancer: false,
+    adminValidated: 0,
+    walletId: 0,
+    validated: false,
+    adminValidatedNavigation: null,
+    idNavigation: new Account(0,0,"","","","","","",null),
+    wallet: null,
+    clientNavigation: null,
+    freelancerNavigation:null,
+  }
+  users:User[]=[]
   memberFreelancerId = '';
   memberAccessAllowed = '';
   names: string[] = [];
   teamId = 0;
   freelancerId = 0;
+  team: Team = {
+    id: 0,
+    logo: '',
+    webSite: '',
+    isVerfied: false,
+    creationDate: new Date(1 / 1 / 2030),
+    description: '',
+    rate: 0,
+    leaderId: 0,
+    walletId: 0,
+    name: '',
+    deals: [],
+    reviews: [],
+    teamMembers: [],
+    specialization: ''
+  }
 
-  constructor(public freelancerServ: FreelancersService,
+  constructor(public freelancerServ: TeamMembersService,
     public ac: ActivatedRoute,
     public teamServ: TeamProfileService,
-    public accountServ: AccountService) { }
+    public accountServ: AccountService,
+    public userServ:UserProfileService) { }
 
 
   ngOnDestroy(): void {
@@ -79,6 +125,14 @@ export class ShowMembersComponent implements OnInit {
           console.log(this.names);
         });
       }
+      for(var i = 0 ; i < this.members.length ; i++){
+        this.userServ.getUserInfoByid(this.members[i]).subscribe(a => {
+          // this.user=a;
+          this.users.push(a);
+          console.log("users: "+this.users);
+        })
+      }
+  
     });
   }
 }

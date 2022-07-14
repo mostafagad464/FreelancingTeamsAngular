@@ -5,7 +5,7 @@ import { TeamMember } from '../_models/team-member';
 @Injectable({
   providedIn: 'root'
 })
-export class FreelancersService {
+export class TeamMembersService {
 
   constructor(public http:HttpClient) { }
 

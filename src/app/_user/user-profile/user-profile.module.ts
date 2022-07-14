@@ -22,6 +22,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AddCertificateComponent } from './add-certificate/add-certificate.component';
 import { AddExperienceComponent } from './add-experience/add-experience.component';
 import { FormsModule } from '@angular/forms';
+import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
 
 
 
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     CertificatesComponent,
     EditCertificatesComponent,
     AddCertificateComponent,
-    AddExperienceComponent
+    AddExperienceComponent,
+    AddPortfolioComponent
   ],
   imports: [
     CommonModule, 
