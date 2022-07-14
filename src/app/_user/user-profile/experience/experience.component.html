@@ -18,13 +18,13 @@
                </div>
             </div>
             <div class="modal-footer">
-                <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editExperience',item.freelancerId,item.startDate] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
-                <button  type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.startDate)" >Delete</button>
+                <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editExperience',item.freelancerId,item.startDate] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+                <button  *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.startDate)" >Delete</button>
               </div>
         </div>
         <br>
      </tr>
-     <button class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addExperience'] } }]" (click)="openModalAdd()">Add Experience</button> 
+     <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addExperience'] } }]" (click)="openModalAdd()">Add Experience</button> 
     </div>
     <br>
 <br>

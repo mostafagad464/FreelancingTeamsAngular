@@ -14,15 +14,15 @@
          
             </div>
             <div class="modal-footer">
-                <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editEducation',item.freelancerId,item.gradYear] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
-                <button  type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.gradYear)" >Delete</button>
+                <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editEducation',item.freelancerId,item.gradYear] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+                <button *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.gradYear)" >Delete</button>
               </div>
           
         </div>
         <br>
        
      </tr>
-     <button class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addEducation'] } }]" (click)="openModalAdd()">Add Education</button>
+     <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addEducation'] } }]" (click)="openModalAdd()">Add Education</button>
      
     </div>
     <br>
