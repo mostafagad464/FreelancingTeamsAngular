@@ -31,9 +31,8 @@ export class PersonalInfoComponent implements OnInit {
 
   // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
   //userInfo={} as User;
-  accountInfo:Account=new Account(0,0,"","","","","","",
-  new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,
-  new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+  accountInfo:Account=new Account(0,0,"","","","","","",new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+
   // accountInfo={} as Account
   sub1:Subscription|null=null
   sub2:Subscription|null=null

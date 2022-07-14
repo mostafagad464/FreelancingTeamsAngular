@@ -18,6 +18,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RouterModule } from "@angular/router";
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
+import { ShowMembersComponent } from "./team-profile/show-members/show-members.component";
 import { SharedModule } from "./shared/shared.module";
 
 export function tokenGetter() {
@@ -54,6 +55,7 @@ export function tokenGetter() {
     BrowserModule,
     AccountModule,
     MessagesModule,
+
     RouterModule, 
     // SharedModule
   ],
