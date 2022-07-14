@@ -14,9 +14,9 @@ export class Team {
         public leaderId: number,
         public walletId: number,
         public name:string,
+        public specialization:string,
         public deals:Deal[],
         public reviews:Review[],
         public teamMembers: TeamMember[]
-
     ){}
 }
