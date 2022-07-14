@@ -1,17 +1,20 @@
-.container{
-    justify-content: center; 
-    width:100;
+.container {
+    justify-content: center;
+    width: 100;
 }
-.center{
+
+.center {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.display-block{
+
+.display-block {
     display: block;
 }
-.font{
+
+.font {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.3rem;
     font-weight: bold;
@@ -32,8 +35,8 @@ body {
 
 .card {
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
     border: none;
     margin-bottom: 30px;
 }
@@ -51,8 +54,8 @@ body {
 }
 
 .bg-c-lite-green {
-        background: -webkit-gradient(linear, left top, right top, from( #D6AA94), to( #EAD0C2));
-    background: linear-gradient(to right, #D6AA94,#EAD0C2);
+    background: -webkit-gradient(linear, left top, right top, from(#D6AA94), to(#EAD0C2));
+    background: linear-gradient(to right, #D6AA94, #EAD0C2);
 }
 
 .user-profile {
@@ -72,7 +75,7 @@ body {
 }
 
 
- 
+
 h6 {
     font-size: 14px;
 }
@@ -81,10 +84,10 @@ h6 {
     line-height: 25px;
 }
 
-@media only screen and (min-width: 1400px){
-p {
-    font-size: 14px;
-}
+@media only screen and (min-width: 1400px) {
+    p {
+        font-size: 14px;
+    }
 }
 
 .card-block {
@@ -120,7 +123,7 @@ p {
 }
 
 .f-w-600 {
-    font-weight:600;
+    font-weight: 600;
     font-size: 1.1rem;
 }
 
@@ -155,12 +158,12 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-.auto{
+.auto {
     height: 10rem;
 }
 
-.button{
-    background-image: linear-gradient(to right, #D6AA94,#EAD0C2);
+.button {
+    background-image: linear-gradient(to right, #D6AA94, #EAD0C2);
     border-color: white;
     border-width: 0px;
     margin-top: 2rem;
