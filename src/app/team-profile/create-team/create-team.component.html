@@ -5,16 +5,20 @@
         <input [(ngModel)]="team.name" type="text" class="form-control" id="name">
     </div>
     <div class="col-md-6">
-        <label for="logo" class="form-label">Logo</label>
-        <input [(ngModel)]="team.logo" type="file" (input)="AddImg($event)" class="form-control" id="logo" >
+        <label for="specialization" class="form-label">Specialization</label>
+        <input [(ngModel)]="team.specialization" type="text" class="form-control" id="specialization">
     </div>
     <div class="col-12">
         <label for="description" class="form-label">Description</label>
         <textarea [(ngModel)]="team.description" name="description" id="description" class="form-control" cols="30" rows="3"></textarea>
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
         <label for="website" class="form-label">Website</label>
         <input [(ngModel)]="team.webSite" type="text" class="form-control" id="website" placeholder="http://anything.com">
+    </div>
+    <div class="col-md-6">
+        <label for="logo" class="form-label">Logo</label>
+        <input [(ngModel)]="team.logo" type="file" (input)="AddImg($event)" class="form-control" id="logo" >
     </div>
     <div class="col-12">
         <div class="form-check">

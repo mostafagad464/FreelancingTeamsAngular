@@ -7,6 +7,7 @@ import { Team } from 'src/app/_models/team';
 import { TeamMember } from 'src/app/_models/team-member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { TeamMembersService } from '../team-members.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { FreelancersService } from '../freelancers.service';
 import { TeamProfileService } from '../team-profile.service';
@@ -68,7 +69,7 @@ export class ShowMembersComponent implements OnInit {
     specialization: ''
   }
 
-  constructor(public freelancerServ: FreelancersService,
+  constructor(public freelancerServ: TeamMembersService,
     public ac: ActivatedRoute,
     public teamServ: TeamProfileService,
     public accountServ: AccountService,
