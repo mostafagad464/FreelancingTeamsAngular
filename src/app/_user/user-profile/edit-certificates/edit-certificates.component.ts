@@ -23,10 +23,13 @@ export class EditCertificatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.ac.params.subscribe(a => {
+      console.log(this.router.routerState.snapshot.url)
+       
       this.freelancerId=this.router.routerState.snapshot.url.split("/")
-  
-      this.title=this.freelancerId[5].split(')');
-      this.UserSer.GetCertificateById(this.freelancerId[4],this.title[0]).subscribe(a => {
+     
+      this.title=this.freelancerId[7].split(")")
+    
+      this.UserSer.GetCertificateById(this.freelancerId[2],this.title[0]).subscribe(a => {
      
       this.freelancerCertificate = a;
      

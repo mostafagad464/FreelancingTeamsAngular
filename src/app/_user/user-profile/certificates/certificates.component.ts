@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddCertificateComponent } from '../add-certificate/add-certificate.component';
 import { EditCertificatesComponent } from '../edit-certificates/edit-certificates.component';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-certificates',
@@ -14,7 +16,13 @@ export class CertificatesComponent implements OnInit {
 
   freelancerCertificates:any[]=[];
 
-  constructor(public router:Router,public UserSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal) { }
+  profileId:Number=0;
+  userId:Number=0;
+  sub1:Subscription|null=null;
+
+  constructor(public router:Router,public UserSer:UserProfileService,public ac:ActivatedRoute,
+    public modalService: NgbModal,
+    public authServ:AuthService) { }
 
   ngOnInit(): void {
    this.ac.params.subscribe(a=>{
@@ -25,6 +33,10 @@ export class CertificatesComponent implements OnInit {
     })
 
    })
+   this.profileId=this.authServ.getCurrentUser()?.id;
+    this.sub1=this.ac.params.subscribe(x=>{
+      this.userId=x['id'];
+    })
     
 
   }
@@ -47,13 +59,7 @@ export class CertificatesComponent implements OnInit {
         scrollable: true,
         windowClass: 'myCustomModalClass',
       });
-    //   this.router.navigate([{ outlets: { modal: 'route' }}])
-    //   let data = {
-    //     prop1: 'Some Data',
-    //     prop2: 'From Parent Component',
-    //     prop3: 'This Can be anything'
-    //   }
-    // modalRef.componentInstance.fromParent = data;
+
     modalRef.result.then((result:any) => {
       console.log(result);
     }, (reason:any) => {

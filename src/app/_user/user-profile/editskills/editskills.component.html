@@ -1,15 +1,9 @@
+<div class="modal-header">
+    <h1 class="modal-title" id="exampleModalLabel">Edit Skills</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button>
+  </div>
 <div class="container" style="margin-top: 3%;">
-<form >
-    <label for="browser">Add new skill</label>
-  
-    <input list="browsers"  name="browser" id="browser"  [(ngModel)]="freelancerNewSkill.SkillId" >
-    <datalist id="browsers">
-        <option *ngFor="let item of skills[1]" value={{item.id}}>{{item.name}}</option>
-   
-    </datalist>
-    <button class="btn btn-success margin-left" (click)="Add()">Add</button>
-  </form>
-</div> 
+
 
 <div class="container">
     
@@ -28,6 +22,7 @@
                 <td>
                   <p-rating [(ngModel)]="item.efficiancyRate"></p-rating>   
                 </td>
+              
                 <td>
                     <button  class="btn btn-danger margin-left" (click)="Delete(item.freelancerId, item.skillId)">Delete</button>
                     
@@ -36,7 +31,11 @@
            
         </tbody>
 </table>        
- <button class="btn btn-success margin-left" (click)="Edit()">Save</button>  
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Edit()">Save</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+  </div>
+ <!-- <button class="btn btn-success margin-left" (click)="Edit()">Save</button>   -->
 </div>
 
 
