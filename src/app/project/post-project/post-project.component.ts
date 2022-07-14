@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/_models/project';
+import { Review } from 'src/app/_models/review';
 import { ProjectService } from 'src/app/_services/project.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class PostProjectComponent implements OnInit {
 
-  pro:Project=new Project(0,new Date,"New Project" ,0,0,"Project Descrption","Week",0,0,0);
+  pro:Project=new Project(0,new Date,"New Project" ,0,0,"Project Descrption","Week",0,0,0,0,new Review(0,0,0,0,"",new Date,""));
   Add(){
       this.proServ.createProject(this.pro);
       this.router.navigateByUrl("/listprojects")

@@ -29,4 +29,8 @@ export class ProjectService {
   getProject(id:number){
    return this.http.get<Project>(this.baseurl+id);
   }
+
+  getProjectById(id:number){
+    return this.http.get<Project>(this.baseurl+id)
+  }
 }
