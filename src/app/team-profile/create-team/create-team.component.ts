@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Team } from 'src/app/_models/team';
 import { Wallet } from 'src/app/_models/wallet';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -20,7 +21,10 @@ export class CreateTeamComponent implements OnInit {
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
 
 
-  constructor(private teamService:TeamService, private walletService:WalletService, private authService:AuthService) { }
+  constructor(private teamService:TeamService, 
+    private walletService:WalletService, 
+    private authService:AuthService, 
+    private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +45,7 @@ export class CreateTeamComponent implements OnInit {
         this.teamService.createTeam(this.team).subscribe(
           t => {
             console.log(t);
+            this.router.navigate(['freelancers/'+t.id]);
           }
         )
       })
@@ -51,6 +56,7 @@ export class CreateTeamComponent implements OnInit {
       this.teamService.createTeam(this.team).subscribe(
         t => {
           console.log(t);
+          this.router.navigate(['freelancers/'+t.id]);
         }
       )
     }

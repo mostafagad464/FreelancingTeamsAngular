@@ -78,12 +78,15 @@ const routes: Routes = [
         }
       ]
   },
-{ path: "login", component: LoginComponent },
-{ path: "", redirectTo: "login", pathMatch: "full" },
-{ path: "register", component: RegisterComponent },
-{ path: "skills/:id", component: SkillsComponent },
-{ path: "skills/edit/:id", component: EditskillsComponent }
- 
+  { path: "login", component: LoginComponent },
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "register", component: RegisterComponent },
+  { path: "skills/:id", component: SkillsComponent },
+  { path: "skills/edit/:id", component: EditskillsComponent },
+  {
+    path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
+  }
+
 ]
 
 @NgModule({
