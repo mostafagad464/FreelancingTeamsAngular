@@ -20,6 +20,9 @@ import { RouterModule } from "@angular/router";
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
 import { SharedModule } from "./shared/shared.module";
 import { FreelancersModule } from "./freelancers/freelancers.module";
+import { SearchPipe } from "./_pipes/search.pipe";
+import { SearchInTeamsPipe } from './_pipes/search-in-teams.pipe';
+import { SearchInFreelancersPipe } from './_pipes/search-in-freelancers.pipe';
 
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
@@ -29,7 +32,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -56,18 +58,22 @@ export function tokenGetter() {
     AccountModule,
     MessagesModule,
     RouterModule,
-    FreelancersModule
-    // SharedModule
+    FreelancersModule,
+
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
+    // SearchPipe
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], 
+  // exports:[
+  //   SearchPipe
+  // ]
 })
 
 export class AppModule { }
