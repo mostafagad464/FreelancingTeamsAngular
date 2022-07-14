@@ -15,6 +15,8 @@ import { EditskillsComponent } from './_user/user-profile/editskills/editskills.
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
+import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
+import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
 
 const routes: Routes = [
  {path:"projects",loadChildren:()=>import('./project/project.module').then(m=>m.ProjectModule)}
@@ -78,12 +80,11 @@ const routes: Routes = [
         }
       ]
   },
-{ path: "login", component: LoginComponent },
-{ path: "", redirectTo: "login", pathMatch: "full" },
-{ path: "register", component: RegisterComponent },
-{ path: "skills/:id", component: SkillsComponent },
-{ path: "skills/edit/:id", component: EditskillsComponent }
- 
+
+  { path: "Addproposal/:ProjId", component: AddProposalComponent },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent  },
+
+
 ]
 
 @NgModule({
