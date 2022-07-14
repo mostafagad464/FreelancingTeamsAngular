@@ -83,7 +83,6 @@ export class EditTeamInfoComponent implements OnInit {
     if(this.UpdatedTeam.isVerfied==null){
       this.UpdatedTeam.isVerfied=this.team.isVerfied
     }
-    // console.log("updatedTeam: "+this.UpdatedTeam.name);
     
     this.teamServ.updateTeam(this.team.id,this.UpdatedTeam).subscribe(a=>{
       this.UpdatedTeam=a;

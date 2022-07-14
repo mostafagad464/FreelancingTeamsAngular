@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
         this.team = a;
-        // this.teamId=(a['id']);
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);
