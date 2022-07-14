@@ -20,6 +20,7 @@ import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-po
 
 
 const routes: Routes = [
+
  {path:"projects",loadChildren:()=>import('./project/project.module').then(m=>m.ProjectModule)},
   {
     path: "profile/:id", component: HeaderComponent, children: [
