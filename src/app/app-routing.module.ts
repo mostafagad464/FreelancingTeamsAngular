@@ -22,6 +22,9 @@ import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.comp
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
 import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
+import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
+import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
+import { AdddealComponent } from './deal/adddeal/adddeal.component';
 
 
 const routes: Routes = [
@@ -57,12 +60,12 @@ const routes: Routes = [
 
       ]
     },
-      { 
+      {
         path: "portfolio/:id", component: ProjectsComponent,
       children:
       [
         {path:"addPortofolio",component:AddPortfolioComponent}
-      ] 
+      ]
     },
 
       {
@@ -84,7 +87,7 @@ const routes: Routes = [
           ]
 
       },
-     
+
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
           {
@@ -103,6 +106,10 @@ const routes: Routes = [
   { path: "skills/edit/:id", component: EditskillsComponent },
   { path:"chat", component: ChatComponent},
   { path:"chat/team/:id", component: TeamChatComponent},
+  { path: "Addproposal/:ProjId", component: AddProposalComponent },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent  },
+  { path: "adddeal/:ProjId", component: AdddealComponent  },
+
 
   {
     path: "certificates/:id", component: CertificatesComponent,
