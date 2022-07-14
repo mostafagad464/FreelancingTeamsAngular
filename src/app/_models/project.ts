@@ -7,9 +7,9 @@ export class Project {
         public AVGBid: number,
         public Description : string,
         public Duration : string,
-        public BudgetForm: number,
+        public BudgetFrom: number,
         public BudgetTo : number,
-        public TeamId : number
+        public ClientId : number
 
     ){}
 }

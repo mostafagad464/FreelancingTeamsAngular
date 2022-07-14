@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
 
 @NgModule({
-  declarations: [AppComponent
-
+  declarations: [
+    AppComponent
   ],
   imports: [
     BrowserModule,
