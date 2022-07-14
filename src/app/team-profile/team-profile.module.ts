@@ -11,15 +11,9 @@ import { ShowProjectsComponent } from './show-projects/show-projects.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ShowReviewComponent } from './show-review/show-review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
-
+import { AnnounceComponent } from './announce/announce.component';
 
 const routes:Routes=[
-  // {path:'teamProfile',
-  //  component:HeaderComponent
-  // },
   {
     path:'teamProfile/:id',
     component:HeaderComponent,
@@ -27,7 +21,14 @@ const routes:Routes=[
     {   
       path: 'showMember/:id',
       component: ShowMembersComponent,
-      // outlet: 'showMember'
+    },
+    {   
+      path: 'showProjects/:id',
+      component:ShowProjectsComponent,
+    },
+    {   
+      path: 'announce/:id',
+      component:AnnounceComponent,
     },
    ]
   },
@@ -42,11 +43,6 @@ const routes:Routes=[
   {
     path:'editInfo/:id',
     component:EditTeamInfoComponent 
-  },
-  {
-    path: 'showProjects/:id',
-    component: ShowProjectsComponent
-    // outlet: 'showProjects'
   },
   {
     path:'reviews/:id',
@@ -69,7 +65,9 @@ const routes:Routes=[
     EditTeamInfoComponent,
     ShowProjectsComponent,
     ReviewsComponent,
-    ShowReviewComponent
+    ShowReviewComponent,
+    ShowMembersComponent,
+    AnnounceComponent,
   ],
   imports: [
     CommonModule,
@@ -77,9 +75,6 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RatingModule,
-    // MatInputModule,
-    // MatAutocompleteModule
-    
   ],
   exports:[
     HeaderComponent,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Review } from 'src/app/_models/review';
 import { ReviewsService } from 'src/app/_services/reviews.service';
 
@@ -20,7 +21,7 @@ export class PostReviewComponent implements OnInit {
     fromClient:""
   }
 
-  constructor(public revServ:ReviewsService) { }
+  constructor(public revServ:ReviewsService, public ac:ActivatedRoute) { }
 
   Submit(){
     this.revServ.postReview(this.review).subscribe(a=>{
@@ -29,6 +30,10 @@ export class PostReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+    this.ac.params.subscribe(a=>{
+      // this.teamServ.getTeamById(a['id']).subscribe(a=>{
+      //   this.team=a;
+  })
+}
 
 }

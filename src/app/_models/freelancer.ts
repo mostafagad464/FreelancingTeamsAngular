@@ -17,5 +17,6 @@ export class Freelancer {
         public walletId : number,
         public identityVerfication :number,
         public teams:Team[], 
+        public specialization:string,
     ){}
 }

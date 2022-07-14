@@ -26,96 +26,152 @@
                 </div>
             </div>
         </nav><br><br>
-        <section class="section about-section gray-bg" id="about">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-lg-6">
-                        <div class="about-text go-to">
-                            <h3 class="dark-color">{{team.name}}
-                                <ng-template [ngIf]="team.isVerfied">
-                                    <i class="fas fa-check-circle"></i>
-                                </ng-template>
-                            </h3>
-                            <p-rating style="margin-left: -0.5rem !important; color: #FFC107;" class="ml-5"
-                                [(ngModel)]="team.rate" [cancel]="false" [readonly]="true"></p-rating><br>
-
-                            <h4 class="theme-color lead">{{team.webSite}}</h4>
-                            <p>{{team.description}}</p>
-                            <div class="row about-list">
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <label>Creation Date</label>
-                                        <p>{{team.creationDate | date:"mediumDate"}}</p>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <label>Members</label>
-                                        <p>{{teamMembers.length}} members</p>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-avatar">
-                            <img src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}"
-                                style="border-radius:50% ;" width="500px" height="500px" title="" alt="" class="p-5">
-                        </div>
-                    </div>
-                </div>
-                <div class="counter">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="count-data text-center">
-                                <h3 class="count h2" data-to="500" data-speed="500">{{noOfRv}}</h3>
-                                <p class="m-0px font-w-600">Happy Clients</p>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="count-data text-center">
-                                <h3 class="count h2" data-to="150" data-speed="150">{{noOfCpltdProj}}</h3>
-                                <p class="m-0px font-w-600">Project Completed</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="pt-5">
-            <div style="margin-left: 11px;">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-5 pl-5 ml-3 offest-1" style="padding-left: 6rem;">
-                        <div>
-                            <a class="nav-link btn btn-lg button brown-text"
-                                style="font-family:Georgia, 'Times New Roman', Times, serif ;  border-radius: 1.1rem;"
-                                [routerLink]="['showMember',team.id]">Check your team members</a><br>
-                            <router-outlet></router-outlet><br><br>
-                        </div>
-                        <a class="nav-link btn btn-lg button brown-text"
-                            style="font-family:Georgia, 'Times New Roman', Times, serif ; border-radius: 1.1rem;"
-                            [routerLink]="['/showProjects',team.id]">Check your team projects' list</a><br><br>
-
-                    </div>
-                    <div class="col-lg-7 col-md-5 col-sm-5 mx-auto">
-
-
-                        <div class="card">
-                            <h5 class="card-header">Make an announcement</h5>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Write announcement">
-                                </div>
-                                <br>
-                                <a href="#" class="btn btn-dark">Announce</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 </div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<section id="content" class="container">
+    <!-- Begin .page-heading -->
+    <div class="page-heading">
+        <div class="media clearfix">
+          <div class="media-left pr30">
+            <a href="#">
+                <img class="media-object mw150" src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}" style="width: 30rem; height: 30rem;" alt="...">
+              <!-- <img class="media-object mw150" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..."> -->
+            </a>
+          </div>                      
+          <div class="media-body va-m">
+            <h1 class="media-heading1">{{team.name}}
+              <small> - Profile</small>
+              <ng-template class="m-4" [ngIf]="team.isVerfied">
+                <i class="fas fa-check-circle"></i>
+            </ng-template>
+            </h1>
+            <h1><p-rating style="color: #FFC107;"
+                                [(ngModel)]="team.rate" [cancel]="false" [readonly]="true"></p-rating></h1><br>
+            <div class="media-links">
+              <ul class="list-inline list-unstyled">
+                <li>
+                  <a href="#" title="facebook link">
+                    <span class="fa fa-facebook-square fs35 text-primary"></span>
+                  </a>
+                  <a href="#" title="twitter link">
+                    <span class="fa fa-twitter-square fs35 text-info"></span>
+                  </a>
+                  <a href="#" title="google plus link">
+                    <span class="fa fa-google-plus-square fs35 text-danger"></span>
+                  </a>
+                  <a href="#" title="github link">
+                    <span class="fa fa-github-square fs35 text-dark"></span>
+                  </a>
+                  <a href="#" title="linkedin link">
+                    <span class="fa fa-linkedin-square fs35 text-info"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+          <div class="panel">
+            <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-star"></i>
+              </span>
+              <span class="panel-title"> Team Activity</span>
+            </div>
+            <div class="panel-body pn">
+              <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
+                <thead class="text-center">
+                  <tr class="hidden">
+                    <th class="mw30">#</th>
+                    <th>Happy Clients</th>
+                    <th>Number of projects</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td>
+                    </td>
+                    <td>{{noOfRv}}</td>
+                    <td>
+                      <i class="text-info pr10"></i>{{noOfCpltdProj}}</td> <!--fa fa-caret-up-->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-pencil"></i>
+              </span>
+              <span class="panel-title">Our Team Creation Date</span>
+            </div>
+            <div class="panel-body pb5">
+              <h4>{{team.creationDate  | date:"fullDate"}}</h4>
+            </div>
+        </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-trophy"></i>
+              </span>
+              <span class="panel-title"> Our Skills</span>
+            </div>
+            <div class="panel-body pb5">
+              <span class="label label-warning mr5 mb10 ib lh15">Default</span>
+              <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
+              <span class="label label-info mr5 mb10 ib lh15">Success</span>
+              <span class="label label-success mr5 mb10 ib lh15">Info</span>
+              <span class="label label-alert mr5 mb10 ib lh15">Warning</span>
+              <span class="label label-system mr5 mb10 ib lh15">Danger</span>
+              <span class="label label-info mr5 mb10 ib lh15">Success</span>
+              <span class="label label-success mr5 mb10 ib lh15">Ui Design</span>
+              <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
+
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+              <span class="panel-icon">
+                <i class="fa fa-pencil"></i>
+              </span>
+              <span class="panel-title">About Us</span>
+            </div>
+            <div class="panel-body pb5">
+              <h4>{{team.description}}</h4>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <span class="panel-title btn btn-lg" [routerLink]="['/editInfo',team.id]">Edit Team Info</span>
+        </div>
+        </div>
+        <div class="col-md-8">
+
+          <div class="tab-block">
+            <ul class="nav nav-tabs">
+            <li  class="active">
+                <a [routerLink]="['announce',team.id]" data-toggle="tab">Announcement</a>
+            </li>
+              <li>
+                <a [routerLink]="['showMember',team.id]" data-toggle="tab">Team Members</a>
+              </li>
+              <li>
+                <a  [routerLink]="['showProjects',team.id]" data-toggle="tab">Projects</a>
+              </li>
+            </ul>
+            <div class="tab-content p30" style="height: 730px;">
+              <div id="tab1" class="tab-pane active">
+                        <router-outlet></router-outlet><br><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+       
