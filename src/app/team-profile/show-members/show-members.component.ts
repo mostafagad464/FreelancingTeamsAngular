@@ -64,7 +64,8 @@ export class ShowMembersComponent implements OnInit {
     name: '',
     deals: [],
     reviews: [],
-    teamMembers: []
+    teamMembers: [],
+    specialization: ''
   }
 
   constructor(public freelancerServ: FreelancersService,
