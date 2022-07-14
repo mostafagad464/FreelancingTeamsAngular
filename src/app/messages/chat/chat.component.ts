@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/_models/account';
 import { AccountMessage } from 'src/app/_models/account-message';
+import { IMessage } from 'src/app/_models/imessage';
 import { Team } from 'src/app/_models/team';
 import { TeamFreelancerMessage } from 'src/app/_models/team-freelancer-message';
 import { AccountService } from 'src/app/_services/account.service';
@@ -15,8 +16,8 @@ import { TeamService } from 'src/app/_services/team.service';
 export class ChatComponent implements OnInit {
 
 
-  ChatsList: { name: string, id: number, type: string, lastMessDate: string, lastMess:string, noOfUnRead:number }[] = [];
-
+  ChatsList: IMessage[] = [];
+  s: string = "";
 
   type = "a";
   UserId = 0;

@@ -25,6 +25,7 @@
                     <datalist id="countries">
                         <option *ngFor="let c of countries" value="{{c}}">{{c}}</option>
                     </datalist>
+                    
                 </div>
 
                 <div class="col-6">
@@ -32,7 +33,7 @@
                     <input type="text" list="states" class="form-control form-control-lg" [(ngModel)]="user.state"
                         [ngModelOptions]="{standalone: true}" />
                     <datalist id="states">
-                        <option *ngFor="let s of states" value="{{s}}">
+                        <option *ngFor="let s of states" value="{{s}} ">
                             {{s}}</option>
                     </datalist>
                 </div>
@@ -54,7 +55,7 @@
             </div>
         </ng-template>
 
-        <ng-template [ngIf]="bio_Pic">
+        <ng-template [ngIf]="!bio_Pic">
             <div class="profile-img">
                 <img src="{{imageurl}}" class="avatar img-circle img-thumbnail" alt="avatar" />
                 <label for="inputTag" class="btn btn-primary addimage">

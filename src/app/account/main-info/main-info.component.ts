@@ -23,6 +23,7 @@ export class MainInfoComponent implements OnInit {
   countries: string[] = [];
   states: string[] = [];
   code: string = "";
+  n = 1;
 
 
   constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService) { }

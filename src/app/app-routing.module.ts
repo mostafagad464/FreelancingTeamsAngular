@@ -15,6 +15,7 @@ import { EditskillsComponent } from './_user/user-profile/editskills/editskills.
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { ChatComponent } from './messages/chat/chat.component';
+import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
   { path:"chat", component: ChatComponent},
+  { path:"chat/team/:id", component: TeamChatComponent},
   {
     path: "certificates/:id", component: CertificatesComponent,
     children:

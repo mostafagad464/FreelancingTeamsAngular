@@ -9,10 +9,10 @@
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="s" >
                     </div>
                     <ul class="list-unstyled chat-list mt-2 mb-0">
-                        <li *ngFor="let cl of ChatsList" class="clearfix" (click)="ViewChat(cl.id,cl.type)">
+                        <li *ngFor="let cl of ChatsList | serachInArray:s" class="clearfix" (click)="ViewChat(cl.id,cl.type)">
                             <ng-template [ngIf]="cl.type == 'a'">
                             <img src="https://localhost:7152/api/Image?UserId={{cl.id}}" alt="avatar"
                                 onerror="this.src='assets/images/NoImage.png'">
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="status text-start"><small>{{cl.lastMess}}</small></div>
                             </div>
-                            <div class="status text-end"><small>{{cl.lastMessDate | date:'short'}}</small></div> 
+                            <div class="status text-end"><small>{{cl.lastMessDate| date:'short'}}</small></div> 
                             </li>
                     </ul>
                 </div>
