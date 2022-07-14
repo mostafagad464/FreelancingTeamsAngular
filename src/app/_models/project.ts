@@ -9,9 +9,10 @@ export class Project {
         public aVGBid: number,
         public description : string,
         public duration : string,
-        public budgetForm: number,
+        public budgetFrom: number,
         public budgetTo : number,
+        public blientId : number,
         public teamId : number,
-        public reviews:Review
+        public reviews:Review,
     ){}
 }

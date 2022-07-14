@@ -21,7 +21,8 @@ import { MainInfoComponent } from './main-info/main-info.component';
   ],
   exports:[
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainInfoComponent
   ]
 })
 export class AccountModule { }

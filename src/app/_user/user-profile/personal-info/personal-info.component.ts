@@ -18,11 +18,12 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class PersonalInfoComponent implements OnInit {
   
   userId:any;
+  profileId:any;
   openModal() {
     
     const modalRef = this.modalService.open(EditpersonalInfoComponent);
     modalRef.componentInstance.accountInfo=this.accountInfo;
-    this.userId=this.authserv.getCurrentUser()?.id;
+    
     // this.router.navigateByUrl("editpersonalInfo/"+this.userId);
     // modalRef.result.then((result:any) => {
     //   console.log("this is result"+result);
@@ -42,7 +43,10 @@ export class PersonalInfoComponent implements OnInit {
   constructor(public userserv:UserProfileService,public authserv:AuthService,public ar:ActivatedRoute,public modalService: NgbModal,public router:Router) { }
 
   ngOnInit(): void {
+    this.userId=this.authserv.getCurrentUser()?.id;
     this.sub1=this.ar.params.subscribe(a=>{
+      this.profileId=a['id']
+
       console.log(a['id']);
 
     this.sub2=this.userserv.getAccountInfoByid(a['id']).subscribe(b=>{

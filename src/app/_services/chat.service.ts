@@ -34,11 +34,11 @@ export class ChatService {
   //   })
   // }
 
-  public RecieveTeamOrFreelancerMessage = () => {
-    this.hubConnection.on('TeamsAndFreelancersMesseging', message => {
-      return message;
-    })
-  }
+  // public RecieveTeamOrFreelancerMessage = () => {
+  //   this.hubConnection.on('TeamsAndFreelancersMesseging', message => {
+  //     return message;
+  //   })
+  // }
 
   // public addMessageListener = () => {
   //   this.hubConnection.on('AccountsMessaging', (data) => {
@@ -48,22 +48,32 @@ export class ChatService {
   //   });
   // }
 
-  getAllAccountChats(id: Number) {
+  getAllAccountChats(id: number) {
     return this.http.get<AccountMessage[]>(this.baseurl + "account?UserId=" + id);
   }
-  getAccountChat(SId: Number, RId: number) {
+  getAccountChat(SId: number, RId: number) {
     return this.http.get<AccountMessage[]>(this.baseurl + "account/chat?SenderId=" + SId + "&RecieverId=" + RId);
   }
+  UpdateAccountChat(SId:number, RId:number){
+    return this.http.put<AccountMessage[]>(this.baseurl + "account?SenderId=" + SId + "&RecieverId=" + RId, null);
+  }
 
-  getAllTeamChats(id: Number, type: string) { //type to get all freelancer messages or all team messages(id is for team or user?)
+  getAllTeamChats(id: number, type: string) { //type to get all freelancer messages or all team messages(id is for team or user?)
     return this.http.get<TeamFreelancerMessage[]>(this.baseurl + "team?UserId=" + id + "&type=" + type);
   }
-  getTeamChat(TId: Number, UId: number) {
-    return this.http.get<AccountMessage[]>(this.baseurl + "team/chat?TeamId=" + TId + "&UserId=" + UId);
+  getTeamChat(TId: number, UId: number) {
+    return this.http.get<TeamFreelancerMessage[]>(this.baseurl + "team/chat?TeamId=" + TId + "&UserId=" + UId);
+  }
+  UpdateTeamChat(TId: number, UId: number, S:string){
+    return this.http.put<TeamFreelancerMessage[]>(this.baseurl + "team?TeamId=" + TId + "&UserId=" + UId + "&Sender=" + S, null);
   }
 
   sendAccountMessage(message: AccountMessage) {
     return this.http.post<AccountMessage>(this.baseurl + "account", message);
+  }
+
+  sendTeamMessage(message: TeamFreelancerMessage) {
+    return this.http.post<TeamFreelancerMessage>(this.baseurl + "team", message);
   }
 
 }

@@ -3,16 +3,16 @@ import { User } from "./user"
 
 export class TeamFreelancerMessage {
     constructor(
-        public Id: number,
-        public UserId: number,
-        public TeamId: number,
-        public Message: string,
-        public Date: string,
-        public Sender: string,
-        public Read: boolean,
-        public Deleted: boolean,
+        public id: number,
+        public userId: number,
+        public teamId: number,
+        public message: string,
+        public date: string,
+        public sender: string,
+        public read: boolean,
+        public deleted: boolean,
 
-        public User: User,
-        public Team: Team
+        public user: User | null,
+        public team: Team | null
     ) { }
 }

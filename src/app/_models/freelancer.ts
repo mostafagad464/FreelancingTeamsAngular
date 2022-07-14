@@ -18,5 +18,6 @@ export class Freelancer {
         public identityVerfication :number,
         public teams:Team[], 
         public specialization:string
+
     ){}
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/_models/project';
-import { TeamMember } from 'src/app/_models/team-member';
 import { Team } from '../../_models/team'
-import { FreelancersService } from '../freelancers.service';
+import { TeamMembersService } from '../team-members.service';
 import { TeamProfileService } from '../team-profile.service';
 import { ReviewsService } from './../../_services/reviews.service'
 
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   noOfRv: number = 0
   teamMembers: number[] = [];
 
-  constructor(public ac: ActivatedRoute, public teamServ: TeamProfileService, public freelancerServ: FreelancersService, public ReviewsService: ReviewsService) { }
+  constructor(public ac: ActivatedRoute, public teamServ: TeamProfileService, public freelancerServ: TeamMembersService, public ReviewsService: ReviewsService) { }
 
   checkP = ""; //Your team's projects
 
@@ -39,18 +38,21 @@ export class HeaderComponent implements OnInit {
     logo: '',
     webSite: '',
     isVerfied: false,
-    creationDate: new Date(1 / 1 / 2030),
+    creationDate: new Date(1/1/2030),
+
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
-    name: '',
-    deals: [],
-    reviews: [],
-    teamMembers: []
+
+    name:'',
+    specialization:'',
+    deals:[],
+    reviews:[],
+    teamMembers:[]
   }
 
-  img = "../../../assets/images/1.png";
+  img="../../../assets/images/1.png";
 
   desc = this.team.description;
   rate = 1;
@@ -75,7 +77,6 @@ export class HeaderComponent implements OnInit {
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
         this.team = a;
-        // this.teamId=(a['id']);
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);

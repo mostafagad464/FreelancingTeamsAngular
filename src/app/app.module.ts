@@ -18,6 +18,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RouterModule } from "@angular/router";
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
+import { ShowMembersComponent } from "./team-profile/show-members/show-members.component";
+import { SharedModule } from "./shared/shared.module";
+import { HomeModule } from "./home/home.module";
+import { FreelancersModule } from "./freelancers/freelancers.module";
+
 
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
@@ -27,10 +32,10 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,
+    HomeModule,
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
@@ -53,7 +58,10 @@ export function tokenGetter() {
     BrowserModule,
     AccountModule,
     MessagesModule,
-    RouterModule
+    RouterModule,
+    FreelancersModule,
+
+    
   ],
   providers: [
     {
@@ -61,10 +69,14 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
+    // SearchPipe
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], 
+  // exports:[
+  //   SearchPipe
+  // ]
 })
 
 export class AppModule { }

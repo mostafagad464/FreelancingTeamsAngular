@@ -15,9 +15,9 @@ import { UserProfileService } from 'src/app/_services/user-profile.service';
 })
 export class EditpersonalInfoComponent implements OnInit {
   // @Input() public accountInfo:any; 
-  accountInfo:Account=new Account(0,0,"","","","","","",
-  new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,
-  new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+
+  accountInfo:Account=new Account(0,0,"","","","","","",new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+
   sub1:Subscription|null=null
   sub2:Subscription|null=null
   sub3:Subscription|null=null
@@ -27,7 +27,7 @@ export class EditpersonalInfoComponent implements OnInit {
   save(){
     
     forkJoin([this.userserv.updateAccount(this.accountInfo),
-      this.userserv.updateUser(this.accountInfo.user)]).subscribe(a=>console.log(a));
+      this.userserv.updateUser(this.accountInfo.user!)]).subscribe(a=>console.log(a));
       this.close();
       // this.router.navigateByUrl("profile/"+this.userId+"/personalinfo/"+this.userId)
   // this.sub3=this.userserv.updateAccount(this.accountInfo).subscribe(a=>console.log(a));

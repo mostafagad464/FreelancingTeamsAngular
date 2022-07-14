@@ -22,10 +22,7 @@ import { TeamProfileService } from '../team-profile.service';
 })
 export class ShowProjectsComponent implements OnInit {
 
-  names:string[]=[
-
-  ]
-  
+  names:string[]=[]
   team:Team={
     id: 0,
     logo: '',
@@ -37,27 +34,15 @@ export class ShowProjectsComponent implements OnInit {
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
   }
-
-  reviwes:Review[]=[
-
-  ]
-
-  anotherReviews:Review[]=[
-
-  ]
-
-  sAnother:Review[]=[
-
-  ]
-
-  review:string[]=[
-
-  ]
-
+  reviwes:Review[]=[]
+  anotherReviews:Review[]=[]
+  sAnother:Review[]=[]
+  review:string[]=[]
   revieww:Review={
     clientId: 0,
     teamId:0,
@@ -67,81 +52,26 @@ export class ShowProjectsComponent implements OnInit {
     date:new Date,
     fromClient:""
   }
-
-  deals:Deal[]=[
-
-  ]
-
-  clients:Client[]=[
-
-  ]
-
+  deals:Deal[]=[]
+  clients:Client[]=[]
   projectReviewClient=new ProjectReviewClient('','','',0)
-
-  projectsReviewsClients:ProjectReviewClient[]=[
-
-  ]
-
-  projectsClients:ProjectClient[]=[
-
-  ]
-
-  // projectsReviewsClientsIds:number[]=[
-
-  // ]
-
-  clientsNames:string[]=[
-    
-  ]
-
-  projectsNames:string[]=[
-    
-  ]
-
-
+  projectsReviewsClients:ProjectReviewClient[]=[]
+  projectsClients:ProjectClient[]=[]
+  clientsNames:string[]=[]
+  projectsNames:string[]=[]
   member:TeamMember=new TeamMember(0,0,false);
-
-  completed:number[]=[
-
-  ]
-
-  inCompleted:number[]=[
-    
-  ]
-
-  cClients:number[]=[
-
-  ]
-
-  iClients:number[]=[
-
-  ]
-
-  projects:Project[]=[
-
-  ]
-
-  completedTitles:string[]=[
-
-  ]
-
-  inCompletedTitles:string[]=[
-    
-  ]
-
-  cClientsNames:string[]=[
-
-  ]
-
-  iClientsNames:string[]=[
-
-  ]
-
+  completed:number[]=[]
+  inCompleted:number[]=[]
+  cClients:number[]=[]
+  iClients:number[]=[]
+  projects:Project[]=[]
+  completedTitles:string[]=[]
+  inCompletedTitles:string[]=[]
+  cClientsNames:string[]=[]
+  iClientsNames:string[]=[]
   accounts:Account[]=[]
-
   cCFName='';
   cCLName='';
-
   iCFName='';
   iCLName='';
 
@@ -158,9 +88,6 @@ export class ShowProjectsComponent implements OnInit {
     this.ac.params.subscribe(a=>{
     this.teamServ.getTeamById(a['id']).subscribe(a=>{
       this.team=a;
-      console.log("team: "+this.team.name);
-      console.log(this.team.id);
-      console.log("deals: "+this.team.deals)
 
     this.prjectServ.getProjects().subscribe(a=>{
       this.projects=a;
@@ -183,21 +110,14 @@ export class ShowProjectsComponent implements OnInit {
     
       for (let i = 0; i < this.projects.length; i++) {
           for(let y = 0; y < this.completed.length; y++){
-            if(this.projects[i].id == this.completed[y]){
-              this.completedTitles.push(this.projects[i].title);
-              console.log("**"+this.projects[i].id+"**"+this.completed[y])
+            if(this.projects[i].Id == this.completed[y]){
+              this.completedTitles.push(this.projects[i].Title);
             }
-            else if(this.projects[i].id == this.inCompleted[y]){
-              this.inCompletedTitles.push(this.projects[i].title);
-              console.log("****"+this.projects[i].id+"**"+this.completed[y])
-
+            else if(this.projects[i].Id == this.inCompleted[y]){
+              this.inCompletedTitles.push(this.projects[i].Title);
             }
           }
         }
-        console.log("comtitle"+this.completedTitles)
-
-        console.log(this.projects)
-
     })
     
     this.accountServ.getAccounts().subscribe(a=>{
@@ -222,29 +142,17 @@ export class ShowProjectsComponent implements OnInit {
           }
         }
       }
-      console.log("com: "+this.cClientsNames);
-      console.log("icom: "+this.iClientsNames);
     })
-  
-
-  console.log("compl:"+this.completed+", incompl:"+this.inCompleted)  
     })   
     })
 
     this.ac.params.subscribe(a=>{
       this.teamServ.getTeamById(a['id']).subscribe(a=>{
         this.team=a;
-        console.log("a: "+a)
         this.reviwes=a.reviews;
-        console.log("teamRev: "+a.reviews)
-        console.log("teamRev: "+a.reviews.length)
         
         this.revServ.getReviews().subscribe(b=>{
           this.reviwes=b;
-          console.log("length: "+b.length);
-
-          console.log("reviews: "+this.reviwes.length)
-          console.log("teamRev: "+this.reviwes)
 
         for(var i = 0 ; i < this.reviwes.length; i++){
             console.log("len: "+this.reviwes.length);
@@ -269,7 +177,6 @@ export class ShowProjectsComponent implements OnInit {
           for(var y = 0 ; y < this.completed.length ; y++){
             for(var z = 0 ; z < this.cClients.length ; z++){
               if(this.sAnother[x].projectId == this.completed[y] && this.sAnother[x].clientId == this.cClients[z]){
-                console.log("yeees equaal");
                 this.review.push(this.sAnother[x].content);
               }
             }
@@ -287,32 +194,22 @@ export class ShowProjectsComponent implements OnInit {
         for(var c = 0 ; c < this.completed.length ; c++){
           for(var e = 0 ; e < this.projects.length ; e++){
 
-            if(this.completed[c] == this.projects[e].id){
-              this.projectsNames.push(this.projects[e].title);
+            if(this.completed[c] == this.projects[e].Id){
+              this.projectsNames.push(this.projects[e].Title);
             }
           }
         }
 
         for(var i = 0 ; i < this.clientsNames.length ; i++){
-          console.log("this: "+this.clientsNames.length)
           this.projectsReviewsClients.push(new ProjectReviewClient(this.clientsNames[i],this.projectsNames[i],this.review[i],this.reviwes[i].rate));
         }
 
         for(var x = 0 ; x < this.inCompletedTitles.length ; x++){
             this.projectsClients.push(new ProjectClient(this.inCompletedTitles[x], this.iClientsNames[x]));
           }
-
-        console.log("clientsNames: "+this.clientsNames);
-        console.log("projectsNames: "+this.projectsNames);
-
-        console.log("another: "+this.anotherReviews)
-        console.log("another: "+this.sAnother)
         })
       
       })
     })
   }
-
-
-
 }
