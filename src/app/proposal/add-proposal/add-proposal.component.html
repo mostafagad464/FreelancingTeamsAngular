@@ -5,7 +5,6 @@
         <H2>{{ProjDesc}}</H2>
     </div>
 
-
   <div class="row ">
   <div class="col-lg-7 mx-auto">
     <div class="uto p-4 bcard mt-2 mx-ag-light">
@@ -14,6 +13,20 @@
         <div class = "container">
           <form id="contact-form" role="form">
         <div class="controls">
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Team">Select Team Name *</label>
+                <select class="form-control form-control-lg"  name="Team" id="Team" (change)="changeTeam()">
+                  <!-- <option disabled>Select Country</option> -->
+                  <option #t1 *ngFor="let I of teamsIds" [ngValue]="TeamId" >{{I}}</option>
+                </select>
+          </div>
+          </div>
+          </div>
+          <br>
+
 
             <div class="row">
                 <div class="col-md-6">

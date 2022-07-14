@@ -20,6 +20,9 @@ export class UserService {
   getUser(id: Number) {
     return this.http.get<User>(this.baseurl + id);
   }
+  GetUserToGetTeams(id: Number) {
+    return this.http.get<any>(this.baseurl + id);
+  }
 
   addUser(user: User) {
     return this.http.post<User>(this.baseurl, user);

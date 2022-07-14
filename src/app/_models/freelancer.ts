@@ -1,4 +1,5 @@
 import { Team } from "./team";
+import { TeamMember } from "./team-member";
 
 export class Freelancer {
     constructor(
@@ -16,7 +17,7 @@ export class Freelancer {
         public adminId : number,
         public walletId : number,
         public identityVerfication :number,
-        public teams:Team[], 
+        public teamMembers:TeamMember[],
         public specialization:string
     ){}
 }

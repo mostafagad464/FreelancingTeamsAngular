@@ -17,6 +17,7 @@ import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
 import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
 import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
+import { AdddealComponent } from './deal/adddeal/adddeal.component';
 
 
 const routes: Routes = [
@@ -75,8 +76,9 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "Addproposal/:ProjId", component: AddProposalComponent },
   { path: "AllProposals/:ProjId", component: AllProposalsComponent  },
+  { path: "adddeal/:ProjId", component: AdddealComponent  },
   { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent }
+  { path: "skills/edit/:id", component: EditskillsComponent },
 
 ]
 

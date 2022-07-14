@@ -20,6 +20,8 @@ import { RouterModule } from "@angular/router";
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
 import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
 import { ProposalModule } from "./proposal/proposal.module";
+import { AdddealComponent } from './deal/adddeal/adddeal.component';
+import { DealModule } from "./deal/deal.module";
 
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
@@ -28,7 +30,8 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
 
   ],
   imports: [
@@ -57,7 +60,8 @@ export function tokenGetter() {
     BrowserModule,
     AccountModule,
     MessagesModule,
-    RouterModule
+    RouterModule,
+    DealModule
   ],
   providers: [
     {
