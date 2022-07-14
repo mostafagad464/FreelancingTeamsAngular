@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/_models/account';
-import { Freelancer } from 'src/app/_models/freelancer';
 import { Team } from 'src/app/_models/team';
 import { TeamMember } from 'src/app/_models/team-member';
 import { User } from 'src/app/_models/user';

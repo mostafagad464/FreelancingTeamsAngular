@@ -16,6 +16,7 @@ import { ExperienceComponent } from './_user/user-profile/experience/experience.
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
+import { HomeComponent } from './Layout/home/home.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
 import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
@@ -97,7 +98,7 @@ const routes: Routes = [
   },
 
   { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", component:HomeComponent, pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },

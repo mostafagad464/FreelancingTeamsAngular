@@ -5,7 +5,7 @@ export class Account {
         public id: number,
         public identityId:number | null,
         public email:string,
-        public username: string ,
+        public username: string,
         public password: string,
         public firstName:string,
         public lastName:string,
