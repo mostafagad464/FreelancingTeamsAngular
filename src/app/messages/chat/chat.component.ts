@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
   AccountChat: AccountMessage[] = [];
   TeamChat: TeamFreelancerMessage[] = [];
   account: Account = new Account(0, null, "", "", "", "", "", "", null); // Account I am opening his chat
-  team: Team = new Team(0, null, "", false, new Date(), "", 0, 0, 0, "", [], [], []); // Team I am opening his chat
+  team: Team = new Team(0, null, "", false, new Date(), "", 0, 0, 0, "", "", [], [], []); // Team I am opening his chat
   accountmessage: AccountMessage = new AccountMessage(0, 0, 0, "", "", false, false, null, null);
   teammessage: TeamFreelancerMessage = new TeamFreelancerMessage(0, 0, 0, "", "", "u", false, false, null, null);
 

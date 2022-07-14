@@ -39,9 +39,9 @@ const routes: Routes = [
         component: AnnounceComponent,
       },
 
-  ]},
     ]
   },
+
 
 
   {
