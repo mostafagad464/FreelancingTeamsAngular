@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowTeamsComponent } from './show-teams.component';
+import { TeamChatComponent } from './team-chat.component';
 
-describe('ShowTeamsComponent', () => {
-  let component: ShowTeamsComponent;
-  let fixture: ComponentFixture<ShowTeamsComponent>;
+describe('TeamChatComponent', () => {
+  let component: TeamChatComponent;
+  let fixture: ComponentFixture<TeamChatComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowTeamsComponent ]
+      declarations: [ TeamChatComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowTeamsComponent);
+    fixture = TestBed.createComponent(TeamChatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

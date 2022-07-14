@@ -1,47 +1,80 @@
 <br>
-<div style="position: relative; height: 690px;">
-    <div *ngFor="let team of teams" class="card text-center container position: absolute; left: 0%; top: 0px;">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item">
-                    <a id="mainInformation-team-link-{{team.id}}" class="nav-link active" aria-current="true"
-                        (click)="displayMainInformation(team.id)">{{team.name}}</a>
-                </li>
-                <!-- <li class="nav-item">
+<br>
+
+<div class="container">
+
+    <div class="col">
+        <input [(ngModel)]="searchTeaxt" id="searchInput" type="text" class="form-control" placeholder="Search By Name">
+    </div>
+
+    <!-- <div class="col">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheckSoftware">
+            <label class="form-check-label" for="gridCheckSoftware">
+                Software
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheckMarkting">
+            <label class="form-check-label" for="gridCheckMarkting">
+                Markting
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheckWriting">
+            <label class="form-check-label" for="gridCheckWriting">
+                Writing
+            </label>
+        </div>
+    </div> -->
+</div>
+
+<br>
+
+<!-- <div class="row" data-masonry="{'percentPosition': true }" style="position: relative; height: 690px;"> -->
+<div *ngFor="let team of teams|searchInTeams:searchTeaxt" class="card text-center container">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="mainInformation-team-link-{{team.id}}" class="nav-link active" aria-current="true"
+                    (click)="displayMainInformation(team.id)">{{team.name}}</a>
+            </li>
+            <!-- <li class="nav-item">
                 <a id="technologies-link-team-{{team.id}}" class="nav-link" (click)="displayTechnologies(team.id)" >Technologies</a>
             </li>
             <li class="nav-item">
                 <a id="members-link-team-{{team.id}}" class="nav-link" (click)="displayMembers(team.id)">Members</a>
             </li> -->
-            </ul>
-        </div>
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img class="img-fluid rounded-start" alt="..."
-                        src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_509107562_2000133320009280346_351827.jpg">
+        </ul>
+    </div>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="img-fluid rounded-start" alt="..."
+                    src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_509107562_2000133320009280346_351827.jpg">
+            </div>
+            <div id="mainInformation-team-{{team.id}}" class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">Specialization: {{team.specialization}}</h2>
+                    <p class="card-text">{{team.description}}</p>
+                    <p *ngIf="team.isVerfied == true" class="card-text"> Verfied
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-check" viewBox="0 0 16 16">
+                            <path
+                                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                            <path fill-rule="evenodd"
+                                d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                    </p>
+                    <p class="card-text text-center">
+                        <app-stars [rate]="team.rate"></app-stars>
+                    </p>
+                    <a [routerLink]="['/teamProfile/'+team.id]" class="btn btn-primary">Profile</a> |
+                    <a target="_blank" href="{{team.webSite}}" class="btn btn-primary">Website</a> | 
+                    <a (click)="joinTeam(team.id)" class="btn btn-primary">Join</a>
                 </div>
-                <div id="mainInformation-team-{{team.id}}" class="col-md-8">
-                    <div class="card-body">
-                        <h2 class="card-title">Specialization: {{team.specialization}}</h2>
-                        <p class="card-text">{{team.description}}</p>
-                        <p *ngIf="team.isVerfied == true" class="card-text"> Verfied
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-check" viewBox="0 0 16 16">
-                                <path
-                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                                <path fill-rule="evenodd"
-                                    d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                            </svg>
-                        </p>
-                        <p class="card-text text-center">
-                            <app-stars [rate]="team.rate"></app-stars>
-                        </p>
-                        <a [routerLink]="['/teamProfile/'+team.id]" class="btn btn-primary">Profile</a> |
-                        <a target="_blank" href="{{team.webSite}}" class="btn btn-primary">Website</a>
-                    </div>
-                </div>
-                <!-- <div style="display: none;" id="technologies-team-{{team.id}}" class="col-md-8">
+            </div>
+            <!-- <div style="display: none;" id="technologies-team-{{team.id}}" class="col-md-8">
                 <div class="card-body">
                     <h2 class="card-title">{{team.name}}</h2>
                     <p class="card-text">{{team.description}}</p>
@@ -59,10 +92,10 @@
                     <a target="_blank" href="https://www.facebook.com" class="btn btn-primary">Website</a>
                 </div>
             </div> -->
-            </div>
         </div>
+    </div>
 
-        <!-- <div class="card bg-dark text-white">
+    <!-- <div class="card bg-dark text-white">
         <img height="300px" class="card-img" alt="..."
             src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_509107562_2000133320009280346_351827.jpg">
         <div class="card-img-overlay">
@@ -83,11 +116,11 @@
             <a target="_blank" href="https://www.facebook.com" class="btn btn-primary">Website</a>
         </div>
     </div> -->
-    </div>
-    <br>
-    <br>
+</div>
+<br>
+<br>
 
-    <!-- <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 66.6667%; top: 0px;">
+<!-- <div class="col-sm-6 col-lg-4 mb-4" style="position: absolute; left: 66.6667%; top: 0px;">
         <div class="card">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
                 role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -103,4 +136,4 @@
             </div>
         </div>
     </div> -->
-</div>
+<!-- </div> -->

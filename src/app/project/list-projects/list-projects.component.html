@@ -1,14 +1,14 @@
 <div  *ngFor="let item of projects">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{item.Title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.PostingDate}}</h6>
-          <p class="card-text">{{item.Description}}</p>
-          <h6 class="card-subtitle mb-2 text-muted">Duration : {{item.Duration}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.BudgetFrom}} $:{{item.BudgetTo}} $</h6>
-          <a [routerLink]="['edit/'+item.Id]" class="card-link">Edit</a>
+          <h5 class="card-title">{{item.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{item.postingDate}}</h6>
+          <p class="card-text">{{item.description}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">Duration : {{item.duration}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{item.budgetFrom}} $:{{item.budgetTo}} $</h6>
+          <a [routerLink]="['edit/'+item.id]" class="card-link">Edit</a>
           <a href="#" class="card-link">Add Proposal</a>
-          <button (click)="delete(item.Id)" class="card-link">Delete</button>
+          <button (click)="delete(item.id)" class="card-link">Delete</button>
         </div>
       </div>
 </div>

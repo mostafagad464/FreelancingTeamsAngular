@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/_models/project';
-import { TeamMember } from 'src/app/_models/team-member';
 import { Team } from '../../_models/team'
-import { FreelancersService } from '../freelancers.service';
+import { TeamMembersService } from '../team-members.service';
 import { TeamProfileService } from '../team-profile.service';
 import { ReviewsService } from './../../_services/reviews.service'
 
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   noOfRv: number = 0
   teamMembers: number[] = [];
 
-  constructor(public ac: ActivatedRoute, public teamServ: TeamProfileService, public freelancerServ: FreelancersService, public ReviewsService: ReviewsService) { }
+  constructor(public ac: ActivatedRoute, public teamServ: TeamProfileService, public freelancerServ: TeamMembersService, public ReviewsService: ReviewsService) { }
 
   checkP = ""; //Your team's projects
 

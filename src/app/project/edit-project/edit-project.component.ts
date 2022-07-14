@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/_models/project';
+import { Review } from 'src/app/_models/review';
 import { ProjectService } from 'src/app/_services/project.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class EditProjectComponent implements OnInit {
 
-  project:Project=new Project(0,new Date,"Edit Project",0,0,"Descrption","Duration",0,0,0);
+  project:Project=new Project(0,new Date,"Edit Project",0,0,"Descrption","Duration",0,0,0,0,new Review(0,0,0,0,"",new Date,""));
   constructor(public activateRoute:ActivatedRoute,public proSer:ProjectService ,public router:Router) { }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();

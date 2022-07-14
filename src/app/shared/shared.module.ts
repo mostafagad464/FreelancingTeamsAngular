@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StarsComponent } from './stars/stars.component';
+import { SearchPipe } from '../_pipes/search.pipe';
 
 
 
 @NgModule({
   declarations: [
-    StarsComponent
+    StarsComponent,
   ],
   imports: [
     CommonModule
   ], 
   exports:[
-    StarsComponent
+    StarsComponent,
   ]
 })
 export class SharedModule { }

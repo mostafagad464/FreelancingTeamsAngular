@@ -8,7 +8,7 @@ import { Team } from 'src/app/_models/team';
 import { TeamMember } from 'src/app/_models/team-member';
 import { UserAccount } from 'src/app/_models/user-account';
 import { AccountService } from 'src/app/_services/account.service';
-import { FreelancersService } from '../freelancers.service';
+import { TeamMembersService } from '../team-members.service';
 import { TeamProfileService } from '../team-profile.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class RemoveTeamMemberComponent implements OnInit {
 
   constructor(public ac:ActivatedRoute,
               public teamServ:TeamProfileService,
-              public freeServ:FreelancersService,
+              public freeServ:TeamMembersService,
               public router:Router, 
               public fb : FormBuilder,
               public accountServ:AccountService) { }

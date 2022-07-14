@@ -27,6 +27,7 @@ export class User {
         public wallet: Wallet | null,
         public clientNavigation: Client | null,
         public freelancerNavigation: Freelancer|null
+
         // public complains: [],
         // public userCredits: [],
         // public userLanguages: [],

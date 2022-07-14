@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from 'src/app/_models/team';
+import { TeamMember } from 'src/app/_models/team-member';
+import { AuthService } from 'src/app/_services/auth.service';
 import { TeamService } from 'src/app/_services/team.service';
+import { TeamMembersService } from '../team-members.service';
 
 @Component({
   selector: 'app-show-teams',
@@ -9,10 +12,15 @@ import { TeamService } from 'src/app/_services/team.service';
 })
 export class ShowTeamsComponent implements OnInit {
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, 
+    private teamMembersService:TeamMembersService,
+    private authService:AuthService
+    ) { }
 
   teams: Team[] = [];
   stringId:string = "";
+  teamMember:TeamMember = new TeamMember(0, 0, false);
+  searchTeaxt:string="";
 
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(
@@ -21,7 +29,19 @@ export class ShowTeamsComponent implements OnInit {
         this.teams = t
       }
     )
+    this.teamMember.freelancerId = this.authService.getCurrentUser()?.id;
   }
+
+  joinTeam(teamId:number)
+  {
+    this.teamMember.teamId = teamId;
+    this.teamMembersService.addTeamMember(this.teamMember).subscribe(
+      a=>console.log(a)
+    )
+  }
+
+
+
 
   displayMainInformation(id:number)
   {

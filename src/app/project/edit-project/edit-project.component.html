@@ -1,31 +1,31 @@
 <form (submit)="edit()">
     <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="project.Title"/>
+        <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="project.title"/>
       </div>
       <div class="form-group">
           <label for="exampleFormControlInput1">State</label>
-          <input type="number" class="form-control" id="exampleFormControlInput2" [(ngModel)]="project.State">
+          <input type="number" class="form-control" id="exampleFormControlInput2" [(ngModel)]="project.state">
         </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Average Pay</label>
-        <input type="number" class="form-control" id="exampleFormControlInput4" [(ngModel)]="project.AVGBid">
+        <input type="number" class="form-control" id="exampleFormControlInput4" [(ngModel)]="project.aVGBid">
       </div>
       <div class="form-group">
           <label for="exampleFormControlTextarea1">Descrption</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="project.Description"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="project.description"></textarea>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Duration</label>
-          <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="project.Duration"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="project.duration"></textarea>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Budget From</label>
-          <input type="number" class="form-control" id="exampleFormControlInput5" [(ngModel)]="project.BudgetFrom">
+          <input type="number" class="form-control" id="exampleFormControlInput5" [(ngModel)]="project.budgetFrom">
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Budget To</label>
-          <input type="number" class="form-control" id="exampleFormControlInput6" [(ngModel)]="project.BudgetTo">
+          <input type="number" class="form-control" id="exampleFormControlInput6" [(ngModel)]="project.budgetTo">
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
   </form>
