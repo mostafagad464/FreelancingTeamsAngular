@@ -16,6 +16,7 @@ import { ExperienceComponent } from './_user/user-profile/experience/experience.
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
+import { HomeComponent } from './Layout/home/home.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,7 @@ const routes: Routes = [
     ]
   },
   { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", component:HomeComponent, pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
