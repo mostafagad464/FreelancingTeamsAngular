@@ -19,6 +19,8 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { RouterModule } from "@angular/router";
 import { UserProfileModule } from './_user/user-profile/user-profile.module';
 import { ShowMembersComponent } from "./team-profile/show-members/show-members.component";
+import { SharedModule } from "./shared/shared.module";
+import { HomeModule } from "./home/home.module";
 import { FreelancersModule } from "./freelancers/freelancers.module";
 
 
@@ -33,6 +35,7 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    HomeModule,
     CommonModule,
     AppRoutingModule,
     HttpClientModule,

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Portoflio } from 'src/app/_models/portoflio';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddPortfolioComponent } from '../add-portfolio/add-portfolio.component';
 
@@ -12,6 +13,8 @@ import { AddPortfolioComponent } from '../add-portfolio/add-portfolio.component'
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
+  userId:any;
+  profileId:any;
   openModal() {
     
     const modalRef = this.modalService.open(AddPortfolioComponent);
@@ -23,7 +26,7 @@ export class ProjectsComponent implements OnInit {
       this.userserv.deletePortoflio(id).subscribe(p=>{
         console.log(p);
         var deletedPortoflio=this.portfolioArray.find(a=>a.id==id);
-        this.portfolioArray=this.portfolioArray.filter(p=>p==deletedPortoflio)
+        this.portfolioArray=this.portfolioArray.filter(p=>p!=deletedPortoflio)
       });
 
       console.log("Implement delete functionality here");
@@ -33,10 +36,12 @@ export class ProjectsComponent implements OnInit {
   sub2:Subscription|null=null;
   portfolioArray:Portoflio[]=[]
 
-  constructor(public userserv:UserProfileService ,public ar:ActivatedRoute,public modalService: NgbModal ) { }
+  constructor(public userserv:UserProfileService ,public ar:ActivatedRoute,public modalService: NgbModal,public authserv:AuthService ) { }
 
   ngOnInit(): void {
+    this.profileId=this.authserv.getCurrentUser()?.id;
     this.sub1=this.ar.params.subscribe(x=>{
+      this.userId=x['id']
       this.sub2=this.userserv.getFreelancerPortfolio(x['id']).subscribe(a=>
         {
           this.portfolioArray=a;

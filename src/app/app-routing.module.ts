@@ -14,9 +14,13 @@ import { EditexperienceComponent } from './_user/user-profile/editexperience/edi
 import { EditskillsComponent } from './_user/user-profile/editskills/editskills.component';
 import { ExperienceComponent } from './_user/user-profile/experience/experience.component';
 import { SkillsComponent } from './_user/user-profile/skills/skills.component';
+import { ChatComponent } from './messages/chat/chat.component';
+import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
 
+
 const routes: Routes = [
+
  {path:"projects",loadChildren:()=>import('./project/project.module').then(m=>m.ProjectModule)},
   {
     path: "profile/:id", component: HeaderComponent, children: [
@@ -60,7 +64,8 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
-
+  { path:"chat", component: ChatComponent},
+  { path:"chat/team/:id", component: TeamChatComponent},
 
   {
     path: "certificates/:id", component: CertificatesComponent,
@@ -78,6 +83,24 @@ const routes: Routes = [
         }
       ]
   },
+  {
+    path: "experiences/:id", component: ExperienceComponent,
+    children:
+      [
+        {
+          path: "editExperience/:id/:startDate",
+          component: EditexperienceComponent,
+          outlet: 'modal'
+        },
+
+        {
+          path: "addExperience",
+          component: AddExperienceComponent,
+          outlet: 'modal'
+        }
+
+      ]
+      },
   { path: "login", component: LoginComponent },
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "register", component: RegisterComponent },
@@ -85,6 +108,7 @@ const routes: Routes = [
   { path: "skills/edit/:id", component: EditskillsComponent },
   {
     path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
+
   }
 
 ]

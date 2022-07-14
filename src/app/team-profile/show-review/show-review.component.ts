@@ -24,8 +24,8 @@ export class ShowReviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.ac.params.subscribe(a=>{
-      this.projServ.getProjectById(a['id']).subscribe(a=>{
-        this.review=a.reviews;
+      this.projServ.getProject(a['id']).subscribe(a=>{
+        // this.review!=a.reviews;
       })
       })
    
