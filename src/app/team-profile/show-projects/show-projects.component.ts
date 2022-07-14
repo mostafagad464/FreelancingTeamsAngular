@@ -34,6 +34,7 @@ export class ShowProjectsComponent implements OnInit {
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]

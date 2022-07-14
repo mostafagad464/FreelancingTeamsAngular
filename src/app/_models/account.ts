@@ -1,7 +1,6 @@
 import { User } from "./user";
 
 export class Account {
-
     constructor(
         public id: number,
         public identityId:number | null,
@@ -12,12 +11,5 @@ export class Account {
         public lastName:string,
         public type:string,
         public user:User | null
-        
-        
-        
-        
-        
-
-
     ){}
 }

@@ -24,6 +24,7 @@ export class EditTeamInfoComponent implements OnInit {
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
@@ -40,6 +41,7 @@ export class EditTeamInfoComponent implements OnInit {
     leaderId: 0,
     walletId: 0,
     name:'',
+    specialization:'',
     deals:[],
     reviews:[],
     teamMembers:[]
