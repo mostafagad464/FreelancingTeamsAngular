@@ -1,27 +1,29 @@
 
 <div style="margin-top: 3%;" class="container">
 <tr *ngFor="let item of freelancerCertificates[1]"> 
-    <div  class="card" style="width: 500px;">
+    <div  class="card" style="width: 700px;">
         <div class="card-body">
-            <h5 class="card-title">{{item.title}}</h5>
-            <p class="card-text">Organization: {{item.organization}}</p>
-            <p class="card-subtitle mb-2 text-muted">{{item.date | date}}</p>
-            <p  class="card-text">Specialization: {{item.specialization}}</p>
-            <p class="card-text">{{item.description}}</p>
+            <h2 class="card-title">{{item.title}}</h2>
+            <h3 class="card-text">Organization: {{item.organization}}</h3>
+            <h3 class="card-subtitle mb-2 text-muted">Date: {{item.date | date :"mediumDate"}}</h3>
+            <h3  class="card-text">Specialization: {{item.specialization}}</h3>
+            <p class="card-text">Description: {{item.description}}</p>
 
             <a href="#" class="card-link">{{item.link}}</a> <br><br>
         
            
         </div>
         <div class="modal-footer">
-            <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editCertificate',item.freelancerId,item.title] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
-            <button  type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.title)" >Delete</button>
+            <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editCertificate',item.freelancerId,item.title] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+            <button *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.title)" >Delete</button>
           </div>
       
     </div>
     <br>
    
  </tr>
- <button class="btn btn-lg btn-secondary" [routerLink]="[{ outlets: { modal: ['addCertificate'] } }]" (click)="openModalAdd()">Add Certificate</button>
+ <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addCertificate'] } }]" (click)="openModalAdd()">Add Certificate</button>
  
 </div>
+<br>
+<br>

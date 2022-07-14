@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddExperienceComponent } from '../add-experience/add-experience.component';
 import { EditexperienceComponent } from '../editexperience/editexperience.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-experience',
@@ -11,10 +13,15 @@ import { EditexperienceComponent } from '../editexperience/editexperience.compon
   styleUrls: ['./experience.component.css']
 })
 export class ExperienceComponent implements OnInit {
+  profileId:Number=0;
+  userId:Number=0;
+  sub1:Subscription|null=null;
 
   freelancerExperiences:any[]=[];
 
-  constructor(public router:Router,public userSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal) { 
+  constructor(public router:Router,public userSer:UserProfileService
+    ,public ac:ActivatedRoute,public modalService: NgbModal,
+    public authServ:AuthService) { 
 
   }
 
@@ -23,11 +30,22 @@ export class ExperienceComponent implements OnInit {
     this.ac.params.subscribe(a => {
       this.userSer.GetAllFreelancerExperiences(a['id']).subscribe(a => {
         this.freelancerExperiences[1]=a;
+        console.log("this.freelancerExperiences[1]")
 
         console.log(this.freelancerExperiences[1])
 
       })
 
+
+
+    })
+    this.profileId=this.authServ.getCurrentUser()?.id;
+    this.sub1=this.ac.params.subscribe(x=>{
+      this.userId=x['id'];
+      console.log("this.userId")
+      console.log(this.userId)
+      console.log("this.profileId")
+      console.log(this.profileId)
 
 
     })

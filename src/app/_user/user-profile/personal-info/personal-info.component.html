@@ -1,6 +1,8 @@
 <link href="./personal-info.component.css" rel="stylesheet" id="bootstrap-css">
-<div class="card" style="width: 50rem;">
-    <div class="card-body">
+<div style="margin-top: 3%;" class="container">
+    <div class="card" style="width:700px;">
+        <div class="card-body">
+
 
 
 <div class="container emp-profile ">
@@ -63,20 +65,62 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>State</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{accountInfo.user?.state}}</p>
-                            </div>
-                        </div>
 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.firstName+" "+accountInfo.lastName}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.email}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.phone}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>BirthDate</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.birthDate|date}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Country</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.country}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>State</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.state}}</p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                        
-                    
+                <br>
+                <br>
 
-
-
-
-
-
+                
 
