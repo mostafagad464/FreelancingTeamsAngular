@@ -17,6 +17,10 @@ import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
+import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
+import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
+import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
+import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
 
 
 const routes: Routes = [
@@ -25,10 +29,42 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children: [
       {
-        path: "portfolio/:id", component: ProjectsComponent, children: [
-          { path: "addPortofolio", component: AddPortfolioComponent }
-        ]
+        path: "editSkills/:id",
+        component: EditskillsComponent,
+        outlet: 'modal'
       },
+      {
+        path: "addSkill/:id",
+        component: AddSkillComponent,
+        outlet: 'modal'
+      },
+
+      { path: "educations/:id", component: EducationalInfoComponent,
+      children:
+      [
+        {
+          path: "editEducation/:id/:gradYear",
+          component: EditeducationalInfoComponent,
+          outlet: 'modal'
+        },
+
+        {
+          path: "addEducation",
+          component: AddEducationComponent,
+          outlet: 'modal'
+        }
+
+      ]
+    },
+
+  
+      { path: "portfolio/:id", component: ProjectsComponent,
+      children:
+      [
+        {path:"addPortofolio",component:AddPortfolioComponent}
+      ] 
+    },
+
       {
         path: "experiences/:id", component: ExperienceComponent,
         children:
@@ -48,6 +84,7 @@ const routes: Routes = [
           ]
 
       },
+     
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
           {
@@ -104,13 +141,12 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "register", component: RegisterComponent },
+
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
   {
     path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
-
   }
-
 ]
 
 @NgModule({

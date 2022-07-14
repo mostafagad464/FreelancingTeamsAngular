@@ -23,6 +23,8 @@ import { AddCertificateComponent } from './add-certificate/add-certificate.compo
 import { AddExperienceComponent } from './add-experience/add-experience.component';
 import { FormsModule } from '@angular/forms';
 import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
+import { AddSkillComponent } from './add-skill/add-skill.component';
+import { AddEducationComponent } from './add-education/add-education.component';
 
 
 
@@ -45,13 +47,16 @@ import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
     EditCertificatesComponent,
     AddCertificateComponent,
     AddExperienceComponent,
-    AddPortfolioComponent
+    AddPortfolioComponent,
+    AddSkillComponent,
+    AddEducationComponent
   ],
   imports: [
     CommonModule, 
     RouterModule, 
     NgbModalModule,
-    FormsModule
+    FormsModule,
+    RatingModule
   ],
   exports: [
     ExperienceComponent, 
@@ -71,7 +76,11 @@ import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
     EditskillsComponent,
     EditCertificatesComponent,
     AddCertificateComponent,
-    AddExperienceComponent
+    AddExperienceComponent,
+    AddSkillComponent,
+    EducationalInfoComponent,
+    EditeducationalInfoComponent,
+    AddEducationComponent
   ]
 })
 export class UserProfileModule { }

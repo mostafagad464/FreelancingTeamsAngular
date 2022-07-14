@@ -1,1 +1,29 @@
-<p>educational-info works!</p>
+
+             
+<div style="margin-top: 3%;" class="container">
+    <tr *ngFor="let item of this.freelancerEducation[1]"> 
+        <div  class="card" style="width: 700px;">
+            <div class="card-body">
+                <h2 class="card-title">Faculty: {{item.faculty}}</h2>
+                <h3 class="card-text ">Department: {{item.department}}</h3>
+                <h3 class="card-text">Univerity: {{item.university}}</h3>
+                <h3 class="card-text">Graduation Year: {{item.gradYear}}</h3>
+                <h3  class="card-text">Grade: {{item.grade}}</h3>
+              
+    
+         
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editEducation',item.freelancerId,item.gradYear] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+                <button *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.gradYear)" >Delete</button>
+              </div>
+          
+        </div>
+        <br>
+       
+     </tr>
+     <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addEducation'] } }]" (click)="openModalAdd()">Add Education</button>
+     
+    </div>
+    <br>
+    <br> 
