@@ -16,8 +16,9 @@ export class ShowFreelancersComponent implements OnInit {
     private activeroute:ActivatedRoute,
     private teamMemberService:TeamMembersService) { }
 
-   freelancers: User [] = [];
-   teamMember:TeamMember = new TeamMember(0, 0, false);
+  freelancers: User [] = [];
+  teamMember:TeamMember = new TeamMember(0, 0, false);
+  searchText:string="";
 
   ngOnInit(): void {
     this.freelancerService.getFreelancers().subscribe(

@@ -15,28 +15,32 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import { JoinTeamComponent } from './join-team/join-team.component';
 import { ShowTeamsComponent } from './show-teams/show-teams.component';
 import { SharedModule } from '../shared/shared.module';
+import { SearchPipe } from '../_pipes/search.pipe';
+import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AnnounceComponent } from './announce/announce.component';
 
-const routes:Routes=[
+const routes: Routes = [
   {
-    path:'teamProfile/:id',
-    component:HeaderComponent,
-   children:[
-    {   
-      path: 'showMember/:id',
-      component: ShowMembersComponent,
-    },
-    {   
-      path: 'showProjects/:id',
-      component:ShowProjectsComponent,
-    },
-    {   
-      path: 'announce/:id',
-      component:AnnounceComponent,
-    },
-   
-  ]
-},
+    path: 'teamProfile/:id',
+    component: HeaderComponent,
+    children: [
+      {
+        path: 'showMember/:id',
+        component: ShowMembersComponent,
+      },
+      {
+        path: 'showProjects/:id',
+        component: ShowProjectsComponent,
+      },
+      {
+        path: 'announce/:id',
+        component: AnnounceComponent,
+      },
+
+    ]
+  },
 
 
   {
@@ -78,15 +82,15 @@ const routes:Routes=[
   },
   {
     path: 'createteam',
-    component:CreateTeamComponent
+    component: CreateTeamComponent
   },
   {
     path: 'jointeam',
-    component:CreateTeamComponent
+    component: CreateTeamComponent
   },
   {
     path: 'showteams',
-    component:ShowTeamsComponent
+    component: ShowTeamsComponent
   },
 
 ]
@@ -106,7 +110,8 @@ const routes:Routes=[
     AnnounceComponent,
     CreateTeamComponent,
     JoinTeamComponent,
-    ShowTeamsComponent
+    ShowTeamsComponent,
+    SearchInTeamsPipe
 
   ],
   imports: [
@@ -123,6 +128,7 @@ const routes:Routes=[
   ],
   exports: [
     HeaderComponent,
+    // SearchPipe
   ]
 })
 export class TeamProfileModule { }

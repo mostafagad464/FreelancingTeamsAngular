@@ -20,6 +20,7 @@ export class ShowTeamsComponent implements OnInit {
   teams: Team[] = [];
   stringId:string = "";
   teamMember:TeamMember = new TeamMember(0, 0, false);
+  searchTeaxt:string="";
 
   ngOnInit(): void {
     this.teamService.getTeams().subscribe(
@@ -38,6 +39,8 @@ export class ShowTeamsComponent implements OnInit {
       a=>console.log(a)
     )
   }
+
+
 
 
   displayMainInformation(id:number)
