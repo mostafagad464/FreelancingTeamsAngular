@@ -39,18 +39,21 @@ export class HeaderComponent implements OnInit {
     logo: '',
     webSite: '',
     isVerfied: false,
-    creationDate: new Date(1 / 1 / 2030),
+    creationDate: new Date(1/1/2030),
+
     description: '',
     rate: 0,
     leaderId: 0,
     walletId: 0,
-    name: '',
-    deals: [],
-    reviews: [],
-    teamMembers: []
+
+    name:'',
+    specialization:'',
+    deals:[],
+    reviews:[],
+    teamMembers:[]
   }
 
-  img = "../../../assets/images/1.png";
+  img="../../../assets/images/1.png";
 
   desc = this.team.description;
   rate = 1;
@@ -75,7 +78,6 @@ export class HeaderComponent implements OnInit {
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
         this.team = a;
-        // this.teamId=(a['id']);
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);

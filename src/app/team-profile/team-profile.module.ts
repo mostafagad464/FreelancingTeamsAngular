@@ -11,15 +11,16 @@ import { ShowProjectsComponent } from './show-projects/show-projects.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ShowReviewComponent } from './show-review/show-review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateTeamComponent } from './create-team/create-team.component';
+import { JoinTeamComponent } from './join-team/join-team.component';
+import { ShowTeamsComponent } from './show-teams/show-teams.component';
+import { SharedModule } from '../shared/shared.module';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-
+import { AnnounceComponent } from './announce/announce.component';
 
 const routes:Routes=[
-  // {path:'teamProfile',
-  //  component:HeaderComponent
-  // },
   {
     path:'teamProfile/:id',
     component:HeaderComponent,
@@ -27,21 +28,42 @@ const routes:Routes=[
     {   
       path: 'showMember/:id',
       component: ShowMembersComponent,
-      // outlet: 'showMember'
     },
-   ]
+    {   
+      path: 'showProjects/:id',
+      component:ShowProjectsComponent,
+    },
+    {   
+      path: 'announce/:id',
+      component:AnnounceComponent,
+    },
+   
+
+
+
+  {
+    path: 'teamProfile/:id',
+    component: HeaderComponent,
+    children: [
+      {
+        path: 'showMember/:id',
+        component: ShowMembersComponent,
+        // outlet: 'showMember'
+      },
+    ]
+
   },
   {
-    path:'addMember/:id',
-    component:AddTeamMemberComponent
+    path: 'addMember/:id',
+    component: AddTeamMemberComponent
   },
   {
-    path:'removeMember/:id',
-    component:RemoveTeamMemberComponent 
+    path: 'removeMember/:id',
+    component: RemoveTeamMemberComponent
   },
   {
-    path:'editInfo/:id',
-    component:EditTeamInfoComponent 
+    path: 'editInfo/:id',
+    component: EditTeamInfoComponent
   },
   {
     path: 'showProjects/:id',
@@ -49,12 +71,24 @@ const routes:Routes=[
     // outlet: 'showProjects'
   },
   {
-    path:'reviews/:id',
-    component:ReviewsComponent 
+    path: 'reviews/:id',
+    component: ReviewsComponent
   },
   {
-    path:'showReviews/:id',
-    component:ShowReviewComponent 
+    path: 'showReviews/:id',
+    component: ShowReviewComponent
+  },
+  {
+    path: 'createteam',
+    component:CreateTeamComponent
+  },
+  {
+    path: 'jointeam',
+    component:CreateTeamComponent
+  },
+  {
+    path: 'showteams',
+    component:ShowTeamsComponent
   },
 
 ]
@@ -69,7 +103,13 @@ const routes:Routes=[
     EditTeamInfoComponent,
     ShowProjectsComponent,
     ReviewsComponent,
-    ShowReviewComponent
+    ShowReviewComponent,
+    ShowMembersComponent,
+    AnnounceComponent,
+    CreateTeamComponent,
+    JoinTeamComponent,
+    ShowTeamsComponent
+
   ],
   imports: [
     CommonModule,
@@ -77,11 +117,13 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RatingModule,
+
+    SharedModule
     // MatInputModule,
     // MatAutocompleteModule
-    
+
   ],
-  exports:[
+  exports: [
     HeaderComponent,
   ]
 })

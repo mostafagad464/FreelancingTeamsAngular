@@ -8,17 +8,19 @@ import { TeamMember } from '../_models/team-member';
 })
 export class TeamService {
 
-  baseUrl = 'https://localhost:7152/api/Teams/';
-  imageurl = "https://localhost:7152/api/Image/Team/";
 
-  constructor(public http: HttpClient) { }
+  private baseUrl = 'https://localhost:7152/api/Teams/';
+
+  imageurl = "https://localhost:7152/api/Image/Team/";
+  
+  constructor(private http: HttpClient) { }
 
   getTeam(id: number) {
     return this.http.get<Team>(this.baseUrl + id);
   }
 
   getTeams(){
-    return this.http.get<any>(this.baseUrl);
+    return this.http.get<Team[]>(this.baseUrl);
   }
 
   AddTeamMember(temMember: TeamMember) {
@@ -29,9 +31,16 @@ export class TeamService {
     return this.http.put(this.baseUrl + team.id, team);
   }
 
+
+  createTeam(team:Team)
+  {
+    return this.http.post<Team>(this.baseUrl, team);
+  }
+
   addImage(TeamId: number, img: FormData) {
     return this.http.post<any>(this.imageurl + TeamId, img);
   }
+
 
 
 }
