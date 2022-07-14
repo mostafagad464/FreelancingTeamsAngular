@@ -13,11 +13,19 @@ import { Account } from '../_models/account';
   providedIn: 'root'
 })
 export class UserProfileService {
+ 
 
   constructor(public http : HttpClient) { }
 
 
   baseUrl = "https://localhost:7152/api/";
+  imageurl = "https://localhost:7152/api/Image/";
+
+  addImage(UserId: number, img: FormData) {
+    return this.http.post<any>(this.imageurl + UserId, img);
+  }
+  
+
 
   getUserInfoByid(id:number){
     return this.http.get<User>(this.baseUrl+"users/"+id);

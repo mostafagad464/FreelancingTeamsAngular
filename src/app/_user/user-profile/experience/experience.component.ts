@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddExperienceComponent } from '../add-experience/add-experience.component';
 import { EditexperienceComponent } from '../editexperience/editexperience.component';
@@ -12,15 +13,20 @@ import { EditexperienceComponent } from '../editexperience/editexperience.compon
 })
 export class ExperienceComponent implements OnInit {
 
+  userId:any;
+  profileId:any;
   freelancerExperiences:any[]=[];
 
-  constructor(public router:Router,public userSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal) { 
+  constructor(public router:Router,public userSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal,public authserv:AuthService ) { 
 
   }
 
   ngOnInit(): void {
+    this.profileId=this.authserv.getCurrentUser()?.id;
+
 
     this.ac.params.subscribe(a => {
+      this.userId=a['id'];
       this.userSer.GetAllFreelancerExperiences(a['id']).subscribe(a => {
         this.freelancerExperiences[1]=a;
 

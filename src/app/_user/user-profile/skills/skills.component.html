@@ -19,7 +19,7 @@
 
   <br>
 
-    <button [routerLink]="['/skills/edit/:id']" class="btn btn-secondary margin-left" >Edit</button>  
+    <button *ngIf="profileId==userId" [routerLink]="['/skills/edit/:id']" class="btn btn-secondary margin-left" >Edit</button>  
 
 
 </body>

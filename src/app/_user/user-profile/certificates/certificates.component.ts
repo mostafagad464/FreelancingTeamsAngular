@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { AddCertificateComponent } from '../add-certificate/add-certificate.component';
 import { EditCertificatesComponent } from '../edit-certificates/edit-certificates.component';
@@ -11,13 +12,17 @@ import { EditCertificatesComponent } from '../edit-certificates/edit-certificate
   styleUrls: ['./certificates.component.css']
 })
 export class CertificatesComponent implements OnInit {
+  userId:any;
+  profileId:any;
 
   freelancerCertificates:any[]=[];
 
-  constructor(public router:Router,public UserSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal) { }
+  constructor(public router:Router,public UserSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal,public authserv:AuthService) { }
 
   ngOnInit(): void {
+    this.profileId=this.authserv.getCurrentUser()?.id;
    this.ac.params.subscribe(a=>{
+    this.userId=a['id'];
     this.UserSer.GetAllFreelancerCertificates(a['id']).subscribe(a=>{
       this.freelancerCertificates[1]=a;
 

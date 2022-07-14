@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       console.log(decodedToken.Id)
       console.log(expirationDate)
       console.log(isExpired)
-      this.router.navigateByUrl("profile/"+decodedToken.Id)
+      this.router.navigateByUrl("profile/"+decodedToken.Id+"/portfolio/"+decodedToken.Id)
     },
     error=> {
       this.message = "Username and password incorrect";

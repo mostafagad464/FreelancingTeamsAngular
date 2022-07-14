@@ -73,24 +73,8 @@ const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent },
-  {
-    path: "certificates/:id", component: CertificatesComponent,
-    children:
-      [
-        {
-          path: "editCertificate/:id/:title",
-          component: EditCertificatesComponent,
-          outlet: 'modal'
-        },
-
-        {
-          path: "addCertificate",
-          component: AddCertificateComponent,
-          outlet: 'modal'
-        }
-      ]
-  }
+  { path: "skills/edit/:id", component: EditskillsComponent }
+  
 ]
 
 @NgModule({
