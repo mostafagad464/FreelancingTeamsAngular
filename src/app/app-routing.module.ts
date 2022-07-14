@@ -57,9 +57,8 @@ const routes: Routes = [
 
       ]
     },
-
-  
-      { path: "portfolio/:id", component: ProjectsComponent,
+      { 
+        path: "portfolio/:id", component: ProjectsComponent,
       children:
       [
         {path:"addPortofolio",component:AddPortfolioComponent}
