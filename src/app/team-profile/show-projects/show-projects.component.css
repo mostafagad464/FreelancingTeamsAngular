@@ -1,0 +1,102 @@
+/* .ml-1 {
+    margin-left: ($spacer * .25) !important;
+  } */
+
+.ml-lg-6{
+    margin-left: 1rem;
+}
+
+.ml-sm-4{
+    margin-left: 5rem;
+}
+
+.ml-lg-5{
+    margin-left: 2rem;
+}
+
+.ml-sm-5{
+    margin-left: 2rem;
+}
+
+.ml-lg-6{
+    margin-left: 4rem;
+}
+
+.tabFont{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+.element-gradient{
+    background-image: linear-gradient(to right, #17353E, #566B7B);
+    box-shadow:0px 7px 20px 0px #231e1675;
+    border-radius: 4rem;
+}
+.navS{
+    border-radius: 4rem;
+    height: 5rem;
+}
+.padding{
+    padding: 2rem;
+    background-image: linear-gradient(180deg,   #F7F2FF, #ffffff );
+
+}
+.sm-font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.1rem;
+    color: #17353E;
+}
+.lg-font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    color: #17353E;
+}
+.light-text{
+    color: #EAD0C2;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.8rem;
+}
+.light-md-text{
+    color: #EAD0C2;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+}
+.light-sm-text{
+    color: #EAD0C2;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}
+.brown-text{
+    color: #0F0900;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.8rem;
+}
+.button{
+    color: #0F0900;
+    background-image: linear-gradient(to right, #D6AA94, #EAD0C2);
+    /* background-color: #D6AA94; */
+    font-size: 15px;
+    font-weight:bold;
+    border-radius: 8rem;
+}
+.button-lg{
+    color: #0F0900;
+    background-image: linear-gradient(to right, #D6AA94, #EAD0C2);
+    /* background-color: #D6AA94; */
+    font-size: 1.3rem;
+    font-weight:bold;
+    border-radius: 8rem;
+}
+.background{
+    background-image: linear-gradient(180deg,   #F7F2FF, #ffffff );
+}
+.ratings i {
+    color: green;
+  }
+ 
+  .install span {
+    font-size: 12px;
+  }
+ 
+  .col-md-4 {
+    margin-top: 27px;
+  }

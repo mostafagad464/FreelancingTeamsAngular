@@ -1,9 +1,9 @@
 export class Wallet {
 
     constructor(
-        public Id : number,
-        public Money : number,
-        public Available : number
+        public id : number,
+        public money : number,
+        public available : number
     ){}
     
 }

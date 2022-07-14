@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { User } from 'src/app/_models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
+import { AddExperienceComponent } from '../add-experience/add-experience.component';
+import { EditexperienceComponent } from '../editexperience/editexperience.component';
 
 @Component({
   selector: 'app-experience',
@@ -9,14 +11,62 @@ import { UserProfileService } from 'src/app/_services/user-profile.service';
   styleUrls: ['./experience.component.css']
 })
 export class ExperienceComponent implements OnInit {
-  // user : User = new User()
-  sub:Subscription|null=null;
-  constructor(public userSer:UserProfileService) { 
+
+  freelancerExperiences:any[]=[];
+
+  constructor(public router:Router,public userSer:UserProfileService,public ac:ActivatedRoute,public modalService: NgbModal) { 
 
   }
 
   ngOnInit(): void {
-    this.sub=this.userSer.getUserInfoByid(1).subscribe(a=>console.log(a))
+
+    this.ac.params.subscribe(a => {
+      this.userSer.GetAllFreelancerExperiences(a['id']).subscribe(a => {
+        this.freelancerExperiences[1]=a;
+
+        console.log(this.freelancerExperiences[1])
+
+      })
+
+
+
+    })
+    
+
   }
 
+  openModalAdd() {
+    const modalRef = this.modalService.open(AddExperienceComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+      });
+      
+    modalRef.result.then((result:any) => {
+      console.log(result);
+    }, (reason:any) => {
+    });
+  }
+  openModalEdit() {
+    const modalRef = this.modalService.open(EditexperienceComponent,
+  
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+      });
+  
+    modalRef.result.then((result:any) => {
+      console.log(result);
+    }, (reason:any) => {
+    });
+  }
+  Delete(freelancerId: number, StartDate: Date) {
+    console.log(freelancerId,StartDate)
+    this.userSer.DeleteFreelancerExperience(freelancerId, StartDate).subscribe(a => {
+       this.ngOnInit()
+    })
+
+  }
 }
+
+

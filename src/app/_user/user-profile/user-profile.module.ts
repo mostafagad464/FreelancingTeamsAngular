@@ -12,6 +12,17 @@ import { EditeducationalInfoComponent } from './editeducational-info/editeducati
 import { EditpersonalInfoComponent } from './editpersonal-info/editpersonal-info.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { EditexperienceComponent } from './editexperience/editexperience.component';
+import { RouterModule } from '@angular/router';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { SkillsAndCertificateComponent } from './skills-and-certificate/skills-and-certificate.component';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { RatingModule } from 'primeng/rating';
+import { EditCertificatesComponent } from './edit-certificates/edit-certificates.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+import { AddExperienceComponent } from './add-experience/add-experience.component';
+import { FormsModule } from '@angular/forms';
+import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
 
 
 
@@ -28,13 +39,39 @@ import { EditexperienceComponent } from './editexperience/editexperience.compone
     EditeducationalInfoComponent,
     EditpersonalInfoComponent,
     ExperienceComponent,
-    EditexperienceComponent
+    EditexperienceComponent,
+    SkillsAndCertificateComponent,
+    CertificatesComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent,
+    AddPortfolioComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, 
+    RouterModule, 
+    NgbModalModule,
+    FormsModule
   ],
-  exports: [ExperienceComponent
-
+  exports: [
+    ExperienceComponent, 
+    PersonalInfoComponent, 
+    HeaderComponent, 
+    ProjectsComponent, 
+    SidebarComponent,
+    CommonModule, 
+    RouterModule, 
+    FormsModule, 
+    RatingModule, 
+    AppRoutingModule, 
+    NgbModalModule,
+    SkillsComponent,
+    CertificatesComponent,
+    SkillsAndCertificateComponent,
+    EditskillsComponent,
+    EditCertificatesComponent,
+    AddCertificateComponent,
+    AddExperienceComponent
   ]
 })
 export class UserProfileModule { }

@@ -1,0 +1,52 @@
+<div class="padding">
+    <div class="bg-light" style="height: 100rem;">
+    <nav class="navbar navbar-expand-lg element-gradient navS">
+        <div class="container mx-3">
+            <a href="#" class="navbar-brand light-md-text">FreelancingTeams</a>      
+            <button
+                 class="navbar-toggler"
+                 type="button"
+                 data-bs-toggle="collapse"
+                 data-bs-target="#navmenu"
+                 >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#Profile" class="nav-link light-sm-text">My profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link light-sm-text" [routerLink]="['/teamProfile',team.id]">Back to your team</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="center">
+    <h4 style="font-family:Georgia, 'Times New Roman', Times, serif ; font-weight: bold; font-size: 1.5rem;">Edit your team info!</h4>
+    <div class="custom-file">
+      <label class="custom-file-label" for="validatedCustomFile">Logo</label>
+      <input type="file" class="form-control  custom-file-input bg" value={{team.logo}} [(ngModel)]="UpdatedTeam.logo" id="validatedCustomFile" required>
+      <!-- <div class="invalid-feedback">Example invalid custom file feedback</div> -->
+    </div>
+    <div class="form-group">
+        <label for="exampleInputUsername1">Website</label>
+        <input class="form-control"  type="text" placeholder="Website" value={{team.webSite}} [(ngModel)]="UpdatedTeam.webSite"> 
+      </div>
+      <div class="form-group">
+        <label for="exampleInputUsername1">Description</label>
+        <input class="form-control" type="text" placeholder="Description" value={{team.description}} [(ngModel)]="UpdatedTeam.description"> 
+      </div>
+      <div class="form-group">
+        <label for="exampleInputUsername1">Leader's id</label>
+        <input class="form-control" type="text" placeholder="Leader's id" value={{team.leaderId}} [(ngModel)]="UpdatedTeam.leaderId"> 
+      </div>
+      <div class="form-group">
+        <label for="exampleInputUsername1">Name</label>
+        <input class="form-control" type="text" placeholder="Name" value={{team.name}} [(ngModel)]="UpdatedTeam.name"> 
+      </div>
+      <button type="submit" class="button-lg text-dark btn-lg" id="btn" style="font-weight:bold ;" (click)="Save()">Save changes</button>
+  </div>

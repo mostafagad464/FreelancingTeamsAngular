@@ -1,0 +1,30 @@
+<div class="container mt-2">
+        <div class="row">
+            <a class="nav-link btn btn-lg brown-text" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 4rem;" >Completed projects</a>                    
+            <div class="col-md-4" *ngFor="let item of projectsReviewsClients">
+                <div class="card p-3">
+                    <div class="d-flex flex-row mb-3"><img src="https://i.imgur.com/ccMhxvC.png" width="70">
+                    
+                    <div class="d-flex flex-column ml-2"><span>Project</span><span class="sm-font mb-2">{{item.project}}</span><span class="ratings"><p-rating  [(ngModel)]="item.rate" ngDefaultControl [cancel]="false" [readonly]="true" ></p-rating></span></div>
+                    </div>
+                    <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Client</p>
+                    <p class="card-text sm-font">{{item.client}}</p>
+                    <a href="#" class="btn btn-lg button">Check project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <a class="nav-link btn btn-lg brown-text" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 4rem;" >Recent projects</a>                    
+            <div class="col-md-4" *ngFor="let item of projectsClients">
+                <div class="card p-3">
+                    <div class="d-flex flex-row mb-3"><img src="https://i.imgur.com/ccMhxvC.png" width="70">
+                    <div class="d-flex flex-column ml-2"><span>Project</span><span class="sm-font mb-2">{{item.project}}</span></div>
+                    </div>
+                    <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Client</p>
+                    <p class="card-text sm-font">{{item.client}}</p>
+                </div>
+            </div>
+        </div>
+    </div>

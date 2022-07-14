@@ -1,3 +1,5 @@
+import { Review } from "./review";
+
 export class Project {
     constructor(
         public Id: number,
@@ -10,6 +12,5 @@ export class Project {
         public BudgetFrom: number,
         public BudgetTo : number,
         public ClientId : number
-
     ){}
 }
