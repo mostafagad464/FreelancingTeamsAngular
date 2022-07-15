@@ -51,8 +51,9 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img class="img-fluid rounded-start" alt="..."
-                        src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_509107562_2000133320009280346_351827.jpg">
+                    <img class="img-fluid rounded-start"
+                        src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}" 
+                        onerror="this.src='assets/images/team.png'">
                 </div>
                 <div id="mainInformation-team-{{team.id}}" class="col-md-8">
                     <div class="card-body">
