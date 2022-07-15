@@ -44,7 +44,7 @@ const routes: Routes = [
 
   { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard]  },
   { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard]  },
-  { path: "adddeal/:ProjId", component: AdddealComponent, canActivate: [AuthGuard]  },
+  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard]  },
 
   {
     path: "postComplain/:id",
@@ -191,7 +191,7 @@ const routes: Routes = [
   },
 
   { path: "userHome", component: ContainerComponent },
-  
+
   { path: "**", component: ErrorComponent }
 ]
 
