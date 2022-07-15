@@ -1,5 +1,5 @@
 <div  *ngFor="let item of projects">
-  <div style="margin: 100px;">
+  <div style="margin: 100px;" *ngIf="item.state == 'Available'">
     <div class="card text-center">
         <div class="card-header" style="font-weight: bold;">
           {{item.title}}
@@ -8,8 +8,9 @@
           <h5 class="card-title" style="font-weight: bold;">{{item.state}}</h5>
           <p class="card-text">{{item.description}}</p>
           <h5 class="card-title">{{item.minBudget}} $:{{item.maxBudget}} $</h5>
-          <button (click)="delete(item.id)" class="btn btn-danger">Delete</button>
+          <button (click)="delete(item.id)" class="btn btn-danger" *ngIf="item.clientId == clientid">Delete</button>
           <button class="btn btn-primary" style="margin: 20px;">Add Proposal</button>
+          <a [routerLink]="['details/',item.id]" class="btn btn-primary" style="margin: 20px;">Details</a>
         </div>
         <div class="card-footer text-muted">
           {{item.postingDate}}

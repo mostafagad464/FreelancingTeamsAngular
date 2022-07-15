@@ -28,126 +28,126 @@ import { ErrorComponent } from './shared/error/error.component';
 import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
 import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
 import { AdddealComponent } from './deal/adddeal/adddeal.component';
+import { AuthGuard } from './_helpers/auth.guard';
+import { MainInfoComponent } from './account/main-info/main-info.component';
 
 
 const routes: Routes = [
-  { path: "projects", loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
+
+  { path: "", component: HomeComponent, pathMatch: "full" },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent},
+  { path: "maininfo", component: MainInfoComponent},
+  { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
+  { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
+  { path: "chat", component: ChatComponent, canActivate: [AuthGuard] },
+  { path: "chat/:id", component: ChatComponent, canActivate: [AuthGuard] },
+  { path: "chat/team/:id", component: TeamChatComponent, canActivate: [AuthGuard] },
+
+  { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard]  },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard]  },
+  { path: "adddeal/:ProjId", component: AdddealComponent, canActivate: [AuthGuard]  },
+
   {
     path: "postComplain/:id",
     component: PostComplainsComponent,
-  
+    canActivate: [AuthGuard]
   },
-
-  { path: "", component: HomeComponent, pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent },
-  { path: "chat", component: ChatComponent },
-  { path: "chat/team/:id", component: TeamChatComponent },
-
-  { path: "projects", loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
-  { path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule)},
-  { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule)},
-  
-  { path: "profile/:id", component: HeaderComponent, children: 
-    [
-      { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal'},
-      { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal'},
-      { path: "educations/:id", component: EducationalInfoComponent, children: 
-        [
-          { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal'},
-          { path: "addEducation", component: AddEducationComponent, outlet: 'modal'}
-        ]
-      },
-      {
-        path: "addSkill/:id",
-        component: AddSkillComponent,
-        outlet: 'modal'
-      },
-
-      {
-        path: "educations/:id", component: EducationalInfoComponent,
-        children:
-          [
-            {
-              path: "editEducation/:id/:gradYear",
-              component: EditeducationalInfoComponent,
-              outlet: 'modal'
-            },
-
-            {
-              path: "addEducation",
-              component: AddEducationComponent,
-              outlet: 'modal'
-            }
-
-          ]
-      },
-      {
-        path: "portfolio/:id", component: ProjectsComponent,
-        children:
-          [
-            { path: "addPortofolio", component: AddPortfolioComponent }
-          ]
+  {
+    path: "projects",
+    loadChildren: () => import('./project/project.module').then(m => m.ProjectModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "freelancers",
+    loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "team",
+    loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "profile/:id", component: HeaderComponent, children:
+      [
+        { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal' },
+        { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal' },
+        {
+          path: "educations/:id", component: EducationalInfoComponent, children:
+            [
+              { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal' },
+              { path: "addEducation", component: AddEducationComponent, outlet: 'modal' }
+            ]
         },
-      { path: "portfolio/:id", component: ProjectsComponent,children:
-        [
-          { path: "addPortofolio", component: AddPortfolioComponent }
-        ]
+        {
+          path: "addSkill/:id",
+          component: AddSkillComponent,
+          outlet: 'modal'
+        },
+        {
+          path: "educations/:id", component: EducationalInfoComponent,
+          children:
+            [
+              {
+                path: "editEducation/:id/:gradYear",
+                component: EditeducationalInfoComponent,
+                outlet: 'modal'
+              },
 
-      },
+              {
+                path: "addEducation",
+                component: AddEducationComponent,
+                outlet: 'modal'
+              }
+            ]
+        },
+        {
+          path: "portfolio/:id", component: ProjectsComponent,
+          children:
+            [
+              // { path: ":id", component: ProjectsComponent },
+              { path: "addPortofolio", component: AddPortfolioComponent }
+            ]
+        },
+        {
+          path: "experiences/:id", component: ExperienceComponent, children:
+            [
+              { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal' },
+              { path: "addExperience", component: AddExperienceComponent, outlet: 'modal' }
+            ]
+        },
+        {
+          path: "certificates/:id", component: CertificatesComponent,
+          children:
+            [
+              {
+                path: "editCertificate/:id/:title",
+                component: EditCertificatesComponent,
+                outlet: 'modal'
+              },
+              {
+                path: "addCertificate",
+                component: AddCertificateComponent,
+                outlet: 'modal'
+              }
+            ]
+        },
 
-      { path: "experiences/:id", component: ExperienceComponent, children:
-          [
-            { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal'},
-            { path: "addExperience", component: AddExperienceComponent,outlet: 'modal'}
+        {
+          path: "personalInfo/:id", component: PersonalInfoComponent, children:
+            [
+              { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
+            ]
+        },
+        {
+          path: "certificates/:id", component: CertificatesComponent, children: [
+
           ]
-      },
-      {
-        path: "certificates/:id", component: CertificatesComponent,
-        children:
-          [
-            {
-              path: "editCertificate/:id/:title",
-              component: EditCertificatesComponent,
-              outlet: 'modal'
-            },
-            {
-              path: "addCertificate",
-              component: AddCertificateComponent,
-              outlet: 'modal'
-            }
-          ]
-      },
-
-      { path: "personalInfo/:id", component: PersonalInfoComponent, children: 
-        [
-          { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
-        ]
-      },
-      {
-        path: "certificates/:id", component: CertificatesComponent,children:[
-
-        ]
-      }
-    ]
+        }
+      ],
+      canActivate: [AuthGuard]
   },
-
-
-  { path: "login", component: LoginComponent },
-  { path: "", component: HomeComponent, pathMatch: "full" },
-  { path: "register", component: RegisterComponent },
-  { path: "skills/:id", component: SkillsComponent },
-  { path: "skills/edit/:id", component: EditskillsComponent },
-  { path: "chat", component: ChatComponent },
-  { path: "chat/:id", component: ChatComponent },
-  { path: "chat/team/:id", component: TeamChatComponent },
-  { path: "Addproposal/:ProjId", component: AddProposalComponent },
-  { path: "AllProposals/:ProjId", component: AllProposalsComponent },
-  { path: "adddeal/:ProjId", component: AdddealComponent },
-
-
   {
     path: "certificates/:id", component: CertificatesComponent,
     children:
@@ -162,7 +162,8 @@ const routes: Routes = [
           component: AddCertificateComponent,
           outlet: 'modal'
         }
-      ]
+      ],
+      canActivate: [AuthGuard]
   },
   {
     path: "experiences/:id", component: ExperienceComponent,
@@ -178,14 +179,12 @@ const routes: Routes = [
           component: AddExperienceComponent,
           outlet: 'modal'
         }
-      ]
+      ],
+      canActivate: [AuthGuard]
   },
-  {
-    path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
-  },
-  {path:"userHome",component:ContainerComponent},
 
-  { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule) },
+  { path: "userHome", component: ContainerComponent },
+  
   { path: "**", component: ErrorComponent }
 ]
 

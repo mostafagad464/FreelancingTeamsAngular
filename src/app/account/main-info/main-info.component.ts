@@ -6,6 +6,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
 import { CountriesService } from 'src/app/_services/countries.service';
 import { Freelancer } from 'src/app/_models/freelancer';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -17,8 +18,8 @@ const helper = new JwtHelperService();
 export class MainInfoComponent implements OnInit {
 
   account: Account = new Account(0, null, "", "", "", "", "", "",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""));
+    new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], "")));
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], ""));
   bio_Pic = false;
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
@@ -28,7 +29,10 @@ export class MainInfoComponent implements OnInit {
   n = 1;
 
 
-  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService) { }
+  constructor(public AccountService: AccountService,
+    public UserService: UserService,
+    public CountriesService: CountriesService,
+    private router: Router) { }
 
   ngOnInit(): void {
     let id = helper.decodeToken(sessionStorage.getItem("access_token")?.toString()).Id;
@@ -39,8 +43,8 @@ export class MainInfoComponent implements OnInit {
     this.UserService.getUser(parseInt(id)).subscribe(u => {
       this.user = u;
       this.user.birthDate = this.user.birthDate?.split('T')[0] ? this.user.birthDate?.split('T')[0] : null;
-      if(this.user.country!=null){
-        this.CountriesService.getCountryDialCode(this.user.country).subscribe(d=>{
+      if (this.user.country != null) {
+        this.CountriesService.getCountryDialCode(this.user.country).subscribe(d => {
           this.code = d.data.dial_code;
         }, err => console.log(err))
       }
@@ -56,7 +60,7 @@ export class MainInfoComponent implements OnInit {
     this.CountriesService.getCountryCities(E.target.value).subscribe(c => {
       this.states = c.data;
     }, err => console.log(err));
-    this.CountriesService.getCountryDialCode(E.target.value).subscribe(d=>{
+    this.CountriesService.getCountryDialCode(E.target.value).subscribe(d => {
       this.code = d.data.dial_code;
     }, err => console.log(err))
   }
@@ -80,6 +84,7 @@ export class MainInfoComponent implements OnInit {
         this.UserService.EditUser(this.user).subscribe(u => {
           this.user = u;
           this.bio_Pic = true;
+          // this.router.navigate(['portfolio/', this.user.id]);
         })
       })
     }
@@ -95,11 +100,13 @@ export class MainInfoComponent implements OnInit {
 
           this.UserService.addImage(this.user.id, fd).subscribe(u => {
             this.user.image = u.image;
-            // this.Router.navigate(['']);
+            // this.router.navigate(['portfolio/', this.user.id]);
           })
         }
       })
     }
+    // this.router.navigate(['portfolio/',this.user.id]);
+
   }
 
   GoToProfile() {
