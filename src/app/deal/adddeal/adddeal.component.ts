@@ -33,8 +33,8 @@ export class AdddealComponent implements OnInit {
   ADD(){
 this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
   // console.log(a);
-  console.log("Comp");
-  // this.IsNotCompleted=false;
+  // console.log("Comp");
+  this.IsNotCompleted=false;
 
 })
   }
@@ -60,12 +60,12 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
     console.log("user ID : "+this.ClientId);
 
     this.deal.projectId = this.ar.snapshot.params['ProjId'];
-    this.deal.teamtId = this.ar.snapshot.params['TeamId'];
+    this.deal.teamId = this.ar.snapshot.params['TeamId'];
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (
           element.projectId == this.deal.projectId &&
-          element.teamId == this.deal.teamtId
+          element.teamId == this.deal.teamId
         ) {
           this.ReverseCalculations(Number(element.duration));
           this.deal.duration = Number(element.duration);
@@ -73,7 +73,7 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
         }
       });
     });
-    this.teamser.getTeam(this.deal.teamtId).subscribe(a=>{
+    this.teamser.getTeam(this.deal.teamId).subscribe(a=>{
       this.TeamName=a.name;
     })
     this.ProjService.getProject(this.deal.projectId).subscribe(a=>{
