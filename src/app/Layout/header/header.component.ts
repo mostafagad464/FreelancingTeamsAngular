@@ -14,9 +14,11 @@ import { PostComplainsComponent } from 'src/app/_user/user-profile/post-complain
 })
 export class HeaderComponent implements OnInit {
 
+  profileId:Number=0;
 
   account:Account = new Account(0, null, "","","","","","",null);
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, public modalService: NgbModal,
+    ) { }
 
   ngOnInit(): void {
     console.log(this.account.id)
@@ -26,7 +28,7 @@ export class HeaderComponent implements OnInit {
     {
       this.account.id = this.authService.getCurrentUser()?.id;
     }
-        this.profileId=this.authserv.getCurrentUser()?.id;
+        this.profileId=this.authService.getCurrentUser()?.id;
     console.log(" this.profileId")
     console.log( this.profileId)
     
@@ -34,11 +36,8 @@ export class HeaderComponent implements OnInit {
   logout()
   {
     this.authService.DeleteToken();
-  profileId:Number=0;
-  constructor(
-    public modalService: NgbModal,
-    public authserv:AuthService
-   ) { }
+  }
+
 
   // openModalAdd(){
 
