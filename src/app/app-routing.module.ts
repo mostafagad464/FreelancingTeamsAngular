@@ -22,9 +22,15 @@ import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.comp
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
 import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
+import { PostComplainsComponent } from './_user/user-profile/post-complains/post-complains.component';
 
 
 const routes: Routes = [
+  {
+    path: "postComplain/:id",
+    component: PostComplainsComponent,
+  
+  },
 
  {path:"projects",loadChildren:()=>import('./project/project.module').then(m=>m.ProjectModule)},
   {
@@ -34,6 +40,8 @@ const routes: Routes = [
         component: EditskillsComponent,
         outlet: 'modal'
       },
+     
+  
       {
         path: "addSkill/:id",
         component: AddSkillComponent,
@@ -84,6 +92,22 @@ const routes: Routes = [
           ]
 
       },
+      {
+        path: "certificates/:id", component: CertificatesComponent,
+        children:
+          [
+            {
+              path: "editCertificate/:id/:title",
+              component: EditCertificatesComponent,
+              outlet: 'modal'
+            },
+            {
+              path: "addCertificate",
+              component: AddCertificateComponent,
+              outlet: 'modal'
+            }
+          ]
+      },
      
       {
         path: "personalInfo/:id", component: PersonalInfoComponent, children: [
@@ -97,47 +121,16 @@ const routes: Routes = [
   },
 
   { path: "login", component: LoginComponent },
-  { path: "", component:HomeComponent, pathMatch: "full" },
+  { path: "", component:HomeComponent, pathMatch: "full"},
   { path: "register", component: RegisterComponent },
   { path: "skills/:id", component: SkillsComponent },
   { path: "skills/edit/:id", component: EditskillsComponent },
   { path:"chat", component: ChatComponent},
   { path:"chat/team/:id", component: TeamChatComponent},
 
-  {
-    path: "certificates/:id", component: CertificatesComponent,
-    children:
-      [
-        {
-          path: "editCertificate/:id/:title",
-          component: EditCertificatesComponent,
-          outlet: 'modal'
-        },
-        {
-          path: "addCertificate",
-          component: AddCertificateComponent,
-          outlet: 'modal'
-        }
-      ]
-  },
-  {
-    path: "experiences/:id", component: ExperienceComponent,
-    children:
-      [
-        {
-          path: "editExperience/:id/:startDate",
-          component: EditexperienceComponent,
-          outlet: 'modal'
-        },
 
-        {
-          path: "addExperience",
-          component: AddExperienceComponent,
-          outlet: 'modal'
-        }
-
-      ]
-      },
+  
+ 
 
 
 
