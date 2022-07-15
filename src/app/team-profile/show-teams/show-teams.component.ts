@@ -37,6 +37,7 @@ export class ShowTeamsComponent implements OnInit {
 
     this.teamService.getTeams().subscribe(
       t => {
+        console.log(t);
         this.route.params.subscribe(a => this.id = a['id']);
         if (this.id > 0) {
           for (let i = 0; i < t.length; i++) {
