@@ -27,6 +27,7 @@ export class CreateTeamComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
+    this.authService.DeleteToken();
   }
 
   async createTeam()
@@ -40,15 +41,29 @@ export class CreateTeamComponent implements OnInit {
           this.team.walletId = w.id;
         }
       )
+
       .add(()=>{
+        
         this.team.leaderId = this.authService.getCurrentUser()?.id;
         this.teamService.createTeam(this.team).subscribe(
           t => {
             console.log(t);
+            
+            if (this.Image) {
+              let fd = new FormData();
+              fd.append("files", this.Image, this.Image.name);
+              console.log(this.Image.name);
+    
+              this.teamService.addImage(t.id, fd).subscribe(u => {
+                this.team.logo = u.image;
+              })
+            }
+
             this.router.navigate(['freelancers/'+t.id]);
           }
         )
       })
+
     }
     else
     {
@@ -56,6 +71,17 @@ export class CreateTeamComponent implements OnInit {
       this.teamService.createTeam(this.team).subscribe(
         t => {
           console.log(t);
+          
+          if (this.Image) {
+            let fd = new FormData();
+            fd.append("files", this.Image, this.Image.name);
+            console.log(this.Image.name);
+  
+            this.teamService.addImage(t.id, fd).subscribe(u => {
+              this.team.logo = u.image;
+            })
+          }
+
           this.router.navigate(['freelancers/'+t.id]);
         }
       )
@@ -72,5 +98,6 @@ export class CreateTeamComponent implements OnInit {
         this.imageurl = reader.result?.toString() ? reader.result.toString() : this.imageurl;
       }
     }
+    console.log(this.Image)
   }
 }

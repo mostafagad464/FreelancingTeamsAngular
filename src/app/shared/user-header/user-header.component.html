@@ -1,3 +1,4 @@
+<ng-template [ngIf]="user.id != 0">
 <nav class="navbar navbar-expand-lg fixed-top trans-navigation" >
     <div class="container">
         <img src="../../../assets/images/squad.jpg" alt="" style="width: 45px; height:45px; border-radius: 50%; position: fixed;" class="img-fluid b-logo">
@@ -15,34 +16,20 @@
         <div class="collapse navbar-collapse justify-content-end" id="mainNav">
             <ul class="navbar-nav ">
                 <li class="nav-item dropdown">
+                    
+                    <ng-template [ngIf]="user.freelancer">
                     <a class="nav-link dropdown-toggle" href="#!" id="navbarWelcome" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Home <i class="fas fa-chevron-down"></i>
+                        My Teams <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarWelcome">
-                        <li><a class="dropdown-item" href="index.html">Home-1</a></li>
-                        <li><a class="dropdown-item" href="index-2.html">Home-2</a></li>
-                        <li><a class="dropdown-item" href="index-3.html">Onepage</a></li>
-
-                        <li class="dropdown dropdown-submenu dropright">
-                            <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0301" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdown0301">
-                                <li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-                                <li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dropdown-submenu dropleft">
-                            <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-
-                            <ul class="dropdown-menu" aria-labelledby="dropdown0501">
-                                <li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-                                <li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-                            </ul>
-                        </li>
+                        <ng-template ngFor let-team [ngForOf]="teams">
+                        <li><a class="dropdown-item" [routerLink]="['team//teamProfile',team.id]">
+                            <img src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}"alt="User" style="width: 20 px; height: 20px" onerror="this.src='assets/images/team.png'">
+                            {{team.name}}</a></li>
+                        </ng-template>
                     </ul>
+                </ng-template>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link smoth-scroll" href="about.html">About</a>
@@ -63,5 +50,6 @@
         </div>
     </div>
 </nav>
-
+<br><br><br>
+</ng-template>
 <!--MAIN HEADER AREA END -->

@@ -62,6 +62,7 @@ export function tokenGetter() {
     RouterModule,
     LayoutModule,
     FreelancersModule,
+    SharedModule
  ],
   providers: [
     {
