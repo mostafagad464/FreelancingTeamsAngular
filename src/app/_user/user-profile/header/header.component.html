@@ -6,7 +6,6 @@
             <!-- Profile -->
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-
                     <div>
                         <p class="w3-center"><img src="{{imageurl}}" class="w3-circle" style="height:150px;width:150px"
                                 alt="Avatar"></p>
@@ -23,9 +22,14 @@
                                 (input)="onFileChanged($event)" />
                         </div>
                     </div>
-                    <p class="w3-center" *ngIf="profileId!=userId"><a class="btn btn-primary">Message</a></p>
+                    <p class="w3-center" *ngIf="profileId!=userId">
+                        <a [routerLink]="['/chat/',userId]" class="btn btn-primary">Message</a>
+                    </p>
+
+                    <!-- Delete it -->
                     <p class="w3-center"><a class="btn btn-primary" href="http://localhost:4200/profile/28">Another
-                            profile</a></p>
+                            profile</a>
+                        </p>
                     <hr>
                     <p *ngIf="accountInfo.user!.freelancer"><i
                             class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
@@ -41,12 +45,15 @@
             <!-- Accordion -->
             <div class="w3-card w3-round">
                 <div class="w3-white">
-                    <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                            class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Teams</button>
+                    <button (click)="myTeam()" class="w3-button w3-block w3-theme-l1 w3-left-align">
+                        <i class="fa fa-circle-o-notch fa-fw w3-margin-right">
+                        </i> 
+                        My Teams
+                    </button>
                     <div id="Demo1" class="w3-hide w3-container">
                         <p>Some text..</p>
                     </div>
-                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+                    <button (click)="joinTeam()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                             class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Join Team</button>
                     <div id="Demo2" class="w3-hide w3-container">
                         <p>Some other text..</p>

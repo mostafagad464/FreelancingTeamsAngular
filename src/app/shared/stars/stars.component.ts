@@ -13,10 +13,10 @@ export class StarsComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(){
-    // this.cropwidth=this.rate *80/5;
+    this.cropwidth=this.rate *75/5;
   }
   ngOnInit(): void {
-    this.cropwidth=this.rate *80/5;
+    this.cropwidth=this.rate *75/5;
     
   }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Freelancer } from '../_models/freelancer';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -14,5 +15,8 @@ export class FreelancerService {
 
   getFreelancers(){
     return this.http.get<User[]>(this.baseUrl);
+  }
+  getFreelancer(id:number){
+    return this.http.get<Freelancer>(this.baseUrl+id);
   }
 }
