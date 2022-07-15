@@ -108,7 +108,7 @@ const routes: Routes = [
   { path:"chat/team/:id", component: TeamChatComponent},
   { path: "Addproposal/:ProjId", component: AddProposalComponent },
   { path: "AllProposals/:ProjId", component: AllProposalsComponent  },
-  { path: "adddeal/:ProjId", component: AdddealComponent  },
+  { path: "adddeal/:ProjId/:TeamId", component: AdddealComponent  },
 
 
   {
