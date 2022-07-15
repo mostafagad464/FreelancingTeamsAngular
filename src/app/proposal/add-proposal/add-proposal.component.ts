@@ -27,7 +27,6 @@ teamsNames:string[]=[];
   changeTeam(event: any) {
     this.prop.teamId= this.teamsIds[event.target.value]
     console.log(this.TeamName);
-    // this.prop.teamId=this.teamser.GetTeamIdByName(this.TeamName)
   }
   prop: Proposal = new Proposal(
     0,
