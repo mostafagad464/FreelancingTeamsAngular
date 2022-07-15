@@ -85,6 +85,7 @@ export class ShowProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
         this.team = a;
@@ -194,8 +195,9 @@ export class ShowProjectsComponent implements OnInit {
           for (var c = 0; c < this.completed.length; c++) {
             for (var e = 0; e < this.projects.length; e++) {
 
-              if (this.completed[c] == this.projects[e].id) {
-                this.projectsNames.push(this.projects[e].title);
+            if(this.completed[c] == this.projects[e].id){
+              this.projectsNames.push(this.projects[e].title);
+
               }
             }
           }

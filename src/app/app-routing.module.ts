@@ -18,6 +18,7 @@ import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 import { HomeComponent } from './Layout/home/home.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
+import { ContainerComponent } from './home/container/container.component';
 import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
@@ -124,6 +125,11 @@ const routes: Routes = [
         [
           { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
         ]
+      },
+      {
+        path: "certificates/:id", component: CertificatesComponent,children:[
+
+        ]
       }
     ]
   },
@@ -175,8 +181,10 @@ const routes: Routes = [
       ]
   },
   {
-    path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule)
+    path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
   },
+  {path:"userHome",component:ContainerComponent},
+
   { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule) },
   { path: "**", component: ErrorComponent }
 ]

@@ -44,8 +44,8 @@ const routes: Routes = [
         component: AnnounceComponent,
       },
 
-    ]
-  },
+  ]},
+ 
 
 
 
@@ -59,6 +59,7 @@ const routes: Routes = [
         // outlet: 'showMember'
       },
     ]
+  
 
   },
   {
