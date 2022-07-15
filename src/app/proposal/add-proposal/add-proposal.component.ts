@@ -18,13 +18,15 @@ import { TeamService } from 'src/app/_services/team.service';
 export class AddProposalComponent implements OnInit {
   teamsIds: number[] = [];
 teamsNames:string[]=[];
-  TeamId: number = 1; //Temp
+  TeamId: number = 0; //Temp
   ProjId: number = -1;
   ProjName: string = '';
   ProjDesc: string = '';
+  TeamName: string = '';
   //
   changeTeam(event: any) {
-    this.prop.teamId = event.target.value;
+    this.prop.teamId= this.teamsIds[event.target.value]
+    console.log(this.TeamName);
   }
   prop: Proposal = new Proposal(
     0,
@@ -76,31 +78,29 @@ teamsNames:string[]=[];
         console.log('Project Not Found');
 
         this.ProjId = -1;
+
       }
     });
+    console.log(this.prop)
   }
 
-  //-----
-  getteamname(id:number){
+//-------------------------------------Additional Methods-------------------------------------
 
+//------------------------
+  getteamname(id:number){
     this.teamser.getTeam(id).subscribe(a=>{
         this.teamsNames.push(a.name);
     })
 
   }
-
-
-
-
-
-  //------------
+//---------------------------------
   getDayDiff(startDate: Date, endDate: Date): number {
     const msInDay = 24 * 60 * 60 * 1000;
 
     return Math.round(Math.abs(Number(endDate) - Number(startDate)) / msInDay);
   }
-  //---
-  CalcDuration() {
+//---------------------------------
+CalcDuration() {
     var today: Date = new Date();
     this.prop.duration = this.getDayDiff(
       new Date(today),
@@ -108,11 +108,13 @@ teamsNames:string[]=[];
     ).toString();
     console.log(this.prop.duration);
   }
-  //---
+  //---------------------------------
   ADD() {
     this.propSer.AddProposal(this.prop).subscribe((a) => {
       console.log('Added');
       console.log(a.description);
+    console.log(this.prop)
+
     });
   }
 

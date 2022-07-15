@@ -82,6 +82,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.freelancerId = this.authService.getCurrentUser()?.id;
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
+        
         this.team = a;
         console.log(this.team);
         console.log(this.team.creationDate)

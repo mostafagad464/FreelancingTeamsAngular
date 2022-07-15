@@ -1,8 +1,12 @@
 <nav class="navbar navbar-expand-lg fixed-top trans-navigation">
     <div class="container">
+
+        <img src="../../../assets/images/squad.jpg" alt="" style="width: 45px; height:45px; border-radius: 50%; position: fixed;" class="img-fluid b-logo">
         <a class="navbar-brand" [routerLink]="['']">
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            
+
             Squad
-            <!-- <img src="../../../assets/images/logo.png" alt="" class="img-fluid b-logo"> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav"
             aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,4 +128,32 @@
                             </ul>
                         </li>
                     </ul>
+
                 </li> -->
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link smoth-scroll" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link smoth-scroll" href="service.html">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link smoth-scroll" href="pricing.html">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link smoth-scroll" href="blog.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link smoth-scroll" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="this.profileId!=undefined" [routerLink]="['/postComplain/'+profileId]"  class="nav-link smoth-scroll" href="postcomplain.html">Post Complain</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--MAIN HEADER AREA END -->
+

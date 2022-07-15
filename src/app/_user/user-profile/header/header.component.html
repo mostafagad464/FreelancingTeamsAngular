@@ -35,7 +35,7 @@
                             class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.freelancerNavigation!.specialization}}</p>
                     <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{accountInfo.user!.state+",
-                        "+accountInfo.user!.country}}</p>
+                        "+accountInfo.user!.country}}"</p>
                     <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.birthDate|date}}</p>
                 </div>
@@ -133,10 +133,10 @@
 
                             </div>
                             <!-- <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>  -->
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 <div class="profile-head">
 
-                                    <p class="proile-rating">RANKINGS : <span>{{accountInfo.user!.rate}}</span></p>
+                                    <h2 class="proile-rating">RANKINGS : <p-rating value="#{ratingView.rating3}" [readonly]="true" [(ngModel)]="accountInfo.user!.rate" ></p-rating></h2>
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link" id="personal-info" data-toggle="tab" routerLink=""

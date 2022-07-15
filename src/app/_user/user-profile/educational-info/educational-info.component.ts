@@ -37,9 +37,10 @@ export class EducationalInfoComponent implements OnInit {
      console.log(a['id'])
  
     })
-    this.profileId=this.authServ.getCurrentUser()?.id;
-    this.sub1=this.ac.params.subscribe(x=>{
-      this.userId=x['id'];
+   this.userId=this.authServ.getCurrentUser()?.id;
+    this.sub1=this.ac.params.subscribe(a=>{
+      this.profileId=a['id']
+
       console.log("this.userId")
       console.log(this.userId)
       console.log("this.profileId")

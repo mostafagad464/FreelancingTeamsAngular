@@ -6,6 +6,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -20,7 +22,8 @@ import { ContactComponent } from './contact/contact.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule, 
+    NgbModalModule,
   ],
   exports: [
     HomeComponent,

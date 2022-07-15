@@ -39,4 +39,8 @@ export class AuthService {
     sessionStorage.removeItem("access_token");
   }
 
+  DeleteToken(){
+    sessionStorage.removeItem("access_token")
+  }
+
 }
