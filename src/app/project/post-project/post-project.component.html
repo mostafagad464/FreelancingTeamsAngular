@@ -1,31 +1,26 @@
-<form (submit)="create()">
+<div style="margin-left: 200px;margin-right: 200px;margin-top: 50px;">
+  <form (submit)="create()">
     <div class="form-group">
       <label for="exampleFormControlInput1">Title</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="pro.title"/>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">State</label>
-        <input type="number" class="form-control" id="exampleFormControlInput2" [(ngModel)]="pro.state">
-      </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Average Pay</label>
-      <input type="number" class="form-control" id="exampleFormControlInput4" [(ngModel)]="pro.aVGBid">
+      <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="pro.title" name="Title"/>
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Descrption</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="pro.description"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="pro.description" name="Descrption"></textarea>
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Duration</label>
-        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" [(ngModel)]="pro.duration"></textarea>
+        <input type="number" class="form-control" id="exampleFormControlInput5" [(ngModel)]="pro.duration" name="Duration">
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Budget From</label>
-        <input type="number" class="form-control" id="exampleFormControlInput5" [(ngModel)]="pro.budgetFrom">
+        <input type="number" class="form-control" id="exampleFormControlInput6" [(ngModel)]="pro.minBudget" name="from">
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Budget To</label>
-        <input type="number" class="form-control" id="exampleFormControlInput6" [(ngModel)]="pro.budgetTo">
+        <input type="number" class="form-control" id="exampleFormControlInput7" [(ngModel)]="pro.maxBudget" name="to">
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
   </form>
+
+</div>
