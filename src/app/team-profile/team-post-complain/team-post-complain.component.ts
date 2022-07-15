@@ -34,7 +34,7 @@ export class TeamPostComplainComponent implements OnInit {
     
     console.log( "this.newComplain");
     console.log( this.newComplain);
-    this.newComplain.complainingUserId=this.profileId
+   
     this.UserSer.postComplain(this.newComplain).subscribe()
     this.router.navigate(['/teamProfile/',this.profileId])
 
