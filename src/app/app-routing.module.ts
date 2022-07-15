@@ -22,6 +22,7 @@ import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.comp
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
 import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
+import { PostComplainsComponent } from './_user/user-profile/post-complains/post-complains.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { AddProposalComponent } from './proposal/add-proposal/add-proposal.component';
 import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
@@ -29,6 +30,11 @@ import { AdddealComponent } from './deal/adddeal/adddeal.component';
 
 
 const routes: Routes = [
+  {
+    path: "postComplain/:id",
+    component: PostComplainsComponent,
+  
+  },
 
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "login", component: LoginComponent },
@@ -52,16 +58,38 @@ const routes: Routes = [
           { path: "addEducation", component: AddEducationComponent, outlet: 'modal'}
         ]
       },
+      {
+        path: "addSkill/:id",
+        component: AddSkillComponent,
+        outlet: 'modal'
+        },
       { path: "portfolio/:id", component: ProjectsComponent,children:
         [
           { path: "addPortofolio", component: AddPortfolioComponent }
         ]
+
       },
 
       { path: "experiences/:id", component: ExperienceComponent, children:
           [
             { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal'},
             { path: "addExperience", component: AddExperienceComponent,outlet: 'modal'}
+          ]
+      },
+      {
+        path: "certificates/:id", component: CertificatesComponent,
+        children:
+          [
+            {
+              path: "editCertificate/:id/:title",
+              component: EditCertificatesComponent,
+              outlet: 'modal'
+            },
+            {
+              path: "addCertificate",
+              component: AddCertificateComponent,
+              outlet: 'modal'
+            }
           ]
       },
 
@@ -72,6 +100,23 @@ const routes: Routes = [
       }
     ]
   },
+
+
+  { path: "login", component: LoginComponent },
+  { path: "", component:HomeComponent, pathMatch: "full"},
+  { path: "register", component: RegisterComponent },
+  { path: "skills/:id", component: SkillsComponent },
+  { path: "skills/edit/:id", component: EditskillsComponent },
+  { path:"chat", component: ChatComponent},
+  { path:"chat/team/:id", component: TeamChatComponent},
+  { path: "Addproposal/:ProjId", component: AddProposalComponent },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent  },
+  { path: "adddeal/:ProjId/:TeamId", component: AdddealComponent  },
+
+  {
+    path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
+  }
+
   { path: "certificates/:id", component: CertificatesComponent, children:
     [
       { path: "editCertificate/:id/:title", component: EditCertificatesComponent, outlet: 'modal'},

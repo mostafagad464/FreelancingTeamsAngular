@@ -19,8 +19,13 @@ import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AnnounceComponent } from './announce/announce.component';
+import { TeamPostComplainComponent } from './team-post-complain/team-post-complain.component';
 
 const routes: Routes = [
+  {
+    path: 'teamPostComplain/:id',
+    component: TeamPostComplainComponent,
+  },
   {
     path: 'teamProfile/:id',
     component: HeaderComponent,
@@ -29,6 +34,7 @@ const routes: Routes = [
         path: 'showMember/:id',
         component: ShowMembersComponent,
       },
+   
       {
         path: 'showProjects/:id',
         component: ShowProjectsComponent,
@@ -111,7 +117,8 @@ const routes: Routes = [
     CreateTeamComponent,
     JoinTeamComponent,
     ShowTeamsComponent,
-    SearchInTeamsPipe
+    SearchInTeamsPipe,
+    TeamPostComplainComponent
 
   ],
   imports: [

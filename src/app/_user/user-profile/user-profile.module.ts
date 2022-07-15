@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
 import { AddSkillComponent } from './add-skill/add-skill.component';
 import { AddEducationComponent } from './add-education/add-education.component';
+import { PostComplainsComponent } from './post-complains/post-complains.component';
 
 
 
@@ -49,7 +50,8 @@ import { AddEducationComponent } from './add-education/add-education.component';
     AddExperienceComponent,
     AddPortfolioComponent,
     AddSkillComponent,
-    AddEducationComponent
+    AddEducationComponent,
+    PostComplainsComponent
   ],
   imports: [
     CommonModule, 
@@ -80,7 +82,8 @@ import { AddEducationComponent } from './add-education/add-education.component';
     AddSkillComponent,
     EducationalInfoComponent,
     EditeducationalInfoComponent,
-    AddEducationComponent
+    AddEducationComponent,
+    PostComplainsComponent
   ]
 })
 export class UserProfileModule { }

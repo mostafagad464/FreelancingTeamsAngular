@@ -20,6 +20,7 @@ export class AddEducationComponent implements OnInit {
 
   ngOnInit(): void {
     
+    
     this.ac.params.subscribe(a => {
    
       this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
