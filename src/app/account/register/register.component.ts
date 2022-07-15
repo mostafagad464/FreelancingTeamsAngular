@@ -8,6 +8,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { MainInfoComponent } from '../main-info/main-info.component';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Freelancer } from 'src/app/_models/freelancer';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -28,7 +29,11 @@ export class RegisterComponent implements OnInit {
   isChecked = false;
   type = "";
 
-  constructor(public AccountService: AccountService, public UserService: UserService, public modalService: NgbModal,public AuthService: AuthService) { }
+  constructor(public AccountService: AccountService, 
+    public UserService: UserService, 
+    public modalService: NgbModal,
+    public AuthService: AuthService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -77,6 +82,8 @@ export class RegisterComponent implements OnInit {
           this.showUN = true;
           this.ButtonText = "Sign Up";
         })
+        this.login(this.account.username, this.account.password);
+        this.router.navigate(['/maininfo']);
       }
       else {
         if (this.isChecked) {
@@ -89,12 +96,12 @@ export class RegisterComponent implements OnInit {
             console.log(this.user);
             this.UserService.addUser(this.user).subscribe(u=>{
               console.log(u);
-              this.login(this.account.username, this.account.password);
-              
+              // this.login(this.account.username, this.account.password);
             })
           })
         }
-        
+        this.login(this.account.username, this.account.password);
+        this.router.navigate(['/maininfo']);
       }
 
     }
@@ -110,7 +117,8 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
-      this.openModal();
+      // this.openModal();
+      // this.router.navigate(['maininfo']);
     },
     error=> {
       console.log(error.error)}

@@ -29,6 +29,7 @@ import { AddProposalComponent } from './proposal/add-proposal/add-proposal.compo
 import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.component';
 import { AdddealComponent } from './deal/adddeal/adddeal.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { MainInfoComponent } from './account/main-info/main-info.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent},
+  { path: "maininfo", component: MainInfoComponent},
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
   { path: "chat", component: ChatComponent, canActivate: [AuthGuard] },
@@ -83,7 +85,6 @@ const routes: Routes = [
           component: AddSkillComponent,
           outlet: 'modal'
         },
-
         {
           path: "educations/:id", component: EducationalInfoComponent,
           children:
@@ -99,24 +100,16 @@ const routes: Routes = [
                 component: AddEducationComponent,
                 outlet: 'modal'
               }
-
             ]
         },
         {
           path: "portfolio/:id", component: ProjectsComponent,
           children:
             [
+              // { path: ":id", component: ProjectsComponent },
               { path: "addPortofolio", component: AddPortfolioComponent }
             ]
         },
-        {
-          path: "portfolio/:id", component: ProjectsComponent, children:
-            [
-              { path: "addPortofolio", component: AddPortfolioComponent }
-            ]
-
-        },
-
         {
           path: "experiences/:id", component: ExperienceComponent, children:
             [

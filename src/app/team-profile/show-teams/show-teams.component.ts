@@ -12,6 +12,7 @@ import { TeamMembersService } from '../team-members.service';
   templateUrl: './show-teams.component.html',
   styleUrls: ['./show-teams.component.css']
 })
+
 export class ShowTeamsComponent implements OnInit {
 
   constructor(private teamService: TeamService,
@@ -28,12 +29,14 @@ export class ShowTeamsComponent implements OnInit {
   id: number = 0;
   flag:boolean = false;
   isClient:boolean=false;
+  userId:number=0;
 
   ngOnInit(): void {
     this.userService.getUser(this.authService.getCurrentUser()?.id).subscribe(u=>{
       this.isClient = u.client;
     })
     this.teamMember.freelancerId = this.authService.getCurrentUser()?.id;
+    this.userId = this.authService.getCurrentUser()?.id;
 
     this.teamService.getTeams().subscribe(
       t => {
@@ -57,7 +60,6 @@ export class ShowTeamsComponent implements OnInit {
       }
     )
   }
-
   // Add Notification
   joinTeam(teamId: number) {
     this.teamMember.teamId = teamId;
@@ -65,6 +67,4 @@ export class ShowTeamsComponent implements OnInit {
       a => console.log(a)
     )
   }
-
-
 }
