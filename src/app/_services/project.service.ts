@@ -15,6 +15,7 @@ export class ProjectService {
    }
 
    createProject(pro:Project){
+    console.log(this.http.post<Project>(this.baseurl,pro));
      return this.http.post<Project>(this.baseurl,pro)
    }
 
