@@ -51,6 +51,7 @@ export class AdddealComponent implements OnInit {
           element.projectId == this.deal.projectId &&
           element.teamId == this.deal.teamtId
         ) {
+          this.ReverseCalculations(Number(element.duration));
           this.deal.duration = Number(element.duration);
           if (element.money != null) this.deal.money = element.money;
         }
@@ -58,7 +59,28 @@ export class AdddealComponent implements OnInit {
     });
   }
 
+//------
+ReverseCalculations(Duration:number) {
+  var today: Date = new Date();
+  this.DeliverDate = this.addDays(
+    new Date(today),
+    Duration
+  )
+  // console.log(durationstring);
+}
+//----------------
+addDays(date: Date, days: number): Date {
+  date.setDate(date.getDate() + days);
+  console.log(date)
+  return date;
+}
 
+// GetDate(startDate: Date, duration: number){
+//   const msInDay = 24 * 60 * 60 * 1000;
+
+//   let r= Math.round(Math.abs(Number(startDate) +duration) / msInDay);
+//   console.log(r)
+// }
   //-----------------
   CalcDuration() {
     var today: Date = new Date();
