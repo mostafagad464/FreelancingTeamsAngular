@@ -13,7 +13,7 @@ import { TeamService } from 'src/app/_services/team.service';
 export class AllProposalsComponent implements OnInit {
   ProjId: number = 0;
   Proposals: Proposal[] = [new Proposal(0, 0, 0, '', null, new Date(), '')];
-  teamsIds: number[] = [];
+  teamsIds: number[] =[];
   teamsNames: string[] = [];
 
   constructor(
@@ -27,8 +27,9 @@ export class AllProposalsComponent implements OnInit {
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (element.projectId == this.ProjId) {
-          this.Proposals.push(element);
           this.teamsIds.push(element.teamId);
+          this.Proposals.push(element);
+          this.getNames(element.teamId);
           // console.log(element);
         }
       });
@@ -37,17 +38,22 @@ export class AllProposalsComponent implements OnInit {
       console.log(this.Proposals);
       console.log(this.Proposals.length);
     });
-    this.getNames();
+
+    console.log(this.teamsNames)
     console.log(this.teamsIds)
   }
-  getNames(){
-    for (let i=0;i<this.teamsIds.length;i++){
-      this.teamSer.getTeam(this.teamsIds[i]).subscribe(a=>{
-        this.teamsNames.push(a.name);
-        console.log(a.name)
-      })
+  getNames(Id:number){
 
-    }
+      this.teamSer.getTeam(Id).subscribe(a=>{
+        this.teamsNames.push(a.name);
+        // console.log(a.name)
+        // console.log(a)
+        // console.log("AAAAAH")
+    })
+
+
+
+    // }
   }
 }
 
