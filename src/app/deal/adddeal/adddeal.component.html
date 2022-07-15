@@ -1,52 +1,73 @@
 <!-- <button (click)="Add()">ADDDDD</button> -->
 
 <!-- <div *ngIf="0; else elseBlock"> -->
-  <div class="container">
-    <div class=" text-center mt-5 ">
-        <h1 >Making an offer to team .. </h1>
-        <H2>....</H2>
-    </div>
+<div class="container">
+  <div class="text-center mt-5">
+    <h1>Making an offer to team {{deal.teamtId}}</h1>
+    <H2>ProjDesc</H2>
+  </div>
 
-
-  <div class="row ">
-  <div class="col-lg-7 mx-auto">
-    <div class="uto p-4 bcard mt-2 mx-ag-light">
+  <div class="row">
+    <div class="col-lg-7 mx-auto">
+      <div class="uto p-4 bcard mt-2 mx-ag-light">
         <div class="card-body bg-light">
-
-        <div class = "container">
-          <form id="contact-form" role="form">
-        <div class="controls">
-
-            <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="Money">Total Price $$ *</label>
-                    <input type="number" class="form-control form-control-lg" name="Money" id="Money" placeholder="Please enter the Total Price $ *" required="required" data-error="Total Price is required.">
+          <div class="container">
+            <form id="contact-form" role="form">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="Money">Total Price $$ *</label>
+                      <input
+                      [(ngModel)]="deal.money"
+                        type="number"
+                        class="form-control form-control-lg"
+                        name="Money"
+                        id="Money"
+                        placeholder="Please enter the Total Price $ *"
+                        required="required"
+                        data-error="Total Price is required."
+                      />
+                    </div>
                   </div>
                 </div>
-            </div>
-  <br>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-    <label for="DDate">Delivery date *</label>
-    <input  type="date" id="DDate" name="DDate" class="form-control form-control-lg" required="required" data-error="Delivery Date is required.">
-  </div>
-  </div>
-  </div>
-  <br>
-            <div class="row">
-                <div class="col-md-12">
+                <br />
+                <div class="row">
+                  <div class="col-md-6">
                     <div class="form-group">
-                        <label for="form_message">Message *</label>
-                        <textarea  id="form_message" name="message" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave a message to the client."></textarea>
-                        </div>
-                      </div>
-
+                      <label for="DDate">Delivery date *</label>
+                      <input
+                      [(ngModel)]="DeliverDate"
+                      (ngModelChange)="CalcDuration()"
+                        type="date"
+                        id="DDate"
+                        name="DDate"
+                        class="form-control form-control-lg"
+                        required="required"
+                        data-error="Delivery Date is required."
+                      />
                     </div>
-  <br>
-
-                    <div class="row">
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="form_message">Message *</label>
+                      <textarea
+                        id="form_message"
+                        name="message"
+                        class="form-control"
+                        placeholder="Write your message here."
+                        rows="4"
+                        required="required"
+                        data-error="Please, leave a message to the client."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <!-- <div class="row">
                       <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleFormControlFile1">Attachment</label>
@@ -54,40 +75,29 @@
                     </div>
                     </div>
                   </div>
-                  <br>
+                  <br> -->
 
                 <div class="col-md-12">
-
-                    <a   routerLink="/AllProposals" type="submit" class="btn btn-primary btn-send  pt-2 btn-block"  > Add Proposal</a>
-
-            </div>
-
-            </div>
-
-
-
-
-     </form>
-    </div>
+                  <a
+                    routerLink="/AllProposals"
+                    type="submit"
+                    class="btn btn-primary btn-send pt-2 btn-block"
+                  >
+                    Complete This job offer</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-
-
+      </div>
+      <!-- /.8 -->
+    </div>
+    <!-- /.row-->
   </div>
-    <!-- /.8 -->
+</div>
+<!-- </div> -->
+<!-- <ng-template #elseBlock><h1>Error 404 Not Found</h1></ng-template> -->
 
-  </div>
-  <!-- /.row-->
-  </div>
-  </div>
-  <!-- </div> -->
-  <!-- <ng-template #elseBlock><h1>Error 404 Not Found</h1></ng-template> -->
-
-
-
-
-
-
-
-
-
-{{deal|json}}
+{{ deal | json }}
+{{DeliverDate}}

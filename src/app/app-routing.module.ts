@@ -77,7 +77,6 @@ const routes: Routes = [
       { path: "editCertificate/:id/:title", component: EditCertificatesComponent, outlet: 'modal'},
       { path: "addCertificate", component: AddCertificateComponent, outlet: 'modal'}
     ]
-
   },
   { path: "experiences/:id", component: ExperienceComponent, children:
     [
