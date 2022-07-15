@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SliderComponent } from './slider/slider.component';
 import { ContainerComponent } from './container/container.component';
 import { CardComponent } from './card/card.component';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +16,7 @@ import { CardComponent } from './card/card.component';
     CardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,RatingModule,FormsModule,RouterModule
   ]
 ,
 exports:[SliderComponent,ContainerComponent,CardComponent]

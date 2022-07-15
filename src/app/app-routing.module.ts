@@ -17,6 +17,12 @@ import { SkillsComponent } from './_user/user-profile/skills/skills.component';
 import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
+// import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
+import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
+import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
+// import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
+import { ContainerComponent } from './home/container/container.component';
+
 
 
 const routes: Routes = [
@@ -53,6 +59,11 @@ const routes: Routes = [
           {
             path: "editpersonalInfo/:id", component: EditpersonalInfoComponent
           },
+        ]
+      },
+      {
+        path: "certificates/:id", component: CertificatesComponent,children:[
+
         ]
       }
 
@@ -109,7 +120,8 @@ const routes: Routes = [
   {
     path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
 
-  }
+  },
+  {path:"userHome",component:ContainerComponent}
 
 ]
 

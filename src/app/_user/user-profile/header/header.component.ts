@@ -15,7 +15,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class HeaderComponent implements OnInit {
   Image: File | null = null;
-  imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
+  imageurl:any;
   onFileChanged(event:any)
   {
     this.Image=<File>event.target.files[0];
@@ -84,6 +84,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.profileId=this.authserv.getCurrentUser()?.id;
+    this.imageurl="https://localhost:7152/api/Image?UserId="+this.profileId;
 
   }
 
