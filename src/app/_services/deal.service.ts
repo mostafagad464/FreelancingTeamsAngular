@@ -13,7 +13,7 @@ export class DealService {
 
 
   AddNewDeal(deal:Deal) {
-
+    console.log("ser");
     return this.http.post<Deal>(this.baseurl,deal);
   }
   EditDeal(deal:Deal) {
@@ -32,40 +32,6 @@ export class DealService {
   "done": false
 
 }*/
-  // GetAllProposals(){
-  //   return this.http.get<Proposal[]>(this.baseurl);
-  // }
-
-//   GetProposalByProjectId(id: Number):Proposal[] {
-//     this.http.get<Proposal[]>(this.baseurl).subscribe(a=>{
-//       a.forEach(element => {
-//         if(element.projectId ==id)
-//         {
-// this.Proposals.push(element);
-// console.log(element);
-// }});
-//     let pr=this.Proposals.splice(0, 1);
-
-// // console.log(this.Proposals);
-// // console.log(this.Proposals.length);
-
-//   }
-
-//   )
-// return this.Proposals;
-// }
-
-  // GetProposalById(id: Number) {
-  //   return this.http.get<Proposal>(this.baseurl + id);
-  // }
-
-
-
-
-
-  // DeleteAccount(id: Number) {
-  //   return this.http.delete(this.baseurl);
-  // }
 
 
 }

@@ -30,8 +30,13 @@ export class AdddealComponent implements OnInit {
   ProjectDescription: string = "";
   DeliverDate: Date = new Date();
   deal: Deal = new Deal(this.ClientId, 0, 0, 0, 0, false);
-  done(){
-    this.IsNotCompleted=false;
+  ADD(){
+this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
+  // console.log(a);
+  console.log("Comp");
+  // this.IsNotCompleted=false;
+
+})
   }
   // Add(){
   //   this.dealSer.AddNewDeal().subscribe(a=>{
