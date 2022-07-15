@@ -78,8 +78,10 @@ teamsNames:string[]=[];
         console.log('Project Not Found');
 
         this.ProjId = -1;
+
       }
     });
+    console.log(this.prop)
   }
 
 //-------------------------------------Additional Methods-------------------------------------
@@ -111,6 +113,8 @@ CalcDuration() {
     this.propSer.AddProposal(this.prop).subscribe((a) => {
       console.log('Added');
       console.log(a.description);
+    console.log(this.prop)
+
     });
   }
 

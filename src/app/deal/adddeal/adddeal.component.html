@@ -1,10 +1,12 @@
 <!-- <button (click)="Add()">ADDDDD</button> -->
 
 <!-- <div *ngIf="0; else elseBlock"> -->
+  <div *ngIf="IsNotCompleted; else elseBlock">
+
 <div class="container">
   <div class="text-center mt-5">
-    <h1>Making an offer to team {{deal.teamtId}}</h1>
-    <H2>ProjDesc</H2>
+    <h1>Making an offer to team {{TeamName}}</h1>
+    <H2>{{ProjectDescription}}</H2>
   </div>
 
   <div class="row">
@@ -79,7 +81,8 @@
 
                 <div class="col-md-12">
                   <a
-                    routerLink="/AllProposals"
+                  (click)="ADD()"
+
                     type="submit"
                     class="btn btn-primary btn-send pt-2 btn-block"
                   >
@@ -96,8 +99,23 @@
     <!-- /.row-->
   </div>
 </div>
+</div>
 <!-- </div> -->
 <!-- <ng-template #elseBlock><h1>Error 404 Not Found</h1></ng-template> -->
+<ng-template #elseBlock><div class="jumbotron text-center">
+  <h1 class="display-3">Thank You!</h1>
+  <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete the deal..</p>
+  <hr>
+  <p>
+    Having trouble? <a href="">Contact us</a>
+  </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-sm" routerLink="" role="button">Continue to homepage</a>
+  </p>
+</div>
+
+
+</ng-template>
 
 {{ deal | json }}
 {{DeliverDate}}
