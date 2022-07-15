@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Deal } from 'src/app/_models/deal';
+import { AuthService } from 'src/app/_services/auth.service';
 import { DealService } from 'src/app/_services/deal.service';
 import { ProposalService } from 'src/app/_services/proposal.service';
 
@@ -14,7 +15,9 @@ export class AdddealComponent implements OnInit {
     public dealSer: DealService,
     public router: Router,
     public ar: ActivatedRoute,
-    public propSer: ProposalService
+    public propSer: ProposalService,
+    public auth: AuthService,
+
   ) {}
   ClientId: number = 1;
   DeliverDate: Date = new Date();
@@ -37,6 +40,9 @@ export class AdddealComponent implements OnInit {
   // { path: "adddeal/:ProjId/:TeamId", component: AdddealComponent  },
 
   ngOnInit(): void {
+    this.ClientId= this.deal.clientId= this.auth.getCurrentUser()?.id;
+    console.log("user ID : "+this.ClientId);
+
     this.deal.projectId = this.ar.snapshot.params['ProjId'];
     this.deal.teamtId = this.ar.snapshot.params['TeamId'];
     this.propSer.GetAllProposals().subscribe((a) => {
