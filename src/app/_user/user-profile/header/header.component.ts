@@ -95,10 +95,10 @@ export class HeaderComponent implements OnInit {
     this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
   }
   myTeam() {
-    this.router.navigate(['showteams/', this.profileId]);
+    this.router.navigate(['team/showteams/', this.profileId]);
   }
   joinTeam() {
-    this.router.navigate(['showteams']);
+    this.router.navigate(['team/showteams']);
   }
 
 }
