@@ -12,7 +12,7 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class PostProjectComponent implements OnInit {
 
-  pro:Project=new Project(0,new Date,"New Project" ,"Available",0,"Project Descrption",3,0,0,2);
+  pro:Project=new Project(0,new Date,"New Project" ,"Available",0,"Project Descrption",3,0,0,0);
   id:number=0;
   clientid:number=0;
   Add(){
