@@ -1,3 +1,4 @@
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -7,6 +8,7 @@
             font-family: "Open Sans", sans-serif
         }
     </style>
+
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
     <!-- The Grid -->
     <div class="w3-row">
@@ -15,9 +17,9 @@
             <!-- Profile -->
             <div class="w3-card w3-round w3-white">
                 <div class="w3-container">
-
                     <div>
                         <p class="w3-center"><img src={{imageurl}} class="w3-circle" style="height:150px;width:150px"
+
                                 alt="Avatar"></p>
                         <h2 class="w3-center"><b>{{accountInfo.firstName+" "+accountInfo.lastName}}</b></h2>
                         <div *ngIf="profileId==userId" class="file">
@@ -32,15 +34,18 @@
                                 (input)="onFileChanged($event)" />
                         </div>
                     </div>
-                    <p class="w3-center" *ngIf="profileId!=userId"><a class="btn btn-primary">Message</a></p>
-                    <p class="w3-center"><a class="btn btn-primary" href="http://localhost:4200/profile/28">Another
-                            profile</a></p>
+
+                    <p class="w3-center" *ngIf="profileId!=userId">
+                        <a [routerLink]="['/chat/',userId]" class="btn btn-primary">Message</a>
+                    </p>
+
                     <hr>
                     <p *ngIf="accountInfo.user!.freelancer"><i
                             class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.freelancerNavigation!.specialization}}</p>
                     <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{accountInfo.user!.state+",
                         "+accountInfo.user!.country}}</p>
+
                     <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.birthDate|date}}</p>
                 </div>
@@ -56,6 +61,7 @@
                         <p>Some text..</p>
                     </div>
                     <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+
                             class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Join Team</button>
                     <div id="Demo2" class="w3-hide w3-container">
                         <p>Some other text..</p>
@@ -112,12 +118,14 @@
                                 <p>{{accountInfo.user!.bio}}</p>
 
                             </div>
+
                             <!-- <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>  -->
                             <div class="col-md-10">
                                 <div class="profile-head">
 
                                     <p class="proile-rating">RANKINGS : </p><p-rating style="cursor:none" value="#{ratingView.rating3}" [readonly]="true" [(ngModel)]="accountInfo.user!.rate" ></p-rating>
                                     <button *ngIf="accountInfo.user!.freelancer" class="btn btn-secondary">Wallet</button>
+
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link" id="personal-info" data-toggle="tab" routerLink=""
@@ -135,11 +143,13 @@
                                                 aria-selected="false">Experiences</a>
                                         </li>
                                         <li *ngIf="accountInfo.user!.freelancer" class="nav-item">
+
                                             <a class="nav-link" id="Certificates-tab" data-toggle="tab" role="tab"
                                                 routerLink="" (click)="Certificates()" aria-controls="Certificates"
                                                 aria-selected="false">Certificates</a>
                                         </li>
                                         <li *ngIf="accountInfo.user!.freelancer" class="nav-item">
+
                                             <a class="nav-link" id="Education-tab" data-toggle="tab" role="tab"
                                                 routerLink="" (click)="Educations()" aria-controls="Educations"
                                                 aria-selected="false">Educational Info</a>
@@ -158,4 +168,4 @@
 
             </div>
         </div>
->>>>>>> Stashed changes
+

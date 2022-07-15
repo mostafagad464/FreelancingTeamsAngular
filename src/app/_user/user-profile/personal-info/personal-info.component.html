@@ -1,3 +1,5 @@
+
+<link href="./personal-info.component.css" rel="stylesheet" id="bootstrap-css">
 <div style="margin-top: 3%;" class="container">
     <div class="card" style="width:700px;">
         <div class="card-body">
@@ -70,4 +72,113 @@
                                 <p>{{accountInfo.user?.state}}</p>
                             </div>
 
+                <div class="col-md-6 col-lg-offset-4">
+                <div class="col-md-8 ">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>ID</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.id}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.firstName+" "+accountInfo.lastName}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.email}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.phone}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>BirthDate</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.birthDate|date}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Country</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{accountInfo.user?.country}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>State</label>
 
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.firstName+" "+accountInfo.lastName}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.email}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.user?.phone}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>BirthDate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.user?.birthDate|date}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.user?.country}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>State</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{accountInfo.user?.state}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>

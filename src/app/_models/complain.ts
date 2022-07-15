@@ -1,12 +1,11 @@
 export class Complain {
     constructor(
-        public Id: number,
-        public Type:number,
-        public Description :string,
-        public ClientId : number,
-        public FreelancerId : number,
-        public TeamId : number ,
-        public AdminHandlerId: number
+        // public id: number,
+        public type:string,
+        public description :string,
+        public complainingUserId : number|null,
+        public complainingTeamId : number |null,
+        public adminHandlerId: number|null
 
     ){}
 }

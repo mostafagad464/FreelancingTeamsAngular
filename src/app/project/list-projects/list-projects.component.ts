@@ -14,6 +14,7 @@ export class ListProjectsComponent implements OnInit {
 
   projects:Project[]=[];
   ngOnInit(): void {
+    console.log("done");
     this.proSer.getAllProjects().subscribe((project: Project[])=>{
       this.projects=project;
     })

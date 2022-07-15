@@ -71,6 +71,23 @@
     <button type="submit" class="btn btn-outline-info text-dark btn-lg" id="btn" style="font-weight:bold ;" (click)="Submit()">Submit</button>
     <h1>{{rate}}</h1>
 </div> -->
+    <div class="center">
+        <h4 class="font">Rate the project!</h4>
+        <div class="form-group font">
+            <label for="exampleInputUsername1">Rate</label><br>
+            <p-rating  [(ngModel)]="review.rate" ngDefaultControl [cancel]="false" [readonly]="false"></p-rating> 
+          </div><br>
+          <div class="form-group font">
+            <label for="exampleInputUsername1">Comment</label><br>
+            <input class="form-control  btn-outline-info" type="text" value={{review.content}} [(ngModel)]="review.content"> 
+          </div><br>
+          <div class="form-group font">
+            <label for="exampleInputUsername1">Say something to the team</label><br>
+            <input class="form-control btn-outline-info" type="text" value={{review.fromClient}} [(ngModel)]="review.fromClient"> 
+          </div><br>
+          <button type="submit" class="btn btn-outline-info text-dark btn-lg" id="btn" style="font-weight:bold ;" (click)="Submit()">Submit</button>
+          <h1>{{rate}}</h1>
+        </div>
       
        
 

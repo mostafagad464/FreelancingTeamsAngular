@@ -10,6 +10,7 @@ import { UserProfileService } from 'src/app/_services/user-profile.service';
   styleUrls: ['./add-certificate.component.css']
 })
 export class AddCertificateComponent implements OnInit {
+  
   freelancerIdArray:string[]=[];
   freelancerId:number=0;
   title:string[]=[];
@@ -25,6 +26,7 @@ export class AddCertificateComponent implements OnInit {
       this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
 
       this.freelancerId=Number(this.freelancerIdArray[2]) ;
+      console.log( this.freelancerId)
   
   
      })
@@ -39,11 +41,12 @@ export class AddCertificateComponent implements OnInit {
     this.ac.params.subscribe(a => {
 
       this.freelancerCertificate.freelancerId = a['id'];
+
       console.log( this.freelancerCertificate.freelancerId )
      
     })
     console.log(this.freelancerCertificate)
-    this.freelancerCertificate.freelancerId = 1; 
+   this.freelancerCertificate.freelancerId = this.freelancerId; 
     this.UserSer.AddFreelancerCertificate(this.freelancerCertificate).subscribe(a => {
 
       console.log(this.freelancerCertificate)
