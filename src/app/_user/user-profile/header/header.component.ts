@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     this.profileId=this.authserv.getCurrentUser()?.id;
   }
   Image: File | null = null;
-  imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
+  imageurl:any;
   onFileChanged(event:any)
   {
     this.Image=<File>event.target.files[0];
@@ -57,6 +57,12 @@ export class HeaderComponent implements OnInit {
 
     
     }}
+    Educations()
+  {
+    this.router.navigateByUrl("profile/"+this.userId+"/educations/"+this.userId)
+
+
+  }
   
 
   
@@ -89,6 +95,26 @@ export class HeaderComponent implements OnInit {
   new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
 
   //accountInfo ={} as Account;
+
+
+
+  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public authserv:AuthService,public router:Router,public usrservice:UserService) {
+    this.sub1=this.ar.params.subscribe(x=>{
+      console.log(x);
+      this.userId=x['id'];
+
+      this.sub2=this.userserv.getAccountInfoByid(x['id']).subscribe(a=>
+        {this.accountInfo=a
+        console.log(this.accountInfo.user?.rate)
+        // console.log(this.accountInfo.user?.freelancerNavigation?.specialization)
+        })
+    })
+
+   }
+
+  ngOnInit(): void {
+    this.profileId=this.authserv.getCurrentUser()?.id;
+    this.imageurl="https://localhost:7152/api/Image?UserId="+this.profileId;
 
   myTeam()
   {

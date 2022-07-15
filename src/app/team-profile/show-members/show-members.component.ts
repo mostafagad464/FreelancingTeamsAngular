@@ -8,6 +8,7 @@ import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { TeamMembersService } from '../team-members.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
+// import { FreelancersService } from '../freelancers.service';
 import { TeamProfileService } from '../team-profile.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';

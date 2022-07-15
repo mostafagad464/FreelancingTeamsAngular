@@ -1,26 +1,103 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="font-size:50px;color: lightpink;">Squad</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li  class="nav-item">
+          <a class="nav-link" routerLink="/userHome"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+              fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+              <path
+                d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+            </svg></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+              height="25" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+            </svg></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+              fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+            </svg></a>
+        </li>
+
+        <li class="nav-item ">
+          <a [routerLink]="['/profile/',userId]" class="nav-link" id="navbarScrollingDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 20px;">
+            Profile
+          </a>
+          <!-- <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul> -->
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+        </li> -->
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-4 form-control-lg" type="search" placeholder="Search" aria-label="Search">
+        <a type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></a>
+      </form>
+
     </div>
-  </nav>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="Scripts/jquery-2.1.0.min.js"></script>
+  </div>
+</nav>
+<div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(108, 109, 194)">All</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Programming & Tech</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Life Coaching</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Graghic Design</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Writing & Translation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Video Editing</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Business</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+        style="font-size:20px;color:rgb(34, 32, 32)">Others</a>
+    </li>
+
+
+  </ul>
+</div>
