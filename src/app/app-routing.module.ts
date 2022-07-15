@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: "postComplain/:id",
     component: PostComplainsComponent,
-  
+
   },
 
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -49,12 +49,12 @@ const routes: Routes = [
   { path: "projects", loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
   { path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule)},
   { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule)},
-  
-  { path: "profile/:id", component: HeaderComponent, children: 
+
+  { path: "profile/:id", component: HeaderComponent, children:
     [
       { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal'},
       { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal'},
-      { path: "educations/:id", component: EducationalInfoComponent, children: 
+      { path: "educations/:id", component: EducationalInfoComponent, children:
         [
           { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal'},
           { path: "addEducation", component: AddEducationComponent, outlet: 'modal'}
@@ -121,7 +121,7 @@ const routes: Routes = [
           ]
       },
 
-      { path: "personalInfo/:id", component: PersonalInfoComponent, children: 
+      { path: "personalInfo/:id", component: PersonalInfoComponent, children:
         [
           { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
         ]
@@ -145,7 +145,7 @@ const routes: Routes = [
   { path: "chat/team/:id", component: TeamChatComponent },
   { path: "Addproposal/:ProjId", component: AddProposalComponent },
   { path: "AllProposals/:ProjId", component: AllProposalsComponent },
-  { path: "adddeal/:ProjId", component: AdddealComponent },
+  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent },
 
 
   {
