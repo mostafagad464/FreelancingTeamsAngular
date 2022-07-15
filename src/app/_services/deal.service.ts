@@ -13,12 +13,12 @@ export class DealService {
 
 
   AddNewDeal(deal:Deal) {
-    console.log("ser");
+    console.log(deal);
     return this.http.post<Deal>(this.baseurl,deal);
   }
   EditDeal(deal:Deal) {
-    console.log(this.baseurl+deal.clientId+"/"+deal.teamtId+"/"+deal.projectId)
-    return this.http.put<Deal>(this.baseurl+deal.clientId+"/"+deal.teamtId+"/"+deal.projectId, deal);
+    console.log(this.baseurl+deal.clientId+"/"+deal.teamId+"/"+deal.projectId)
+    return this.http.put<Deal>(this.baseurl+deal.clientId+"/"+deal.teamId+"/"+deal.projectId, deal);
   }
 
 /*
