@@ -29,7 +29,7 @@
     <h4 style="font-family:Georgia, 'Times New Roman', Times, serif ; font-weight: bold; font-size: 1.5rem;">Edit your team info!</h4>
     <div class="custom-file">
       <label class="custom-file-label" for="validatedCustomFile">Logo</label>
-      <input type="file" class="form-control  custom-file-input bg" value={{team.logo}} [(ngModel)]="UpdatedTeam.logo" id="validatedCustomFile" required>
+      <input type="file" class="form-control  custom-file-input bg" id="validatedCustomFile" required (input)="AddImg($event)">
       <!-- <div class="invalid-feedback">Example invalid custom file feedback</div> -->
     </div>
     <div class="form-group">

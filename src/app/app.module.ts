@@ -23,6 +23,8 @@ import { ShowMembersComponent } from "./team-profile/show-members/show-members.c
 import { SharedModule } from "./shared/shared.module";
 import { HomeModule } from "./home/home.module";
 import { FreelancersModule } from "./freelancers/freelancers.module";
+import { ProposalModule } from "./proposal/proposal.module";
+import { DealModule } from "./deal/deal.module";
 
 
 export function tokenGetter() {
@@ -36,6 +38,8 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    ProposalModule,
+    DealModule,
     HomeModule,
     CommonModule,
     AppRoutingModule,
@@ -62,10 +66,11 @@ export function tokenGetter() {
     RouterModule,
     LayoutModule,
     FreelancersModule,
+    SharedModule
  ],
   providers: [
     {
-      
+
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
@@ -73,7 +78,7 @@ export function tokenGetter() {
     // SearchPipe
 
   ],
-  bootstrap: [AppComponent], 
+  bootstrap: [AppComponent],
   // exports:[
   //   SearchPipe
   // ]

@@ -6,8 +6,9 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { PostProjectComponent } from './post-project/post-project.component';
 
 const routes: Routes = [
-  {path:"",component:ListProjectsComponent},
+  {path:"list",component:ListProjectsComponent},
   {path:"edit/:id",component:EditProjectComponent},
+  {path:"create",component:PostProjectComponent},
   {path:"post",component:PostProjectComponent},
   {path:"details/:id",component:DetailsProjectComponent},
 ];

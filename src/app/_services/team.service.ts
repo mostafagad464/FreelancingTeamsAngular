@@ -12,7 +12,7 @@ export class TeamService {
   private baseUrl = 'https://localhost:7152/api/Teams/';
 
   imageurl = "https://localhost:7152/api/Image/Team/";
-  
+
   constructor(private http: HttpClient) { }
 
   getTeam(id: number) {
