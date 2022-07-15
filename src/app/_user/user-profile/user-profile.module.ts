@@ -51,7 +51,7 @@ import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
     CommonModule, 
     RouterModule, 
     NgbModalModule,
-    FormsModule
+    FormsModule,RatingModule
   ],
   exports: [
     ExperienceComponent, 

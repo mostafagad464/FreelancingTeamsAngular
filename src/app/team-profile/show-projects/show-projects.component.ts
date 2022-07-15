@@ -110,11 +110,11 @@ export class ShowProjectsComponent implements OnInit {
     
       for (let i = 0; i < this.projects.length; i++) {
           for(let y = 0; y < this.completed.length; y++){
-            if(this.projects[i].Id == this.completed[y]){
-              this.completedTitles.push(this.projects[i].Title);
+            if(this.projects[i].id == this.completed[y]){
+              this.completedTitles.push(this.projects[i].title);
             }
-            else if(this.projects[i].Id == this.inCompleted[y]){
-              this.inCompletedTitles.push(this.projects[i].Title);
+            else if(this.projects[i].id == this.inCompleted[y]){
+              this.inCompletedTitles.push(this.projects[i].title);
             }
           }
         }
@@ -194,8 +194,8 @@ export class ShowProjectsComponent implements OnInit {
         for(var c = 0 ; c < this.completed.length ; c++){
           for(var e = 0 ; e < this.projects.length ; e++){
 
-            if(this.completed[c] == this.projects[e].Id){
-              this.projectsNames.push(this.projects[e].Title);
+            if(this.completed[c] == this.projects[e].id){
+              this.projectsNames.push(this.projects[e].title);
             }
           }
         }

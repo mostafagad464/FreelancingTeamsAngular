@@ -33,6 +33,12 @@ export class HeaderComponent implements OnInit {
 
     
     }}
+    Educations()
+  {
+    this.router.navigateByUrl("profile/"+this.userId+"/educations/"+this.userId)
+
+
+  }
   
 
   

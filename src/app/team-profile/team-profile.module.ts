@@ -40,8 +40,7 @@ const routes: Routes = [
       },
 
   ]},
-    ]
-  },
+ 
 
 
   {
@@ -54,6 +53,7 @@ const routes: Routes = [
         // outlet: 'showMember'
       },
     ]
+  
 
   },
   {

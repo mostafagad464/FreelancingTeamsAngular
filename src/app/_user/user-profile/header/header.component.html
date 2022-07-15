@@ -117,6 +117,7 @@
                                 <div class="profile-head">
 
                                     <p class="proile-rating">RANKINGS : </p><p-rating style="cursor:none" value="#{ratingView.rating3}" [readonly]="true" [(ngModel)]="accountInfo.user!.rate" ></p-rating>
+                                    <button *ngIf="accountInfo.user!.freelancer" class="btn btn-secondary">Wallet</button>
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link" id="personal-info" data-toggle="tab" routerLink=""
