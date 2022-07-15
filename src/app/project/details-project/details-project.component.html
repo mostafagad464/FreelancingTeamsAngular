@@ -1,0 +1,16 @@
+<div style="margin: 100px;">
+    <div class="card text-center">
+        <div class="card-header" style="font-weight: bold;">
+          {{project.title}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold;">{{project.state}}</h5>
+          <p class="card-text">{{project.description}}</p>
+          <h5 class="card-title">{{project.minBudget}} $:{{project.maxBudget}} $</h5>
+          <button (click)="edit()" class="btn btn-primary">Edit</button>
+        </div>
+        <div class="card-footer text-muted">
+          {{project.postingDate}}
+        </div>
+      </div>
+</div>

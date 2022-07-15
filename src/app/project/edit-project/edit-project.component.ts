@@ -12,7 +12,7 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class EditProjectComponent implements OnInit {
 
-  project:Project=new Project(0,new Date,"Edit Project",0,0,"Descrption","Duration",0,0,0,0,new Review(0,0,0,0,"",new Date,""));
+  pro:Project=new Project(0,new Date,"Edit Project","",0,"Descrption",2,0,0,2);
   constructor(public activateRoute:ActivatedRoute,public proSer:ProjectService ,public router:Router) { }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
@@ -23,17 +23,14 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit(): void {
    this.sub= this.activateRoute.params.subscribe((a: { [x: string]: number; })=>{
-       this.sub2= this.proSer.getProject(a['id']).subscribe((p: Project)=>this.project=p)
+       this.sub2= this.proSer.getProject(a['id']).subscribe((p: Project)=>this.pro=p)
     })
   }
 
   edit(){
-    this.proSer.updateProject(this.project).subscribe((a: any)=>{
+    this.proSer.updateProject(this.pro).subscribe((a: any)=>{
       console.log(a);
-      this.router.navigate(['/project'])
+      this.router.navigate(['/projects/details/',this.pro.id])
     })
   }
-  // back(){
-  //   this.router.navigate(['/speakers'])
-  // }
 }
