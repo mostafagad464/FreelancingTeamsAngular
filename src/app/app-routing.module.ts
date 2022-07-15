@@ -22,6 +22,7 @@ import { EducationalInfoComponent } from './_user/user-profile/educational-info/
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
 // import { AddEducationComponent } from './_user/user-profile/add-education/add-education.component';
 import { ContainerComponent } from './home/container/container.component';
+import { SliderComponent } from './home/slider/slider.component';
 
 
 
@@ -121,7 +122,7 @@ const routes: Routes = [
     path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
 
   },
-  {path:"userHome",component:ContainerComponent}
+  {path:"userHome",component:SliderComponent}
 
 ]
 

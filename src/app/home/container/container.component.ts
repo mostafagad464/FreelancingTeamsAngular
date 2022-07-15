@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Freelancer } from 'src/app/_models/freelancer';
 import { Team } from 'src/app/_models/team';
@@ -12,21 +12,22 @@ import { TeamService } from 'src/app/_services/team.service';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-  teams:Team[]=[];
+  // teams:Team[]=[];
+  @Input() teams!:Team[];
   sub1:Subscription|null=null;
 
   constructor(public teamServ:TeamService) { }
 
   ngOnInit(): void {
-    this.sub1=this.teamServ.getTeams().subscribe(t=>{
+    // this.sub1=this.teamServ.getTeams().subscribe(t=>{
       // this.teams=t.filter((tm:Team)=>{
       //   return tm.rate>3
       // });
-      this.teams=t.sort((a, b) => {return (b.rate) - (a.rate)});
+      this.teams=this.teams;
       // console.log(this.teams)
       
       
-    })
+    // })
 
 
   }

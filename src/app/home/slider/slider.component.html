@@ -66,38 +66,39 @@
 <div>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(108, 109, 194)">All</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Programming & Tech</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link " id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Life Coaching</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Graghic Design</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+    <li  class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Writing & Translation</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Video Editing</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Business</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab" aria-controls="SoftWare" aria-selected="true"
         style="font-size:20px;color:rgb(34, 32, 32)">Others</a>
     </li>
 
 
   </ul>
 </div>
+<app-container [teams]="teams"></app-container>
