@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Deal } from 'src/app/_models/deal';
 import { AuthService } from 'src/app/_services/auth.service';
 import { DealService } from 'src/app/_services/deal.service';
+import { ProjectService } from 'src/app/_services/project.service';
 import { ProposalService } from 'src/app/_services/proposal.service';
+import { TeamService } from 'src/app/_services/team.service';
 
 @Component({
   selector: 'app-adddeal',
@@ -17,11 +19,20 @@ export class AdddealComponent implements OnInit {
     public ar: ActivatedRoute,
     public propSer: ProposalService,
     public auth: AuthService,
+    public teamser:TeamService,
+    public ProjService: ProjectService
+
 
   ) {}
   ClientId: number = 1;
+  IsNotCompleted:boolean=true;
+  TeamName: string = "";
+  ProjectDescription: string = "";
   DeliverDate: Date = new Date();
   deal: Deal = new Deal(this.ClientId, 0, 0, 0, 0, false);
+  done(){
+    this.IsNotCompleted=false;
+  }
   // Add(){
   //   this.dealSer.AddNewDeal().subscribe(a=>{
   //     console.log("Added");
@@ -57,6 +68,12 @@ export class AdddealComponent implements OnInit {
         }
       });
     });
+    this.teamser.getTeam(this.deal.teamtId).subscribe(a=>{
+      this.TeamName=a.name;
+    })
+    this.ProjService.getProject(this.deal.projectId).subscribe(a=>{
+      this.ProjectDescription=a.description;
+    })
   }
 
 //------
