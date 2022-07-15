@@ -7,6 +7,8 @@ import { Skill } from '../_models/skill';
 import { FreelancerCertificates } from '../_models/freelancer-certificates';
 import { FreelancerExperience } from '../_models/freelancer-experience';
 import { Account } from '../_models/account';
+import { Education } from '../_models/education';
+import { Complain } from '../_models/complain';
 
 
 @Injectable({
@@ -44,7 +46,7 @@ export class UserProfileService {
   {
     return this.http.post<Portoflio>(this.baseUrl+"Portoflio/",portfolio)
   }
-    getUserSkillsById(id:number)
+    getUserSkillsById(id:string)
   {
     return this.http.get<FreelancerHasSkill>(this.baseUrl+"FreelancerSkills/GetFreelancerSkills/"+id);
   }
@@ -59,6 +61,10 @@ export class UserProfileService {
   }
   UpdateFreelancerSkills(freelancerId:number, skillId:number, updatedSkill:FreelancerHasSkill){
     return this.http.put<FreelancerHasSkill>(this.baseUrl+"FreelancerSkills/"+freelancerId+"?skillId="+skillId,updatedSkill)
+  }
+  postNewSkill(newSkill:Skill){
+    return this.http.post<Skill>(this.baseUrl+"Skills/addskill",newSkill);
+
   }
 
   //certificates
@@ -94,5 +100,30 @@ export class UserProfileService {
   UpdateFreelancerExperiences(freelancerId:number,startDate:Date | string,updatedExperience:FreelancerExperience){
      return this.http.put<FreelancerExperience>(this.baseUrl+"FreelancerExperiences/"+freelancerId+"?startDate="+startDate,updatedExperience)
   }
+   //educations
+  GetAllFreelancerEducation(freelancerId:number){
+    return this.http.get<Education>(this.baseUrl+"FreelancerEducations/GetFreelancerEducation/"+freelancerId);
+  }
+  GetEducationById(freelancerId:number | string,gradYear:number | string){
+    return this.http.get<Education>(this.baseUrl+"FreelancerEducations/"+freelancerId+"?gradY="+gradYear)
+
+  }
+  DeleteFreelancerEducation(freelancerId:number,gradYear:number)
+  {
+    return this.http.delete<Education>(this.baseUrl+"FreelancerEducations/"+freelancerId+"?gradY="+gradYear)
+  }
+  AddFreelancerEducation(newEducation:Education){
+    return this.http.post<Education>(this.baseUrl+"FreelancerEducations",newEducation)
+
+  }
+  UpdateFreelancerEducation(freelancerId:number | string,gradYear:number | string, updatedEducation:Education)
+  {
+    return this.http.put<Education>(this.baseUrl+"FreelancerEducations/"+freelancerId+"?gradY="+gradYear,updatedEducation)
+
+  }
+  //Complains
+  postComplain(newComplain:Complain){
+    return this.http.post<Complain>(this.baseUrl+"Complains",newComplain)
+   }
 
 }

@@ -15,13 +15,18 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import { JoinTeamComponent } from './join-team/join-team.component';
 import { ShowTeamsComponent } from './show-teams/show-teams.component';
 import { SharedModule } from '../shared/shared.module';
-import { SearchPipe } from '../_pipes/search.pipe';
 import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AnnounceComponent } from './announce/announce.component';
+import { TeamPostComplainComponent } from './team-post-complain/team-post-complain.component';
+import { AuthGuard } from '../_helpers/auth.guard';
 
 const routes: Routes = [
+  {
+    path: 'teamPostComplain/:id',
+    component: TeamPostComplainComponent,
+  },
   {
     path: 'teamProfile/:id',
     component: HeaderComponent,
@@ -30,6 +35,7 @@ const routes: Routes = [
         path: 'showMember/:id',
         component: ShowMembersComponent,
       },
+   
       {
         path: 'showProjects/:id',
         component: ShowProjectsComponent,
@@ -41,6 +47,7 @@ const routes: Routes = [
 
   ]},
  
+
 
 
   {
@@ -89,10 +96,8 @@ const routes: Routes = [
     path: 'jointeam',
     component: CreateTeamComponent
   },
-  {
-    path: 'showteams',
-    component: ShowTeamsComponent
-  },
+  { path: 'showteams', component: ShowTeamsComponent, canActivate:[AuthGuard] },
+  { path: 'showteams/:id', component: ShowTeamsComponent, canActivate:[AuthGuard] },
 
 ]
 
@@ -112,7 +117,8 @@ const routes: Routes = [
     CreateTeamComponent,
     JoinTeamComponent,
     ShowTeamsComponent,
-    SearchInTeamsPipe
+    SearchInTeamsPipe,
+    TeamPostComplainComponent
 
   ],
   imports: [

@@ -16,6 +16,9 @@ export class UserService {
   // getAllUsers() {
   //   return this.http.get<any>(this.baseurl);
   // }
+  GetUserToGetTeams(id: Number) {
+    return this.http.get<any>(this.baseurl + id);
+  }
 
   getUser(id: Number) {
     return this.http.get<User>(this.baseurl + id);

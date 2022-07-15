@@ -1,14 +1,20 @@
 <div  *ngFor="let item of projects">
-    <div class="card" style="width: 18rem;">
+  <div style="margin: 100px;" *ngIf="item.state == 'Available'">
+    <div class="card text-center">
+        <div class="card-header" style="font-weight: bold;">
+          {{item.title}}
+        </div>
         <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.postingDate}}</h6>
+          <h5 class="card-title" style="font-weight: bold;">{{item.state}}</h5>
           <p class="card-text">{{item.description}}</p>
-          <h6 class="card-subtitle mb-2 text-muted">Duration : {{item.duration}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.budgetFrom}} $:{{item.budgetTo}} $</h6>
-          <a [routerLink]="['edit/'+item.id]" class="card-link">Edit</a>
-          <a href="#" class="card-link">Add Proposal</a>
-          <button (click)="delete(item.id)" class="card-link">Delete</button>
+          <h5 class="card-title">{{item.minBudget}} $:{{item.maxBudget}} $</h5>
+          <button (click)="delete(item.id)" class="btn btn-danger" *ngIf="item.clientId == clientid">Delete</button>
+          <button class="btn btn-primary" style="margin: 20px;">Add Proposal</button>
+          <a [routerLink]="['details/',item.id]" class="btn btn-primary" style="margin: 20px;">Details</a>
+        </div>
+        <div class="card-footer text-muted">
+          {{item.postingDate}}
         </div>
       </div>
+</div>
 </div>

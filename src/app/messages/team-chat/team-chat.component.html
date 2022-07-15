@@ -57,7 +57,7 @@
                                         <ng-template [ngIf]="message.sender == 'u'">
                                             <li class="chat-left">
                                                 <div class="chat-avatar">
-                                                    <img src="https://localhost:7152/api/Image?UserId={{message.userId}}"alt="User">
+                                                    <img src="https://localhost:7152/api/Image?UserId={{message.userId}}"alt="User" onerror="this.src='assets/images/NoImage.png'">
                                                     <div class="chat-name">{{chattingUser.name.split(' ')[0]}}</div>
                                                 </div>
                                                 <div class="chat-text">{{message.message}}</div>
@@ -70,7 +70,7 @@
                                                 <div class="chat-hour">{{message.date | date:'short'}}<span class="fa fa-check-circle"></span></div>
                                                 <div class="chat-text">{{message.message}}</div>
                                                 <div class="chat-avatar">
-                                                    <img src="https://localhost:7152/api/Image/Team?TeamId={{teamId}}" alt="Team">
+                                                    <img src="https://localhost:7152/api/Image/Team?TeamId={{teamId}}" alt="Team" onerror="this.src='assets/images/NoImage.png'">
                                                     <div class="chat-name">{{chattingUser.name.split(' ')[0]}}</div>
                                                 </div>
                                             </li>

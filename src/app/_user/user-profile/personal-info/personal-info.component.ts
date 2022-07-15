@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
+  
   userId:any;
   profileId:any;
   openModal() {
