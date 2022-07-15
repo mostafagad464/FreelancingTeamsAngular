@@ -9,7 +9,7 @@
           <p class="card-text">{{item.description}}</p>
           <h5 class="card-title">{{item.minBudget}} $:{{item.maxBudget}} $</h5>
           <button (click)="delete(item.id)" class="btn btn-danger">Delete</button>
-          <button class="btn btn-primary" style="margin: 20px;">Add Proposal</button>
+          <button  [routerLink]="['/Addproposal/',item.id]" class="btn btn-primary" style="margin: 20px;">Add Proposal</button>
         </div>
         <div class="card-footer text-muted">
           {{item.postingDate}}
