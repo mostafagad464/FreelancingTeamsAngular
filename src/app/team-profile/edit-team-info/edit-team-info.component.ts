@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Team } from 'src/app/_models/team';
+import { TeamService } from 'src/app/_services/team.service';
 import { TeamProfileService } from '../team-profile.service';
 
 @Component({
@@ -10,7 +11,9 @@ import { TeamProfileService } from '../team-profile.service';
 })
 export class EditTeamInfoComponent implements OnInit {
 
-  constructor(public ac:ActivatedRoute, public teamServ:TeamProfileService) { }
+  Image: File | null = null;
+
+  constructor(public ac:ActivatedRoute, public teamServ:TeamProfileService, public TeamService : TeamService) { }
 
 
   team:Team={
@@ -89,7 +92,15 @@ export class EditTeamInfoComponent implements OnInit {
       this.UpdatedTeam.name=this.team.name;
 
       console.log("updatedTeam: "+this.UpdatedTeam.name);
-    })
+    });
+    let fd = new FormData();
+    if (this.Image) {
+      fd.append("files", this.Image, this.Image.name);
+      console.log(this.Image.name);
+
+      this.TeamService.addImage(this.team.id, fd).subscribe(u => {
+      })
+    }
   }
 
   ngOnInit(): void {
@@ -105,9 +116,23 @@ export class EditTeamInfoComponent implements OnInit {
         this.UpdatedTeam.reviews=this.team.reviews;
         this.UpdatedTeam.deals=this.team.deals;
         console.log(this.UpdatedTeam.description)
-        console.log("Team: "+this.team)
+        console.log("Team: ",this.team)
       })
     })
+  }
+
+
+  //Team Logo
+  AddImg(I: any) {
+    if (I.target.value) {
+      this.Image = <File>I.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.Image);
+      reader.onload = (_event) => {
+        // this.imageurl = reader.result?.toString() ? reader.result.toString() : this.imageurl;
+      }
+    }
+    console.log(this.Image)
   }
 
 }

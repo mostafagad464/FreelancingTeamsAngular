@@ -15,7 +15,6 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import { JoinTeamComponent } from './join-team/join-team.component';
 import { ShowTeamsComponent } from './show-teams/show-teams.component';
 import { SharedModule } from '../shared/shared.module';
-import { SearchPipe } from '../_pipes/search.pipe';
 import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
