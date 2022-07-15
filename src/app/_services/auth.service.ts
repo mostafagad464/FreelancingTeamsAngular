@@ -35,5 +35,8 @@ export class AuthService {
     }
     return usr;
   }
+  DeleteToken(){
+    sessionStorage.removeItem("access_token");
+  }
 
 }

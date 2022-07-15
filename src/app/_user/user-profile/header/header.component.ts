@@ -14,6 +14,30 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+
+  constructor(public userserv:UserProfileService,
+    public ar:ActivatedRoute,
+    public authserv:AuthService,
+    public router:Router,
+    public usrservice:UserService) {
+    this.sub1=this.ar.params.subscribe(x=>{
+      console.log(x);
+      this.userId=x['id'];
+
+      this.sub2=this.userserv.getAccountInfoByid(x['id']).subscribe(a=>
+        {this.accountInfo=a
+        console.log(this.accountInfo.user?.rate)
+        // console.log(this.accountInfo.user?.freelancerNavigation?.specialization)
+        })
+    })
+
+   }
+  
+
+  ngOnInit(): void {
+    this.profileId=this.authserv.getCurrentUser()?.id;
+  }
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
   onFileChanged(event:any)
@@ -38,27 +62,20 @@ export class HeaderComponent implements OnInit {
   
   personalInfo(){
     this.router.navigateByUrl("profile/"+this.userId+"/personalInfo/"+this.userId)
-
-
   }
   portfolio(){
     this.router.navigateByUrl("profile/"+this.userId+"/portfolio/"+this.userId)
-
   }
   Experiences(){
     this.router.navigateByUrl("profile/"+this.userId+"/experiences/"+this.userId)
-
   }
   Certificates()
   {
     this.router.navigateByUrl("profile/"+this.userId+"/certificates/"+this.userId)
-
   }
   Educations()
   {
     this.router.navigateByUrl("profile/"+this.userId+"/educations/"+this.userId)
-
-
   }
   sub1:Subscription|null=null;
   sub2:Subscription|null=null;
@@ -73,24 +90,13 @@ export class HeaderComponent implements OnInit {
 
   //accountInfo ={} as Account;
 
-
-  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public authserv:AuthService,public router:Router,public usrservice:UserService) {
-    this.sub1=this.ar.params.subscribe(x=>{
-      console.log(x);
-      this.userId=x['id'];
-
-      this.sub2=this.userserv.getAccountInfoByid(x['id']).subscribe(a=>
-        {this.accountInfo=a
-        console.log(this.accountInfo.user?.rate)
-        // console.log(this.accountInfo.user?.freelancerNavigation?.specialization)
-        })
-    })
-
-   }
-
-  ngOnInit(): void {
-    this.profileId=this.authserv.getCurrentUser()?.id;
-
+  myTeam()
+  {
+    this.router.navigate(['showteams/',this.profileId]);
+  }
+  joinTeam()
+  {
+    this.router.navigate(['showteams']);
   }
 
 }

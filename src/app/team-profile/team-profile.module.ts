@@ -89,10 +89,8 @@ const routes: Routes = [
     path: 'jointeam',
     component: CreateTeamComponent
   },
-  {
-    path: 'showteams',
-    component: ShowTeamsComponent
-  },
+  { path: 'showteams', component: ShowTeamsComponent },
+  { path: 'showteams/:id', component: ShowTeamsComponent },
 
 ]
 
