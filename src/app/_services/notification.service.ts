@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { Notifications } from '../_models/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,23 @@ export class NotificationService {
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  getNotNo(id: number){
+  getNotIficationsCount(id: number){
     return this.http.get<any>(this.baseurl + "account/count/" + id);
   }
   
+  getAccountNotifications(id:number){
+    return this.http.get<Notifications[]>(this.baseurl+"account/"+id);
+  }
+
+  // proposal, complain, handle complain, add user, 
+  postAccountNotification(accountId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"account/"+accountId, notication)
+  }
+  // deal, join, announce, complain handled
+  postTeamNotification(teamId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"team/"+teamId, notication)
+  }
+
 }

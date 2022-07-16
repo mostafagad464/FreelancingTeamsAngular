@@ -60,7 +60,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  wallet(){
+    this.router.navigateByUrl("profile/" + this.userId + "/wallet/" + this.userId)
 
+  }
   personalInfo() {
     this.router.navigateByUrl("profile/" + this.userId + "/personalInfo/" + this.userId)
   }
