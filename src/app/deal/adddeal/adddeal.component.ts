@@ -21,8 +21,6 @@ export class AdddealComponent implements OnInit {
     public auth: AuthService,
     public teamser:TeamService,
     public ProjService: ProjectService
-
-
   ) {}
   ClientId: number = 1;
   IsNotCompleted:boolean=true;
@@ -32,7 +30,7 @@ export class AdddealComponent implements OnInit {
   deal: Deal = new Deal(this.ClientId, 0, 0, 0, 0, false);
   ADD(){
 this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
-  // console.log(a);
+  console.log(a);
   // console.log("Comp");
   this.IsNotCompleted=false;
 
@@ -60,7 +58,8 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
     console.log("user ID : "+this.ClientId);
 
     this.deal.projectId = this.ar.snapshot.params['ProjId'];
-    this.deal.teamId = this.ar.snapshot.params['TeamId'];
+    this.deal.teamId = this.ar.snapshot.params['teamId'];
+    console.log("Team Id" +this.deal.teamId)
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (

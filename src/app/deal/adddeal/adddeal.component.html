@@ -112,7 +112,7 @@
   <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete the deal..</p>
   <hr>
   <p>
-    Having trouble? <a href="">Contact us</a>
+    Having trouble? <a  [routerLink]="['/postComplain/',deal.clientId]">Contact us</a>
   </p>
   <p class="lead">
     <a class="btn btn-primary btn-sm" routerLink="" role="button">Continue to homepage</a>
@@ -121,6 +121,6 @@
 
 
 </ng-template>
-
+<!--
 {{ deal | json }}
-{{DeliverDate}}
+{{DeliverDate}} -->

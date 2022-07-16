@@ -1,4 +1,4 @@
-<div *ngIf="ProjId>0; else elseBlock">
+<div *ngIf="IsNotCompleted; else elseBlock">
   <div class="container">
     <div class=" text-center mt-5 ">
         <h1 >Proposal Form For {{ProjName}}</h1>
@@ -65,8 +65,10 @@
                   <br>
                 <div class="col-md-12">
 
-                    <a  (click)="ADD()" [routerLink]="['/AllProposals/',prop.projectId]" routerLink="/AllProposals" type="submit" class="btn btn-primary btn-send  pt-2 btn-block"  > Add Proposal</a>
-            </div>
+                    <a  (click)="ADD()"  type="submit" class="btn btn-primary btn-send  pt-2 btn-block"  > Add Proposal</a>
+                    <!-- [routerLink]="['/AllProposals/',prop.projectId]"
+                    routerLink="/AllProposals" -->
+                  </div>
             </div>
      </form>
     </div>
@@ -81,9 +83,26 @@
   </div>
   </div>
   </div>
-  <ng-template #elseBlock><h1>Error 404 Not Found</h1></ng-template>
+  <ng-template #elseBlock><div class="jumbotron text-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="display-3">Thank You!</h1>
+    <p class="lead">Your Proposal has been Submitted <strong>Please check your email</strong> for further instructions..</p>
+    <hr>
+    <br>
+    <p>
+      Having trouble? <a href="">Contact us</a>
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" routerLink="" role="button">Continue to homepage</a>
+    </p>
+  </div>
+</ng-template>
 
 
-  {{prop|json}}
+  <!-- {{prop|json}} -->
 
 
