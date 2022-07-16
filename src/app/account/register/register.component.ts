@@ -19,9 +19,8 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "User",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","","",0,false,"",false,false,null,null,false,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""))
+  account: Account = new Account(0, null, "", "", "", "", "", "User", null);
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", null, 0, false, "", false, false, null, null, false, null, null, null, null, null);
   confirmPassword = "";
   message = "";
   showUN = false;   //Show User Name
@@ -29,11 +28,11 @@ export class RegisterComponent implements OnInit {
   isChecked = false;
   type = "";
 
-  constructor(public AccountService: AccountService, 
-    public UserService: UserService, 
+  constructor(public AccountService: AccountService,
+    public UserService: UserService,
     public modalService: NgbModal,
     public AuthService: AuthService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -83,33 +82,36 @@ export class RegisterComponent implements OnInit {
           this.ButtonText = "Sign Up";
         })
         this.login(this.account.username, this.account.password);
-        this.router.navigate(['/maininfo']);
+        // this.router.navigate(['/maininfo']);
       }
       else {
         if (this.isChecked) {
           console.log(this.account);
           this.AccountService.addAccount(this.account).subscribe(a => {
-            console.log(a);
+            console.log("account ", a);
             this.user.id = a.id;
-            this.user.client = (this.type == "f")? false : true;
-            this.user.freelancer = !this.user.client; 
+            this.user.client = (this.type == "f") ? false : true;
+            this.user.freelancer = !this.user.client;
             console.log(this.user);
-            this.UserService.addUser(this.user).subscribe(u=>{
-              console.log(u);
+            this.UserService.addUser(this.user).subscribe(u => {
+              console.log("user ", u);
               // this.login(this.account.username, this.account.password);
             })
           })
         }
-        this.login(this.account.username, this.account.password);
-        this.router.navigate(['/maininfo']);
+        let flag = this.login(this.account.username, this.account.password)
+        if (flag) {
+          // this.router.navigate(['/maininfo']);
+        }
+        // this.router.navigate(['/maininfo']);
       }
 
     }
   }
 
-  login(userName: string, pass: string){
-    this.AuthService.login(userName,pass).subscribe(s=>{
-      sessionStorage.setItem("access_token",s.token);
+  login(userName: string, pass: string) {
+    this.AuthService.login(userName, pass).subscribe(s => {
+      sessionStorage.setItem("access_token", s.token);
       const decodedToken = helper.decodeToken(s.token);
       const expirationDate = helper.getTokenExpirationDate(s.token);
       const isExpired = helper.isTokenExpired(s.token);
@@ -117,12 +119,16 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
+      
       // this.openModal();
       // this.router.navigate(['maininfo']);
     },
-    error=> {
-      console.log(error.error)}
-      );
+      error => {
+        console.log(error.error)
+      }
+    );
+    console.log("above navigation route");
+    return true;
   }
 
   openModal() {
@@ -131,9 +137,9 @@ export class RegisterComponent implements OnInit {
         scrollable: false,
         windowClass: 'myCustomModalClass',
       });
-    modalRef.result.then((result:any) => {
+    modalRef.result.then((result: any) => {
       console.log(result);
-    }, (reason:any) => {
+    }, (reason: any) => {
     });
   }
 

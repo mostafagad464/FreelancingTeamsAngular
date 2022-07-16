@@ -58,6 +58,8 @@ export class HeaderComponent implements OnInit, OnChanges {
   isMember: boolean = false;
   haveAccess: boolean = false;
   isFreelancer: boolean = false;
+  isClient: boolean = false;
+  public isAuthenticated$ = this.authService.isAuthenticated$;
 
   img = "../../../assets/images/1.png";
   desc = this.team.description;
@@ -79,6 +81,7 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
+    this.isAuthenticated$.subscribe(authenticated => {
     this.freelancerId = this.authService.getCurrentUser()?.id;
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
@@ -102,19 +105,27 @@ export class HeaderComponent implements OnInit, OnChanges {
           }
         })
     })
-    this.userService.getUser(this.authService.getCurrentUser()?.id).subscribe(u=>{
-      this.isFreelancer = u.freelancer;
-      console.log( "Is Freelancer",this.isFreelancer);
+    // this.userService.getUser(this.freelancerId).subscribe(u=>{
+    //   this.isFreelancer = u.freelancer;
+    //   console.log( "Is Freelancer",this.isFreelancer);
+    //   console.log( u);
+    // })
+    this.userService.getUser(this.freelancerId).subscribe(u=>{
+      this.isClient = u.client;
+      console.log( "Is Freelancer",this.isClient);
+      console.log( u);
     })
+    });
+    
     
     console.log("Is Freelancer", this.isFreelancer);
   }
 
   ngOnChanges(){
-    this.userService.getUser(this.authService.getCurrentUser()?.id).subscribe(u=>{
-      this.isFreelancer = u.freelancer;
-      console.log( "Is Freelancer",this.isFreelancer);
-    })
+    // this.userService.getUser(this.authService.getCurrentUser()?.id).subscribe(u=>{
+    //   this.isFreelancer = u.freelancer;
+    //   console.log( "Is Freelancer",this.isFreelancer);
+    // })
   }
 
   getReviews() {
@@ -126,6 +137,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   // Add Notification
   joinTeam(teamId: number) {
     this.teamMember.teamId = teamId;
+    this.teamMember.freelancerId = this.freelancerId;
     this.teamMembersService.addTeamMember(this.teamMember).subscribe(
       a => console.log(a)
     )

@@ -6,6 +6,7 @@ import { ListProjectsComponent } from './list-projects/list-projects.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { projectRouterModule } from './project.routing';
 import { DetailsProjectComponent } from './details-project/details-project.component';
+import { ProposalModule } from '../proposal/proposal.module';
 
 
 
@@ -17,7 +18,16 @@ import { DetailsProjectComponent } from './details-project/details-project.compo
     DetailsProjectComponent
   ],
   imports: [
-    CommonModule,FormsModule,projectRouterModule
+    CommonModule,
+    FormsModule,
+    ProposalModule,
+    projectRouterModule,
+  ],
+  exports:[
+    PostProjectComponent,
+    ListProjectsComponent,
+    EditProjectComponent,
+    DetailsProjectComponent
   ]
 })
 export class ProjectModule { }

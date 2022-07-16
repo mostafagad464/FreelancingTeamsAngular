@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
+
 
 const helper = new JwtHelperService();
 
@@ -10,11 +12,15 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
 
-  redirectUrl:string = "";
+  redirectUrl: string = "";
 
   baseurl = "https://localhost:7152/api/Login/";
+  isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  constructor(public http: HttpClient, private router:Router) { }
+  constructor(public http: HttpClient, private router: Router) {
+    const authenticated = !!sessionStorage.getItem('access_token');
+    this.isAuthenticated$.next(authenticated);
+  }
 
   login(u: string, p: string) {
     let usr = {
@@ -38,7 +44,7 @@ export class AuthService {
     }
     return usr;
   }
-  DeleteToken(){
+  DeleteToken() {
     sessionStorage.removeItem("access_token");
   }
 
