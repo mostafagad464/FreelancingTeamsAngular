@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { Notifications } from '../_models/notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,16 @@ export class NotificationService {
   getNotNo(id: number){
     return this.http.get<any>(this.baseurl + "account/count/" + id);
   }
-  
+
+  // proposal, complain, handle complain, add user, 
+  postAccountNotification(accountId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"account/"+accountId, notication)
+  }
+  // deal, join, announce, complain handled
+  postTeamNotification(teamId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"team/"+teamId, notication)
+  }
+
 }
