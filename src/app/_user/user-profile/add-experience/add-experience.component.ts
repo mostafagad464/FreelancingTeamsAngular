@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FreelancerExperience } from 'src/app/_models/freelancer-experience';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 
 @Component({
@@ -17,30 +18,22 @@ export class AddExperienceComponent implements OnInit {
 
   freelancerExperience: FreelancerExperience = new FreelancerExperience(0, "", "", "", "", "", "","");
 
-  constructor(public activeModal: NgbActiveModal,public UserSer:UserProfileService,
+  constructor(public UserSer:UserProfileService,public authServ : AuthService,
     public router:Router,public ac:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.ac.params.subscribe(a => {
-      this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
-    
-      this.freelancerId=Number(this.freelancerIdArray[2]) ;
-      console.log(this.freelancerId)
-     
-     })
+   
+    this.freelancerId=this.authServ.getCurrentUser()?.id;
   }
   close(){
-
-    this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/experiences/"+this.freelancerId)
+   
   }
   Add() {
 
-    this.ac.params.subscribe(a => {
-
-      this.freelancerExperience.freelancerId = a['id'];
+  
    
-     
-    })
+
     this.freelancerExperience.freelancerId = this.freelancerId; 
     if(this.currentlyworking==1){
       this.freelancerExperience.curentllyWorking=true;
@@ -54,7 +47,8 @@ export class AddExperienceComponent implements OnInit {
    
   
     })
-    this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/experiences/"+this.freelancerId)
+
   }
   
 
