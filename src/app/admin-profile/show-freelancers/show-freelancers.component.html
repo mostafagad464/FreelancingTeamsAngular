@@ -1,0 +1,22 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of freelancers1;  let y=index">
+            <div class="media mt-2">
+                <div class="col-md-4"  style="width: 20rem;">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="pull-left"> <img class="media-object mn thumbnail mw50" src="https://localhost:7152/api/Image?UserId={{item.id}}"style="width: 10rem; height: 10rem; border-radius:50%" alt=""> </div>
+                    </div>
+                    <h4 class="mt-0" style=" width:11rem;"><strong>{{item.firstName}}</strong> {{+" "+item.lastName}}</h4>
+                    <span class="job_post"><h4 class="mt-0" style=" width:11rem;"><small>{{freelancers[y].freelancerNavigation?.specialization}}</small> {{+" "+item.lastName}}</h4></span>
+                    <p class="social-icon m-t-5 m-b-0">
+                        <a title="Twitter" href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                        <a title="Facebook" href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                        <a title="Google-plus" href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                        <a title="Behance" href="javascript:void(0);"><i class="fa fa-behance"></i></a>
+                        <a title="Instagram" href="javascript:void(0);"><i class="fa fa-instagram "></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

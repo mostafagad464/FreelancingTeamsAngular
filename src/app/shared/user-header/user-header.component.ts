@@ -28,9 +28,13 @@ export class UserHeaderComponent implements OnInit {
   NoOfMessages = 0;
   ListOfNotifications: Notifications[] = [];
 
-  constructor(public AuthService: AuthService, public UserService: UserService, public TeamService: TeamService, public AccountService: AccountService, public NotificationService: NotificationService, public ChatService : ChatService) { }
+  constructor(public AuthService: AuthService, public UserService: UserService, 
+    public TeamService: TeamService, public AccountService: AccountService, 
+    public NotificationService: NotificationService, public ChatService : ChatService) { }
 
   ngOnInit(): void {
+    this.getNotifications(this.AuthService.getCurrentUser()?.id);
+
     this.isAuthenticated$.subscribe(authenticated => {
       if (authenticated) {
         this.user.id = this.AuthService.getCurrentUser()?.id;
@@ -63,7 +67,7 @@ export class UserHeaderComponent implements OnInit {
     this.NotificationsListener();
     this.MessagesListener();
   
-    this.getNotifications(this.AuthService.getCurrentUser()?.id);
+    
 
   }
 
@@ -113,12 +117,11 @@ export class UserHeaderComponent implements OnInit {
   }
 
 
-  getNotifications(id:number){
-    this.NotificationService.getAccountNotifications(id).subscribe(notifications=>{
+  async getNotifications(id:number){
+    await this.NotificationService.getAccountNotifications(id).subscribe(notifications=>{
       this.ListOfNotifications = notifications;
       this.ListOfNotifications = this.ListOfNotifications.sort((m1, m2) => (m1.date > m2.date) ? -1 : (m1.date < m1.date) ? 1 : 0);
-      console.log(this.ListOfNotifications);
-
+      console.log("Notification List ", this.ListOfNotifications);
     })
   }
 

@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 
 const routes:Routes=[
-  {path:'addReview/:id', component:PostReviewComponent}
+  {path:'addReview/:clientId/:teamId/:projectId', component:PostReviewComponent}
 ]
 
 @NgModule({

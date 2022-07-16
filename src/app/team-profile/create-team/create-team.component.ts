@@ -43,7 +43,6 @@ export class CreateTeamComponent implements OnInit {
       )
 
       .add(()=>{
-        
         this.team.leaderId = this.authService.getCurrentUser()?.id;
         this.teamService.createTeam(this.team).subscribe(
           t => {
