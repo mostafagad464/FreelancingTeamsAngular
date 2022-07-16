@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <section>
-    <div *ngIf="Proposals; ">
+    <div *ngIf="Proposals.length>0; ">
       <h1 style = font-size:40px>All Proposals</h1>
     </div>
   <div  *ngFor="let item of Proposals; index as i" >
