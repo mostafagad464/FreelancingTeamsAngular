@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Education } from 'src/app/_models/education';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 
+
 @Component({
   selector: 'app-editeducational-info',
   templateUrl: './editeducational-info.component.html',
@@ -17,7 +18,7 @@ export class EditeducationalInfoComponent implements OnInit {
 
   freelancerEducation: Education = new Education(0, "", "", "", "", "", );
 
-  constructor(public activeModal: NgbActiveModal,public UserSer:UserProfileService,
+  constructor(public UserSer:UserProfileService,
     public router:Router,public ac:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,11 +27,11 @@ export class EditeducationalInfoComponent implements OnInit {
       console.log(this.router.routerState.snapshot.url)
        
       this.freelancerId=this.router.routerState.snapshot.url.split("/")
-     
-      this.gradYear=this.freelancerId[7].split(")")
+      
+      this.gradYear=this.router.routerState.snapshot.url.split("/")
    
     
-      this.UserSer.GetEducationById(this.freelancerId[2],this.gradYear[0]).subscribe(a => {
+      this.UserSer.GetEducationById(this.freelancerId[2],this.gradYear[5]).subscribe(a => {
      
       this.freelancerEducation = a;
   
@@ -39,19 +40,21 @@ export class EditeducationalInfoComponent implements OnInit {
 
   }
   close(){
+    this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/certificates/"+this.freelancerId[2])
 
-    this.activeModal.close();
+  
   }
   edit() {
   
  
-    this.UserSer.UpdateFreelancerEducation(this.freelancerId[2],this.freelancerEducation.gradYear
+    this.UserSer.UpdateFreelancerEducation(this.freelancerId[2],this.gradYear[5]
       , this.freelancerEducation).subscribe(a => {
    
 
       })
+      this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/certificates/"+this.freelancerId[2])
 
-   this.activeModal.close();
+   
   }
 
 }

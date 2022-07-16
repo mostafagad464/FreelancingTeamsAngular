@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FreelancerHasSkill } from 'src/app/_models/freelancer-has-skill';
 import { Skill } from 'src/app/_models/skill';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 
 @Component({
@@ -20,13 +21,11 @@ export class AddSkillComponent implements OnInit {
   newSkill:Skill=new Skill(0,"");
 
   constructor(public userSer : UserProfileService, public router: Router, 
-    public activeModal:NgbActiveModal,public ac: ActivatedRoute,public modalService: NgbModal,)  { }
+   public ac: ActivatedRoute,public authServ:AuthService,)  { }
 
   ngOnInit(): void {
     
-    this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
-  
-    this.freelancerId=Number(this.freelancerIdArray[2]) ;
+     this.freelancerId=this.authServ.getCurrentUser()?.id;
 
     this.userSer.getAllSkills().subscribe(a=>{
       this.skills[1]=a;
@@ -38,8 +37,8 @@ export class AddSkillComponent implements OnInit {
 
   }
   close(){
-
-    this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/personalInfo/"+this.freelancerId)
+    
   }
   Add(){
     console.log("this.skillName1")
@@ -58,7 +57,6 @@ export class AddSkillComponent implements OnInit {
           this.userSer.AddFreelancerSkill(this.freelancerNewSkill).subscribe(a=>{});
           break;
 
-          this.activeModal.close();
 
         }
     //     else
@@ -86,6 +84,7 @@ export class AddSkillComponent implements OnInit {
     //     }
      
         }
+        this.router.navigateByUrl("profile/"+this.freelancerId+"/personalInfo/"+this.freelancerId)
     
   }
 
