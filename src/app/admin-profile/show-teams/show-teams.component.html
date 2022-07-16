@@ -1,0 +1,15 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of teams;  let y=index">
+            <div class="media mt-2">
+                <div class="col-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="pull-left"> <img class="media-object mn thumbnail mw50" src="https://localhost:7152/api/Image/Team?TeamId={{item.id}}"style="width: 10rem; height: 10rem; border-radius:50%" alt=""> </div>
+                    </div>
+                    <h6 class="mt-0" style=" width:11rem; font-size: 1.2rem;">{{item.name}}</h6>
+                    <p class="mt-0 " style="width: 11rem; font-size:0.9rem;">{{item.specialization}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
