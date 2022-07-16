@@ -1,17 +1,41 @@
-<div style="margin: 100px;">
-    <div class="card text-center">
-        <div class="card-header" style="font-weight: bold;">
-          {{project.title}}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">{{project.state}}</h5>
-          <p class="card-text">{{project.description}}</p>
-          <h5 class="card-title">{{project.minBudget}} $:{{project.maxBudget}} $</h5>
-          <button (click)="edit()" class="btn btn-primary">Edit</button>
-        </div>
-        <div class="card-footer text-muted">
-          {{project.postingDate}}
-        </div>
-      </div>
+<div *ngIf="project; ">
+<br>
+<br>
+<br>
+<br>
+<div class="jumbotron" >
+  <div class="text-center">
+    <h1 style = font-size:40px>Project Details For <strong>{{project.title}}</strong></h1>
+
+  </div>
+
+  <h1 style = padding-left:40px;font-size:40px>Project description : </h1>
+  <div style = padding-left:40px;>
+
+  <!-- <div class=" "> -->
+  <br>
+
+  <p class="lead"><strong>{{project.description}}</strong></p>
+  <hr>
+  <div class="text-center">
+    <div class=" text-muted">
+
+     Range From : ${{project.minBudget}} To ${{project.maxBudget}}
+<!--
+            Posting Date  :  {{item.postingDate| date:'MMMM d, y'}} -->
+          </div>
+  <!-- <h5 class="card-title ">{{project.minBudget}} $:{{project.maxBudget}} $</h5> -->
+<br>
+  <p class="lead">
+<!-- <button class="btn btn-primary"></button> -->
+
+    <a (click)="edit()" class="btn btn-primary btn-lg "  role="button">Edit</a>
+  </p>
+</div>
+</div>
 </div>
 
+<app-all-proposals></app-all-proposals>
+
+
+</div>

@@ -14,7 +14,7 @@ import { DealModule } from '../deal/deal.module';
     AllProposalsComponent,AddProposalComponent
   ],
   imports: [
-    CommonModule,RouterModule,FormsModule,BrowserModule,DealModule
+    CommonModule,RouterModule,FormsModule,DealModule
   ],
   exports:[ AllProposalsComponent,AddProposalComponent]
 })
