@@ -32,13 +32,14 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { MainInfoComponent } from './account/main-info/main-info.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
+import { AnonymousGuard } from './_helpers/anonymous.guard';
 
 
 const routes: Routes = [
 
   { path: "", component: HomeComponent, pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent},
+  { path: "login", component: LoginComponent, canActivate:[AnonymousGuard] },
+  { path: "register", component: RegisterComponent, canActivate:[AnonymousGuard]},
   { path: "maininfo", component: MainInfoComponent},
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },

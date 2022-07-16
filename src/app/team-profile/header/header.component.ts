@@ -164,11 +164,10 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   requestJoinTeam(teamId: number)
   {
-    // this.notification.date = Date();
     this.notification.description = ""+ this.account.firstName + " " + this.account.lastName + " wants to join your team: "+ this.team.name;
-    this.notification.type = "j"
+    this.notification.type = "/profile/";
     this.notification.type_id = this.freelancerId;
-    this.notificationService.postTeamNotification(teamId, this.notification).subscribe(
+    this.notificationService.postAccountNotification(this.team.leaderId, this.notification).subscribe(
       n=>{
         console.log(n);
       }
