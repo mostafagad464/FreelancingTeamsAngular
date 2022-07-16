@@ -17,6 +17,7 @@ export class AuthService {
   baseurl = "https://localhost:7152/api/Login/";
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
+
   constructor(public http: HttpClient, private router: Router) {
     const authenticated = !!sessionStorage.getItem('access_token');
     this.isAuthenticated$.next(authenticated);
@@ -30,8 +31,12 @@ export class AuthService {
     return this.http.post<any>(this.baseurl, usr);
   }
 
-  logout() {
+  logIn() {
+    this.isAuthenticated$.next(true);
+  }
 
+  logout() {
+    this.isAuthenticated$.next(false);
   }
 
   getCurrentUser() {
@@ -46,6 +51,7 @@ export class AuthService {
   }
   DeleteToken() {
     sessionStorage.removeItem("access_token");
+    this.isAuthenticated$.next(false);
   }
 
 

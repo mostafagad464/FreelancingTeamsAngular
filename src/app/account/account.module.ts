@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
 import { MainInfoComponent } from './main-info/main-info.component';
+import { SharedModule } from '../shared/shared.module';
+import { LayoutModule } from '../Layout/layout.module';
 
 
 
@@ -17,7 +19,9 @@ import { MainInfoComponent } from './main-info/main-info.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule,
+    LayoutModule
   ],
   exports:[
     LoginComponent,
