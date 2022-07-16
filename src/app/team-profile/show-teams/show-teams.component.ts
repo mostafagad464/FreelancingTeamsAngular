@@ -62,10 +62,18 @@ export class ShowTeamsComponent implements OnInit {
     )
   }
   // Add Notification
-  joinTeam(teamId: number) {
+  // joinTeam(teamId: number) {
+  //   this.teamMember.teamId = teamId;
+  //   this.teamMembersService.addTeamMember(this.teamMember).subscribe(
+  //     a => console.log(a)
+  //   )
+  // }
+
+  requestJoinTeam(teamId: number) {
     this.teamMember.teamId = teamId;
     this.teamMembersService.addTeamMember(this.teamMember).subscribe(
       a => console.log(a)
     )
   }
+
 }
