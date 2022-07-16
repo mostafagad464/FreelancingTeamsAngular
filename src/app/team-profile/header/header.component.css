@@ -12,10 +12,16 @@
   margin-left: 0.5rem !important;
   padding: 0.5rem !important;
 }
-body{
+.body{
     color: #6F8BA4;
     margin-top:20px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color:#333;
+
 }
+
 .section {
     /* padding: 100px 0; */
     position: relative;
@@ -28,7 +34,7 @@ img {
 }
 img {
     vertical-align: middle;
-    border-style: none;
+    border:0;
 }
 /* About Me 
 ---------------------*/
@@ -65,6 +71,10 @@ img {
 }
 .about-list .media {
   padding: 5px 0;
+}
+.media{
+  color: #999999;
+  font-weight: 600;
 }
 .about-list label {
   color: #20247b;
@@ -309,7 +319,7 @@ body{margin-top:20px;
   }
   
   .p30 {
-      padding: 5px !important;
+      padding: 30px !important;
   }
   
   .page-heading {
@@ -732,10 +742,10 @@ body{margin-top:20px;
   }
   .media-left,
   .media-right,
-  .media-body {
+  /* .media-body {
     display: table-cell;
     vertical-align: top;
-  }
+  } */
   .media-middle {
     vertical-align: middle;
   }
@@ -758,7 +768,18 @@ body{margin-top:20px;
     padding-left: 0;
     list-style: none;
   }
-  
+  .label-info{
+    background-color: #5bc0de;
+  }
+  .label-warning{
+    background-color: #f0ad4e;
+  }
+  .label-primary{
+    background-color: #337ab7;
+  }
+  .label-success{
+    background-color: #5cb85c;
+  }
   /*===============================================
     Tabs
   ================================================= */
@@ -772,7 +793,7 @@ body{margin-top:20px;
     position: relative;
     z-index: 10;
     min-height: 125px;
-    padding: 16px 12px;
+    padding: 16px-12px;
     border: 1px solid #e2e2e2;
     background-color: #FFF;
   }
@@ -918,4 +939,18 @@ body{margin-top:20px;
     background: #FFF;
     border-color: #DDD;
     border-top: 1px solid #FFF;
+  }
+  /*//////////////////////////////////////////////////*/
+  .label {
+    overflow: auto;
+    display: inline !important;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
   }

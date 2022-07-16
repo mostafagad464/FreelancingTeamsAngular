@@ -31,6 +31,8 @@
                             <a class="nav-link text" [routerLink]="['/removeMember',team.id]">Hire</a>
                         </li>
                     </ul>
+                    <div style="color:white; font-size: 1.3rem;" class="pi pi-bell">
+                  </div>
                 </div>
             </div>
         </nav><br><br>
@@ -132,17 +134,26 @@
               <span class="panel-title"> Our Skills</span>
             </div>
             <div class="panel-body pb5">
-              <span class="label label-warning mr5 mb10 ib lh15">Default</span>
-              <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
+              <span class="label label-primary mr5 mb10 ib lh15" *ngFor="let item of distinctSkills" >
+                <span>{{item}}</span>
+              </span>
+              <!-- <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
               <span class="label label-info mr5 mb10 ib lh15">Success</span>
               <span class="label label-success mr5 mb10 ib lh15">Info</span>
               <span class="label label-alert mr5 mb10 ib lh15">Warning</span>
               <span class="label label-system mr5 mb10 ib lh15">Danger</span>
               <span class="label label-info mr5 mb10 ib lh15">Success</span>
               <span class="label label-success mr5 mb10 ib lh15">Ui Design</span>
-              <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
+              <span class="label label-primary mr5 mb10 ib lh15">Primary</span> -->
 
             </div>
+            <!-- <div class="panel-body pb5">
+              <ul  *ngFor="let item of distinctSkills">
+                <li>
+                 <span class="label label-warning mr5 mb10 ib lh15">{{item}}</span>
+                </li>
+              </ul>
+            </div> -->
           </div>
           <div class="panel">
             <div class="panel-heading">

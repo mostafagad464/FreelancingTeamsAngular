@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="main-body">
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body1">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <div class="mt-3">
+                      <h4 class="mb-b">{{name}}</h4>
+                      <p class="text-secondary mb-1">{{userName}}</p>
+                      <button class="btn btn-outline-primary">Message</button><br><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check mr-2 icon-inline text-info"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>Clients</h6>
+                    <span class="text-secondary">{{clients.length}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2 icon-inline text-info"><circle cx="12" cy="7" r="4"></circle><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path></svg>Freelancers</h6>
+                    <span class="text-secondary">{{freelancers.length}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users mr-2 icon-inline text-info"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Teams</h6>
+                    <span class="text-secondary">{{teams.length}}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon mr-2 icon-inline text-danger"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>Complains</h6>
+                    <span class="text-secondary">{{complains.length}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{email}}
+                    </div>
+                  </div>
+                  <hr>
+                 
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3 m-1" style="margin-left: 0.5rem;">
+                    <button class="btn btn-sm btn-info"  [routerLink]="['showClients']" data-toggle="tab">Clients</button>
+                </div>
+                <div class="col-sm-3 ">
+                    <button class="btn btn-sm btn-info"  [routerLink]="['showFreelancers']" data-toggle="tab">Freelancers</button>
+                  </div>
+                  <div class="col-sm-3">
+                    <button class="btn btn-sm btn-info"  [routerLink]="['showTeams']" data-toggle="tab">Teams</button>
+                  </div>
+                  <div class="col-sm-3">
+                    <button class="btn btn-sm btn-info"  [routerLink]="['showComplaints']" data-toggle="tab">Complaints</button>
+                  </div>
+                <div class="row gutters-sm">
+                    <div class="col-sm-12 mb-3">
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <div class="tab-block">
+                            <div class="tab-content p30" style="height: 600px; padding-left: 20px;">
+                              <div id="tab1" class="tab-pane active">
+                                        <router-outlet></router-outlet><br><br>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+
+
+
+

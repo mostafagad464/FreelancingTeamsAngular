@@ -1,8 +1,9 @@
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="row">
+    <div class="media">
         <div class="col-md-4" *ngFor="let item of users">
             <div class="col-lg-3 col-md-4 col-12">
-                <div class="profile-image float-md-right"> <img src="https://localhost:7152/api/Image?UserId={{item.id}}" style="width: 10rem; height: 10rem;" alt=""> </div>
+                <div class="pull-left"> <img class="media-object mn thumbnail mw50" src="https://localhost:7152/api/Image?UserId={{item.id}}" style="width: 10rem; height: 10rem; border-radius: 50%;" alt=""> </div>
             </div>
             <div class="col-lg-8 col-md-8 col-12" style="width: 20rem;">
                 <h4 class="mt-0 "><strong>{{item.idNavigation?.firstName}}</strong> {{item.idNavigation?.lastName}}</h4>
@@ -16,5 +17,6 @@
                 </p>
             </div>   
         </div>
+    </div>       
     </div>
 </div>

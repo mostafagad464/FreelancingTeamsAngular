@@ -25,6 +25,8 @@ import { HomeModule } from "./home/home.module";
 import { FreelancersModule } from "./freelancers/freelancers.module";
 import { ProposalModule } from "./proposal/proposal.module";
 import { DealModule } from "./deal/deal.module";
+import { AdminProfileComponent } from "./admin-profile/admin-profile/admin-profile.component";
+import { AdminProfileModule } from "./admin-profile/admin-profile.module";
 
 
 export function tokenGetter() {
@@ -66,7 +68,7 @@ export function tokenGetter() {
     RouterModule,
     LayoutModule,
     FreelancersModule,
-
+    AdminProfileModule,
  ],
   providers: [
     {
