@@ -1,4 +1,5 @@
 
+
 export class Notifications {
 
     constructor(public id:number, 
@@ -10,3 +11,4 @@ export class Notifications {
         public date:Date
         ){}
 }
+

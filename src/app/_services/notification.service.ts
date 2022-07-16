@@ -26,8 +26,12 @@ export class NotificationService {
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  getNotNo(id: number){
+  getNotIficationsCount(id: number){
     return this.http.get<any>(this.baseurl + "account/count/" + id);
+  }
+  
+  getAccountNotifications(id:number){
+    return this.http.get<Notifications[]>(this.baseurl+"account/"+id);
   }
 
   // proposal, complain, handle complain, add user, 
