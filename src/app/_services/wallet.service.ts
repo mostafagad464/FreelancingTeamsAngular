@@ -15,4 +15,8 @@ export class WalletService {
   {
     return this.http.post<Wallet>(this.baseUrl, wallet);
   }
+  getWallet(id:number)
+  {
+    return this.http.get<Wallet>(this.baseUrl+id)
+  }
 }

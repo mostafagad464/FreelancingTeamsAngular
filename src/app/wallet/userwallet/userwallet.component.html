@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h3 class="card-title">Total Money</h3>
+                    <p style="font-size:35px ;color:rgb(60, 60, 158)" class="card-text">{{wallet!.money!}} $</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h2 class="card-title">Available Money</h2>
+                    <p style="font-size:35px ;color:rgb(60, 60, 158)" class="card-text">{{wallet!.available!}} $</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <button style="height:50px ;" class="btn btn-secondary rounded-pill col-lg-2 offset-8 shadow-lg">Withdraw</button>
+
+    </div>
+</div>

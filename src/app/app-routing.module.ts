@@ -30,6 +30,8 @@ import { AllProposalsComponent } from './proposal/all-proposals/all-proposals.co
 import { AdddealComponent } from './deal/adddeal/adddeal.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { MainInfoComponent } from './account/main-info/main-info.component';
+import { SliderComponent } from './home/slider/slider.component';
+import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
 
 
 const routes: Routes = [
@@ -71,6 +73,7 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children:
       [
+        {path:"wallet/:id",component:UserwalletComponent},
         { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal' },
         { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal' },
         {
@@ -183,7 +186,7 @@ const routes: Routes = [
       canActivate: [AuthGuard]
   },
 
-  { path: "userHome", component: ContainerComponent },
+  { path: "userHome", component: SliderComponent },
 
   { path: "**", component: ErrorComponent }
 ]
