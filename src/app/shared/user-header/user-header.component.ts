@@ -1,9 +1,11 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Account } from 'src/app/_models/account';
+import { Notifications } from 'src/app/_models/notifications';
 import { Team } from 'src/app/_models/team';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { ChatService } from 'src/app/_services/chat.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { TeamService } from 'src/app/_services/team.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -22,9 +24,11 @@ export class UserHeaderComponent implements OnInit {
   teamSelected: boolean = false;
   name = "";
   imgUrl = "";
-  NoOfNot = 0;
+  NoOfNotifications = 0;
+  NoOfMessages = 0;
+  ListOfNotifications: Notifications[] = [];
 
-  constructor(public AuthService: AuthService, public UserService: UserService, public TeamService: TeamService, public AccountService: AccountService, public NotificationService:NotificationService) { }
+  constructor(public AuthService: AuthService, public UserService: UserService, public TeamService: TeamService, public AccountService: AccountService, public NotificationService: NotificationService, public ChatService : ChatService) { }
 
   ngOnInit(): void {
     this.isAuthenticated$.subscribe(authenticated => {
@@ -47,22 +51,76 @@ export class UserHeaderComponent implements OnInit {
           this.name = account.firstName + " " + account.lastName;
         })
       }
-      this.NotificationService.getNotNo(this.AuthService.getCurrentUser()?.id).subscribe(notNo=>{
-        this.NoOfNot = notNo.count;
-      })
+      this.NotificationService.getNotIficationsCount(this.AuthService.getCurrentUser()?.id).subscribe(notNo => {
+        this.NoOfNotifications = notNo.count;
+      });
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+        this.NoOfMessages = messNo.count;
+      });
 
     });
-    
-    
+
+    this.NotificationsListener();
+    this.MessagesListener();
+  
+    this.getNotifications(this.AuthService.getCurrentUser()?.id);
+
   }
 
-  Switch(name:string,id:number){
-    sessionStorage.setItem("team_id",id.toString());
+  Switch(name: string, id: number) {
+    sessionStorage.setItem("team_id", id.toString());
     this.name = name
   }
-  logout()
-  {
+  logout() {
     this.AuthService.DeleteToken();
   }
+
+
+  NotificationsListener(){
+    // Hub connection
+    this.NotificationService.startConnection();
+
+    //Notification Listener
+    this.NotificationService.hubConnection.on("Notify", notification => {
+      console.log(notification);
+      this.NotificationService.getNotIficationsCount(this.AuthService.getCurrentUser()?.id).subscribe(notNo => {
+        this.NoOfNotifications = notNo.count;
+      });
+      this.getNotifications(this.AuthService.getCurrentUser()?.id);
+    });
+  }
+
+
+  MessagesListener(){
+    //Hub Connection
+    this.ChatService.startConnection();
+
+    this.ChatService.hubConnection.on('AccountsMessaging', message => {
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+        this.NoOfMessages = messNo.count;
+      });
+    });
+    this.ChatService.hubConnection.on("TeamsAndFreelancersMesseging", message => {
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+        this.NoOfMessages = messNo.count;
+      });
+    });
+    this.ChatService.hubConnection.on("AccountMessagesUpdate", message => {
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+        this.NoOfMessages = messNo.count;
+      });
+    });
+  }
+
+
+  getNotifications(id:number){
+    this.NotificationService.getAccountNotifications(id).subscribe(notifications=>{
+      this.ListOfNotifications = notifications;
+      this.ListOfNotifications = this.ListOfNotifications.sort((m1, m2) => (m1.date > m2.date) ? -1 : (m1.date < m1.date) ? 1 : 0);
+      console.log(this.ListOfNotifications);
+
+    })
+  }
+
 
 }
