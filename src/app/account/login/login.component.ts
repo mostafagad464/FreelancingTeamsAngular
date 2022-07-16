@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       const decodedToken = helper.decodeToken(s.token);
       const expirationDate = helper.getTokenExpirationDate(s.token);
       const isExpired = helper.isTokenExpired(s.token);
+      this.AuthService.logIn();
       console.log(s)
       console.log(decodedToken.Id)
       console.log(expirationDate)
