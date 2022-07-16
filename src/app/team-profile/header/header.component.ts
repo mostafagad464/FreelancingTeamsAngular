@@ -27,8 +27,8 @@ import { ReviewsService } from './../../_services/reviews.service'
 })
 export class HeaderComponent implements OnInit, OnChanges {
 
-  noOfCpltdProj: number = 0;
-  noOfRv: number = 0
+  noOfCpltdProj: number =0;
+  noOfRv: number = 0;
   teamMembers: number[] = [];
 
   checkP = ""; //Your team's projects
@@ -130,12 +130,14 @@ export class HeaderComponent implements OnInit, OnChanges {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
 
         this.team = a;
+        this.noOfCpltdProj = this.team.deals.filter(a =>a.done == true).length;
+
+        this.getReviews();
+
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);
         this.Check();
-        this.noOfCpltdProj = this.team.deals.filter(a => a.done == true).length;
-        this.getReviews();
 
         this.userService.getAllFreelancers().subscribe(f=>{
           this.allFreelancers = f;
@@ -201,6 +203,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   getReviews() {
     this.ReviewsService.getReviews().subscribe(r => {
       this.noOfRv = r.filter(a => a.rate > 4 && a.teamId == this.team.id).length;
+      console.log("momen"+this.noOfRv)
     });
   }
 
