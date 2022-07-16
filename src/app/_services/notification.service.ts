@@ -33,4 +33,16 @@ export class NotificationService {
   getAccountNotifications(id:number){
     return this.http.get<Notifications[]>(this.baseurl+"account/"+id);
   }
+
+  // proposal, complain, handle complain, add user, 
+  postAccountNotification(accountId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"account/"+accountId, notication)
+  }
+  // deal, join, announce, complain handled
+  postTeamNotification(teamId:number, notication:Notifications)
+  {
+    return this.http.post<Notification>(this.baseurl+"team/"+teamId, notication)
+  }
+
 }

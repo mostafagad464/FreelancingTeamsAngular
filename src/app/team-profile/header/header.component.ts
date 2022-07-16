@@ -1,8 +1,14 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { numbers } from '@material/dialog';
+import { Account } from 'src/app/_models/account';
+import { Notifications } from 'src/app/_models/notifications';
 import { Project } from 'src/app/_models/project';
 import { TeamMember } from 'src/app/_models/team-member';
+import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { NotificationService } from 'src/app/_services/notification.service';
 import { UserService } from 'src/app/_services/user.service';
 import { Team } from '../../_models/team'
 import { TeamMembersService } from '../team-members.service';
@@ -19,6 +25,9 @@ export class HeaderComponent implements OnInit, OnChanges {
   noOfCpltdProj: number = 0;
   noOfRv: number = 0
   teamMembers: number[] = [];
+  notification:Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
+  user:User=new User(0, null, 0 , 0, "", "" , "", null, 0, true, "", false, false, 0, 0, true, null, null, null, null, null);
+  account:Account = new Account(0, null, "", "", "", "", "", "",null);
 
   constructor(public ac: ActivatedRoute,
     public teamServ: TeamProfileService,
@@ -26,7 +35,9 @@ export class HeaderComponent implements OnInit, OnChanges {
     public ReviewsService: ReviewsService,
     private teamMembersService: TeamMembersService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService:NotificationService, 
+    private accountService:AccountService
   ) { }
 
   checkP = ""; //Your team's projects
@@ -65,6 +76,9 @@ export class HeaderComponent implements OnInit, OnChanges {
   desc = this.team.description;
   rate = 1;
 
+
+
+
   Search() {
   }
 
@@ -80,6 +94,15 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    this.userService.getUser(this.freelancerId).subscribe(u=>{
+      this.isClient = u.client;
+      this.user = u;
+      console.log( "Is Freelancer",this.isClient);
+      console.log( u);
+    })
+    this.accountService.getAccount(this.freelancerId).subscribe(a=>{
+      this.account = a
+    })
 
     this.isAuthenticated$.subscribe(authenticated => {
     this.freelancerId = this.authService.getCurrentUser()?.id;
@@ -110,11 +133,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     //   console.log( "Is Freelancer",this.isFreelancer);
     //   console.log( u);
     // })
-    this.userService.getUser(this.freelancerId).subscribe(u=>{
-      this.isClient = u.client;
-      console.log( "Is Freelancer",this.isClient);
-      console.log( u);
-    })
+
     });
     
     
@@ -140,6 +159,19 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.teamMember.freelancerId = this.freelancerId;
     this.teamMembersService.addTeamMember(this.teamMember).subscribe(
       a => console.log(a)
+    )
+  }
+
+  requestJoinTeam(teamId: number)
+  {
+    // this.notification.date = Date();
+    this.notification.description = ""+ this.account.firstName + " " + this.account.lastName + " wants to join your team: "+ this.team.name;
+    this.notification.type = "j"
+    this.notification.type_id = this.freelancerId;
+    this.notificationService.postTeamNotification(teamId, this.notification).subscribe(
+      n=>{
+        console.log(n);
+      }
     )
   }
 

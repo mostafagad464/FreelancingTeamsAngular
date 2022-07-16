@@ -8,13 +8,18 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  public isAuthenticated$ = this.AuthService.isAuthenticated$;
+  public isAuthenticated$ = this.authService.isAuthenticated$;
 
-  constructor(public AuthService: AuthService) {
-    this.isAuthenticated$.subscribe(authenticated => {})
-   }
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService) {
+    this.isAuthenticated$.subscribe(authenticated => { })
   }
+
+  isFreelancer = false;
+
+ngOnInit(): void {
+  this.isFreelancer =  this.authService.getCurrentUser()?.id;
+  // this.isFreelancer =  this.authService.userType()?.isFreelancer;
+
+}
 
 }

@@ -13,8 +13,7 @@ import { DealModule } from '../deal/deal.module';
     AllProposalsComponent,AddProposalComponent
   ],
   imports: [
-    CommonModule,RouterModule,FormsModule,
-    DealModule
+    CommonModule,RouterModule,FormsModule,DealModule
   ],
   exports:[ AllProposalsComponent,AddProposalComponent]
 })

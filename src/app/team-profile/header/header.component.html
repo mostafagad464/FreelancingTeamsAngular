@@ -23,7 +23,7 @@
               <a class="nav-link text" [routerLink]="['/addMember',team.id]">Add freelancer</a>
             </li> -->
             <li *ngIf="isMember == false || isClient== false" class="nav-item">
-              <a (click)="joinTeam(team.id)" class="nav-link text">Join</a>
+              <a (click)="requestJoinTeam(team.id)" class="nav-link text">Join</a>
             </li>
             <li *ngIf="haveAccess == true" class="nav-item">
               <a class="nav-link text" [routerLink]="['/freelancers',team.id]">Add Members</a>
@@ -185,6 +185,9 @@
           </li>
           <li>
             <a [routerLink]="['showProjects',team.id]" data-toggle="tab">Projects</a>
+          </li>
+          <li>
+            <a [routerLink]="['wallet',team.id]" data-toggle="tab">Wallet</a>
           </li>
         </ul>
         <div class="tab-content p30" style="height: 730px;">
