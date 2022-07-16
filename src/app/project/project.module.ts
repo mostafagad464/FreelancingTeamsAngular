@@ -20,7 +20,7 @@ import { ProposalModule } from '../proposal/proposal.module';
   imports: [
     CommonModule,
     FormsModule,
-    ProposalModule,
+
     projectRouterModule,
   ],
   exports:[
