@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: "postComplain/:id",
     component: PostComplainsComponent,
-  
+
   },
 
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -47,91 +47,96 @@ const routes: Routes = [
   { path: "chat/team/:id", component: TeamChatComponent },
 
   { path: "projects", loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
-  { path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule)},
-  { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule)},
-  
-  { path: "profile/:id", component: HeaderComponent, children: 
-    [
-      { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal'},
-      { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal'},
-      { path: "educations/:id", component: EducationalInfoComponent, children: 
-        [
-          { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal'},
-          { path: "addEducation", component: AddEducationComponent, outlet: 'modal'}
-        ]
-      },
-      {
-        path: "addSkill/:id",
-        component: AddSkillComponent,
-        outlet: 'modal'
-      },
+  { path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule) },
+  { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule) },
 
-      {
-        path: "educations/:id", component: EducationalInfoComponent,
-        children:
-          [
-            {
-              path: "editEducation/:id/:gradYear",
-              component: EditeducationalInfoComponent,
-              outlet: 'modal'
-            },
-
-            {
-              path: "addEducation",
-              component: AddEducationComponent,
-              outlet: 'modal'
-            }
-
-          ]
-      },
-      {
-        path: "portfolio/:id", component: ProjectsComponent,
-        children:
-          [
-            { path: "addPortofolio", component: AddPortfolioComponent }
-          ]
+  {
+    path: "profile/:id", component: HeaderComponent, children:
+      [
+        { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal' },
+        { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal' },
+        {
+          path: "educations/:id", component: EducationalInfoComponent, children:
+            [
+              { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal' },
+              { path: "addEducation", component: AddEducationComponent, outlet: 'modal' }
+            ]
         },
-      { path: "portfolio/:id", component: ProjectsComponent,children:
-        [
-          { path: "addPortofolio", component: AddPortfolioComponent }
-        ]
+        {
+          path: "addSkill/:id",
+          component: AddSkillComponent,
+          outlet: 'modal'
+        },
 
-      },
+        {
+          path: "educations/:id", component: EducationalInfoComponent,
+          children:
+            [
+              {
+                path: "editEducation/:id/:gradYear",
+                component: EditeducationalInfoComponent,
+                outlet: 'modal'
+              },
 
-      { path: "experiences/:id", component: ExperienceComponent, children:
-          [
-            { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal'},
-            { path: "addExperience", component: AddExperienceComponent,outlet: 'modal'}
+              {
+                path: "addEducation",
+                component: AddEducationComponent,
+                outlet: 'modal'
+              }
+
+            ]
+        },
+        {
+          path: "portfolio/:id", component: ProjectsComponent,
+          children:
+            [
+              { path: "addPortofolio", component: AddPortfolioComponent }
+            ]
+        },
+        {
+          path: "portfolio/:id", component: ProjectsComponent, children:
+            [
+              { path: "addPortofolio", component: AddPortfolioComponent }
+            ]
+
+        },
+
+        {
+          path: "experiences/:id", component: ExperienceComponent, children:
+            [
+              { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal' },
+              { path: "addExperience", component: AddExperienceComponent, outlet: 'modal' }
+            ]
+        },
+        {
+          path: "certificates/:id", component: CertificatesComponent,
+          children:
+            [
+              {
+                path: "editCertificate/:id/:title",
+                component: EditCertificatesComponent,
+                outlet: 'modal'
+              },
+              {
+                path: "addCertificate",
+                component: AddCertificateComponent,
+                outlet: 'modal'
+              }
+            ]
+        },
+
+        {
+          path: "personalInfo/:id", component: PersonalInfoComponent, children:
+            [
+              { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
+            ]
+        },
+        {
+          path: "certificates/:id", component: CertificatesComponent, children: [
+
           ]
-      },
-      {
-        path: "certificates/:id", component: CertificatesComponent,
-        children:
-          [
-            {
-              path: "editCertificate/:id/:title",
-              component: EditCertificatesComponent,
-              outlet: 'modal'
-            },
-            {
-              path: "addCertificate",
-              component: AddCertificateComponent,
-              outlet: 'modal'
-            }
-          ]
-      },
-
-      { path: "personalInfo/:id", component: PersonalInfoComponent, children: 
-        [
-          { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
-        ]
-      },
-      {
-        path: "certificates/:id", component: CertificatesComponent,children:[
-
-        ]
-      }
-    ]
+        }
+      ]
   },
 
 
@@ -181,9 +186,9 @@ const routes: Routes = [
       ]
   },
   {
-    path: "freelancers", loadChildren:()=>import("./freelancers/freelancers.module").then(f=>f.FreelancersModule)
+    path: "freelancers", loadChildren: () => import("./freelancers/freelancers.module").then(f => f.FreelancersModule)
   },
-  {path:"userHome",component:ContainerComponent},
+  { path: "userHome", component: ContainerComponent },
 
   { path: "team", loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule) },
   { path: "**", component: ErrorComponent }

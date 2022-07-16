@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 
 const helper = new JwtHelperService();
 
@@ -10,8 +11,12 @@ const helper = new JwtHelperService();
 export class AuthService {
 
   baseurl = "https://localhost:7152/api/Login/";
+  isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+    const authenticated = !!sessionStorage.getItem('access_token'); 
+    this.isAuthenticated$.next(authenticated);
+   }
 
   login(u: string, p: string) {
     let usr = {
@@ -21,8 +26,12 @@ export class AuthService {
     return this.http.post<any>(this.baseurl, usr);
   }
 
-  logout() {
+  logIn() {
+    this.isAuthenticated$.next(true);
+  }
 
+  logout() {
+    this.isAuthenticated$.next(false);
   }
 
   getCurrentUser() {
@@ -37,6 +46,7 @@ export class AuthService {
   }
   DeleteToken(){
     sessionStorage.removeItem("access_token");
+    this.isAuthenticated$.next(false);
   }
 
 

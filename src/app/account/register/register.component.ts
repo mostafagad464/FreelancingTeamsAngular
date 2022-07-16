@@ -18,9 +18,11 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "User",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","","",0,false,"",false,false,null,null,false,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""))
+  /*** Popup */
+  displayStyle='none';
+
+  account: Account = new Account(0, null, "", "", "", "", "", "User",null);
+  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","",null,0,false,"",false,false,null,null,false,null,null,null,null,null);
   confirmPassword = "";
   message = "";
   showUN = false;   //Show User Name
@@ -31,6 +33,7 @@ export class RegisterComponent implements OnInit {
   constructor(public AccountService: AccountService, public UserService: UserService, public modalService: NgbModal,public AuthService: AuthService) { }
 
   ngOnInit(): void {
+    // this.displayStyle = 'block';
   }
 
   CheckUserName() {
@@ -90,8 +93,8 @@ export class RegisterComponent implements OnInit {
             this.UserService.addUser(this.user).subscribe(u=>{
               console.log(u);
               this.login(this.account.username, this.account.password);
-              
             })
+            
           })
         }
         
@@ -110,7 +113,8 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
-      this.openModal();
+      // this.openModal();
+      this.displayStyle = 'block';
     },
     error=> {
       console.log(error.error)}
