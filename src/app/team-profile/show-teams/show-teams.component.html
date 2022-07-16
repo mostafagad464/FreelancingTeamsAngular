@@ -71,12 +71,12 @@
                         <p class="card-text text-center">
                             <app-stars [rate]="team.rate"></app-stars>
                         </p>
-                        <a [routerLink]="['/teamProfile/'+team.id]" class="btn btn-primary">Profile</a> |
-                        <a target="_blank" href="{{team.webSite}}" class="btn btn-primary">Website</a> |
-                        <a (click)="joinTeam(team.id)" class="btn btn-primary">Join</a>
-                        <ng-template [ngIf]="isClient == true"> |
+                        <a [routerLink]="['/team/teamProfile/'+team.id]" class="btn btn-primary">Profile</a> |
+                        <a target="_blank" href="{{team.webSite}}" class="btn btn-primary">Website</a>
+                        <!-- <a (click)="joinTeam(team.id)" class="btn btn-primary">Join</a> -->
+                        <!-- <ng-template [ngIf]="isClient == true"> |
                             <a [routerLink]="['/chat/',team.id]" class="btn btn-primary">Messege</a>
-                        </ng-template>
+                        </ng-template> -->
                     </div>
                 </div>
                 <!-- <div style="display: none;" id="technologies-team-{{team.id}}" class="col-md-8">

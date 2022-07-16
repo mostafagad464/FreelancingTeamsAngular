@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
   pass = "password";
   fa = "fa-eye";
 
-  constructor(public AuthService: AuthService,public router:Router) { }
+  constructor(public AuthService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
   }
-  login(){
-    this.AuthService.login(this.userName,this.password).subscribe(s=>{
-      sessionStorage.setItem("access_token",s.token);
+  login() {
+    this.AuthService.login(this.userName, this.password).subscribe(s => {
+      sessionStorage.setItem("access_token", s.token);
       const decodedToken = helper.decodeToken(s.token);
       const expirationDate = helper.getTokenExpirationDate(s.token);
       const isExpired = helper.isTokenExpired(s.token);
@@ -33,14 +33,23 @@ export class LoginComponent implements OnInit {
       console.log(decodedToken.Id)
       console.log(expirationDate)
       console.log(isExpired)
-      this.router.navigateByUrl("/userHome")
+      if (this.AuthService.redirectUrl != "") {
+        this.router.navigate([this.AuthService.redirectUrl]);
+        this.AuthService.redirectUrl = "";
+      }
+      else
+      {
+        this.router.navigateByUrl("/userHome")
+      }
+
     },
-    error=> {
-      this.message = "Username and password incorrect";
-      this.userName = '';
-      this.password = '';
-      console.log(error.error)}
-      );
+      error => {
+        this.message = "Username and password incorrect";
+        this.userName = '';
+        this.password = '';
+        console.log(error.error)
+      }
+    );
   }
 
 }

@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
     public ar: ActivatedRoute,
     public authserv: AuthService,
     public router: Router,
-    public usrservice: UserService) {
+    public usrservice: UserService,
+    public activateRoute:ActivatedRoute
+    ) {
     this.sub1 = this.ar.params.subscribe(x => {
       console.log(x);
       this.userId = x['id'];
@@ -78,6 +80,7 @@ export class HeaderComponent implements OnInit {
   sub2: Subscription | null = null;
   userId: any;
   profileId: any;
+  urlId:number = 0;
   // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
   //userInfo:User|null=null
   //userInfo = {} as User;
@@ -93,12 +96,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.profileId = this.authserv.getCurrentUser()?.id;
     this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
+    this.activateRoute.params.subscribe(a=>this.urlId = a['id']);
   }
   myTeam() {
-    this.router.navigate(['showteams/', this.profileId]);
+    this.router.navigate(['team/showteams/', this.profileId]);
   }
   joinTeam() {
-    this.router.navigate(['showteams']);
+    this.router.navigate(['team/showteams']);
   }
 
 }

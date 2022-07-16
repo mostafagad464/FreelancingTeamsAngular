@@ -8,6 +8,7 @@
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 Squad
             </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav"
             aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -18,6 +19,31 @@
         <div class="collapse navbar-collapse justify-content-end" id="mainNav">
             <ul class="navbar-nav ">
 
+                <li class="nav-item me-3 me-lg-0 dropdown show">
+                    <a gtm-id="Notifications" class="nav-link dropdown-toggle hidden-arrow" role="button"
+                        alt="Notifications" id="navbarNotification" data-mdb-toggle="dropdown" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        <i class="fas fa-bell" alt="Notifications"></i>
+                        <span id="navbarNotificationCounter" class="badge rounded-pill badge-notification bg-danger"
+                            alt="Notifications" style="color: rgb(255, 255, 255) !important; display: none;">4</span>
+                    </a>
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="0"
+                        class="dropdown-menu dropdown-menu-right dropdown-menu-end show scrollspy-example"
+                        id="navbarNotificationContent" tabindex="0" aria-labelledby="navbarDropdownMenuLink"
+                        style="width: 250px;">
+                        <a gtm-id="Notifications" class="dropdown-item text-wrap"
+                            data-notification-date="07/12/2022 11:00"
+                            href="https://mdbootstrap.com/docs/standard/getting-started/changelog/" target="_blank"
+                            rel="nofollow" id="navbarNotification">
+                            <p class="small text-uppercase mb-2">7/12/2022</p>
+                            <p class="mb-0">MDB5 Standard version 4.3.0 released! Check out the full list of fixes &amp;
+                                improvements you'll get with this update</p>
+                        </a>
+                    </div>
+                </li>
+
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#!" id="navbarWelcome" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +51,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarWelcome">
                         <li><a class="dropdown-item" [routerLink]="['/projects/create']">Post Job</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/showteams']" href="index-2.html">Hire Team</a>
+                        <li><a class="dropdown-item" [routerLink]="['/team/showteams']" href="index-2.html">Hire
+                                Team</a>
                         </li>
                     </ul>
                 </li>
@@ -36,7 +63,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarWelcome">
                         <li><a class="dropdown-item" [routerLink]="['/projects/list']">Find Work for your team</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/showteams']">find Team to Join</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/team/showteams']">find Team to Join</a></li>
                     </ul>
                 </li>
                 <!-- <li class="nav-item">
@@ -68,7 +95,8 @@
                     </a>
                 </li>
                 <li *ngIf="account.id > 0" class="nav-item">
-                    <a [routerLink]="['/profile/',account.id]" routerLinkActive="router-link-active" class="nav-link smoth-scroll">
+                    <a [routerLink]="['/profile/',account.id]" routerLinkActive="router-link-active"
+                        class="nav-link smoth-scroll">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -131,7 +159,7 @@
 
                 </li> -->
 
-                <!-- </li>
+<!-- </li>
                 <li class="nav-item">
                     <a class="nav-link smoth-scroll" href="about.html">About</a>
                 </li>
@@ -156,4 +184,3 @@
 </nav> -->
 
 <!--MAIN HEADER AREA END -->
-

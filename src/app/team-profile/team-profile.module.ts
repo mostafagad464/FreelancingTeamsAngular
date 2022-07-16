@@ -20,6 +20,7 @@ import { SearchInTeamsPipe } from '../_pipes/search-in-teams.pipe';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AnnounceComponent } from './announce/announce.component';
 import { TeamPostComplainComponent } from './team-post-complain/team-post-complain.component';
+import { AuthGuard } from '../_helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -95,8 +96,8 @@ const routes: Routes = [
     path: 'jointeam',
     component: CreateTeamComponent
   },
-  { path: 'showteams', component: ShowTeamsComponent },
-  { path: 'showteams/:id', component: ShowTeamsComponent },
+  { path: 'showteams', component: ShowTeamsComponent, canActivate:[AuthGuard] },
+  { path: 'showteams/:id', component: ShowTeamsComponent, canActivate:[AuthGuard] },
 
 ]
 

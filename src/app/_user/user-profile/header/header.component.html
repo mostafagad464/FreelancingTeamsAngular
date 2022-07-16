@@ -1,13 +1,18 @@
-
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,body,h1,h2,h3,h4,h5 {
-            font-family: "Open Sans", sans-serif
-        }
-    </style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Open Sans", sans-serif
+    }
+</style>
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
     <!-- The Grid -->
@@ -19,7 +24,6 @@
                 <div class="w3-container">
                     <div>
                         <p class="w3-center"><img src={{imageurl}} class="w3-circle" style="height:150px;width:150px"
-
                                 alt="Avatar"></p>
                         <h2 class="w3-center"><b>{{accountInfo.firstName+" "+accountInfo.lastName}}</b></h2>
                         <div *ngIf="profileId==userId" class="file">
@@ -43,8 +47,7 @@
                     <p *ngIf="accountInfo.user!.freelancer"><i
                             class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.freelancerNavigation!.specialization}}</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{accountInfo.user!.state+",
-                        "+accountInfo.user!.country}}</p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{accountInfo.user!.state+","+accountInfo.user!.country}}</p>
 
                     <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
                         {{accountInfo.user!.birthDate|date}}</p>
@@ -53,22 +56,20 @@
             <br>
 
             <!-- Accordion -->
-            <div class="w3-card w3-round">
+            <div *ngIf="profileId == urlId" class="w3-card w3-round">
                 <div *ngIf="accountInfo.user!.freelancer" class="w3-white">
-                    <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+                    <button (click)="myTeam()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                             class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Teams</button>
                     <div id="Demo1" class="w3-hide w3-container">
                         <p>Some text..</p>
                     </div>
-                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-
+                    <button (click)="joinTeam()" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                             class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Join Team</button>
                     <div id="Demo2" class="w3-hide w3-container">
                         <p>Some other text..</p>
                     </div>
                     <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
                             class="fa fa-users fa-fw w3-margin-right"></i> My clients</button>
-
                 </div>
             </div>
             <br>
@@ -109,9 +110,9 @@
 
                             <div contenteditable="false" class="w3-border w3-padding">
                                 <h3 style="margin-right: 10px;display: inline-block;"><b>Bio</b></h3> <a
-                                    *ngIf="profileId==userId" routerLink=""><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                    *ngIf="profileId==userId" routerLink=""><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="bi bi-pen-fill"
+                                        viewBox="0 0 16 16">
                                         <path
                                             d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
                                     </svg></a>
@@ -123,8 +124,11 @@
                             <div class="col-md-10">
                                 <div class="profile-head">
 
-                                    <p class="proile-rating">RANKINGS : </p><p-rating style="cursor:none" value="#{ratingView.rating3}" [readonly]="true" [(ngModel)]="accountInfo.user!.rate" ></p-rating>
-                                    <button *ngIf="accountInfo.user!.freelancer" class="btn btn-secondary">Wallet</button>
+                                    <p class="proile-rating">RANKINGS : </p>
+                                    <p-rating style="cursor:none" value="#{ratingView.rating3}" [readonly]="true"
+                                        [(ngModel)]="accountInfo.user!.rate"></p-rating>
+                                    <button *ngIf="profileId == urlId"
+                                        class="btn btn-secondary">Wallet</button>
 
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
@@ -161,11 +165,10 @@
                         </div>
                     </div>
                 </div>
-            
-            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <router-outlet class="container"></router-outlet>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <router-outlet class="container"></router-outlet>
 
 
+                </div>
             </div>
-        </div>
-
