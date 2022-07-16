@@ -30,6 +30,7 @@ export class ShowTeamsComponent implements OnInit {
   flag:boolean = false;
   isClient:boolean=false;
   userId:number=0;
+  isMember:boolean = false;
 
   ngOnInit(): void {
     this.userService.getUser(this.authService.getCurrentUser()?.id).subscribe(u=>{

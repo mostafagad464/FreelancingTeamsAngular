@@ -17,9 +17,8 @@ const helper = new JwtHelperService();
 })
 export class MainInfoComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "",
-    new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], "")));
-  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], ""));
+  account: Account = new Account(0, null, "", "", "", "", "", "", null);
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", null, 0, false, "", false, false, null, null, false, null, null, null, null, null);
   bio_Pic = false;
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
@@ -84,7 +83,9 @@ export class MainInfoComponent implements OnInit {
         this.UserService.EditUser(this.user).subscribe(u => {
           this.user = u;
           this.bio_Pic = true;
-          // this.router.navigate(['portfolio/', this.user.id]);
+          console.log(this.account);
+          console.log(this.user);
+          // this.router.navigate(['profile/', this.user.id]);
         })
       })
     }
@@ -100,12 +101,14 @@ export class MainInfoComponent implements OnInit {
 
           this.UserService.addImage(this.user.id, fd).subscribe(u => {
             this.user.image = u.image;
-            // this.router.navigate(['portfolio/', this.user.id]);
+            // this.router.navigate(['profile/', this.user.id]);
           })
+          console.log(this.account);
+          console.log(this.user);
         }
       })
     }
-    // this.router.navigate(['portfolio/',this.user.id]);
+    // this.router.navigate(['profile/',this.user.id]);
 
   }
 

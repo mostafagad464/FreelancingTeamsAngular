@@ -10,6 +10,9 @@ import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ChatService } from 'src/app/_services/chat.service';
 import { TeamService } from 'src/app/_services/team.service';
+import { ActivatedRoute } from '@angular/router';
+import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { UserService } from 'src/app/_services/user.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -37,9 +40,40 @@ export class ChatComponent implements OnInit {
   accountmessage: AccountMessage = new AccountMessage(0, 0, 0, "", "", false, false, null, null);
   teammessage: TeamFreelancerMessage = new TeamFreelancerMessage(0, 0, 0, "", "", "u", false, false, null, null);
 
-  constructor(public ChatService: ChatService, public AuthService: AuthService, public AccountService: AccountService, public TeamService: TeamService) { }
+  checkUserId: number = 0;
+  checkUserType: boolean = false;
+
+  constructor(public ChatService: ChatService,
+    public AuthService: AuthService,
+    public AccountService: AccountService,
+    public TeamService: TeamService,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+
+    this.activatedRoute.params.subscribe(a => this.checkUserId = a['id']);
+
+    this.checkUserType = isNaN(this.checkUserId);
+
+    this.userService.getUser(this.checkUserId).subscribe(
+      a => {
+        if (a.freelancer == true) {
+          this.type = 'a';
+          this.AccountService.getAccount(this.checkUserId).subscribe(a =>
+            this.account = a
+          )
+        }
+        if (a.client == true) {
+          this.type = 't';
+          this.TeamService.getTeam(this.checkUserId).subscribe(t=>
+            {
+              this.team = t;
+            })
+        }
+      }
+    )
+
     this.UserId = this.AuthService.getCurrentUser()?.id;
 
     this.ChatService.getAllAccountChats(this.UserId).subscribe(a => {
@@ -63,11 +97,11 @@ export class ChatComponent implements OnInit {
           this.ChatsList = this.ChatsList.sort((m1, m2) => (m1.lastMessDate > m2.lastMessDate) ? -1 : (m1.lastMessDate < m1.lastMessDate) ? 1 : 0);
           console.log("chat list account", this.ChatsList);
           /********************************************************** */
-          this.Accounts.push({ "noOfMess": 0, "account": a });
-          if (this.account.id == 0) {
-            this.account = a;
-            this.ViewChat(this.account.id, 'a');
-          }
+          // this.Accounts.push({ "noOfMess": 0, "account": a });
+          // if (this.account.id == 0) {
+          //   this.account = a;
+          //   this.ViewChat(this.account.id, 'a');
+          // }
         });
       }
 
@@ -197,6 +231,7 @@ export class ChatComponent implements OnInit {
   }
 
   ViewChat(UId: number, type: string) {     // type => a(account) | t(team)
+    this.checkUserType = true;
     this.type = type;
     if (type == "a") {
       this.ChatService.getAccountChat(this.UserId, UId).subscribe(a => {

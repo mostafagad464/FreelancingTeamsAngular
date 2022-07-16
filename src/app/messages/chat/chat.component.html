@@ -1,3 +1,6 @@
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row clearfix">
         <div class="col-lg-12">
@@ -9,28 +12,31 @@
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="s" >
+                        <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="s">
                     </div>
                     <ul class="list-unstyled chat-list mt-2 mb-0">
-                        <li *ngFor="let cl of ChatsList | serachInArray:s" class="clearfix" (click)="ViewChat(cl.id,cl.type)">
+                        <li *ngFor="let cl of ChatsList | serachInArray:s" class="clearfix"
+                            (click)="ViewChat(cl.id,cl.type)">
                             <ng-template [ngIf]="cl.type == 'a'">
-                            <img src="https://localhost:7152/api/Image?UserId={{cl.id}}" alt="avatar"
-                                onerror="this.src='assets/images/NoImage.png'">
+                                <img src="https://localhost:7152/api/Image?UserId={{cl.id}}" alt="avatar"
+                                    onerror="this.src='assets/images/NoImage.png'">
                             </ng-template>
                             <ng-template [ngIf]="cl.type == 't'">
                                 <img src="https://localhost:7152/api/Image/Team?TeamId={{cl.id}}" alt="avatar"
-                                onerror="this.src='assets/images/NoImage.png'">
+                                    onerror="this.src='assets/images/NoImage.png'">
                             </ng-template>
                             <div class="about">
-                                <div class="name">{{cl.name}}  
+                                <div class="name">{{cl.name}}
                                     <ng-template [ngIf]="cl.noOfUnRead > 0">
-                                        <mark style="background-color: green; color: white; border-radius: 50%; padding-left: 3%; padding-right: 3%;position: absolute;right: 25px;"> {{cl.noOfUnRead}}</mark>
+                                        <mark
+                                            style="background-color: green; color: white; border-radius: 50%; padding-left: 3%; padding-right: 3%;position: absolute;right: 25px;">
+                                            {{cl.noOfUnRead}}</mark>
                                     </ng-template>
                                 </div>
                                 <div class="status text-start"><small>{{cl.lastMess}}</small></div>
                             </div>
-                            <div class="status text-end"><small>{{cl.lastMessDate| date:'short'}}</small></div> 
-                            </li>
+                            <div class="status text-end"><small>{{cl.lastMessDate| date:'short'}}</small></div>
+                        </li>
                     </ul>
                 </div>
                 <div class="chat">
@@ -49,25 +55,28 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="chat-history">
-                            <ul class="m-b-0">
-                                <li *ngFor="let message of AccountChat" class="clearfix">
-                                    <ng-template [ngIf]="message.senderId == UserId">
-                                        <div class="message-data text-end text-right">
-                                            <small class="message-data-time">{{message.date | date:'short'}}</small>
-                                            <img src="https://localhost:7152/api/Image?UserId={{UserId}}" alt="avatar"
-                                                onerror="this.src='assets/images/NoImage.png'">
-                                        </div>
-                                        <div class="message other-message float-right"> {{message.message}} </div>
-                                    </ng-template>
-                                    <ng-template [ngIf]="message.recieverId == UserId">
-                                        <div class="message-data">
-                                            <small class="message-data-time">{{message.date | date:'short'}}</small>
-                                        </div>
-                                        <div class="message my-message">{{message.message}}</div>
-                                    </ng-template>
-                                </li>
-                            </ul>
+                            <ng-template [ngIf]="!checkUserType == false">
+                                <ul class="m-b-0">
+                                    <li *ngFor="let message of AccountChat" class="clearfix">
+                                        <ng-template [ngIf]="message.senderId == UserId">
+                                            <div class="message-data text-end text-right">
+                                                <small class="message-data-time">{{message.date | date:'short'}}</small>
+                                                <img src="https://localhost:7152/api/Image?UserId={{UserId}}"
+                                                    alt="avatar" onerror="this.src='assets/images/NoImage.png'">
+                                            </div>
+                                            <div class="message other-message float-right"> {{message.message}} </div>
+                                        </ng-template>
+                                        <ng-template [ngIf]="message.recieverId == UserId">
+                                            <div class="message-data">
+                                                <small class="message-data-time">{{message.date | date:'short'}}</small>
+                                            </div>
+                                            <div class="message my-message">{{message.message}}</div>
+                                        </ng-template>
+                                    </li>
+                                </ul>
+                            </ng-template>
                         </div>
                     </ng-template>
 
