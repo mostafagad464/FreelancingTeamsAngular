@@ -27,26 +27,6 @@ export class ChatService {
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  // public RecieveAccountMessage = () => {
-  //   this.hubConnection.on('AccountsMessaging',message=>{
-  //     console.log(message);
-  //     return message;
-  //   })
-  // }
-
-  // public RecieveTeamOrFreelancerMessage = () => {
-  //   this.hubConnection.on('TeamsAndFreelancersMesseging', message => {
-  //     return message;
-  //   })
-  // }
-
-  // public addMessageListener = () => {
-  //   this.hubConnection.on('AccountsMessaging', (data) => {
-  //     this.data = data;
-  //     console.log(data);
-  //     return data;
-  //   });
-  // }
 
   getAllAccountChats(id: number) {
     return this.http.get<AccountMessage[]>(this.baseurl + "account?UserId=" + id);
@@ -74,6 +54,10 @@ export class ChatService {
 
   sendTeamMessage(message: TeamFreelancerMessage) {
     return this.http.post<TeamFreelancerMessage>(this.baseurl + "team", message);
+  }
+
+  getAccountMessagesCount(accountId:number){
+    return this.http.get<any>(this.baseurl + "account/count/" + accountId);
   }
 
 }
