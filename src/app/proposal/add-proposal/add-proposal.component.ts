@@ -18,6 +18,8 @@ import { TeamService } from 'src/app/_services/team.service';
 export class AddProposalComponent implements OnInit {
   teamsIds: number[] = [];
 teamsNames:string[]=[];
+IsNotCompleted:boolean=true;
+
   TeamId: number = 0; //Temp
   ProjId: number = -1;
   ProjName: string = '';
@@ -114,6 +116,8 @@ CalcDuration() {
       console.log('Added');
       console.log(a.description);
     console.log(this.prop)
+  this.IsNotCompleted=false;
+
 
     });
   }

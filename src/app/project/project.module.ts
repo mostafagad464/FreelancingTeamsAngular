@@ -21,6 +21,7 @@ import { ProposalModule } from '../proposal/proposal.module';
     CommonModule,
     FormsModule,
     ProposalModule,
+
     projectRouterModule,
   ],
   exports:[

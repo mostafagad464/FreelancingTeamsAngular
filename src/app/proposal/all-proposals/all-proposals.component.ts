@@ -23,7 +23,7 @@ export class AllProposalsComponent implements OnInit {
     public teamSer: TeamService
   ) {}
   ngOnInit(): void {
-    this.ProjId = this.ar.snapshot.params['ProjId'];
+    this.ProjId = this.ar.snapshot.params['id'];
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (element.projectId == this.ProjId) {

@@ -60,7 +60,8 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
     console.log("user ID : "+this.ClientId);
 
     this.deal.projectId = this.ar.snapshot.params['ProjId'];
-    this.deal.teamId = this.ar.snapshot.params['TeamId'];
+    this.deal.teamId = this.ar.snapshot.params['teamId'];
+    console.log("Team Id" +this.deal.teamId)
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (
