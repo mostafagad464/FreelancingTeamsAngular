@@ -13,8 +13,8 @@
   <br>
 
   <div class="modal-footer">
-    <button *ngIf="profileId==userId" style="margin-right: 5px;" [routerLink]="[{ outlets: { modal: ['editSkills',freelancerIdRouting] } }]" (click)="openModalEdit()" class="btn btn-success " >Edit</button>  
-    <button *ngIf="profileId==userId" [routerLink]="[{ outlets: { modal: ['addSkill',freelancerIdRouting] } }]" (click)="openModalAdd()" class="btn btn-primary " >Add</button>
+    <button *ngIf="profileId==userId" style="margin-right: 5px;" [routerLink]="['/profile',profileId,'editSkills',freelancerIdRouting]" class="btn btn-success " >Edit</button>  
+    <button *ngIf="profileId==userId" [routerLink]="['/profile',profileId,'addSkill',freelancerIdRouting] "  class="btn btn-primary " >Add</button>
     </div>
     <!-- <button type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: 
       

@@ -1,5 +1,10 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { Freelancer } from 'src/app/_models/freelancer';
+import { Skill } from 'src/app/_models/skill';
+import { SkillService } from 'src/app/_services/skill.service';
+
 import { numbers } from '@material/dialog';
 import { Account } from 'src/app/_models/account';
 import { Notifications } from 'src/app/_models/notifications';
@@ -22,9 +27,20 @@ import { ReviewsService } from './../../_services/reviews.service'
 })
 export class HeaderComponent implements OnInit, OnChanges {
 
-  noOfCpltdProj: number = 0;
-  noOfRv: number = 0
+  noOfCpltdProj: number =0;
+  noOfRv: number = 0;
   teamMembers: number[] = [];
+
+  checkP = ""; //Your team's projects
+  projects: Project[] = []
+  projectsNames: string[] = []
+  allFreelancers:User[]=[]
+  freelancersSkills:Skill[]=[]
+  teamMembers1:Number[]=[]
+  skills:string[]=[]
+  distinctSkills:string[]=[]
+
+
   notification:Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
   user:User=new User(0, null, 0 , 0, "", "" , "", null, 0, true, "", false, false, 0, 0, true, null, null, null, null, null);
   account:Account = new Account(0, null, "", "", "", "", "", "",null);
@@ -36,15 +52,13 @@ export class HeaderComponent implements OnInit, OnChanges {
     private teamMembersService: TeamMembersService,
     private authService: AuthService,
     private userService: UserService,
-    private notificationService:NotificationService, 
-    private accountService:AccountService
+    private notificationService:NotificationService,
+    private accountService:AccountService,
+    public skillServ:SkillService
   ) { }
 
-  checkP = ""; //Your team's projects
 
-  projects: Project[] = []
 
-  projectsNames: string[] = []
 
   team: Team = {
     id: 0,
@@ -79,19 +93,25 @@ export class HeaderComponent implements OnInit, OnChanges {
 
 
 
-  Search() {
-  }
-
-  check() {
-    this.checkP = "Your team's projects";
-  }
-
   Check() {
     this.title = "Freelancers in your team";
+    this.checkP = "Your team's projects";
+
     this.freelancerServ.getTeamMembers(this.team.id).subscribe(a => {
       this.teamMembers = a;
+
     })
   }
+
+
+  onlyUnique(value:any, index:any, self:any) {
+    return self.indexOf(value) === index;
+  }
+
+  // usage example:
+  // var a = ['a', 1, 'a', 2, '1'];
+
+
 
   ngOnInit(): void {
     this.userService.getUser(this.freelancerId).subscribe(u=>{
@@ -108,14 +128,47 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.freelancerId = this.authService.getCurrentUser()?.id;
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
-        
+
         this.team = a;
+        this.noOfCpltdProj = this.team.deals.filter(a =>a.done == true).length;
+
+        this.getReviews();
+
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);
         this.Check();
-        this.noOfCpltdProj = this.team.deals.filter(a => a.done == true).length;
-        this.getReviews();
+
+        this.userService.getAllFreelancers().subscribe(f=>{
+          this.allFreelancers = f;
+          console.log(this.allFreelancers);
+
+          this.freelancerServ.getTeamMembers(this.team.id).subscribe(t => {
+            this.teamMembers1 = t;
+            this.skillServ.getFreelancersSkills().subscribe(s => {
+              for(let i = 0 ; i < s.length ; i++){
+                if(this.teamMembers1.includes(s[i].freelancerId)){
+                  this.skillServ.getSkill(s[i].skillId).subscribe(k => {
+                    this.skills.push(k.name);
+                    console.log("this.skills: " + this.skills)
+                    this.distinctSkills = this.skills.filter(this.onlyUnique);
+                  })
+                }
+              }
+
+              // this.distinctSkills = this.skills.filter((n, i) => this.skills.indexOf(n) === i);
+              // console.log(this.distinctSkills);
+            })
+          })
+
+          // for (let freelancer of this.allFreelancers) {
+          //   if(!this.team.teamMembers.map(f=>f.freelancerId).includes(freelancer.id)){
+          //     this.accServ.getAccount(freelancer.id).subscribe(a=>{
+          //       this.OtherFreelancerAccounts.push(a);
+          //     });
+          //   }
+          // }
+        });
       })
         .add(() => {
           for (let i = 0; this.team.teamMembers.length; i++) {
@@ -135,8 +188,8 @@ export class HeaderComponent implements OnInit, OnChanges {
     // })
 
     });
-    
-    
+
+
     console.log("Is Freelancer", this.isFreelancer);
   }
 
@@ -150,6 +203,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   getReviews() {
     this.ReviewsService.getReviews().subscribe(r => {
       this.noOfRv = r.filter(a => a.rate > 4 && a.teamId == this.team.id).length;
+      console.log("momen"+this.noOfRv)
     });
   }
 

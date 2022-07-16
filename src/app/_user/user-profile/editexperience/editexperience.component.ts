@@ -24,7 +24,7 @@ export class EditexperienceComponent implements OnInit {
   freelancerExperience: FreelancerExperience = new FreelancerExperience(0, "", "", "", "", "", "","");
 
   constructor(public UserSer: UserProfileService, public router: Router, 
-    public activeModal:NgbActiveModal,public ac: ActivatedRoute,public modalService: NgbModal) { }
+   public ac: ActivatedRoute,public modalService: NgbModal) { }
   ngOnInit(): void {
     this.ac.params.subscribe(a => {
      
@@ -32,10 +32,10 @@ export class EditexperienceComponent implements OnInit {
     
      
    
-      this.Date=this.freelancerId[7].split("T")
+      this.Date=this.router.routerState.snapshot.url.split("/")
     
 
-      this.UserSer.GetExperienceById(this.freelancerId[2],this.Date[0]).subscribe(a => {
+      this.UserSer.GetExperienceById(this.freelancerId[2],this.Date[5]).subscribe(a => {
        console.log("obj",a)
        this.freelancerExperience= a;
        this.startdate=this.freelancerExperience.startDate.split("T");
@@ -44,7 +44,7 @@ export class EditexperienceComponent implements OnInit {
        this.freelancerExperience.startDate=this.startdate[0];
        this.freelancerExperience.endDate=this.enddate[0]
 
-       console.log(this.freelancerExperience.curentllyWorking)    
+       this.freelancerExperience.freelancerId=Number(this.freelancerId[2]) 
 
       })
      })
@@ -52,7 +52,7 @@ export class EditexperienceComponent implements OnInit {
   }
   close(){
   
-   this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/experiences/"+this.freelancerId[2])
     }
 
 
@@ -72,7 +72,7 @@ export class EditexperienceComponent implements OnInit {
           })
         
 
-    this.activeModal.close();
+          this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/experiences/"+this.freelancerId[2])
   }
 
 

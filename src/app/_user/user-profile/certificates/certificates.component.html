@@ -14,7 +14,7 @@
            
         </div>
         <div class="modal-footer">
-            <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editCertificate',item.freelancerId,item.title] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+            <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="['/profile',profileId,'editCertificate',profileId,item.title]"   style="margin-left: 10px;" >Edit</button>
             <button *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.title)" >Delete</button>
           </div>
       
@@ -22,7 +22,8 @@
     <br>
    
  </tr>
- <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addCertificate'] } }]" (click)="openModalAdd()">Add Certificate</button>
+ <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="['/profile',profileId,'addCertificate'] " >Add Certificate</button>
+ 
  
 </div>
 <br>
