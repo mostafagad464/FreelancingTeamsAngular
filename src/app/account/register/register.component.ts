@@ -19,8 +19,13 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
+  /*** Popup */
+  displayStyle='none';
+
+
   account: Account = new Account(0, null, "", "", "", "", "", "User", null);
   user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", null, 0, false, "", false, false, null, null, false, null, null, null, null, null);
+
   confirmPassword = "";
   message = "";
   showUN = false;   //Show User Name
@@ -35,6 +40,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    // this.displayStyle = 'block';
   }
 
   CheckUserName() {
@@ -93,10 +99,13 @@ export class RegisterComponent implements OnInit {
             this.user.client = (this.type == "f") ? false : true;
             this.user.freelancer = !this.user.client;
             console.log(this.user);
-            this.UserService.addUser(this.user).subscribe(u => {
-              console.log("user ", u);
-              // this.login(this.account.username, this.account.password);
+
+            this.UserService.addUser(this.user).subscribe(u=>{
+              console.log(u);
+              this.login(this.account.username, this.account.password);
+
             })
+            
           })
         }
         let flag = this.login(this.account.username, this.account.password)
@@ -119,9 +128,14 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
+
+      // this.openModal();
+      this.displayStyle = 'block';
+
       
       // this.openModal();
       // this.router.navigate(['maininfo']);
+
     },
       error => {
         console.log(error.error)
