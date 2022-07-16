@@ -19,22 +19,20 @@ export class AdddealComponent implements OnInit {
     public ar: ActivatedRoute,
     public propSer: ProposalService,
     public auth: AuthService,
-    public teamser:TeamService,
+    public teamser: TeamService,
     public ProjService: ProjectService
-  ) {}
+  ) { }
   ClientId: number = 1;
-  IsNotCompleted:boolean=true;
+  IsNotCompleted: boolean = true;
   TeamName: string = "";
   ProjectDescription: string = "";
   DeliverDate: Date = new Date();
   deal: Deal = new Deal(this.ClientId, 0, 0, 0, 0, false);
-  ADD(){
-this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
-  console.log(a);
-  // console.log("Comp");
-  this.IsNotCompleted=false;
-
-})
+  ADD() {
+    this.dealSer.AddNewDeal(this.deal).subscribe(a => {
+      console.log(a);
+      this.IsNotCompleted = false;
+    })
   }
   // Add(){
   //   this.dealSer.AddNewDeal().subscribe(a=>{
@@ -54,12 +52,12 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
   // { path: "adddeal/:ProjId/:TeamId", component: AdddealComponent  },
 
   ngOnInit(): void {
-    this.ClientId= this.deal.clientId= this.auth.getCurrentUser()?.id;
-    console.log("user ID : "+this.ClientId);
+    this.ClientId = this.deal.clientId = this.auth.getCurrentUser()?.id;
+    console.log("user ID : " + this.ClientId);
 
     this.deal.projectId = this.ar.snapshot.params['ProjId'];
     this.deal.teamId = this.ar.snapshot.params['teamId'];
-    console.log("Team Id" +this.deal.teamId)
+    console.log("Team Id" + this.deal.teamId)
     this.propSer.GetAllProposals().subscribe((a) => {
       a.forEach((element) => {
         if (
@@ -72,36 +70,36 @@ this.dealSer.AddNewDeal(this.deal).subscribe(a=>{
         }
       });
     });
-    this.teamser.getTeam(this.deal.teamId).subscribe(a=>{
-      this.TeamName=a.name;
+    this.teamser.getTeam(this.deal.teamId).subscribe(a => {
+      this.TeamName = a.name;
     })
-    this.ProjService.getProject(this.deal.projectId).subscribe(a=>{
-      this.ProjectDescription=a.description;
+    this.ProjService.getProject(this.deal.projectId).subscribe(a => {
+      this.ProjectDescription = a.description;
     })
   }
 
-//------
-ReverseCalculations(Duration:number) {
-  var today: Date = new Date();
-  this.DeliverDate = this.addDays(
-    new Date(today),
-    Duration
-  )
-  // console.log(durationstring);
-}
-//----------------
-addDays(date: Date, days: number): Date {
-  date.setDate(date.getDate() + days);
-  console.log(date)
-  return date;
-}
+  //------
+  ReverseCalculations(Duration: number) {
+    var today: Date = new Date();
+    this.DeliverDate = this.addDays(
+      new Date(today),
+      Duration
+    )
+    // console.log(durationstring);
+  }
+  //----------------
+  addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    console.log(date)
+    return date;
+  }
 
-// GetDate(startDate: Date, duration: number){
-//   const msInDay = 24 * 60 * 60 * 1000;
+  // GetDate(startDate: Date, duration: number){
+  //   const msInDay = 24 * 60 * 60 * 1000;
 
-//   let r= Math.round(Math.abs(Number(startDate) +duration) / msInDay);
-//   console.log(r)
-// }
+  //   let r= Math.round(Math.abs(Number(startDate) +duration) / msInDay);
+  //   console.log(r)
+  // }
   //-----------------
   CalcDuration() {
     var today: Date = new Date();

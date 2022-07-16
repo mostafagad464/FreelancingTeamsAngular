@@ -59,7 +59,7 @@
                         <p class="card-text">{{freelancer.bio}}</p>
                     </div>
                     <div class="card-footer">
-                        <a [routerLink]="['/teamProfile/zzzz']" class="btn btn-primary">Profile</a> |
+                        <a [routerLink]="['/profile/', freelancer.id]" class="btn btn-primary">Profile</a> |
                         <a *ngIf="!teamMembersIds.includes(freelancer.id)" (click)="requestAddTeamMember(freelancer.id)"
                             class="btn btn-primary" id="addTeamBtn">Add to Team</a>
                         <a *ngIf="teamMembersIds.includes(freelancer.id)" class="btn btn-secondary">Member</a>
