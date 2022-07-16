@@ -28,15 +28,15 @@ export class ShowComplaintComponent implements OnInit {
       for (let index = 0; index < this.complains.length; index++) {
         if(this.complains[index].adminHandlerId != null){
           if(this.complains[index].complainingUserId != null){
-            this.accServ.getAccount(this.complains[index].complainingUserId).subscribe(a => {
-              this.accServ.getAccount(this.complains[index].adminHandlerId).subscribe(b => {
+            this.accServ.getAccount(this.complains[index].complainingUserId!).subscribe(a => {
+              this.accServ.getAccount(this.complains[index].adminHandlerId!).subscribe(b => {
                 this.comAndNames.push({"complain":this.complains[index],"name":a.firstName + " " + a.lastName,"hname":b.firstName + " " + b.lastName})
               })
             })
           }
           else{
             if(this.complains[index].complainingTeamId != null){
-              this.teamServ.getTeam(this.complains[index].complainingTeamId).subscribe(a => {
+              this.teamServ.getTeam(this.complains[index].complainingTeamId!).subscribe(a => {
                 this.ucomAndNames.push({"complain":this.complains[index],"name":a.name});
               })
             }
@@ -45,7 +45,7 @@ export class ShowComplaintComponent implements OnInit {
         for (let index = 0; index < this.comAndNames.length; index++) {
           console.log("-----"+this.comAndNames[index].hname);
         }
-        
+
         console.log("this.comAndNames: " + this.comAndNames)
         console.log("this.ucomAndNames: " + this.ucomAndNames)
        }
