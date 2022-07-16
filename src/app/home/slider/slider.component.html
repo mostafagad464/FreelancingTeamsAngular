@@ -1,26 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="Scripts/jquery-2.1.0.min.js"></script>
+<div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(108, 109, 194)">All</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Programming And
+        Tech</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link " id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Life Coaching</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Graphic Design</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Writing And
+        Translation</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Video Editing</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Business</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="filterBySpecial($event)" class="nav-link" id="personal-info" data-toggle="tab" role="tab"
+        aria-controls="SoftWare" aria-selected="true" style="font-size:20px;color:rgb(34, 32, 32)">Others</a>
+    </li>
+
+
+  </ul>
+</div>
+<app-container [teams]="teams"></app-container>

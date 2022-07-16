@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AllProposalsComponent } from './all-proposals/all-proposals.component';
 import { AddProposalComponent } from './add-proposal/add-proposal.component';
-import { BrowserModule } from '@angular/platform-browser'
+import { DealModule } from '../deal/deal.module';
 
 
 
@@ -13,7 +13,7 @@ import { BrowserModule } from '@angular/platform-browser'
     AllProposalsComponent,AddProposalComponent
   ],
   imports: [
-    CommonModule,RouterModule,FormsModule,BrowserModule
+    CommonModule,RouterModule,FormsModule,DealModule
   ],
   exports:[ AllProposalsComponent,AddProposalComponent]
 })

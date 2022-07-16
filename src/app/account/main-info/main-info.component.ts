@@ -7,6 +7,11 @@ import { User } from 'src/app/_models/user';
 import { CountriesService } from 'src/app/_services/countries.service';
 import { Freelancer } from 'src/app/_models/freelancer';
 
+import { AuthService } from 'src/app/_services/auth.service';
+
+import { Router } from '@angular/router';
+
+
 const helper = new JwtHelperService();
 
 @Component({
@@ -16,9 +21,10 @@ const helper = new JwtHelperService();
 })
 export class MainInfoComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""));
+
+  account: Account = new Account(0, null, "", "", "", "", "", "", null);
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", null, 0, false, "", false, false, null, null, false, null, null, null, null, null);
+
   bio_Pic = false;
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
@@ -27,36 +33,42 @@ export class MainInfoComponent implements OnInit {
   code: string = "";
   n = 1;
 
+  public isAuthenticated$ = this.AuthService.isAuthenticated$;
 
-  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService) { }
+  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService, 
+  public AuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    let id = helper.decodeToken(sessionStorage.getItem("access_token")?.toString()).Id;
-    console.log(id);
-    this.AccountService.getAccount(id).subscribe(a => {
-      this.account = a;
-    }, err => console.log(err));
-    this.UserService.getUser(parseInt(id)).subscribe(u => {
-      this.user = u;
-      this.user.birthDate = this.user.birthDate?.split('T')[0] ? this.user.birthDate?.split('T')[0] : null;
-      if(this.user.country!=null){
-        this.CountriesService.getCountryDialCode(this.user.country).subscribe(d=>{
-          this.code = d.data.dial_code;
-        }, err => console.log(err))
-      }
-    }, error => console.log(error));
-    this.CountriesService.getAllCountries().subscribe(c => {
-      for (const country of c) {
-        this.countries.push(country.name);
-      }
-    }, err => console.log(err));
+    this.isAuthenticated$.subscribe(authenticated => {
+      if (authenticated) {
+        let id = helper.decodeToken(sessionStorage.getItem("access_token")?.toString()).Id;
+        console.log(id);
+        this.AccountService.getAccount(id).subscribe(a => {
+          this.account = a;
+        }, err => console.log(err));
+        this.UserService.getUser(parseInt(id)).subscribe(u => {
+          this.user = u;
+          this.user.birthDate = this.user.birthDate?.split('T')[0] ? this.user.birthDate?.split('T')[0] : null;
+          if(this.user.country!=null){
+            this.CountriesService.getCountryDialCode(this.user.country).subscribe(d=>{
+              this.code = d.data.dial_code;
+            }, err => console.log(err))
+          }
+        }, error => console.log(error));
+        this.CountriesService.getAllCountries().subscribe(c => {
+          for (const country of c) {
+            this.countries.push(country.name);
+          }
+        }, err => console.log(err));
+
+      }})
   }
 
   LoadStates(E: any) {
     this.CountriesService.getCountryCities(E.target.value).subscribe(c => {
       this.states = c.data;
     }, err => console.log(err));
-    this.CountriesService.getCountryDialCode(E.target.value).subscribe(d=>{
+    this.CountriesService.getCountryDialCode(E.target.value).subscribe(d => {
       this.code = d.data.dial_code;
     }, err => console.log(err))
   }
@@ -80,6 +92,9 @@ export class MainInfoComponent implements OnInit {
         this.UserService.EditUser(this.user).subscribe(u => {
           this.user = u;
           this.bio_Pic = true;
+          console.log(this.account);
+          console.log(this.user);
+          // this.router.navigate(['profile/', this.user.id]);
         })
       })
     }
@@ -95,11 +110,15 @@ export class MainInfoComponent implements OnInit {
 
           this.UserService.addImage(this.user.id, fd).subscribe(u => {
             this.user.image = u.image;
-            // this.Router.navigate(['']);
+            // this.router.navigate(['profile/', this.user.id]);
           })
+          console.log(this.account);
+          console.log(this.user);
         }
       })
     }
+    // this.router.navigate(['profile/',this.user.id]);
+
   }
 
   GoToProfile() {

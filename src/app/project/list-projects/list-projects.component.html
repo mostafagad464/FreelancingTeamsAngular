@@ -1,14 +1,87 @@
-<div  *ngFor="let item of projects">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.postingDate}}</h6>
-          <p class="card-text">{{item.description}}</p>
-          <h6 class="card-subtitle mb-2 text-muted">Duration : {{item.duration}}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">{{item.budgetFrom}} $:{{item.budgetTo}} $</h6>
-          <a [routerLink]="['edit/'+item.id]" class="card-link">Edit</a>
-          <a href="#" class="card-link">Add Proposal</a>
-          <button (click)="delete(item.id)" class="card-link">Delete</button>
+
+<br>
+<br>
+<br>
+<br>
+
+
+  <div class="text-center">
+    <h1 style = font-size:50px>All Available Projects</h1>
+
+  </div>
+<div class="container">
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-xl-4 col-md-6 mb-5" *ngFor="let item of projects">
+
+        <div class="container" style="margin-top: 50px" *ngIf="item.state == 'Available'">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-sl shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-image">
+                  <!-- <img
+                    style="height: 287px; width: 100%"
+                    src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}"
+                    onerror=" this.src ='../../../assets/images/4.jpg'"
+                  /> -->
+                  <img
+                    style="height: 287px; width: 100%"
+                  src="../../../assets/images/ProjectPic.png"/>
+
+                </div>
+          <h5 class="card-title" style="font-weight: bold;">{{item.state}}</h5>
+
+          <h3>
+                <a
+                  class="card-heading"
+                  [routerLink]="['/projects/details/',item.id]"
+                  style="cursor: pointer"
+                >
+                <b> {{item.title}}</b>
+              </a>
+            </h3>
+            Posting Date  :  {{item.postingDate| date:'MMMM d, y'}}
+
+
+              <div class="card-text p-5">
+                <!-- <h3>Range</h3> -->
+                {{ item.description }}
+              </div>
+
+              <div class="card-text p-6">
+
+                <button (click)="delete(item.id)" class="btn btn-danger" *ngIf="item.clientId == clientid">Delete</button>
+                <button [routerLink]="['/Addproposal/',item.id]" class="btn btn-primary btn-lg" style="margin: 40px;">Add Proposal</button>
+                <a [routerLink]="['/projects/details/',item.id]" class="btn btn-primary btn-lg" style="margin: 40px;">Details</a>
+
+              </div>
+              <div class="card-footer text-muted">
+
+          From : ${{item.minBudget}} To ${{item.maxBudget}}
+<!--
+                Posting Date  :  {{item.postingDate| date:'MMMM d, y'}} -->
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+
+
+        </div>
+    </div>
+  </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

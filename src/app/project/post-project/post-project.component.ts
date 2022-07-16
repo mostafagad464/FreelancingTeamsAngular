@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/_models/project';
 import { Review } from 'src/app/_models/review';
+import { AuthService } from 'src/app/_services/auth.service';
 import { ProjectService } from 'src/app/_services/project.service';
 
 @Component({
@@ -11,15 +12,24 @@ import { ProjectService } from 'src/app/_services/project.service';
 })
 export class PostProjectComponent implements OnInit {
 
-  pro:Project=new Project(0,new Date,"New Project" ,0,0,"Project Descrption","Week",0,0,0,0,new Review(0,0,0,0,"",new Date,""));
+  pro:Project=new Project(0,new Date,"New Project" ,"Available",0,"Project Descrption",3,0,0,0);
+  id:number=0;
+  clientid:number=0;
   Add(){
-      this.proServ.createProject(this.pro);
-      this.router.navigateByUrl("/listprojects")
+    this.clientid= this.authSer.getCurrentUser()?.id;
+    this.pro.clientId=this.clientid;
+      this.proServ.createProject(this.pro).subscribe(a=>{
+        this.id=a.id;
+        console.log(this.id);
+        this.router.navigate(['/projects/details/',this.id])
+      });
+       
   }
   create(){
     this.Add();
+    console.log(this.pro);
   }
-  constructor(public proServ:ProjectService,public router:Router) { }
+  constructor(public proServ:ProjectService,public router:Router ,public authSer:AuthService) { }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
+import { UserService } from './user.service';
+
 
 const helper = new JwtHelperService();
 
@@ -9,9 +13,27 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
 
-  baseurl = "https://localhost:7152/api/Login/";
+  redirectUrl: string = "";
 
-  constructor(public http: HttpClient) { }
+  baseurl = "https://localhost:7152/api/Login/";
+  isAuthenticated$ = new BehaviorSubject<boolean>(false);
+
+  constructor(public http: HttpClient, private router: Router,
+    private userService: UserService) {
+    const authenticated = !!sessionStorage.getItem('access_token');
+    this.isAuthenticated$.next(authenticated);
+  }
+
+  // async userType() {
+  //   let user = null;
+  //   await this.userService.getUser(this.getCurrentUser()?.id).subscribe(a => {
+  //     user = {
+  //       "isFreelancer": a.freelancer,
+  //       "isClient": a.client
+  //     }
+  //   return user;
+  //   })
+  // }
 
   login(u: string, p: string) {
     let usr = {
@@ -21,8 +43,12 @@ export class AuthService {
     return this.http.post<any>(this.baseurl, usr);
   }
 
-  logout() {
+  logIn() {
+    this.isAuthenticated$.next(true);
+  }
 
+  logout() {
+    this.isAuthenticated$.next(false);
   }
 
   getCurrentUser() {
@@ -35,5 +61,10 @@ export class AuthService {
     }
     return usr;
   }
+  DeleteToken() {
+    sessionStorage.removeItem("access_token");
+    this.isAuthenticated$.next(false);
+  }
+
 
 }

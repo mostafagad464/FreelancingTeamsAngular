@@ -8,6 +8,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { MainInfoComponent } from '../main-info/main-info.component';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Freelancer } from 'src/app/_models/freelancer';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -18,9 +19,13 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
-  account: Account = new Account(0, null, "", "", "", "", "", "User",
-  new User(0, null, 0, 0, (new Date()).toISOString(), "", "", "", 0, false, "", false, false, null, null, false, null, null, null, null, new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
-  user:User = new User(0,null,0,0,(new Date()).toISOString(),"","","",0,false,"",false,false,null,null,false,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],""))
+  /*** Popup */
+  displayStyle='none';
+
+
+  account: Account = new Account(0, null, "", "", "", "", "", "User", null);
+  user: User = new User(0, null, 0, 0, (new Date()).toISOString(), "", "", null, 0, false, "", false, false, null, null, false, null, null, null, null, null);
+
   confirmPassword = "";
   message = "";
   showUN = false;   //Show User Name
@@ -28,9 +33,14 @@ export class RegisterComponent implements OnInit {
   isChecked = false;
   type = "";
 
-  constructor(public AccountService: AccountService, public UserService: UserService, public modalService: NgbModal,public AuthService: AuthService) { }
+  constructor(public AccountService: AccountService,
+    public UserService: UserService,
+    public modalService: NgbModal,
+    public AuthService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    // this.displayStyle = 'block';
   }
 
   CheckUserName() {
@@ -77,32 +87,40 @@ export class RegisterComponent implements OnInit {
           this.showUN = true;
           this.ButtonText = "Sign Up";
         })
+        this.login(this.account.username, this.account.password);
+        // this.router.navigate(['/maininfo']);
       }
       else {
         if (this.isChecked) {
           console.log(this.account);
           this.AccountService.addAccount(this.account).subscribe(a => {
-            console.log(a);
+            console.log("account ", a);
             this.user.id = a.id;
-            this.user.client = (this.type == "f")? false : true;
-            this.user.freelancer = !this.user.client; 
+            this.user.client = (this.type == "f") ? false : true;
+            this.user.freelancer = !this.user.client;
             console.log(this.user);
+
             this.UserService.addUser(this.user).subscribe(u=>{
               console.log(u);
               this.login(this.account.username, this.account.password);
-              
+
             })
+            
           })
         }
-        
+        let flag = this.login(this.account.username, this.account.password)
+        if (flag) {
+          // this.router.navigate(['/maininfo']);
+        }
+        // this.router.navigate(['/maininfo']);
       }
 
     }
   }
 
-  login(userName: string, pass: string){
-    this.AuthService.login(userName,pass).subscribe(s=>{
-      sessionStorage.setItem("access_token",s.token);
+  login(userName: string, pass: string) {
+    this.AuthService.login(userName, pass).subscribe(s => {
+      sessionStorage.setItem("access_token", s.token);
       const decodedToken = helper.decodeToken(s.token);
       const expirationDate = helper.getTokenExpirationDate(s.token);
       const isExpired = helper.isTokenExpired(s.token);
@@ -110,11 +128,21 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
-      this.openModal();
+
+      // this.openModal();
+      this.displayStyle = 'block';
+
+      
+      // this.openModal();
+      // this.router.navigate(['maininfo']);
+
     },
-    error=> {
-      console.log(error.error)}
-      );
+      error => {
+        console.log(error.error)
+      }
+    );
+    console.log("above navigation route");
+    return true;
   }
 
   openModal() {
@@ -123,9 +151,9 @@ export class RegisterComponent implements OnInit {
         scrollable: false,
         windowClass: 'myCustomModalClass',
       });
-    modalRef.result.then((result:any) => {
+    modalRef.result.then((result: any) => {
       console.log(result);
-    }, (reason:any) => {
+    }, (reason: any) => {
     });
   }
 

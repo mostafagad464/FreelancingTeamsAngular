@@ -1,0 +1,25 @@
+<br>
+<br>
+<div class="modal-header">
+
+    <h1 class="modal-title" id="exampleModalLabel">Post Your Team Complaint</h1>
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="close()" aria-label="Close"></button> -->
+  </div>
+  <div class="modal-body col-md-6">
+    <form>
+        <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">What is your Complaint about?</label>
+            <input type="text" class="form-control" id="recipient-name" [(ngModel)]="newComplain.type" [ngModelOptions]="{standalone: true}">
+          </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">Please Write Your Complaint</label>
+        <input type="text" class="form-control" id="recipient-name " [(ngModel)]="newComplain.description" [ngModelOptions]="{standalone: true}">
+      </div>
+      
+
+    </form>
+  </div>
+  <div style="margin-left: 40%;" class=" col-md-6">
+     <button style="margin-right: 10px;" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Add()">Save</button> 
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Back</button> 
+  </div>

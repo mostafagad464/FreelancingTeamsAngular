@@ -1,6 +1,8 @@
 import { Team } from "./team";
+import { TeamMember } from "./team-member";
 
 export class Freelancer {
+    public teamMembers: TeamMember[] =[];
     constructor(
         public id: number,
         public activeStatus:boolean,

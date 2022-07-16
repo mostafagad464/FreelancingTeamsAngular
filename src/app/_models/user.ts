@@ -13,7 +13,7 @@ export class User {
         public registerDate: string,
         public country: string,
         public state: string,
-        public image: string,
+        public image: string | null,
         public rate: number,
         public activeStatus: boolean,
         public bio: string,

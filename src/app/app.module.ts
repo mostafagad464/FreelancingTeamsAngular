@@ -68,7 +68,11 @@ export function tokenGetter() {
     RouterModule,
     LayoutModule,
     FreelancersModule,
+
     AdminProfileModule,
+
+    SharedModule
+
  ],
   providers: [
     {

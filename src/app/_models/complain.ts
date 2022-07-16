@@ -9,5 +9,6 @@ export class Complain {
         public adminHandlerId: number,
         public complainingUserId:number,
         public complainingTeamId:number
+
     ){}
 }

@@ -8,6 +8,7 @@ import { FreelancerCertificates } from '../_models/freelancer-certificates';
 import { FreelancerExperience } from '../_models/freelancer-experience';
 import { Account } from '../_models/account';
 import { Education } from '../_models/education';
+import { Complain } from '../_models/complain';
 
 
 @Injectable({
@@ -120,5 +121,9 @@ export class UserProfileService {
     return this.http.put<Education>(this.baseUrl+"FreelancerEducations/"+freelancerId+"?gradY="+gradYear,updatedEducation)
 
   }
+  //Complains
+  postComplain(newComplain:Complain){
+    return this.http.post<Complain>(this.baseUrl+"Complains",newComplain)
+   }
 
 }
