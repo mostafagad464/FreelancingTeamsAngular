@@ -34,17 +34,17 @@
     </div>
   </div>
   <div style=" display: inline;">
-    <button
+    <a
       [routerLink]="['/Addproposal/', project.id]"
       class="btn btn-primary btn-lg"
     >
       Add Proposal
-    </button>
+  </a>
     <a (click)="edit()" class="btn btn-primary btn-lg" role="button">Edit</a>
   </div>
   <br />
   <br />
 
-  <app-all-proposals></app-all-proposals>
+  <!-- <app-all-proposals></app-all-proposals> -->
 </div>
 <app-all-proposals></app-all-proposals>
