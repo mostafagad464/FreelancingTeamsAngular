@@ -1,42 +1,45 @@
-<div class="container-fluid">
+<div class="container">
   <section>
     <div *ngIf="Proposals.length>0; ">
-      <h1 style = font-size:40px>All Proposals</h1>
+      <h1 style=font-size:40px>All Proposals</h1>
     </div>
-  <div  *ngFor="let item of Proposals; index as i" >
+    <div *ngFor="let item of Proposals; index as i">
 
 
-    <div class="row">
-      <div class="col-xl-6 col-md-12 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between p-md-1">
-              <div class="d-flex flex-row">
-                <div class="align-self-center">
-                  <i class="fas fa-pencil-alt text-info fa-3x me-4"></i>
-                </div>
-                <div>
-                  <h4>Team Name : {{teamsNames[i]}}</h4>
-                  <h6>Delivery within: {{item.duration}} Dayes</h6>
-                  <div class="col-8">
-                  {{item.description}}
-
+      <div class="row">
+        <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between p-md-1">
+                <div class="d-flex flex-row">
+                  <div class="align-self-center">
+                    <i class="fas fa-pencil-alt text-info fa-3x me-4"></i>
                   </div>
-                  <br>
-                  <a [routerLink]="['/chat/',item.teamId]" class="card-link btn btn-primary">Direct Message</a>
-                  <a  [routerLink]="['/adddeal/',item.projectId,item.teamId]" class="card-link btn btn-primary">Make an offer</a>
-                </div>
-              </div>
-              <div class="align-self-center">
-                <h2 class="h1 mb-0">${{item.money}}</h2>
+                  <div>
+                    <h4>Team Name : {{teamsNames[i]}}</h4>
+                    <h6>Delivery within: {{item.duration}} Dayes</h6>
+                    <div class="col-8">
+                      {{item.description}}
 
+                    </div>
+                    <br>
+                    <div *ngIf="projectOwner == true">
+                      <a [routerLink]="['/chat/',item.teamId]" class="card-link btn btn-primary">Direct Message</a>
+                      <a [routerLink]="['/adddeal/',item.projectId,item.teamId]" class="card-link btn btn-primary">Make
+                        an offer</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="align-self-center">
+                  <h2 class="h1 mb-0">${{item.money}}</h2>
+
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
 </div>
 
