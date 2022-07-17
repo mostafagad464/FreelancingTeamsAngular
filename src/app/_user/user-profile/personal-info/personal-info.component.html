@@ -3,7 +3,7 @@
     <div class="card" style="width:700px;">
         <div class="card-body">
             <div class="container emp-profile ">
-                <a *ngIf="profileId==userId" [routerLink]="['editpersonalInfo/',userId]" (click)="openModal()"><svg
+                <a *ngIf="profileId==userId" [routerLink]="['/profile',userId,'editpersonalInfo',userId]" ><svg
                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pen-fill" viewBox="0 0 16 16">
                         <path
@@ -17,7 +17,7 @@
                                     <label>ID</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{accountInfo.user?.id}}</p>
+                                    <p>{{userInfo.id}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -41,7 +41,7 @@
                                     <label>Phone</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{accountInfo.user?.phone}}</p>
+                                    <p>{{userInfo.phone}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -49,7 +49,7 @@
                                     <label>BirthDate</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{accountInfo.user?.birthDate|date}}</p>
+                                    <p>{{userInfo.birthDate|date}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -57,7 +57,7 @@
                                     <label>Country</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{accountInfo.user?.country}}</p>
+                                    <p>{{userInfo.country}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -66,7 +66,7 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{accountInfo.user?.state}}</p>
+                                    <p>{{userInfo.state}}</p>
                                 </div>
                             </div>
                         </div>

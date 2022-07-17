@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin, Subscription } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { Freelancer } from 'src/app/_models/freelancer';
@@ -14,6 +13,7 @@ import { UserProfileService } from 'src/app/_services/user-profile.service';
   styleUrls: ['./editpersonal-info.component.css']
 })
 export class EditpersonalInfoComponent implements OnInit {
+  [x: string]: any;
   // @Input() public accountInfo:any; 
 
   accountInfo:Account=new Account(0,0,"","","","","","",new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
@@ -28,33 +28,46 @@ export class EditpersonalInfoComponent implements OnInit {
     
     forkJoin([this.userserv.updateAccount(this.accountInfo),
       this.userserv.updateUser(this.accountInfo.user!)]).subscribe(a=>console.log(a));
-      this.close();
-      // this.router.navigateByUrl("profile/"+this.userId+"/personalinfo/"+this.userId)
-  // this.sub3=this.userserv.updateAccount(this.accountInfo).subscribe(a=>console.log(a));
-  // this.sub4=this.userserv.updateUser(this.accountInfo.user).subscribe(u=>console.log(u))
-  
+      this.router.navigateByUrl("profile/"+this.userId+"/personalInfo/"+this.userId)  .then(() => {
+        window.location.reload(); });
+
   // 
 
   // console.log(this.accountInfo);
   // console.log("saved")
   }
   close(){
-    this.activeModal.close();
-    console.log("closed")
+    this.router.navigateByUrl("profile/"+this.userId+"/personalInfo/"+this.userId)
+  
+    // this.activeModal.close();
+    // console.log("closed")
   }
 
-  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public activeModal:NgbActiveModal,public router:Router,public authser:AuthService) { 
+  constructor(public userserv:UserProfileService,public ar:ActivatedRoute,public router:Router,public authser:AuthService) { 
     this.userId=this.authser.getCurrentUser()?.id;
   }
 
   ngOnInit(): void {
-    console.log(this.accountInfo)
+    
     
     this.sub1=this.ar.params.subscribe(a=>{
-      console.log(a)
-      
+      this.userId=a['id']
+
+    this.sub2=this.userserv.getAccountInfoByid(a['id']).subscribe(b=>{
+      if(b.type=="User")
+      {
+
+        this.accountInfo=b;
+        console.log("account data:",this.accountInfo)
+        
+
+      }
+      }
+    )
 
   })
+
+
     
           
         

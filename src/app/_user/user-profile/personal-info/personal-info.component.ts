@@ -31,14 +31,13 @@ export class PersonalInfoComponent implements OnInit {
     // });
   }
 
-  // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
+  userInfo:User=new User(0,null,0,0,"","","",null,0,true,"",true,true,null,null,true,null,null,null,null,null)
   //userInfo={} as User;
-  accountInfo:Account=new Account(0,0,"","","","","","",
-  new User(0,"",0,0,new Date().toISOString(),"","","",0,true,"",true,false,null,null,true,null,null,null,null,
-  new Freelancer(0,true,0,0,0,null,new Date(),0,0,"",0,0,0,0,[],"")));
+  accountInfo:Account=new Account(0,0,"","","","","","",null);
   // accountInfo={} as Account
   sub1:Subscription|null=null
   sub2:Subscription|null=null
+  sub3:Subscription|null=null
 
   constructor(public userserv:UserProfileService,public authserv:AuthService,public ar:ActivatedRoute,public modalService: NgbModal,public router:Router) { }
 
@@ -47,22 +46,21 @@ export class PersonalInfoComponent implements OnInit {
     this.sub1=this.ar.params.subscribe(a=>{
       this.profileId=a['id']
 
-      console.log(a['id']);
+      this.sub3=this.userserv.getUserInfoByid(a['id']).subscribe(u=>{
+        this.userInfo=u;
+        
+      })
 
     this.sub2=this.userserv.getAccountInfoByid(a['id']).subscribe(b=>{
       if(b.type=="User")
       {
 
         this.accountInfo=b;
-        // console.log(this.accountInfo)
-        if(b.user?.freelancer==true)
-        {
-          // console.log(b.user.freelancerNavigation)
-        }
         
 
       }
       }
+
     )
 
   })
