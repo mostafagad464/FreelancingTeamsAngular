@@ -12,7 +12,7 @@ export class NotificationService {
   private loginToken = "";
   baseurl = "https://localhost:7152/api/Notifications/";
 
-  constructor(public http:HttpClient) { 
+  constructor(public http: HttpClient) {
     this.loginToken = sessionStorage.getItem("access_token")?.toString()!;
   }
 
@@ -26,23 +26,25 @@ export class NotificationService {
       .catch(err => console.log('Error while starting connection: ' + err))
   }
 
-  getNotIficationsCount(id: number){
+  getNotIficationsCount(id: number) {
     return this.http.get<any>(this.baseurl + "account/count/" + id);
   }
-  
-  getAccountNotifications(id:number){
-    return this.http.get<Notifications[]>(this.baseurl+"account/"+id);
+
+  getAccountNotifications(id: number) {
+    return this.http.get<Notifications[]>(this.baseurl + "account/" + id);
+  }
+
+  UpdateAccountNotification(accountId: number) {
+    return this.http.put<Notifications[]>(this.baseurl + "account/" + accountId, null);
   }
 
   // proposal, complain, handle complain, add user, 
-  postAccountNotification(accountId:number, notication:Notifications)
-  {
-    return this.http.post<Notification>(this.baseurl+"account/"+accountId, notication)
+  postAccountNotification(accountId: number, notication: Notifications) {
+    return this.http.post<Notification>(this.baseurl + "account/" + accountId, notication)
   }
   // deal, join, announce, complain handled
-  postTeamNotification(teamId:number, notication:Notifications)
-  {
-    return this.http.post<Notification>(this.baseurl+"team/"+teamId, notication)
+  postTeamNotification(teamId: number, notication: Notifications) {
+    return this.http.post<Notification>(this.baseurl + "team/" + teamId, notication)
   }
 
 }

@@ -15,8 +15,7 @@ export class Complain {
         public complainingTeamId:number|null
 
 
-
-    ){}
+    ) { }
 }
 
 
