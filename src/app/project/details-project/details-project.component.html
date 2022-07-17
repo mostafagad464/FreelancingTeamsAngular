@@ -24,29 +24,27 @@
         <div class="text-muted">
           Range From : ${{ project.minBudget }} To ${{ project.maxBudget }}
         </div>
-        <br>
+        <br />
 
-        <p class="lead">
-          <!-- <button class="btn btn-primary"></button> -->
+        <!-- <p class="lead"> -->
+        <!-- <button class="btn btn-primary"></button> -->
 
-
-          <button
-            [routerLink]="['/Addproposal/', project.id]"
-            class="btn btn-primary btn-lg"
-
-          >
-            Add Proposal
-          </button>
-          <br>
-          <br>
-          <a (click)="edit()" class="btn btn-primary btn-lg" role="button"
-          >Edit</a
-        >
-        </p>
+        <!-- </p> -->
       </div>
     </div>
   </div>
+  <div style=" display: inline;">
+    <button
+      [routerLink]="['/Addproposal/', project.id]"
+      class="btn btn-primary btn-lg"
+    >
+      Add Proposal
+    </button>
+    <a (click)="edit()" class="btn btn-primary btn-lg" role="button">Edit</a>
+  </div>
+  <br />
+  <br />
+
   <app-all-proposals></app-all-proposals>
 </div>
 <app-all-proposals></app-all-proposals>
-
