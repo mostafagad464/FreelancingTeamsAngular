@@ -1,0 +1,115 @@
+<div *ngIf="IsNotCompleted;else elseBlock ">
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+    <h1 style = font-size:50px>Submit Project</h1>
+
+
+  <div class="row ">
+  <div class="col-lg-7 mx-auto">
+    <div class="uto p-4 bcard mt-2 mx-ag-light">
+        <div class="card-body bg-light">
+
+        <div class = "container">
+          <form id="contact-form" role="form">
+        <div class="controls">
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+
+          </div>
+          </div>
+          </div>
+          <br>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="Money">Project Link</label>
+                    <input   type="text" class="form-control form-control-lg" name="Money" id="Money" required="required" data-error="Total Price is required.">
+                  </div>
+                </div>
+            </div>
+
+
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="Money">Preview Link</label>
+        <input   type="text" class="form-control form-control-lg" name="Money" id="Money" required="required" data-error="Total Price is required.">
+      </div>
+    </div>
+</div>
+<br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="form_message">Any additional message</label>
+                      <textarea id="form_message" name="message" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave a message to the client."></textarea>
+                        </div>
+                      </div>
+
+                    </div>
+  <br>
+                    <div class="row">
+                      <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="exampleFormControlFile1">Any additional Attachment</label>
+                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                <div class="col-md-12">
+
+                    <a  (click)="ADD()" type="submit" class="btn btn-primary btn-send  pt-2 btn-block"  >Submit</a>
+                    <!-- [routerLink]="['/AllProposals/',prop.projectId]"
+                    routerLink="/AllProposals" -->
+                  </div>
+            </div>
+     </form>
+    </div>
+        </div>
+
+
+  </div>
+    <!-- /.8 -->
+
+  </div>
+  <!-- /.row-->
+  </div>
+  </div>
+  </div>
+</div>
+  <ng-template #elseBlock><div class="jumbotron text-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="display-3">Thank You!</h1>
+    <p class="lead"><strong>You have successfully submitted this project</strong></p>
+    <hr>
+    <br>
+    <p>
+      Having trouble or complain? <a href="/postComplain/1">Contact us</a>
+    </p>
+    <p>
+      Help us by review this client <a href="/review/addReview/15/12/3">Review</a>
+    </p>
+    <p class="lead">
+      <br>
+      <br>
+      <a class="btn btn-primary btn-lg" routerLink="" role="button">Continue to homepage</a>
+    </p>
+  </div>
+</ng-template>
+
+
+  <!-- {{prop|json}} -->
+
+
