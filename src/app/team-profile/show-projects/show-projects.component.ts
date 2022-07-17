@@ -85,6 +85,8 @@ export class ShowProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.projectReviewClient);
+    console.log(this.projectsClients);
 
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
@@ -197,6 +199,7 @@ export class ShowProjectsComponent implements OnInit {
 
             if(this.completed[c] == this.projects[e].id){
               this.projectsNames.push(this.projects[e].title);
+              console.log("projectsNames"+this.projectsNames)
 
               }
             }

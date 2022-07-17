@@ -35,7 +35,11 @@ import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
 import { BioComponent } from './_user/user-profile/bio/bio.component';
 
 import { AnonymousGuard } from './_helpers/anonymous.guard';
+
 import { SliderFreelancerComponent } from './homeFreelancer/slider-freelancer/slider-freelancer.component';
+
+import { ShowProjectsComponent } from './team-profile/show-projects/show-projects.component';
+
 
 
 
@@ -43,11 +47,10 @@ const routes: Routes = [
 
   { path: "", component: HomeComponent, pathMatch: "full" },
 
+  { path: "login", component: LoginComponent, canActivate: [AnonymousGuard] },
+  { path: "register", component: RegisterComponent, canActivate: [AnonymousGuard] },
+
   { path: "info", component: MainInfoComponent},
-
-  { path: "login", component: LoginComponent, canActivate:[AnonymousGuard] },
-  { path: "register", component: RegisterComponent, canActivate:[AnonymousGuard]},
-
 
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
@@ -55,13 +58,18 @@ const routes: Routes = [
   { path: "chat/:id", component: ChatComponent, canActivate: [AuthGuard] },
   { path: "chat/team/:id", component: TeamChatComponent, canActivate: [AuthGuard] },
 
-  { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard]  },
-  { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard]  },
-  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard]  },
+  { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard] },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard] },
+  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard] },
 
   {
     path: "postComplain/:id",
     component: PostComplainsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "review",
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule),
     canActivate: [AuthGuard]
   },
   {
@@ -80,6 +88,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: "admin",
+    loadChildren: () => import('./admin-profile/admin-profile.module').then(m => m.AdminProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "review",
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: "profile/:id", component: HeaderComponent, children:
       [
         {path:"editBio/:id",component:BioComponent},
@@ -93,24 +111,27 @@ const routes: Routes = [
         {
           path: "editCertificate/:id/:title",
           component: EditCertificatesComponent,
-    
+
         },
         {
           path: "editEducation/:id/:gradYear",
           component: EditeducationalInfoComponent,
-      
+
         },
+
+
         { path: "editExperience/:id/:startDate", component: EditexperienceComponent},
         { path: "addExperience", component: AddExperienceComponent},
 
         {path:"wallet/:id",component:UserwalletComponent},
         { path: "editSkills/:id", component: EditskillsComponent},
         { path: "addSkill/:id", component: AddSkillComponent},
+
         {
           path: "educations/:id", component: EducationalInfoComponent, children:
             [
               { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal' },
-            
+
             ]
         },
         {
@@ -131,7 +152,7 @@ const routes: Routes = [
         },
         {
           path: "certificates/:id", component: CertificatesComponent,
-        
+
         },
 
         {
@@ -143,9 +164,14 @@ const routes: Routes = [
           path: "certificates/:id", component: CertificatesComponent, children: [
 
           ]
+        },
+        {
+          path: 'showProjects/:id',
+          component: ShowProjectsComponent
+          // outlet: 'showProjects'
         }
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "certificates/:id", component: CertificatesComponent,
@@ -156,9 +182,9 @@ const routes: Routes = [
           component: EditCertificatesComponent,
           outlet: 'modal'
         },
-       
+
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "experiences/:id", component: ExperienceComponent,
@@ -175,7 +201,7 @@ const routes: Routes = [
           outlet: 'modal'
         }
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {path:"freelancerHome",component:SliderFreelancerComponent},
 

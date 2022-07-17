@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Deal } from 'src/app/_models/deal';
+import { Notifications } from 'src/app/_models/notifications';
+import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { DealService } from 'src/app/_services/deal.service';
+import { NotificationService } from 'src/app/_services/notification.service';
 import { ProjectService } from 'src/app/_services/project.service';
 import { ProposalService } from 'src/app/_services/proposal.service';
 import { TeamService } from 'src/app/_services/team.service';
@@ -20,7 +23,9 @@ export class AdddealComponent implements OnInit {
     public propSer: ProposalService,
     public auth: AuthService,
     public teamser: TeamService,
-    public ProjService: ProjectService
+    public ProjService: ProjectService,
+    public accountService: AccountService,
+    private notificationService: NotificationService
   ) { }
   ClientId: number = 1;
   IsNotCompleted: boolean = true;
@@ -28,11 +33,28 @@ export class AdddealComponent implements OnInit {
   ProjectDescription: string = "";
   DeliverDate: Date = new Date();
   deal: Deal = new Deal(this.ClientId, 0, 0, 0, 0, false);
+  notification: Notifications = new Notifications(0, "", "", 0, false, false, new Date());
   ADD() {
     this.dealSer.AddNewDeal(this.deal).subscribe(a => {
       console.log(a);
       this.IsNotCompleted = false;
-    })
+    
+
+    this.accountService.getAccount(this.deal.clientId).subscribe(account => {
+
+      this.notification.date = new Date();
+      this.notification.description = "Client: " + this.deal.clientId + " wants to make a deal with you ";
+      this.notification.type = "projects/details/*";
+      this.notification.type_id = this.deal.projectId;
+      this.notificationService.postTeamNotification(this.deal.teamId, this.notification).subscribe(
+        a => {
+          console.log(a);
+        }
+      );
+
+    });
+  });
+
   }
   // Add(){
   //   this.dealSer.AddNewDeal().subscribe(a=>{

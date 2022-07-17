@@ -1,4 +1,4 @@
-<div *ngIf="project">
+<div class="container " *ngIf="project">
   <br />
   <br />
   <br />
@@ -15,7 +15,7 @@
       <!-- <div class=" "> -->
       <br />
 
-      <p class="lead">
+      <p class="text-center" class="lead">
         <strong>{{ project.description }}</strong>
       </p>
       <br />
@@ -24,29 +24,25 @@
         <div class="text-muted">
           Range From : ${{ project.minBudget }} To ${{ project.maxBudget }}
         </div>
-        <br>
-
-        <p class="lead">
-          <!-- <button class="btn btn-primary"></button> -->
+        <br />
+        <a *ngIf="isOwner == true" (click)="edit()" class="btn btn-primary btn-lg" role="button">Edit</a>
 
 
-          <button
-            [routerLink]="['/Addproposal/', project.id]"
-            class="btn btn-primary btn-lg"
+        <!-- <p class="lead"> -->
+        <!-- <button class="btn btn-primary"></button> -->
 
-          >
-            Add Proposal
-          </button>
-          <br>
-          <br>
-          <a (click)="edit()" class="btn btn-primary btn-lg" role="button"
-          >Edit</a
-        >
-        </p>
+        <!-- </p> -->
       </div>
     </div>
   </div>
-  <app-all-proposals></app-all-proposals>
+  <div style=" display: inline;">
+    <a *ngIf="isFreelancer==true" [routerLink]="['/Addproposal/', project.id]" class="btn btn-primary btn-lg">
+      Add Proposal
+    </a>
+  </div>
+  <br />
+  <br />
+
+  <!-- <app-all-proposals></app-all-proposals> -->
 </div>
 <app-all-proposals></app-all-proposals>
-

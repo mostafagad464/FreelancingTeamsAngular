@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from 'src/app/_models/review';
 import { ReviewsService } from 'src/app/_services/reviews.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -32,14 +32,17 @@ export class PostReviewComponent implements OnInit {
   finalMonth : any;
   finalDay : any;
 
-  constructor(public revServ:ReviewsService, public ac:ActivatedRoute, public userServ:UserService) { }
+  constructor(public revServ:ReviewsService, public ac:ActivatedRoute, public userServ:UserService, public router: Router) { }
 
   Submit(){
     console.log(this.review);
     this.revServ.postReview(this.review).subscribe(a=>{
       console.log(this.review);
-      alert("Thanks for your review!")
-    })
+      alert("Thanks for your review!");
+      this.router.navigateByUrl("/");
+    });
+
+
   }
 
   ngOnInit(): void {
