@@ -23,7 +23,7 @@
 
                   </div>
                   <br>
-                  <a href="#" class="card-link btn btn-primary">Direct Message</a>
+                  <a [routerLink]="['/chat/',item.teamId]" class="card-link btn btn-primary">Direct Message</a>
                   <a  [routerLink]="['/adddeal/',item.projectId,item.teamId]" class="card-link btn btn-primary">Make an offer</a>
                 </div>
               </div>
