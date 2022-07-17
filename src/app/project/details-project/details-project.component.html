@@ -40,7 +40,7 @@
     </div>
   </div>
   <div style=" display: inline;">
-    <a *ngIf="isFreelancer==true" [routerLink]="['/Addproposal/', project.id]" class="btn btn-primary btn-lg">
+    <a *ngIf="isFreelancer==true && !IsAllowToSubmit" [routerLink]="['/Addproposal/', project.id]" class="btn btn-primary btn-lg">
       Add Proposal
     </a>
   </div>
