@@ -164,7 +164,9 @@ export class UserHeaderComponent implements OnInit {
     }
     else{ // add in db teamMember
       let teamMeber = new TeamMember(parseInt(type.split('*')[1]),this.AuthService.getCurrentUser()?.id,false);
+      this.TeamMemberService.addTeamMember(teamMeber).subscribe(teammemb=>{
       alert("Congratulations! you expanded you team successfully");
+      });
     }
   }
   
