@@ -23,19 +23,16 @@
                             <h6 class="text-muted f-w-400"><p-rating  [(ngModel)]="review.rate" ngDefaultControl [cancel]="false" [readonly]="false"></p-rating> 
                             </h6>
                             <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Comment</h6>
-                    </div>
-                    <div class="row">
-                      <div class="form-group">
-                        <textarea name="txtMsg" class="form-control" [(ngModel)]="review.content" placeholder="Your Comment *" style="width: 100%; height: 150px;"></textarea>
-                    </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+                          <textarea name="txtMsg" class="form-control" [(ngModel)]="review.content" placeholder="Your Comment *" style="width: 100%; height: 150px;"></textarea>
+                      </div>
                             <!-- <input class="form-control  btn-outline-info" type="text" value={{review.content}} [(ngModel)]="review.content">  -->
                         </div>
-                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Say something to the team!</h6>
-                    <div class="row">
-                      <div class="form-group">
-                        <textarea name="txtMsg" class="form-control" [(ngModel)]="review.fromClient" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-                    </div>
-                    </div><br><br>
+                    <!-- <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Date</h6>
+                    <input type="date" [value]="todayDate" [(ngModel)]="review.date"> -->
+                    <br><br>
                     <div>
                       <button type="submit" class="text-dark btn-lg button p-3" id="btn" style="font-weight:bold ;" (click)="Submit()">Submit</button>
                     </div>
@@ -54,50 +51,4 @@
 </div>
 
 
-<!-- <div class="center">
-  <h4 class="font">Rate the project!</h4>
-    <div class="form-group font">
-        <label for="exampleInputUsername1">Rate</label><br>
-        <p-rating  [(ngModel)]="review.rate" ngDefaultControl [cancel]="false" [readonly]="false"></p-rating> 
-      </div><br>
-    <div class="form-group font">
-      <label for="exampleInputUsername1">Comment</label><br>
-      <input class="form-control  btn-outline-info" type="text" value={{review.content}} [(ngModel)]="review.content"> 
-    </div><br>
-    <div class="form-group font">
-      <label for="exampleInputUsername1">Say something to the team</label><br>
-      <input class="form-control btn-outline-info" type="text" value={{review.fromClient}} [(ngModel)]="review.fromClient"> 
-    </div><br>
-    <button type="submit" class="btn btn-outline-info text-dark btn-lg" id="btn" style="font-weight:bold ;" (click)="Submit()">Submit</button>
-    <h1>{{rate}}</h1>
-</div> -->
-    <div class="center">
-        <h4 class="font">Rate the project!</h4>
-        <div class="form-group font">
-            <label for="exampleInputUsername1">Rate</label><br>
-            <p-rating  [(ngModel)]="review.rate" ngDefaultControl [cancel]="false" [readonly]="false"></p-rating> 
-          </div><br>
-          <div class="form-group font">
-            <label for="exampleInputUsername1">Comment</label><br>
-            <input class="form-control  btn-outline-info" type="text" value={{review.content}} [(ngModel)]="review.content"> 
-          </div><br>
-          <div class="form-group font">
-            <label for="exampleInputUsername1">Say something to the team</label><br>
-            <input class="form-control btn-outline-info" type="text" value={{review.fromClient}} [(ngModel)]="review.fromClient"> 
-          </div><br>
-          <button type="submit" class="btn btn-outline-info text-dark btn-lg" id="btn" style="font-weight:bold ;" (click)="Submit()">Submit</button>
-          <h1>{{rate}}</h1>
-        </div>
-      
-       
 
-  
-      <!-- <div class="container center">
-    <div>
-        <h4>How do you rate this project?</h4><br>
-    </div>
-    <div>
-        <p-rating  [(ngModel)]="rate" ngDefaultControl [cancel]="false" [readonly]="false" (click)="save()"></p-rating><br>
-    </div>
-    <h1>{{rate}}</h1>
-</div> -->

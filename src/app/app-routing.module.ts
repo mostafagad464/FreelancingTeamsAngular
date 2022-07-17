@@ -31,14 +31,19 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { MainInfoComponent } from './account/main-info/main-info.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
+import { AnonymousGuard } from './_helpers/anonymous.guard';
 
 
 const routes: Routes = [
 
   { path: "", component: HomeComponent, pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent},
+
   { path: "info", component: MainInfoComponent},
+
+  { path: "login", component: LoginComponent, canActivate:[AnonymousGuard] },
+  { path: "register", component: RegisterComponent, canActivate:[AnonymousGuard]},
+
+
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
   { path: "chat", component: ChatComponent, canActivate: [AuthGuard] },
@@ -72,14 +77,32 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children:
       [
+        {
+          path: "addCertificate",
+          component: AddCertificateComponent,
+
+        },
+        { path: "addEducation", component: AddEducationComponent },
+        {
+          path: "editCertificate/:id/:title",
+          component: EditCertificatesComponent,
+    
+        },
+        {
+          path: "editEducation/:id/:gradYear",
+          component: EditeducationalInfoComponent,
+      
+        },
+        { path: "editExperience/:id/:startDate", component: EditexperienceComponent},
+        { path: "addExperience", component: AddExperienceComponent},
         {path:"wallet/:id",component:UserwalletComponent},
-        { path: "editSkills/:id", component: EditskillsComponent, outlet: 'modal' },
-        { path: "addSkill/:id", component: AddSkillComponent, outlet: 'modal' },
+        { path: "editSkills/:id", component: EditskillsComponent},
+        { path: "addSkill/:id", component: AddSkillComponent},
         {
           path: "educations/:id", component: EducationalInfoComponent, children:
             [
               { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal' },
-              { path: "addEducation", component: AddEducationComponent, outlet: 'modal' }
+            
             ]
         },
         {
@@ -88,21 +111,7 @@ const routes: Routes = [
           outlet: 'modal'
         },
         {
-          path: "educations/:id", component: EducationalInfoComponent,
-          children:
-            [
-              {
-                path: "editEducation/:id/:gradYear",
-                component: EditeducationalInfoComponent,
-                outlet: 'modal'
-              },
-
-              {
-                path: "addEducation",
-                component: AddEducationComponent,
-                outlet: 'modal'
-              }
-            ]
+          path: "educations/:id", component: EducationalInfoComponent
         },
         {
           path: "portfolio/:id", component: ProjectsComponent,
@@ -113,27 +122,11 @@ const routes: Routes = [
             ]
         },
         {
-          path: "experiences/:id", component: ExperienceComponent, children:
-            [
-              { path: "editExperience/:id/:startDate", component: EditexperienceComponent, outlet: 'modal' },
-              { path: "addExperience", component: AddExperienceComponent, outlet: 'modal' }
-            ]
+          path: "experiences/:id", component: ExperienceComponent
         },
         {
           path: "certificates/:id", component: CertificatesComponent,
-          children:
-            [
-              {
-                path: "editCertificate/:id/:title",
-                component: EditCertificatesComponent,
-                outlet: 'modal'
-              },
-              {
-                path: "addCertificate",
-                component: AddCertificateComponent,
-                outlet: 'modal'
-              }
-            ]
+        
         },
 
         {
@@ -159,11 +152,7 @@ const routes: Routes = [
           component: EditCertificatesComponent,
           outlet: 'modal'
         },
-        {
-          path: "addCertificate",
-          component: AddCertificateComponent,
-          outlet: 'modal'
-        }
+       
       ],
       canActivate: [AuthGuard]
   },

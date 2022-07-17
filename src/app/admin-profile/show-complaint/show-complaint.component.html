@@ -1,0 +1,23 @@
+<div class="container mt-2">
+    <div class="row">
+        <a class="nav-link btn btn-lg text-dark" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 1rem;" >Handeled Complains ({{comAndNames.length}})</a> 
+        <div class="col-md-4" *ngFor="let item of comAndNames; let y=index">
+            <div class="card p-3">
+                <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Complainant</p>
+                <p class="card-text sm-font" style="width: 11rem;">{{item.name}}</p>
+                <p class="card-text lg-font list-group-item list-group-item-action list-group-item-info p-1 bold">Handler Admin</p>
+                <p>{{comAndNames[y].hname}}</p>
+            </div>
+        </div>
+    </div> 
+    <div class="row">
+        <a class="nav-link btn btn-lg text-dark" style="font-family:Georgia, 'Times New Roman', Times, serif ; margin-top: 2rem;" >Unhandeled Complains ({{ucomAndNames.length}})</a>
+        <div class="col-md-4" *ngFor="let item of ucomAndNames">
+            <div class="card p-3">
+                <p class="card-text lg-font list-group-item list-group-item-action list-group-item-dark">Complainant</p>
+                <p class="card-text sm-font" style="width: 11rem;">{{item.name}}</p>
+                <a href="#" class="btn btn-sm btn-info text-light">Details</a>
+            </div>
+        </div>
+    </div> 
+</div>
