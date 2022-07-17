@@ -66,12 +66,15 @@ export class DetailsProjectComponent implements OnInit {
         this.dealService.getDeals().subscribe(a=>{
           console.log(a)
           a.forEach(element => {
+            console.log(element)
           if(element.projectId==this.project.id){
+
+              console.log("here")
             this.teamId=element.teamId;
             this.teamSer.getTeam(this.teamId).subscribe(a=>{
-             let L= a.teamMembers.filter(x=>{x.freelancerId==this.userId
-
-              }).length
+              console.log(a)
+             let L= a.teamMembers.filter(x=>x.freelancerId==this.userId).length;
+             console.log(L)
               if(L>0){
                   this.IsAllowToSubmit=true;
               }
