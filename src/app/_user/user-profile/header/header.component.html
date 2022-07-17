@@ -24,7 +24,7 @@
                 <div class="w3-container">
                     <div>
                         <p class="w3-center"><img src={{imageurl}} class="w3-circle" style="height:150px;width:150px"
-                                alt="Avatar"></p>
+                                alt="Avatar" onerror="this.src='assets/images/NoImage.png'"></p>
                         <h2 class="w3-center"><b>{{accountInfo.firstName+" "+accountInfo.lastName}}</b></h2>
                         <div *ngIf="profileId==userId" class="file">
                             <label for="fileInput"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"

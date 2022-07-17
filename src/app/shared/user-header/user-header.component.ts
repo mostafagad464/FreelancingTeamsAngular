@@ -27,8 +27,10 @@ export class UserHeaderComponent implements OnInit {
   NoOfNotifications = 0;
   NoOfMessages = 0;
   ListOfNotifications: Notifications[] = [];
+  ViewAll = false;
+  text = 'See more';
 
-  constructor(public AuthService: AuthService, public UserService: UserService, public TeamService: TeamService, public AccountService: AccountService, public NotificationService: NotificationService, public ChatService : ChatService) { }
+  constructor(public AuthService: AuthService, public UserService: UserService, public TeamService: TeamService, public AccountService: AccountService, public NotificationService: NotificationService, public ChatService: ChatService) { }
 
   ngOnInit(): void {
     this.isAuthenticated$.subscribe(authenticated => {
@@ -54,16 +56,16 @@ export class UserHeaderComponent implements OnInit {
       this.NotificationService.getNotIficationsCount(this.AuthService.getCurrentUser()?.id).subscribe(notNo => {
         this.NoOfNotifications = notNo.count;
       });
-      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo => {
         this.NoOfMessages = messNo.count;
       });
 
+      this.NotificationsListener();
+      this.MessagesListener();
+  
+      this.getNotifications(this.AuthService.getCurrentUser()?.id);
     });
 
-    this.NotificationsListener();
-    this.MessagesListener();
-  
-    this.getNotifications(this.AuthService.getCurrentUser()?.id);
 
   }
 
@@ -76,7 +78,7 @@ export class UserHeaderComponent implements OnInit {
   }
 
 
-  NotificationsListener(){
+  NotificationsListener() {
     // Hub connection
     this.NotificationService.startConnection();
 
@@ -91,35 +93,57 @@ export class UserHeaderComponent implements OnInit {
   }
 
 
-  MessagesListener(){
+  MessagesListener() {
     //Hub Connection
     this.ChatService.startConnection();
 
     this.ChatService.hubConnection.on('AccountsMessaging', message => {
-      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo => {
         this.NoOfMessages = messNo.count;
       });
     });
     this.ChatService.hubConnection.on("TeamsAndFreelancersMesseging", message => {
-      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo => {
         this.NoOfMessages = messNo.count;
       });
     });
     this.ChatService.hubConnection.on("AccountMessagesUpdate", message => {
-      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo=>{
+      console.log("here");
+      this.ChatService.getAccountMessagesCount(this.AuthService.getCurrentUser()?.id).subscribe(messNo => {
         this.NoOfMessages = messNo.count;
       });
     });
   }
 
 
-  getNotifications(id:number){
-    this.NotificationService.getAccountNotifications(id).subscribe(notifications=>{
+  getNotifications(id: number) {
+    this.NotificationService.getAccountNotifications(id).subscribe(notifications => {
       this.ListOfNotifications = notifications;
       this.ListOfNotifications = this.ListOfNotifications.sort((m1, m2) => (m1.date > m2.date) ? -1 : (m1.date < m1.date) ? 1 : 0);
       console.log(this.ListOfNotifications);
 
     })
+  }
+
+
+  MarkAsRead() {
+    this.NoOfNotifications = 0;
+    this.NotificationService.UpdateAccountNotification(this.AuthService.getCurrentUser()?.id).subscribe(notifications => {
+      this.getNotifications(this.AuthService.getCurrentUser()?.id);
+    })
+  }
+
+  /****
+   * Notifications types :
+   *    proposal
+   */
+
+  Accept(type: string,type_id: number){
+
+  }
+  
+  Decline(type: string,type_id: number){
+
   }
 
 

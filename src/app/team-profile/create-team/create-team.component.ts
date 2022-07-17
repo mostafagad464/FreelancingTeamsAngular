@@ -27,7 +27,6 @@ export class CreateTeamComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
-    this.authService.DeleteToken();
   }
 
   async createTeam()
