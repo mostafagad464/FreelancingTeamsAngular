@@ -31,7 +31,11 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { MainInfoComponent } from './account/main-info/main-info.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
+
+import { BioComponent } from './_user/user-profile/bio/bio.component';
+
 import { AnonymousGuard } from './_helpers/anonymous.guard';
+
 
 
 const routes: Routes = [
@@ -77,6 +81,7 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children:
       [
+
         {
           path: "addCertificate",
           component: AddCertificateComponent,
@@ -95,6 +100,8 @@ const routes: Routes = [
         },
         { path: "editExperience/:id/:startDate", component: EditexperienceComponent},
         { path: "addExperience", component: AddExperienceComponent},
+        {path:"editBio/:id",component:BioComponent}
+        ,
         {path:"wallet/:id",component:UserwalletComponent},
         { path: "editSkills/:id", component: EditskillsComponent},
         { path: "addSkill/:id", component: AddSkillComponent},
@@ -115,12 +122,9 @@ const routes: Routes = [
         },
         {
           path: "portfolio/:id", component: ProjectsComponent,
-          children:
-            [
-              // { path: ":id", component: ProjectsComponent },
-              { path: "addPortofolio", component: AddPortfolioComponent }
-            ]
+  
         },
+        { path: "addPortofolio", component: AddPortfolioComponent },
         {
           path: "experiences/:id", component: ExperienceComponent
         },
@@ -130,11 +134,10 @@ const routes: Routes = [
         },
 
         {
-          path: "personalInfo/:id", component: PersonalInfoComponent, children:
-            [
-              { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
-            ]
+          path: "personalInfo/:id", component: PersonalInfoComponent
         },
+        { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
+        
         {
           path: "certificates/:id", component: CertificatesComponent, children: [
 

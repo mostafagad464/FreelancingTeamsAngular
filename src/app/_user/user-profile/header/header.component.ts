@@ -32,42 +32,95 @@ export class HeaderComponent implements OnInit {
     public activateRoute: ActivatedRoute,
     private notificationService: NotificationService,
     private teamService: TeamService
-  ) {
-    this.sub1 = this.ar.params.subscribe(x => {
-      console.log(x);
-      this.userId = x['id'];
+    )
+    {    this.sub1 = this.ar.params.subscribe(x => {
+    console.log(x);
+    this.userId = x['id'];})}
 
-      this.sub2 = this.userserv.getAccountInfoByid(x['id']).subscribe(a => {
-        this.accountInfo = a
-        console.log(this.accountInfo.user?.rate)
-        // console.log(this.accountInfo.user?.freelancerNavigation?.specialization)
+    sub1: Subscription | null = null;
+    sub2: Subscription | null = null;
+    sub3: Subscription | null = null;
+    userId: any;
+    profileId: any;
+    urlId: number = 0;
+    savebio:number=0;
+    
+    Image: File | null = null;
+    imageurl: any;
+  
+
+
+    accountInfo: Account = new Account(0, 0, "", "", "", "", "", "", null)
+    userInfo = new User(0, "", 0, 0, new Date().toISOString(), "", "", "", 0, true, "", true, false, null, null, true, null, null, null, null,
+      null);
+
+
+
+
+    ngOnInit(): void {
+      this.sub1 = this.ar.params.subscribe(x => {
+        console.log(x);
+        this.userId = x['id'];
+  
+        this.sub2 = this.userserv.getUserInfoByid(x['id']).subscribe(u => {
+          this.userInfo = u;
+  
+          this.sub3 = this.userserv.getAccountInfoByid(x['id']).subscribe(a => {
+            this.accountInfo = a
+            console.log(this.accountInfo.user?.rate)
+            let teamId = sessionStorage.getItem("team_id")?.toString();
+            console.log("team id: ", teamId);
+            this.teamService.getTeam(parseInt(teamId!)).subscribe(
+              t => {
+                this.team = t;
+                console.log(this.team);
+                console.log();
+              }
+            )
+            this.profileId = this.authserv.getCurrentUser()?.id;
+            this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
+            this.activateRoute.params.subscribe(a => this.urlId = a['id']);
+            
+          })
+        })
+  
       })
-    })
-
-  }
-
-
-  Image: File | null = null;
-  imageurl: any;
-  onFileChanged(event: any) {
-    this.Image = <File>event.target.files[0];
-    let fd = new FormData();
-    const reader = new FileReader();
-    reader.readAsDataURL(this.Image);
-    reader.onload = (_event) => {
-      this.imageurl = reader.result?.toString() ? reader.result.toString() : this.imageurl;
+      this.profileId = this.authserv.getCurrentUser()?.id;
+      this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
+      this.activateRoute.params.subscribe(a => this.urlId = a['id']);
     }
-    if (this.Image) {
-      fd.append("files", this.Image, this.Image.name);
-      // console.log(this.Image.name);
-
-      this.usrservice.addImage(this.profileId, fd).subscribe(u => {
-        this.accountInfo.user!.image = u.image;
-      })
+    
 
 
+    onFileChanged(event: any) {
+      this.Image = <File>event.target.files[0];
+      let fd = new FormData();
+      const reader = new FileReader();
+      reader.readAsDataURL(this.Image);
+      reader.onload = (_event) => {
+        this.imageurl = reader.result?.toString() ? reader.result.toString() : this.imageurl;
+      }
+      if (this.Image) {
+        fd.append("files", this.Image, this.Image.name);
+        // console.log(this.Image.name);
+
+        this.usrservice.addImage(this.profileId, fd).subscribe(u => {
+          this.accountInfo.user!.image = u.image;
+        })
+
+
+      }
     }
-  }
+
+
+
+
+
+
+
+  
+
+  
 
 
   wallet() {
@@ -89,40 +142,19 @@ export class HeaderComponent implements OnInit {
   Educations() {
     this.router.navigateByUrl("profile/" + this.userId + "/educations/" + this.userId)
   }
-  sub1: Subscription | null = null;
-  sub2: Subscription | null = null;
-  userId: any;
-  profileId: any;
-  urlId: number = 0;
-  // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
-  //userInfo:User|null=null
-  //userInfo = {} as User;
-  accountInfo: Account = new Account(0, 0, "", "", "", "", "", "",
-    new User(0, "", 0, 0, new Date().toISOString(), "", "", "", 0, true, "", true, false, null, null, true, null, null, null, null,
-      new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], "")));
 
 
-  //accountInfo ={} as Account;
+
+ 
+
+
+ 
 
 
   notification: Notifications = new Notifications(0, "", "", 0, false, false, new Date(2022, 7, 17));
   team: Team = new Team(0, null, "", false, new Date(), "", 0, 0, 0, "", "", [], [], []);
 
-  ngOnInit(): void {
-    let teamId = sessionStorage.getItem("team_id")?.toString();
-    console.log("team id: ", teamId);
-    this.teamService.getTeam(parseInt(teamId!)).subscribe(
-      t => {
-        this.team = t;
-        console.log(this.team);
-        console.log();
-      }
-    )
-    this.profileId = this.authserv.getCurrentUser()?.id;
-    this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
-    this.activateRoute.params.subscribe(a => this.urlId = a['id']);
 
-  }
   myTeam() {
     this.router.navigate(['team/showteams/', this.profileId]);
   }
@@ -146,3 +178,4 @@ export class HeaderComponent implements OnInit {
   }
 
 }
+

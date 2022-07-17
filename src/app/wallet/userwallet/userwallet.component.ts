@@ -16,7 +16,7 @@ export class UserwalletComponent implements OnInit {
   sub1:Subscription|null=null;
   sub2:Subscription|null=null;
   sub3:Subscription|null=null;
-  wallet:any;
+  wallet=new Wallet(0,0,0)
 
 
   constructor(public walletserv:WalletService,public ar:ActivatedRoute,public router:Router,public usrserv:UserProfileService,public teamserv:TeamService) { }
