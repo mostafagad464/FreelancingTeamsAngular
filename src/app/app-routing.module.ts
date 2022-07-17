@@ -84,6 +84,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: "admin",
+    loadChildren: () => import('./admin-profile/admin-profile.module').then(m => m.AdminProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "review",
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: "profile/:id", component: HeaderComponent, children:
       [
 
