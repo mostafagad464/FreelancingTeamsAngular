@@ -123,40 +123,59 @@
                                 </mark>
                             </ng-template>
                         </a>
+
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="0"
                             class="dropdown-menu dropdown-menu-right dropdown-menu-end show scrollspy-example"
                             id="navbarNotificationContent" tabindex="0" aria-labelledby="navbarDropdownMenuLink"
                             style="width: 370px;">
                             <ng-template ngFor let-notif [ngForOf]="ListOfNotifications" let-i="index">
-                                <a *ngIf="i<=7" class="dropdown-item text-wrap" [routerLink]="[notif.type,notif.id]">
+                                <a *ngIf="i<=7" class="dropdown-item text-wrap" [routerLink]="[notif.type.split('*')[0],notif.id]">
                                     <div *ngIf="!notif.read" class="container row pb-2"
                                         style="background-color:rgb(252, 250, 255) ;">
                                         <div class="col-12 m-2 mb-2">{{notif.description}}</div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-success"
-                                                (click)="Accept(notif.type,notif.type_id)">Accept</a>
-                                        </div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-danger"
-                                                (click)="Decline(notif.type,notif.type_id)">Decline</a>
-                                        </div>
-                                        <div class="offset-1 col-5">
-                                            <small class="text-secondary text-end">{{notif.date | date:'short'}}</small>
-                                        </div>
+                                        <ng-template [ngIf]="notif.type != 'AllProposals/'">
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-success"
+                                                    (click)="Accept(notif.type,notif.type_id)">Accept</a>
+                                            </div>
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-danger"
+                                                    (click)="Decline(notif.type,notif.type_id)">Decline</a>
+                                            </div>
+                                            <div class="offset-1 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template [ngIf]="notif.type == 'AllProposals/'">
+                                            <div class="offset-7 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
                                     </div>
                                     <div *ngIf="notif.read" class="container row pb-2">
                                         <div class="col-12 m-2 mb-2">{{notif.description}}</div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-success"
-                                                (click)="Accept(notif.type,notif.type_id)">Accept</a>
-                                        </div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-danger"
-                                                (click)="Decline(notif.type,notif.type_id)">Decline</a>
-                                        </div>
-                                        <div class="offset-1 col-5">
-                                            <small class="text-secondary text-end">{{notif.date | date:'short'}}</small>
-                                        </div>
+                                        <ng-template [ngIf]="notif.type != 'AllProposals/'">
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-success"
+                                                    (click)="Accept(notif.type,notif.type_id)">Accept</a>
+                                            </div>
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-danger"
+                                                    (click)="Decline(notif.type,notif.type_id)">Decline</a>
+                                            </div>
+                                            <div class="offset-1 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template [ngIf]="notif.type == 'AllProposals/'">
+                                            <div class="offset-7 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
 
                                     </div>
                                 </a>
@@ -165,32 +184,50 @@
                                     <div *ngIf="!notif.read" class="container row pb-2"
                                         style="background-color:MintCream ;">
                                         <div class="col-12 m-2 mb-2">{{notif.description}}</div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-success"
-                                                (click)="Accept(notif.type,notif.type_id)">Accept</a>
-                                        </div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-danger"
-                                                (click)="Decline(notif.type,notif.type_id)">Decline</a>
-                                        </div>
-                                        <div class="offset-1 col-5">
-                                            <small class="text-secondary text-end">{{notif.date | date:'short'}}</small>
-                                        </div>
+                                        <ng-template [ngIf]="notif.type != 'AllProposals/'">
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-success"
+                                                    (click)="Accept(notif.type,notif.type_id)">Accept</a>
+                                            </div>
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-danger"
+                                                    (click)="Decline(notif.type,notif.type_id)">Decline</a>
+                                            </div>
+                                            <div class="offset-1 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template [ngIf]="notif.type == 'AllProposals/'">
+                                            <div class="offset-7 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
 
                                     </div>
                                     <div *ngIf="notif.read" class="container row pb-2">
                                         <div class="col-12 m-2 mb-2">{{notif.description}}</div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-success"
-                                                (click)="Accept(notif.type,notif.type_id)">Accept</a>
-                                        </div>
-                                        <div class="col-3">
-                                            <a class="text-center m-2 text-danger"
-                                                (click)="Decline(notif.type,notif.type_id)">Decline</a>
-                                        </div>
-                                        <div class="offset-1 col-5">
-                                            <small class="text-secondary text-end">{{notif.date | date:'short'}}</small>
-                                        </div>
+                                        <ng-template [ngIf]="notif.type != 'AllProposals/'">
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-success"
+                                                    (click)="Accept(notif.type,notif.type_id)">Accept</a>
+                                            </div>
+                                            <div class="col-3">
+                                                <a class="text-center m-2 text-danger"
+                                                    (click)="Decline(notif.type,notif.type_id)">Decline</a>
+                                            </div>
+                                            <div class="offset-1 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template [ngIf]="notif.type == 'AllProposals/'">
+                                            <div class="offset-7 col-5">
+                                                <small class="text-secondary text-end">{{notif.date |
+                                                    date:'short'}}</small>
+                                            </div>
+                                        </ng-template>
 
                                     </div>
                                 </a>

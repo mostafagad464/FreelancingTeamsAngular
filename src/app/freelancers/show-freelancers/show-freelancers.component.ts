@@ -23,18 +23,18 @@ export class ShowFreelancersComponent implements OnInit {
     private teamMemberService: TeamMembersService,
     private teamSevice: TeamService,
     private authService: AuthService,
-    private notificationService:NotificationService,
-    private accountService:AccountService) { }
+    private notificationService: NotificationService,
+    private accountService: AccountService) { }
 
   freelancers: User[] = [];
-  image:string="../../../assets/images/freelancer.png";
-  accountData:Account[]=[];
-  names:string[]=[];
+  image: string = "../../../assets/images/freelancer.png";
+  accountData: Account[] = [];
+  names: string[] = [];
   teamMember: TeamMember = new TeamMember(0, 0, false);
   searchText: string = "";
   teamMembersIds: number[] = [];
   public isAuthenticated$ = this.authService.isAuthenticated$;
-  notification:Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
+  notification: Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
 
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class ShowFreelancersComponent implements OnInit {
         this.accountData = f;
       }
     );
-    
+
     this.activeroute.params.subscribe(a => this.teamMember.teamId = a['id']);
 
     this.teamSevice.getTeam(this.teamMember.teamId).subscribe(
@@ -68,7 +68,7 @@ export class ShowFreelancersComponent implements OnInit {
         }
       }
     )
-    
+
     console.log(this.teamMembersIds);
   }
 
@@ -81,12 +81,17 @@ export class ShowFreelancersComponent implements OnInit {
   //   // document.getElementById("addTeamBtn")!.nodeValue = "Added";
   // }
   requestAddTeamMember(freelancerId: number) {
-    this.notification.description = "Team: " + + " have an offer for you to join the team.";
-    this.notification.type = "a";
-    this.notification.type_id = this.teamMember.teamId;
-    this.notificationService.postAccountNotification(freelancerId, this.notification).subscribe(
-      a=> console.log(a)
-    )
+    this.teamSevice.getTeam(this.teamMember.teamId).subscribe(team=>{
+
+      this.notification.date = new Date();
+      this.notification.description = "Team: " + team.name+ " have an offer for you to join the team.";
+      this.notification.type = "team/teamProfile/";
+      this.notification.type_id = this.teamMember.teamId;
+      this.notificationService.postAccountNotification(freelancerId, this.notification).subscribe(
+        a => console.log(a)
+      );
+    })
+
   }
 
 }
