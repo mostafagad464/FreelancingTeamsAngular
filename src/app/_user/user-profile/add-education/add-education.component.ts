@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Education } from 'src/app/_models/education';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 
 @Component({
@@ -15,26 +16,21 @@ export class AddEducationComponent implements OnInit {
   title:string[]=[];
   string:string="";
   freelancerEducation: Education = new Education(0, "", "", "", "", "", );
-  constructor(public activeModal: NgbActiveModal,public UserSer:UserProfileService,
-    public router:Router,public ac:ActivatedRoute) { }
+  constructor(public UserSer:UserProfileService,
+    public router:Router,public ac:ActivatedRoute, public authServ:AuthService) { }
 
   ngOnInit(): void {
     
     
-    this.ac.params.subscribe(a => {
-   
-      this.freelancerIdArray=this.router.routerState.snapshot.url.split("/")
-
-      this.freelancerId=Number(this.freelancerIdArray[2]) ;
-      console.log( this.freelancerId)
   
+      this.freelancerId=this.authServ.getCurrentUser()?.id;
   
-     })
 
   }
   close(){
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/educations/"+this.freelancerId)
 
-    this.activeModal.close();
+   
   }
   Add() {
 
@@ -42,6 +38,10 @@ export class AddEducationComponent implements OnInit {
     this.freelancerEducation.freelancerId = this.freelancerId; 
    
     this.freelancerEducation.gradYear=Number( this.freelancerEducation.gradYear)
+    console.log( "this.freelancerEducation")
+   
+    console.log( this.freelancerEducation)
+   
    
 
 
@@ -52,7 +52,8 @@ export class AddEducationComponent implements OnInit {
    
   
     })
-    this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/educations/"+this.freelancerId)
+   
   }
   
 

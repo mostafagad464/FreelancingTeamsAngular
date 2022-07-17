@@ -19,17 +19,17 @@ export class EditCertificatesComponent implements OnInit {
   freelancerCertificate: FreelancerCertificates = new FreelancerCertificates(0, "", "", "", "", "", "");
 
   constructor(public UserSer: UserProfileService, public router: Router, 
-    public activeModal:NgbActiveModal,public ac: ActivatedRoute,public modalService: NgbModal) { }
+    public ac: ActivatedRoute,public modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.ac.params.subscribe(a => {
       console.log(this.router.routerState.snapshot.url)
        
       this.freelancerId=this.router.routerState.snapshot.url.split("/")
+      this.title=this.router.routerState.snapshot.url.split("/")
      
-      this.title=this.freelancerId[7].split(")")
     
-      this.UserSer.GetCertificateById(this.freelancerId[2],this.title[0]).subscribe(a => {
+      this.UserSer.GetCertificateById(this.freelancerId[2],this.title[5]).subscribe(a => {
      
       this.freelancerCertificate = a;
      
@@ -38,6 +38,7 @@ export class EditCertificatesComponent implements OnInit {
        
         
         this.freelancerCertificate.date=this.date[0];
+        this.freelancerCertificate.freelancerId=Number( this.freelancerId[2])
      
 
       })
@@ -45,8 +46,9 @@ export class EditCertificatesComponent implements OnInit {
   
   }
   close(){
+    this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/certificates/"+this.freelancerId[2])
    
-   this.activeModal.close();
+   
   }
 
 
@@ -59,8 +61,9 @@ export class EditCertificatesComponent implements OnInit {
    
 
       })
+      this.router.navigateByUrl("profile/"+this.freelancerId[2]+"/certificates/"+this.freelancerId[2])
 
-   this.activeModal.close();
+   
   }
 
 }
