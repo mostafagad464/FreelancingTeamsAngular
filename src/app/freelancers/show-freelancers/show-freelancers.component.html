@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <ng-template [ngIf]="isAuthenticated$ | async">
     <br>
 
@@ -7,34 +9,35 @@
         <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search By Name">
     </div> -->
         <div>
-            <h2>Filter By Spesialization</h2>
+            <h2 style="text-align:center;">Filter By Spesialization</h2>
         </div>
-        <div class="col">
-            <div class="form-check">
+        <br>
+        <div class="col" style="justify-content:center">
+            <div class="form-check" style="display:inline-block; margin: 20px;">
                 <input class="form-check-input" type="checkbox" id="gridCheckSoftware">
                 <label class="form-check-label" for="gridCheckSoftware">
                     Back-End
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" style="display:inline-block;margin: 20px;">
                 <input class="form-check-input" type="checkbox" id="gridCheckMarkting">
                 <label class="form-check-label" for="gridCheckMarkting">
                     Front-End
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" style="display:inline-block;margin: 20px;">
                 <input class="form-check-input" type="checkbox" id="gridCheckWriting">
                 <label class="form-check-label" for="gridCheckWriting">
                     Full-Stack
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" style="display:inline-block;margin: 20px;">
                 <input class="form-check-input" type="checkbox" id="gridCheckWriting">
                 <label class="form-check-label" for="gridCheckWriting">
                     Database
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" style="display:inline-block;margin: 20px;">
                 <input class="form-check-input" type="checkbox" id="gridCheckWriting">
                 <label class="form-check-label" for="gridCheckWriting">
                     UI/UX
@@ -48,25 +51,51 @@
     <br>
 
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div *ngFor="let freelancer of freelancers" class="col">
-                <div class="card">
-                    <img class="card-img-top" alt="..."
-                        src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_509107562_2000133320009280346_351827.jpg">
-                    <div class="card-body">
-                        <h2 class="card-title">Name</h2>
+        <h2 style="text-align:center;">Here is our FreeLancers</h2>
+        <div *ngFor="let account of accountData">
+            <div *ngFor="let freelancer of freelancers" >
+                
+                    <div class="col-xl-4 col-md-6 mb-5" style="height: 300px;margin-top:50px" *ngIf="account.id == freelancer.id">
+                        <div class="w3-card-4 w3-white" style="width:80%">
 
-                        <p class="card-text">{{freelancer.bio}}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a [routerLink]="['/profile/', freelancer.id]" class="btn btn-primary">Profile</a> |
-                        <a *ngIf="!teamMembersIds.includes(freelancer.id)" (click)="requestAddTeamMember(freelancer.id)"
-                            class="btn btn-primary" id="addTeamBtn">Add to Team</a>
-                        <a *ngIf="teamMembersIds.includes(freelancer.id)" class="btn btn-secondary">Member</a>
+                            <div class="w3-container w3-center">
+                                <h3>{{account.username}}</h3>
+                                <img *ngIf="freelancer.image == null" [src]="image" alt="Avatar" style="width:80%">
+                                <img *ngIf="freelancer.image != null" [src]="freelancer.image" alt="Avatar"
+                                    style="width:80%">
+                                <h5>{{freelancer.bio}}</h5>
+                                <div *ngIf="freelancer.activeStatus== true">
+                                    <div style=" width: 12px;
+                            height: 12px;
+                            background: green;
+                            border-radius: 50%;
+                            display: inline-block;"></div>
+                                    <Span>Active Now</Span>
+                                </div>
+                                <div *ngIf="freelancer.activeStatus== false">
+                                    <div style=" width: 12px;
+                            height: 12px;
+                            background: grey;
+                            border-radius: 50%;
+                            display: inline-block;"></div>
+                                    <Span>Not Active</Span>
+                                </div>
+
+                                <div class="w3-section">
+                                    <a [routerLink]="['/profile/', freelancer.id]" class="btn btn-primary">Profile</a> |
+                                    <a *ngIf="!teamMembersIds.includes(freelancer.id)"
+                                        (click)="requestAddTeamMember(freelancer.id)" class="btn btn-primary"
+                                        id="addTeamBtn">Add to Team</a>
+                                    <a *ngIf="teamMembersIds.includes(freelancer.id)"
+                                        class="btn btn-secondary">Member</a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    
 
 </ng-template>
