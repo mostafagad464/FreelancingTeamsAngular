@@ -125,6 +125,7 @@ export class HeaderComponent implements OnInit {
   }
   myTeam() {
     this.router.navigate(['team/showteams/', this.profileId]);
+    // this.router.navigateByUrl("profile/" + this.userId + "/team/showteams/"+this.userId )
   }
   joinTeam() {
     this.router.navigate(['team/showteams']);

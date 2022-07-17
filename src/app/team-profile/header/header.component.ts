@@ -226,6 +226,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         console.log(n);
       }
     )
+    document.getElementById("joinBtn")!.textContent = "Pending";
   }
 
   async checkfreelancer() {
