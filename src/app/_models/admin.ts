@@ -1,12 +1,10 @@
 export class Admin {
     constructor(
-        public Id: number,
-        public FName:string,
-        public LName:string,
-        public UserName: string,
-        public Email: string,
-        public Password: string
-
-
+        public id: number,
+        // public fName:string,
+        // public lName:string,
+        // public userName: string,
+        // public email: string,
+        // public password: string
     ){}
 }

@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { Freelancer } from 'src/app/_models/freelancer';
+import { Notifications } from 'src/app/_models/notifications';
+import { Team } from 'src/app/_models/team';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
+import { NotificationService } from 'src/app/_services/notification.service';
+import { TeamService } from 'src/app/_services/team.service';
 import { UserProfileService } from 'src/app/_services/user-profile.service';
 import { UserService } from 'src/app/_services/user.service';
+
+const helper = new JwtHelperService();
+
 
 @Component({
   selector: 'app-header',
@@ -21,8 +29,10 @@ export class HeaderComponent implements OnInit {
     public authserv: AuthService,
     public router: Router,
     public usrservice: UserService,
-    public activateRoute:ActivatedRoute
-    ) {
+    public activateRoute: ActivatedRoute,
+    private notificationService: NotificationService,
+    private teamService: TeamService
+  ) {
     this.sub1 = this.ar.params.subscribe(x => {
       console.log(x);
       this.userId = x['id'];
@@ -60,7 +70,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  wallet(){
+  wallet() {
     this.router.navigateByUrl("profile/" + this.userId + "/wallet/" + this.userId)
 
   }
@@ -83,7 +93,7 @@ export class HeaderComponent implements OnInit {
   sub2: Subscription | null = null;
   userId: any;
   profileId: any;
-  urlId:number = 0;
+  urlId: number = 0;
   // userInfo:User=new User(0,new Date(),0,0,new Date(),"","","",0,true,"",true,false,0,0,true,new Freelancer(0,true,0,0,0,new Date(),0,0,"",0,0,0,0))
   //userInfo:User|null=null
   //userInfo = {} as User;
@@ -91,21 +101,48 @@ export class HeaderComponent implements OnInit {
     new User(0, "", 0, 0, new Date().toISOString(), "", "", "", 0, true, "", true, false, null, null, true, null, null, null, null,
       new Freelancer(0, true, 0, 0, 0, null, new Date(), 0, 0, "", 0, 0, 0, 0, [], "")));
 
+
   //accountInfo ={} as Account;
 
 
-
+  notification: Notifications = new Notifications(0, "", "", 0, false, false, new Date(2022, 7, 17));
+  team: Team = new Team(0, null, "", false, new Date(), "", 0, 0, 0, "", "", [], [], []);
 
   ngOnInit(): void {
+    let teamId = sessionStorage.getItem("team_id")?.toString();
+    console.log("team id: ", teamId);
+    this.teamService.getTeam(parseInt(teamId!)).subscribe(
+      t => {
+        this.team = t;
+        console.log(this.team);
+        console.log();
+      }
+    )
     this.profileId = this.authserv.getCurrentUser()?.id;
     this.imageurl = "https://localhost:7152/api/Image?UserId=" + this.profileId;
-    this.activateRoute.params.subscribe(a=>this.urlId = a['id']);
+    this.activateRoute.params.subscribe(a => this.urlId = a['id']);
+
   }
   myTeam() {
     this.router.navigate(['team/showteams/', this.profileId]);
   }
   joinTeam() {
     this.router.navigate(['team/showteams']);
+  }
+
+  AddToTeam() {
+    console.log("team: ", this.team);
+    console.log("notification: ", this.notification);
+    console.log("user Id: ", this.userId);
+
+    this.notification.description = "Team: " + this.team.name + " want you to join.";
+    this.notification.type = "/team/teamProfile/";
+    this.notification.type_id = this.team.id;
+    console.log("notification: ", this.notification);
+
+    this.notificationService.postAccountNotification(this.userId, this.notification).subscribe(
+      n => console.log(n)
+    )
   }
 
 }

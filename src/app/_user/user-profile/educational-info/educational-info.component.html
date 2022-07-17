@@ -14,7 +14,7 @@
          
             </div>
             <div class="modal-footer">
-                <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="[{ outlets: { modal: ['editEducation',item.freelancerId,item.gradYear] } }]" (click)="openModalEdit()"  style="margin-left: 10px;" >Edit</button>
+                <button *ngIf="profileId==userId" type="button"  class="btn btn-success " [routerLink]="['/profile',profileId,'editEducation',item.freelancerId,item.gradYear]"   style="margin-left: 10px;" >Edit</button>
                 <button *ngIf="profileId==userId" type="button" class="btn btn-danger"   (click)="Delete(item.freelancerId,item.gradYear)" >Delete</button>
               </div>
           
@@ -22,7 +22,7 @@
         <br>
        
      </tr>
-     <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]="[{ outlets: { modal: ['addEducation'] } }]" (click)="openModalAdd()">Add Education</button>
+     <button *ngIf="profileId==userId" class="btn btn-lg btn-primary" [routerLink]=" ['/profile',profileId,'addEducation']">Add Education</button>
      
     </div>
     <br>
