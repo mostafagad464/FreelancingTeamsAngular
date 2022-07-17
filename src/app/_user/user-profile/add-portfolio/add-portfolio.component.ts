@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Freelancer } from 'src/app/_models/freelancer';
 import { Portoflio } from 'src/app/_models/portoflio';
@@ -14,8 +15,10 @@ export class AddPortfolioComponent implements OnInit {
   freelancerId:any;
   close()
   {
-    this.activeModal.close();
-    console.log("closed")
+    this.router.navigateByUrl("profile/"+this.freelancerId+"/portfolio/"+this.freelancerId)
+    
+    // this.activeModal.close();
+    // console.log("closed")
 
   }
   save()
@@ -23,8 +26,8 @@ export class AddPortfolioComponent implements OnInit {
     this.usrserv.addPortoflio(this.portfolio).subscribe(p=>{
       this.portfolioArray.push(p);
       console.log(p)});
-    
-    close()
+      this.router.navigateByUrl("profile/"+this.freelancerId+"/portfolio/"+this.freelancerId)
+   
     console.log(this.portfolio);
     console.log(this.portfolioArray);
 
@@ -33,7 +36,7 @@ export class AddPortfolioComponent implements OnInit {
   portfolio:Portoflio=new Portoflio(0,"","","",0);
   portfolioArray:Portoflio[]=[]
 
-  constructor(public authser:AuthService,public activeModal:NgbActiveModal,public usrserv:UserProfileService) { }
+  constructor(public authser:AuthService,public usrserv:UserProfileService, public router:Router) { }
 
   ngOnInit(): void {
 

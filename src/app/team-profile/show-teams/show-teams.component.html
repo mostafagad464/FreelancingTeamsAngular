@@ -3,6 +3,9 @@
 
 <div class="container">
 
+    <div  *ngIf="id > 0"  class="text-center">
+        <h1>Teams you are member in.</h1>
+    </div>
     <div class="col">
         <input [(ngModel)]="searchTeaxt" id="searchInput" type="text" class="form-control" placeholder="Search By Name">
     </div>

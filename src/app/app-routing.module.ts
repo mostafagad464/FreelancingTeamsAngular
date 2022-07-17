@@ -31,18 +31,22 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { MainInfoComponent } from './account/main-info/main-info.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
+
+import { BioComponent } from './_user/user-profile/bio/bio.component';
+
 import { AnonymousGuard } from './_helpers/anonymous.guard';
+import { ShowProjectsComponent } from './team-profile/show-projects/show-projects.component';
+
 
 
 const routes: Routes = [
 
   { path: "", component: HomeComponent, pathMatch: "full" },
 
+  { path: "login", component: LoginComponent, canActivate: [AnonymousGuard] },
+  { path: "register", component: RegisterComponent, canActivate: [AnonymousGuard] },
+
   { path: "info", component: MainInfoComponent},
-
-  { path: "login", component: LoginComponent, canActivate:[AnonymousGuard] },
-  { path: "register", component: RegisterComponent, canActivate:[AnonymousGuard]},
-
 
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
@@ -50,9 +54,9 @@ const routes: Routes = [
   { path: "chat/:id", component: ChatComponent, canActivate: [AuthGuard] },
   { path: "chat/team/:id", component: TeamChatComponent, canActivate: [AuthGuard] },
 
-  { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard]  },
-  { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard]  },
-  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard]  },
+  { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard] },
+  { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard] },
+  { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard] },
 
   {
     path: "postComplain/:id",
@@ -77,6 +81,7 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children:
       [
+
         {
           path: "addCertificate",
           component: AddCertificateComponent,
@@ -86,23 +91,28 @@ const routes: Routes = [
         {
           path: "editCertificate/:id/:title",
           component: EditCertificatesComponent,
-    
+
         },
         {
           path: "editEducation/:id/:gradYear",
           component: EditeducationalInfoComponent,
-      
+
         },
+
+
         { path: "editExperience/:id/:startDate", component: EditexperienceComponent},
         { path: "addExperience", component: AddExperienceComponent},
+        {path:"editBio/:id",component:BioComponent}
+        ,
         {path:"wallet/:id",component:UserwalletComponent},
         { path: "editSkills/:id", component: EditskillsComponent},
         { path: "addSkill/:id", component: AddSkillComponent},
+
         {
           path: "educations/:id", component: EducationalInfoComponent, children:
             [
               { path: "editEducation/:id/:gradYear", component: EditeducationalInfoComponent, outlet: 'modal' },
-            
+
             ]
         },
         {
@@ -115,33 +125,34 @@ const routes: Routes = [
         },
         {
           path: "portfolio/:id", component: ProjectsComponent,
-          children:
-            [
-              // { path: ":id", component: ProjectsComponent },
-              { path: "addPortofolio", component: AddPortfolioComponent }
-            ]
+  
         },
+        { path: "addPortofolio", component: AddPortfolioComponent },
         {
           path: "experiences/:id", component: ExperienceComponent
         },
         {
           path: "certificates/:id", component: CertificatesComponent,
-        
+
         },
 
         {
-          path: "personalInfo/:id", component: PersonalInfoComponent, children:
-            [
-              { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
-            ]
+          path: "personalInfo/:id", component: PersonalInfoComponent
         },
+        { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
+        
         {
           path: "certificates/:id", component: CertificatesComponent, children: [
 
           ]
+        },
+        {
+          path: 'showProjects/:id',
+          component: ShowProjectsComponent
+          // outlet: 'showProjects'
         }
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "certificates/:id", component: CertificatesComponent,
@@ -152,9 +163,9 @@ const routes: Routes = [
           component: EditCertificatesComponent,
           outlet: 'modal'
         },
-       
+
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "experiences/:id", component: ExperienceComponent,
@@ -171,7 +182,7 @@ const routes: Routes = [
           outlet: 'modal'
         }
       ],
-      canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
 
   { path: "userHome", component: SliderComponent },
