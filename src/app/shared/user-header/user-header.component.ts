@@ -1,7 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TeamMembersService } from 'src/app/team-profile/team-members.service';
 import { Account } from 'src/app/_models/account';
 import { Notifications } from 'src/app/_models/notifications';
 import { Team } from 'src/app/_models/team';
+import { TeamMember } from 'src/app/_models/team-member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -33,7 +35,8 @@ export class UserHeaderComponent implements OnInit {
 
   constructor(public AuthService: AuthService, public UserService: UserService, 
     public TeamService: TeamService, public AccountService: AccountService, 
-    public NotificationService: NotificationService, public ChatService : ChatService) { }
+    public NotificationService: NotificationService, public ChatService : ChatService,
+    public TeamMemberService : TeamMembersService) { }
 
 
   ngOnInit(): void {
@@ -140,14 +143,43 @@ export class UserHeaderComponent implements OnInit {
 
   /****
    * Notifications types :
-   *    proposal
+   *    proposal                   *  "AllProposals/"
+   *    deal                         "projects/details/"  + ProjId : I am teamMember
+   *    add freelancer to team     *  "team/teamProfile/" + teamId : I am the freelancer 
+   *    freelancer request to join   "profile/"          + freelancerId : I am the team leader
    */
 
   Accept(type: string,type_id: number){
+    if(type == "AllProposals/"){ // nothing to be done => no buttons for it 
+  }
 
+    else if (type == "projects/details/"){ // nothig to be done => deal is added in the DB
+      alert("Congratulations! you accept the offer");
+    }
+    else if(type == "team/teamProfile/"){ // add in db teamMember
+      let teamMeber = new TeamMember(type_id,this.AuthService.getCurrentUser()?.id,true);
+      this.TeamMemberService.addTeamMember(teamMeber).subscribe(teammemb=>{
+        alert("Congratulations! you are added successfully to team");
+      });
+    }
+    else{ // add in db teamMember
+      let teamMeber = new TeamMember(parseInt(type.split('*')[1]),this.AuthService.getCurrentUser()?.id,false);
+      alert("Congratulations! you expanded you team successfully");
+    }
   }
   
   Decline(type: string,type_id: number){
+
+    // if(type == "AllProposals/") : nothing to be done => no buttons for it 
+    
+    if (type == "projects/details/"){ // remove deal from db
+
+    }
+    // else if(type == "team/teamProfile/"){  : nothig to be done => teamMember is not added in the DB
+
+    // else if (type == "profile/"){ : nothig to be done => teamMember is not added in the DB
+      
+
 
   }
 

@@ -27,8 +27,8 @@ export class AddProposalComponent implements OnInit {
   ProjName: string = '';
   ProjDesc: string = '';
   TeamName: string = '';
-  notification:Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
-  
+  notification: Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
+
   //
   changeTeam(event: any) {
     this.prop.teamId = this.teamsIds[event.target.value]
@@ -126,15 +126,19 @@ export class AddProposalComponent implements OnInit {
       console.log(this.prop)
       this.IsNotCompleted = false;
 
-      // this.notification.date = new Date.now();
-      this.notification.description = "Team: "+ this.TeamName + " add proposal for your project, "+ this.ProjName;
-      this.notification.type = "p";
-      this.notification.type_id = a.id;
-      this.notificationService.postTeamNotification(this.prop.teamId, this.notification).subscribe(
-        a=>{
-          console.log(a);
-        }
-      )
+      this.ProjService.getProject(this.prop.projectId).subscribe(project=>{
+
+        this.notification.date = new Date();
+        this.notification.description = "Team: " + this.TeamName + " add proposal for your project, " + this.ProjName;
+        this.notification.type = "AllProposals/";
+        this.notification.type_id = a.projectId;
+        this.notificationService.postAccountNotification(project.clientId, this.notification).subscribe(
+          a => {
+            console.log(a);
+          }
+        );
+      })
+
 
 
     });
