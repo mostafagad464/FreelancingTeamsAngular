@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeamMembersService } from 'src/app/team-profile/team-members.service';
+import { Account } from 'src/app/_models/account';
 import { Notifications } from 'src/app/_models/notifications';
 import { TeamMember } from 'src/app/_models/team-member';
 import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { FreelancerService } from 'src/app/_services/freelancer.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -21,9 +23,13 @@ export class ShowFreelancersComponent implements OnInit {
     private teamMemberService: TeamMembersService,
     private teamSevice: TeamService,
     private authService: AuthService,
-    private notificationService:NotificationService) { }
+    private notificationService:NotificationService,
+    private accountService:AccountService) { }
 
   freelancers: User[] = [];
+  image:string="../../../assets/images/freelancer.png";
+  accountData:Account[]=[];
+  names:string[]=[];
   teamMember: TeamMember = new TeamMember(0, 0, false);
   searchText: string = "";
   teamMembersIds: number[] = [];
@@ -32,7 +38,6 @@ export class ShowFreelancersComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.isAuthenticated$.subscribe(authenticated => { });
 
     this.freelancerService.getFreelancers().subscribe(
@@ -41,7 +46,13 @@ export class ShowFreelancersComponent implements OnInit {
         this.freelancers = f;
       }
     );
-
+    this.accountService.getAccounts().subscribe(
+      f => {
+        console.log(f);
+        this.accountData = f;
+      }
+    );
+    
     this.activeroute.params.subscribe(a => this.teamMember.teamId = a['id']);
 
     this.teamSevice.getTeam(this.teamMember.teamId).subscribe(
@@ -57,6 +68,7 @@ export class ShowFreelancersComponent implements OnInit {
         }
       }
     )
+    
     console.log(this.teamMembersIds);
   }
 

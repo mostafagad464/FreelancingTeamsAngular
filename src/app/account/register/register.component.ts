@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import { MainInfoComponent } from '../main-info/main-info.component';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Freelancer } from 'src/app/_models/freelancer';
 import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
@@ -19,8 +18,7 @@ const helper = new JwtHelperService();
 })
 export class RegisterComponent implements OnInit {
 
-  /*** Popup */
-  displayStyle='none';
+
 
 
   account: Account = new Account(0, null, "", "", "", "", "", "User", null);
@@ -40,7 +38,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    // this.displayStyle = 'block';
+    
   }
 
   CheckUserName() {
@@ -88,7 +86,6 @@ export class RegisterComponent implements OnInit {
           this.ButtonText = "Sign Up";
         })
         this.login(this.account.username, this.account.password);
-        // this.router.navigate(['/maininfo']);
       }
       else {
         if (this.isChecked) {
@@ -128,13 +125,11 @@ export class RegisterComponent implements OnInit {
       console.log(decodedToken)
       console.log(expirationDate)
       console.log(isExpired)
-
-      // this.openModal();
-      this.displayStyle = 'block';
-
       
+      this.AuthService.logIn();
       // this.openModal();
-      // this.router.navigate(['maininfo']);
+      this.router.navigate(['info']);
+
 
     },
       error => {

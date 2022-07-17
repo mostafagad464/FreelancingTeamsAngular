@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Team } from 'src/app/_models/team';
+import { TeamMember } from 'src/app/_models/team-member';
 import { Wallet } from 'src/app/_models/wallet';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TeamService } from 'src/app/_services/team.service';
 import { WalletService } from 'src/app/_services/wallet.service';
+import { TeamMembersService } from '../team-members.service';
 
 @Component({
   selector: 'app-create-team',
@@ -19,16 +21,19 @@ export class CreateTeamComponent implements OnInit {
 
   Image: File | null = null;
   imageurl = "http://ssl.gstatic.com/accounts/ui/avatar_2x.png";
-
+  teamMember: TeamMember = new TeamMember(0, 0, false);
 
   constructor(private teamService: TeamService,
     private walletService: WalletService,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private teamMemberService: TeamMembersService
+  ) { }
 
   ngOnInit(): void {
-    // this.authService.DeleteToken();
+
     this.team.leaderId = this.authService.getCurrentUser()?.id;
+
   }
 
   async createTeam() {
@@ -47,6 +52,8 @@ export class CreateTeamComponent implements OnInit {
           this.teamService.createTeam(this.team).subscribe(
             t => {
               console.log(t);
+              this.teamMember.freelancerId = this.authService.getCurrentUser()?.id;
+              this.teamMember.teamId = t.id;
 
               if (this.Image) {
                 let fd = new FormData();
@@ -55,6 +62,8 @@ export class CreateTeamComponent implements OnInit {
 
                 this.teamService.addImage(t.id, fd).subscribe(u => {
                   this.team.logo = u.image;
+                  this.teamMemberService.addTeamMember(this.teamMember).subscribe(a => console.log(a))
+
                 })
               }
 
@@ -69,6 +78,8 @@ export class CreateTeamComponent implements OnInit {
       this.teamService.createTeam(this.team).subscribe(
         t => {
           console.log(t);
+          this.teamMember.freelancerId = this.authService.getCurrentUser()?.id;
+          this.teamMember.teamId = t.id;
 
           if (this.Image) {
             let fd = new FormData();
@@ -77,13 +88,14 @@ export class CreateTeamComponent implements OnInit {
 
             this.teamService.addImage(t.id, fd).subscribe(u => {
               this.team.logo = u.image;
+              this.teamMemberService.addTeamMember(this.teamMember).subscribe(a => console.log(a))
             })
           }
-
           this.router.navigate(['freelancers/' + t.id]);
         }
       )
     }
+
   }
 
   AddImg(I: any) {

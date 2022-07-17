@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proposal } from 'src/app/_models/proposal';
+import { AuthService } from 'src/app/_services/auth.service';
 import { ProjectService } from 'src/app/_services/project.service';
 import { ProposalService } from 'src/app/_services/proposal.service';
 import { TeamService } from 'src/app/_services/team.service';
@@ -13,15 +14,18 @@ import { TeamService } from 'src/app/_services/team.service';
 export class AllProposalsComponent implements OnInit {
   ProjId: number = 0;
   Proposals: Proposal[] = [new Proposal(0, 0, 0, '', null, new Date(), '')];
-  teamsIds: number[] =[];
+  teamsIds: number[] = [];
   teamsNames: string[] = [];
+  projectOwner:boolean = false;
 
   constructor(
     public router: Router,
     public ar: ActivatedRoute,
     public propSer: ProposalService,
-    public teamSer: TeamService
-  ) {}
+    public teamSer: TeamService,
+    private projectService: ProjectService,
+    private authService: AuthService
+  ) { }
   ngOnInit(): void {
     this.ProjId = this.ar.snapshot.params['id'];
     this.propSer.GetAllProposals().subscribe((a) => {
@@ -30,10 +34,18 @@ export class AllProposalsComponent implements OnInit {
           this.teamsIds.push(element.teamId);
           this.Proposals.push(element);
           this.getNames(element.teamId);
-          // console.log(element);
         }
       });
       let pr = this.Proposals.splice(0, 1);
+
+      this.projectService.getProject(this.ProjId).subscribe(
+        a => {
+          if (a.clientId == this.authService.getCurrentUser()?.id) {
+            this.projectOwner = true;
+          }
+        }
+      )
+
 
       console.log(this.Proposals);
       console.log(this.Proposals.length);
@@ -42,18 +54,11 @@ export class AllProposalsComponent implements OnInit {
     console.log(this.teamsNames)
     console.log(this.teamsIds)
   }
-  getNames(Id:number){
+  getNames(Id: number) {
 
-      this.teamSer.getTeam(Id).subscribe(a=>{
-        this.teamsNames.push(a.name);
-        // console.log(a.name)
-        // console.log(a)
-        // console.log("AAAAAH")
+    this.teamSer.getTeam(Id).subscribe(a => {
+      this.teamsNames.push(a.name);
     })
-
-
-
-    // }
   }
 }
 
