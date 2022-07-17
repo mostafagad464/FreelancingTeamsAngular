@@ -27,6 +27,7 @@ import { ProposalModule } from "./proposal/proposal.module";
 import { DealModule } from "./deal/deal.module";
 import { AdminProfileComponent } from "./admin-profile/admin-profile/admin-profile.component";
 import { AdminProfileModule } from "./admin-profile/admin-profile.module";
+import { SubmitprojectComponent } from './submitproject/submitproject.component';
 
 
 export function tokenGetter() {
@@ -37,6 +38,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+    SubmitprojectComponent,
   ],
   imports: [
     BrowserModule,
