@@ -20,6 +20,9 @@ export class DealService {
     console.log(this.baseurl+deal.clientId+"/"+deal.teamId+"/"+deal.projectId)
     return this.http.put<Deal>(this.baseurl+deal.clientId+"/"+deal.teamId+"/"+deal.projectId, deal);
   }
+  getDeals(){
+    return this.http.get<Deal[]>(this.baseurl);
+  }
 
 /*
 

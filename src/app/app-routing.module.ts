@@ -36,6 +36,7 @@ import { BioComponent } from './_user/user-profile/bio/bio.component';
 
 import { AnonymousGuard } from './_helpers/anonymous.guard';
 import { ShowProjectsComponent } from './team-profile/show-projects/show-projects.component';
+import { SubmitprojectComponent } from './submitproject/submitproject.component';
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: "Addproposal/:ProjId", component: AddProposalComponent, canActivate: [AuthGuard] },
   { path: "AllProposals/:ProjId", component: AllProposalsComponent, canActivate: [AuthGuard] },
   { path: "adddeal/:ProjId/:teamId", component: AdddealComponent, canActivate: [AuthGuard] },
+  { path: "submitproject/:ProjId", component: SubmitprojectComponent},
 
   {
     path: "postComplain/:id",
@@ -125,7 +127,7 @@ const routes: Routes = [
         },
         {
           path: "portfolio/:id", component: ProjectsComponent,
-  
+
         },
         { path: "addPortofolio", component: AddPortfolioComponent },
         {
@@ -140,7 +142,7 @@ const routes: Routes = [
           path: "personalInfo/:id", component: PersonalInfoComponent
         },
         { path: "editpersonalInfo/:id", component: EditpersonalInfoComponent },
-        
+
         {
           path: "certificates/:id", component: CertificatesComponent, children: [
 

@@ -5,10 +5,12 @@
   <br />
   <div class="jumbotron">
     <div class="text-center">
+      <h1 *ngIf="IsAllowToSubmit==true">You are currently working on this project </h1>
       <h1 style="font-size: 40px">
         Project Details For <strong>{{ project.title }}</strong>
       </h1>
     </div>
+    <br>
 
     <h1 style="padding-left: 40px; font-size: 40px">Project description :</h1>
     <div style="padding-left: 40px">
@@ -26,7 +28,9 @@
         </div>
         <br />
         <a *ngIf="isOwner == true" (click)="edit()" class="btn btn-primary btn-lg" role="button">Edit</a>
-
+        <a *ngIf="IsAllowToSubmit==true" [routerLink]="['/submitproject/', project.id]" class="btn btn-primary btn-lg">
+          Submit This Project
+        </a>
 
         <!-- <p class="lead"> -->
         <!-- <button class="btn btn-primary"></button> -->
