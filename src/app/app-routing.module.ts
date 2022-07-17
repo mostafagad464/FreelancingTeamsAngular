@@ -66,6 +66,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: "review",
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: "projects",
     loadChildren: () => import('./project/project.module').then(m => m.ProjectModule),
     canActivate: [AuthGuard]
@@ -78,6 +83,16 @@ const routes: Routes = [
   {
     path: "team",
     loadChildren: () => import("./team-profile/team-profile.module").then(f => f.TeamProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "admin",
+    loadChildren: () => import('./admin-profile/admin-profile.module').then(m => m.AdminProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "review",
+    loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule),
     canActivate: [AuthGuard]
   },
   {
