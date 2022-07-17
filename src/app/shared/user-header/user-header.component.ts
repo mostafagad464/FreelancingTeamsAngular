@@ -37,6 +37,7 @@ export class UserHeaderComponent implements OnInit {
     public NotificationService: NotificationService, public ChatService : ChatService, public router:Router) { }
 
 
+
   ngOnInit(): void {
     this.getNotifications(this.AuthService.getCurrentUser()?.id);
 
@@ -73,6 +74,7 @@ export class UserHeaderComponent implements OnInit {
       this.getNotifications(this.AuthService.getCurrentUser()?.id);
     });
 
+
   }
   navigate()
   {
@@ -84,6 +86,8 @@ export class UserHeaderComponent implements OnInit {
     {
       this.router.navigateByUrl("/freelancerHome")
       
+
+
 
     }
   }
