@@ -114,42 +114,6 @@
                         </a>
                     </li>
 
-
-
-                    <li class="nav-item me-3 me-lg-0 dropdown show">
-                        <a routerLinkActive="router-link-active" class="nav-link smoth-scroll">
-                            <i class="fas fa-bell"></i>
-                            <ng-template [ngIf]="NoOfNotifications>0">
-                                <mark
-                                    style="background-color: red; color: white; border-radius: 50%; width: 5px; height: 5px;position: relative;top: -15px;left:-8px"><small><small>{{NoOfNotifications}}</small></small>
-                                </mark>
-                            </ng-template>
-                        </a>
-                        <div data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="0"
-                            class="dropdown-menu dropdown-menu-right dropdown-menu-end show scrollspy-example"
-                            id="navbarNotificationContent" tabindex="0" aria-labelledby="navbarDropdownMenuLink"
-                            style="width: 250px;">
-
-
-
-                            <a gtm-id="Notifications" class="dropdown-item text-wrap"
-                                data-notification-date="07/12/2022 11:00"
-                                href="https://mdbootstrap.com/docs/standard/getting-started/changelog/" target="_blank"
-                                rel="nofollow" id="navbarNotification">
-                                <p class="small text-uppercase mb-2">7/12/2022</p>
-                                <p class="mb-0">MDB5 Standard version 4.3.0 released! Check out the full list of fixes
-                                    &amp;
-                                    improvements you'll get with this update</p>
-                            </a>
-                        </div>
-                    </li>
-
-
-
-
-
-
-
                     <li *ngIf="account.id > 0" class="nav-item dropdown" (click)="MarkAsRead()">
                         <a routerLinkActive="router-link-active" class="nav-link smoth-scroll">
                             <i class="fas fa-bell"></i>
