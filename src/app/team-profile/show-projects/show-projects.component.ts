@@ -197,7 +197,7 @@ export class ShowProjectsComponent implements OnInit {
 
             if(this.completed[c] == this.projects[e].id){
               this.projectsNames.push(this.projects[e].title);
-
+              console.log("projectsNames"+this.projectsNames)
               }
             }
           }
