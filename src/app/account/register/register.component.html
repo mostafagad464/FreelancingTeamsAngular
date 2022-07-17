@@ -108,7 +108,8 @@
                                     </div>
                                 </ng-template>
 
-                                <ng-template [ngIf]="message != ''"><span class="text-danger">{{message}}</span>
+                                <ng-template [ngIf]="message != ''">
+                                    <span class="text-danger">{{message}}</span>
                                 </ng-template>
 
                                 <div *ngIf="showUN" class="form-check d-flex justify-content-center my-4">
@@ -140,10 +141,6 @@
     </div>
 </section>
 
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
-    <app-main-info></app-main-info>
-</div>
 
 
 <br><br><br><br>
-

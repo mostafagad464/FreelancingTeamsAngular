@@ -5,7 +5,6 @@ import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user';
 import { CountriesService } from 'src/app/_services/countries.service';
-import { Freelancer } from 'src/app/_models/freelancer';
 
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -35,8 +34,8 @@ export class MainInfoComponent implements OnInit {
 
   public isAuthenticated$ = this.AuthService.isAuthenticated$;
 
-  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService, 
-  public AuthService: AuthService, private router: Router) { }
+  constructor(public AccountService: AccountService, public UserService: UserService, public CountriesService: CountriesService,
+    public AuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.isAuthenticated$.subscribe(authenticated => {
@@ -46,25 +45,30 @@ export class MainInfoComponent implements OnInit {
         this.AccountService.getAccount(id).subscribe(a => {
           this.account = a;
         }, err => console.log(err));
+
         this.UserService.getUser(parseInt(id)).subscribe(u => {
           this.user = u;
           this.user.birthDate = this.user.birthDate?.split('T')[0] ? this.user.birthDate?.split('T')[0] : null;
-          if(this.user.country!=null){
-            this.CountriesService.getCountryDialCode(this.user.country).subscribe(d=>{
+          if (this.user.country != null) {
+            this.CountriesService.getCountryDialCode(this.user.country).subscribe(d => {
               this.code = d.data.dial_code;
             }, err => console.log(err))
           }
         }, error => console.log(error));
+
         this.CountriesService.getAllCountries().subscribe(c => {
+          console.log(c)
           for (const country of c) {
             this.countries.push(country.name);
           }
         }, err => console.log(err));
 
-      }})
+      }
+    })
   }
 
   LoadStates(E: any) {
+    console.log("here");
     this.CountriesService.getCountryCities(E.target.value).subscribe(c => {
       this.states = c.data;
     }, err => console.log(err));
@@ -110,18 +114,18 @@ export class MainInfoComponent implements OnInit {
 
           this.UserService.addImage(this.user.id, fd).subscribe(u => {
             this.user.image = u.image;
-            // this.router.navigate(['profile/', this.user.id]);
+            this.router.navigate(['profile/', this.user.id]);
           })
           console.log(this.account);
           console.log(this.user);
         }
       })
     }
-    // this.router.navigate(['profile/',this.user.id]);
+    
 
   }
 
   GoToProfile() {
-    // this.Router.navigate(['']);
+    this.router.navigate(['profile/', this.user.id]);
   }
 }

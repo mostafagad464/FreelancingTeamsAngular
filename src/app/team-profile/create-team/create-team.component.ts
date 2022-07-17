@@ -27,8 +27,9 @@ export class CreateTeamComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    // this.authService.DeleteToken();
+
     this.team.leaderId = this.authService.getCurrentUser()?.id;
+
   }
 
   async createTeam() {

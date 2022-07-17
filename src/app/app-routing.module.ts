@@ -18,7 +18,6 @@ import { ChatComponent } from './messages/chat/chat.component';
 import { TeamChatComponent } from './messages/team-chat/team-chat.component';
 import { HomeComponent } from './Layout/home/home.component';
 import { AddPortfolioComponent } from './_user/user-profile/add-portfolio/add-portfolio.component';
-import { ContainerComponent } from './home/container/container.component';
 import { AddSkillComponent } from './_user/user-profile/add-skill/add-skill.component';
 import { EducationalInfoComponent } from './_user/user-profile/educational-info/educational-info.component';
 import { EditeducationalInfoComponent } from './_user/user-profile/editeducational-info/editeducational-info.component';
@@ -43,9 +42,13 @@ import { SliderFreelancerComponent } from './homeFreelancer/slider-freelancer/sl
 const routes: Routes = [
 
   { path: "", component: HomeComponent, pathMatch: "full" },
+
+  { path: "info", component: MainInfoComponent},
+
   { path: "login", component: LoginComponent, canActivate:[AnonymousGuard] },
   { path: "register", component: RegisterComponent, canActivate:[AnonymousGuard]},
-  { path: "maininfo", component: MainInfoComponent},
+
+
   { path: "skills/:id", component: SkillsComponent, canActivate: [AuthGuard] },
   { path: "skills/edit/:id", component: EditskillsComponent, canActivate: [AuthGuard] },
   { path: "chat", component: ChatComponent, canActivate: [AuthGuard] },
