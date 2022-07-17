@@ -27,6 +27,9 @@ import { ProposalModule } from "./proposal/proposal.module";
 import { DealModule } from "./deal/deal.module";
 import { AdminProfileComponent } from "./admin-profile/admin-profile/admin-profile.component";
 import { AdminProfileModule } from "./admin-profile/admin-profile.module";
+import { CardFreelancerComponent } from './homeFreelancer/card-freelancer/card-freelancer.component';
+import { ContainerFreelancerComponent } from './homeFreelancer/container-freelancer/container-freelancer.component';
+import { SliderFreelancerComponent } from './homeFreelancer/slider-freelancer/slider-freelancer.component';
 
 
 export function tokenGetter() {
@@ -37,6 +40,9 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+    CardFreelancerComponent,
+    ContainerFreelancerComponent,
+    SliderFreelancerComponent,
   ],
   imports: [
     BrowserModule,
