@@ -32,7 +32,7 @@
 
 
             <li *ngIf="isMember == false || isClient== false" class="nav-item">
-              <a (click)="requestJoinTeam(team.id)" class="nav-link text">Join</a>
+              <a id="joinBtn" (click)="requestJoinTeam(team.id)" class="nav-link text">Join</a>
             </li>
             <li *ngIf="haveAccess == true" class="nav-item">
               <a class="nav-link text" [routerLink]="['/freelancers',team.id]">Add Members</a>
