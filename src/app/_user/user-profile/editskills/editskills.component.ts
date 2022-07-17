@@ -20,7 +20,7 @@ export class EditskillsComponent implements OnInit {
   value :Number=4
 
   constructor(public userSer : UserProfileService, public router: Router, 
-    public activeModal:NgbActiveModal,public ac: ActivatedRoute,public modalService: NgbModal) { }
+   public ac: ActivatedRoute,public modalService: NgbModal) { }
   
   ngOnInit(): void {
 
@@ -41,8 +41,8 @@ export class EditskillsComponent implements OnInit {
   
   }
   close(){
+    this.router.navigateByUrl("profile/"+this.freelancerIdRoutingSplit[2]+"/personalInfo/"+this.freelancerIdRoutingSplit[2])
   
-    this.activeModal.close();
      }
   Edit(){
 
@@ -50,12 +50,13 @@ export class EditskillsComponent implements OnInit {
        this.userSer.UpdateFreelancerSkills(this.freelancerSkills[1][i].freelancerId
         ,this.freelancerSkills[1][i].skillId,this.freelancerSkills[1][i]).subscribe()
     }
-    this.activeModal.close();
+    this.router.navigateByUrl("profile/"+this.freelancerIdRoutingSplit[2]+"/personalInfo/"+this.freelancerIdRoutingSplit[2])
   }
   Delete(freelancerId:number,skillId:number){
     this.userSer.DeleteFreelancerSkill(freelancerId,skillId).subscribe(a=>{
       this.ngOnInit();
     });
+
   }
 
 

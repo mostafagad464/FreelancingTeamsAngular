@@ -134,6 +134,8 @@
                                             [(ngModel)]="userInfo.rate"></p-rating>
                                         <button *ngIf="profileId == urlId" (click)="wallet()"
                                             class="col-lg-4 offset-lg-10 btn btn-secondary">Wallet</button>
+                                        <button *ngIf="profileId != urlId" (click)="AddToTeam()"
+                                            class="col-lg-4 offset-lg-10 btn btn-secondary">Add To Team</button>
                                     </div>
 
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -170,12 +172,18 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+<<<<<<< HEAD
                     <router-outlet class="container"
 
                     ></router-outlet>
+=======
+                    <router-outlet class="container"></router-outlet>
+                    
+>>>>>>> origin/master
 
 
                 </div>
