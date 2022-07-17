@@ -43,6 +43,15 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/userHome")
       }
 
+
+      if(this.AuthService.getCurrentUser()?.role == "admin"){
+        this.router.navigateByUrl("/admin/adminProfile/"+this.AuthService.getCurrentUser()?.id);
+      }
+      else
+      {
+        this.router.navigateByUrl("/userHome")
+      }
+
     },
       error => {
         this.message = "Username and password incorrect";
