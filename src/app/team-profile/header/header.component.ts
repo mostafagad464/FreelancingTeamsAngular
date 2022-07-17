@@ -27,8 +27,8 @@ import { ReviewsService } from './../../_services/reviews.service'
 })
 export class HeaderComponent implements OnInit, OnChanges {
 
-  noOfCpltdProj: number = 0;
-  noOfRv: number = 0
+  noOfCpltdProj: number =0;
+  noOfRv: number = 0;
   teamMembers: number[] = [];
 
   checkP = ""; //Your team's projects
@@ -40,9 +40,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   skills:string[]=[]
   distinctSkills:string[]=[]
 
-  check() {
-    this.checkP = "Your team's projects";
-  }
+
   notification:Notifications = new Notifications(0, "", "", 0, false, false, new Date(1990, 1, 1));
   user:User=new User(0, null, 0 , 0, "", "" , "", null, 0, true, "", false, false, 0, 0, true, null, null, null, null, null);
   account:Account = new Account(0, null, "", "", "", "", "", "",null);
@@ -54,16 +52,13 @@ export class HeaderComponent implements OnInit, OnChanges {
     private teamMembersService: TeamMembersService,
     private authService: AuthService,
     private userService: UserService,
-    private notificationService:NotificationService, 
+    private notificationService:NotificationService,
     private accountService:AccountService,
     public skillServ:SkillService
   ) { }
 
-  checkP = ""; //Your team's projects
 
-  projects: Project[] = []
 
-  projectsNames: string[] = []
 
   team: Team = {
     id: 0,
@@ -98,29 +93,24 @@ export class HeaderComponent implements OnInit, OnChanges {
 
 
 
-  Search() {
-  }
-
-  check() {
-    this.checkP = "Your team's projects";
-  }
-
   Check() {
     this.title = "Freelancers in your team";
+    this.checkP = "Your team's projects";
+
     this.freelancerServ.getTeamMembers(this.team.id).subscribe(a => {
       this.teamMembers = a;
+
     })
   }
 
-  
+
   onlyUnique(value:any, index:any, self:any) {
     return self.indexOf(value) === index;
   }
-  
+
   // usage example:
   // var a = ['a', 1, 'a', 2, '1'];
 
-  title = '';
 
 
   ngOnInit(): void {
@@ -138,16 +128,18 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.freelancerId = this.authService.getCurrentUser()?.id;
     this.ac.params.subscribe(a => {
       this.teamServ.getTeamById(a['id']).subscribe(a => {
-        
+
         this.team = a;
+        this.noOfCpltdProj = this.team.deals.filter(a =>a.done == true).length;
+
+        this.getReviews();
+
         console.log(this.team);
         console.log(this.team.creationDate)
         console.log(this.team.name);
         this.Check();
-        this.noOfCpltdProj = this.team.deals.filter(a => a.done == true).length;
-        this.getReviews();
 
-        this.userServ.getAllFreelancers().subscribe(f=>{
+        this.userService.getAllFreelancers().subscribe(f=>{
           this.allFreelancers = f;
           console.log(this.allFreelancers);
 
@@ -168,7 +160,7 @@ export class HeaderComponent implements OnInit, OnChanges {
               // console.log(this.distinctSkills);
             })
           })
-          
+
           // for (let freelancer of this.allFreelancers) {
           //   if(!this.team.teamMembers.map(f=>f.freelancerId).includes(freelancer.id)){
           //     this.accServ.getAccount(freelancer.id).subscribe(a=>{
@@ -196,8 +188,8 @@ export class HeaderComponent implements OnInit, OnChanges {
     // })
 
     });
-    
-    
+
+
     console.log("Is Freelancer", this.isFreelancer);
   }
 
@@ -211,6 +203,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   getReviews() {
     this.ReviewsService.getReviews().subscribe(r => {
       this.noOfRv = r.filter(a => a.rate > 4 && a.teamId == this.team.id).length;
+      console.log("momen"+this.noOfRv)
     });
   }
 
@@ -233,6 +226,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         console.log(n);
       }
     )
+    document.getElementById("joinBtn")!.textContent = "Pending";
   }
 
   async checkfreelancer() {

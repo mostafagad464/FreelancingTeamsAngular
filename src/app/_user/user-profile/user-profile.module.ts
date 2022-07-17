@@ -26,6 +26,7 @@ import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
 import { AddSkillComponent } from './add-skill/add-skill.component';
 import { AddEducationComponent } from './add-education/add-education.component';
 import { PostComplainsComponent } from './post-complains/post-complains.component';
+import { BioComponent } from './bio/bio.component';
 
 
 
@@ -51,7 +52,8 @@ import { PostComplainsComponent } from './post-complains/post-complains.componen
     AddPortfolioComponent,
     AddSkillComponent,
     AddEducationComponent,
-    PostComplainsComponent
+    PostComplainsComponent,
+    BioComponent
   ],
   imports: [
     CommonModule, 
