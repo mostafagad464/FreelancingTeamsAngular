@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Freelancer } from 'src/app/_models/freelancer';
+import { Project } from 'src/app/_models/project';
 import { Team } from 'src/app/_models/team';
 import { User } from 'src/app/_models/user';
 import { FreelancerService } from 'src/app/_services/freelancer.service';
@@ -19,16 +20,7 @@ export class ContainerComponent implements OnInit {
   constructor(public teamServ:TeamService) { }
 
   ngOnInit(): void {
-    // this.sub1=this.teamServ.getTeams().subscribe(t=>{
-      // this.teams=t.filter((tm:Team)=>{
-      //   return tm.rate>3
-      // });
-     
-      this.teams=this.teams
-      // console.log(this.teams)
-      
-      
-    // })
+
 
 
   }

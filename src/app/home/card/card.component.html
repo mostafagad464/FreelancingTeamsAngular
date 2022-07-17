@@ -6,7 +6,7 @@
           <img style="height: 287px; width: 100%" src="https://localhost:7152/api/Image/Team?TeamId={{team.id}}"
             onerror=" this.src ='../../../assets/images/4.jpg'" />
         </div>
-        <a class="card-heading" [routerLink]="['/team/teamProfile/',team.id]" style="cursor: pointer">
+        <a style="font-size:20px" class="card-heading" [routerLink]="['/team/teamProfile/',team.id]" style="cursor: pointer">
           <b>{{ team.name }}</b>
 
         </a>
@@ -21,3 +21,4 @@
       </div>
     </div>
   </div>
+</div>

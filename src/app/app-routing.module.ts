@@ -36,6 +36,7 @@ import { UserwalletComponent } from './wallet/userwallet/userwallet.component';
 import { BioComponent } from './_user/user-profile/bio/bio.component';
 
 import { AnonymousGuard } from './_helpers/anonymous.guard';
+import { SliderFreelancerComponent } from './homeFreelancer/slider-freelancer/slider-freelancer.component';
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
   {
     path: "profile/:id", component: HeaderComponent, children:
       [
+        {path:"editBio/:id",component:BioComponent},
 
         {
           path: "addCertificate",
@@ -97,8 +99,7 @@ const routes: Routes = [
         },
         { path: "editExperience/:id/:startDate", component: EditexperienceComponent},
         { path: "addExperience", component: AddExperienceComponent},
-        {path:"editBio/:id",component:BioComponent}
-        ,
+
         {path:"wallet/:id",component:UserwalletComponent},
         { path: "editSkills/:id", component: EditskillsComponent},
         { path: "addSkill/:id", component: AddSkillComponent},
@@ -173,8 +174,10 @@ const routes: Routes = [
       ],
       canActivate: [AuthGuard]
   },
+  {path:"freelancerHome",component:SliderFreelancerComponent},
 
   { path: "userHome", component: SliderComponent },
+
 
   { path: "**", component: ErrorComponent }
 ]

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
+import { User } from 'src/app/_models/user';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/_services/user.service';
+import { UserProfileService } from 'src/app/_services/user-profile.service';
 
 const helper = new JwtHelperService();
 
@@ -17,10 +21,16 @@ export class LoginComponent implements OnInit {
   message = "";
   pass = "password";
   fa = "fa-eye";
+  userInfo = new User(0, "", 0, 0, new Date().toISOString(), "", "", "", 0, true, "", true, false, null, null, true, null, null, null, null,
+  null);
+  userId:any;
+  sub1:Subscription|null=null;
+  
 
-  constructor(public AuthService: AuthService, public router: Router) { }
+  constructor(public AuthService: AuthService, public router: Router,public useeserv:UserProfileService) { }
 
   ngOnInit(): void {
+
 
   }
   login() {
@@ -40,7 +50,22 @@ export class LoginComponent implements OnInit {
       }
       else
       {
-        this.router.navigateByUrl("/userHome")
+        this.userId=this.AuthService.getCurrentUser()?.id;
+        this.sub1=this.useeserv.getUserInfoByid(this.userId).subscribe(u=>
+          {
+            this.userInfo=u;
+            if(this.userInfo.freelancer){
+              this.router.navigateByUrl("/freelancerHome")
+    
+            }
+            
+            else  if(this.userInfo.client)
+            {this.router.navigateByUrl("/userHome")}
+
+    
+          }
+        )
+
       }
 
     },

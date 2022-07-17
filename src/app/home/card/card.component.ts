@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Project } from 'src/app/_models/project';
 import { Team } from 'src/app/_models/team';
 import { User } from 'src/app/_models/user';
 
@@ -9,6 +10,7 @@ import { User } from 'src/app/_models/user';
 })
 export class CardComponent implements OnInit {
   @Input() team!:Team;
+ 
 
   constructor() { }
 

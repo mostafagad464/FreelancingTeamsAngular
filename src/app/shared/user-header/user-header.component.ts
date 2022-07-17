@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Account } from 'src/app/_models/account';
 import { Notifications } from 'src/app/_models/notifications';
 import { Team } from 'src/app/_models/team';
@@ -30,7 +31,7 @@ export class UserHeaderComponent implements OnInit {
 
   constructor(public AuthService: AuthService, public UserService: UserService, 
     public TeamService: TeamService, public AccountService: AccountService, 
-    public NotificationService: NotificationService, public ChatService : ChatService) { }
+    public NotificationService: NotificationService, public ChatService : ChatService, public router:Router) { }
 
   ngOnInit(): void {
     this.getNotifications(this.AuthService.getCurrentUser()?.id);
@@ -69,6 +70,19 @@ export class UserHeaderComponent implements OnInit {
   
     
 
+  }
+  navigate()
+  {
+    if(this.user.client)
+    {
+      this.router.navigateByUrl("/userHome")
+    }
+    else if(this.user.freelancer)
+    {
+      this.router.navigateByUrl("/freelancerHome")
+      
+
+    }
   }
 
   Switch(name: string, id: number) {
